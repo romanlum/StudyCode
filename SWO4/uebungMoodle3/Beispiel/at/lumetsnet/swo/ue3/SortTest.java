@@ -53,9 +53,9 @@ public class SortTest {
 			int[] data = getData(currentSize);
 			heapSort.sort(data.clone());
 			quickSort.sort(data);
-			System.out.print("HeapSort: " + heapSort.getInstrumentationData().getComparisonCount() + ", " + heapSort.getInstrumentationData().getSwapCount());
+			System.out.print("HeapSort: " + heapSort.getInstrumentationData().getSortTime() + " ns, "+ heapSort.getInstrumentationData().getComparisonCount() + ", " + heapSort.getInstrumentationData().getSwapCount());
 			System.out.println();
-			System.out.print("QuickSort: " + quickSort.getInstrumentationData().getComparisonCount() + ", " + quickSort.getInstrumentationData().getSwapCount());
+			System.out.print("QuickSort: " + quickSort.getInstrumentationData().getSortTime() + " ns, "+ quickSort.getInstrumentationData().getComparisonCount() + ", " + quickSort.getInstrumentationData().getSwapCount());
 			System.out.println();
 			currentPow++;
 			currentSize = (int) Math.pow(2, currentPow); 

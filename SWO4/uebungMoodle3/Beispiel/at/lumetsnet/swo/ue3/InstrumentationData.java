@@ -29,8 +29,8 @@ public class InstrumentationData {
 	public String toString() {
 		StringBuilder builder=new StringBuilder();
 		builder.append("Sort time: ");
-		builder.append(TimeUnit.MILLISECONDS.convert(sortTime, TimeUnit.NANOSECONDS));
-		builder.append("ms \n");
+		builder.append(sortTime);
+		builder.append(" ns \n");
 		builder.append("Comparison count: ");
 		builder.append(comparisonCount);
 		builder.append("\n");
