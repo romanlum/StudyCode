@@ -25,14 +25,35 @@ public abstract class Sorter {
 		instrumentationData.setSortTime(end-begin);
 	}
 	
+	/**
+	 * Sort method which needs to be implemented
+	 * @param data
+	 */
 	protected abstract void doSort(int[] data);
+	
+	/***
+	 * Swaps the two field elements
+	 * refreshes instrumentation data
+	 * @param arr
+	 * @param x
+	 * @param y
+	 */
+	protected void swap(int[] arr, int x, int y) {
+        int temp = arr[x];
+        arr[x] = arr[y];
+        arr[y] = temp;
+        instrumentationData.addSwap();
+    }
 	
 	/***
 	 * Gets the instrumentation data for the current sort operation
 	 * @return
 	 */
-	InstrumentationData getInstrumentationData() {
+	public InstrumentationData getInstrumentationData() {
 		return instrumentationData;
 	}
+	
+	
+	
 	
 }

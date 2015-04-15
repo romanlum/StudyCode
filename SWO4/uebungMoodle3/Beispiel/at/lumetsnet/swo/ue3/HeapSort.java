@@ -1,15 +1,24 @@
 package at.lumetsnet.swo.ue3;
 
+/***
+ * Heap sort implementation
+ * @author romanlum
+ *
+ */
 public class HeapSort extends Sorter {
 	
 	private int heapSize;
 	
 	protected void doSort(int[] arr)
     {
+		if(arr == null || arr.length == 0) {
+			//nothing todo
+			return;
+		}
         buildHeap(arr);
         for (int i = arr.length-1; i >= 0; i--)
         {
-            Swap(arr, 0, i);
+            swap(arr, 0, i);
             heapSize--;
             heapify(arr, 0);
         }
@@ -42,18 +51,10 @@ public class HeapSort extends Sorter {
 	    
 	    if (largest != index)
 	    {
-	       Swap(arr, index, largest);
+	       swap(arr, index, largest);
 	       heapify(arr, largest);
 	    }
 	}
-	
-	private void Swap(int[] arr, int x, int y)
-    {
-        int temp = arr[x];
-        arr[x] = arr[y];
-        arr[y] = temp;
-        instrumentationData.addSwap();
-    }
 	
     
 }

@@ -4,6 +4,11 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ * Hamming number generator class
+ * @author romanlum
+ *
+ */
 public class Hamming {
 	
 	/**
@@ -37,11 +42,17 @@ public class Hamming {
 		
 		BigInteger currentMin;
 		while(true) {
+			//add the next hamming number to list
 			currentMin = (value3.min(value5)).min(value2);
-			if(currentMin.compareTo(upper) == 1)
+			
+			//stop if we have reached out upper limit
+			if(currentMin.compareTo(upper) == 1) {
 				break;
+			}
+			
 			result.add(currentMin);
 			
+			//check all values against the current min and increase the indexes if needed
 			if(currentMin.compareTo(value2) == 0) {
 				index2++;
 				value2 = TWO.multiply(result.get(index2));
