@@ -7,8 +7,9 @@ public class HammingTest {
 
 	public static void main(String[] args) {
 	
-		long time = System.nanoTime();
+		
 		System.out.println("Testcase I: Hamming number 1 - 10");
+		long time = System.nanoTime();
 		List<BigInteger> result = Hamming.calculate(BigInteger.valueOf(10));
 		System.out.println("Time "+TimeUnit.MILLISECONDS.convert(System.nanoTime()-time,TimeUnit.NANOSECONDS) + "ms");
 		result.forEach((x) -> System.out.print(x + ","));
