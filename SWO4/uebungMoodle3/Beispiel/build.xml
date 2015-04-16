@@ -1,12 +1,12 @@
 <project name="uebung3" default="compile" basedir=".">
  
-  <property name="main.class" value="test.PQueueTest"/>
+  <property name="main.class" value="at.lumetsnet.swo.ue3.Main"/>
   <property name="program.jar" value="uebung3.jar"/>
   
   <target name="compile"
           description="Compile Java sources">
     <javac srcdir="."
-           destdir="./bin"
+           destdir="."
            includeantruntime="false">
       <include name="**/*.java"/>
     </javac>

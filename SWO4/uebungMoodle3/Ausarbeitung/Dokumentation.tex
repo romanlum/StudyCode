@@ -8,7 +8,9 @@
 \section{Das Problem von Richard H. }
 \subsection{Lösungsidee}
 Die Hammingfolge lässt sich mit Hilfe der Definition laut Angabe umsetzten. \newline
-Dabei wird 1 als erste Hammingzahl in eine Liste eingefügt. Dann können die weiteren Zahlen durch multiplizieren mit 2, 3 und 5 eingefügt werden. 
+Dabei wird 1 als erste Hammingzahl in eine Liste eingefügt. Dann können die weiteren Zahlen durch multiplizieren mit 2, 3 und 5 eingefügt werden. \newline
+Durch mitführen von Index-Variablen wird sichergestellt, dass jede Zahl in der Liste genau einmal mit 2, 3 und 5 multipliziert wird. 
+Sobald die gegebne obere Schranke erreicht ist, kann die Schleife beendet werden. \newline
 
 \pagebreak
 \subsection{Sourcecode}
@@ -19,7 +21,57 @@ Dabei wird 1 als erste Hammingzahl in eine Liste eingefügt. Dann können die weit
 \javacode{../Beispiel/at/lumetsnet/swo/ue3/HammingTest.java}
 
 \subsection{Testfälle}
-\centering
+\begin{center}
 \fbox{\includegraphics[width=400px]{../Screenshots/1.png}}
+\end{center}
+
+\section{Schlacht der Sortieralgorithmen }
+\subsection{Lösungsidee}
+\subsubsection*{Heapsort}
+\begin{itemize}
+\item Für den Heapsort wird zu Begin das Eingabefeld in einen Heap übergeführt. Damit befindet sich das größte Element an erster Stelle.
+\item Dieses wird dann mit dem letzten vertauscht und die Größe um 1 verringert.
+\item Danach wird wieder sichergestellt, dass es sich um einen Heap handelt.
+\item Damit ist das nächst-größere Element an erster Stelle, welches wieder vertauscht wird.
+\item Dies wird dann solange wiederholt, bis die Heapgröße 1 ist.
+\end{itemize}
+
+Dann hat man ein aufsteigend sortiertes Feld.
+
+\subsubsection*{Quicksort}
+Beim Quicksort wird die Menge in Teillisten getrennt und in sich sortiert. Die Trennung erfolgt durch ein Pivot Element. 
+\begin{itemize}
+\item In der linken Liste sind jene Elemente, die kleiner als das Pivot Element sind.
+\item in der rechten Liste sind jene Elemente, die größer als das Pivot Element sind.
+\end{itemize}
+
+\subsubsection*{Statistik}
+Um die Statistik erstellen zu können, wird eine eigene Klasse erstellt, die die benötigten Daten aufnehmen kann.\newline
+Weiters müssen die Algorithmen erweitert werden, dass sie die Daten zur Verfügung stellen können. \newline
+\textbf{Die Statistik wird in den Testfällen generiert.}
+\pagebreak
+
+\subsection{Sourcecode}
+\textbf{QuickSort.java}
+\javacode{../Beispiel/at/lumetsnet/swo/ue3/QuickSort.java}
+\textbf{HeapSort.java}
+\javacode{../Beispiel/at/lumetsnet/swo/ue3/HeapSort.java}
+\textbf{InstrumentationData.java}
+\javacode{../Beispiel/at/lumetsnet/swo/ue3/InstrumentationData.java}
+\textbf{Sorter.java}
+\javacode{../Beispiel/at/lumetsnet/swo/ue3/Sorter.java}
+\textbf{SortTest.java}
+\javacode{../Beispiel/at/lumetsnet/swo/ue3/SortTest.java}
+\textbf{Main.java}
+\javacode{../Beispiel/at/lumetsnet/swo/ue3/Main.java}
+
+\subsection{Testfälle}
+\begin{center}
+\fbox{\includegraphics[width=400px]{../Screenshots/2.png}}
+\fbox{\includegraphics[width=400px]{../Screenshots/3.png}}
+\fbox{\includegraphics[width=400px]{../Screenshots/4.png}}
+\fbox{\includegraphics[width=400px]{../Screenshots/5.png}}
+\end{center}
+
 
 \end{document}
