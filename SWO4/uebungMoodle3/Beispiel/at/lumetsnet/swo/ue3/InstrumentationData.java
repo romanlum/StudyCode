@@ -44,8 +44,16 @@ public class InstrumentationData {
     return comparisonCount;
   }
   
+  public void setComparisonCount(int comparisonCount) {
+    this.comparisonCount = comparisonCount;
+  }
+  
   public int getSwapCount() {
     return swapCount;
+  }
+  
+  public void setSwapCount(int swapCount) {
+    this.swapCount = swapCount;
   }
 
   public long getSortTime() {

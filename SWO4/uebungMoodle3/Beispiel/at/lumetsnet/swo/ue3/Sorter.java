@@ -8,10 +8,6 @@ public abstract class Sorter {
   
   protected InstrumentationData instrumentationData;
   
-  public Sorter() {
-    instrumentationData = new InstrumentationData();
-  }
-  
   /***
    * Sorts the data
    * @param data
