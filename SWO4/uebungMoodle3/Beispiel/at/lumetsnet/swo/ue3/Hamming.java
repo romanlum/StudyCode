@@ -49,7 +49,7 @@ public class Hamming {
       // add the next hamming number to list
       currentMin = (value3.min(value5)).min(value2);
 
-      // stop if we have reached out upper limit
+      // stop if we have reached upper limit
       if (currentMin.compareTo(upper) == 1) {
         break;
       }

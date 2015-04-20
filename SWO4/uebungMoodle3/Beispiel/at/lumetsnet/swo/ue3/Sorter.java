@@ -48,7 +48,4 @@ public abstract class Sorter {
     return instrumentationData;
   }
   
-  
-  
-  
 }
