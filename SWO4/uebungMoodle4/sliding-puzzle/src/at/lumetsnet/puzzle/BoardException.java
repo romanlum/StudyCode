@@ -1,0 +1,9 @@
+package at.lumetsnet.puzzle;
+
+@SuppressWarnings("serial")
+public class BoardException extends RuntimeException {
+	
+	public BoardException (String message) {
+		super(message);
+	}
+}
