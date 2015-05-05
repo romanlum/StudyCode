@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BoardTest" project="sliding-puzzle" tests="9" started="9" failures="0" errors="0" ignored="0">
+  <testsuite name="swe4.tests.BoardTest" time="0.095">
+    <testcase name="simpleIsValidTest" classname="swe4.tests.BoardTest" time="0.081"/>
+    <testcase name="moveOutsideTest1" classname="swe4.tests.BoardTest" time="0.001"/>
+    <testcase name="moveOutsideTest2" classname="swe4.tests.BoardTest" time="0.001"/>
+    <testcase name="moveOutsideTest3" classname="swe4.tests.BoardTest" time="0.001"/>
+    <testcase name="moveOutsideTest4" classname="swe4.tests.BoardTest" time="0.0"/>
+    <testcase name="simpleIsNotValidTest2" classname="swe4.tests.BoardTest" time="0.011"/>
+    <testcase name="simpleIsNotValidTest3" classname="swe4.tests.BoardTest" time="0.0"/>
+    <testcase name="simpleIsNotValidTest4" classname="swe4.tests.BoardTest" time="0.0"/>
+    <testcase name="simpleIsNotValidTest" classname="swe4.tests.BoardTest" time="0.0"/>
+  </testsuite>
+</testrun>

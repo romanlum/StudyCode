@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BoardTest" project="sliding-puzzle" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="swe4.tests.BoardTest" time="0.063">
+    <testcase name="simpleIsValidTest" classname="swe4.tests.BoardTest" time="0.062"/>
+    <testcase name="simpleIsNotValidTest2" classname="swe4.tests.BoardTest" time="0.001"/>
+    <testcase name="simpleIsNotValidTest3" classname="swe4.tests.BoardTest" time="0.0"/>
+    <testcase name="simpleIsNotValidTest" classname="swe4.tests.BoardTest" time="0.0"/>
+  </testsuite>
+</testrun>
