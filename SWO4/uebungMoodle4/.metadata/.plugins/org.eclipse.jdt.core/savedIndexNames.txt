@@ -1,0 +1,18 @@
+INDEX VERSION 1.127+/mnt/hgfs/Studium/Code/SWO4/uebungMoodle4/.metadata/.plugins/org.eclipse.jdt.core
+2862927298.index
+678448440.index
+39600882.index
+3236451819.index
+2079883434.index
+2119359928.index
+1877274246.index
+1105682141.index
+3851565959.index
+760920370.index
+2551173179.index
+3442398642.index
+3991483559.index
+2303023005.index
+305815455.index
+3168441690.index
+1062493829.index
