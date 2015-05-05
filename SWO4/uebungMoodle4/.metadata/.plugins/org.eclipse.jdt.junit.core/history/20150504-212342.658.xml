@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="BoardTest" project="sliding-puzzle" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="swe4.tests.BoardTest" time="0.096">
-    <testcase name="simpleIsValidTest" classname="swe4.tests.BoardTest" time="0.095"/>
-    <testcase name="simpleIsNotValidTest2" classname="swe4.tests.BoardTest" time="0.0"/>
-    <testcase name="simpleIsNotValidTest" classname="swe4.tests.BoardTest" time="0.001"/>
-  </testsuite>
-</testrun>

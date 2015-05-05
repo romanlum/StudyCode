@@ -1,5 +1,0 @@
-package at.lumetsnet.puzzle;
-
-public class BoardException extends RuntimeException {
-
-}
