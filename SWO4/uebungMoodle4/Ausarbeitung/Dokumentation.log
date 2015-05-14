@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  14 MAY 2015 11:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  14 MAY 2015 13:51
 entering extended mode
 **Dokumentation.tex
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.tex
@@ -380,43 +380,299 @@ File: pppdftex.def 2013/08/25 v0.4v Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count103
 \AM@templatesizebox=\box31
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mdframed\mdframed.sty"
+Package: mdframed 2013/07/01 1.9b: mdframed
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\l3packages\xparse\xparse.sty"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty"
+Package: expl3 2015/03/01 v5547 L3 programming layer (loader) 
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\l3kernel\expl3-code.tex"
+Package: expl3 2015/03/01 v5547 L3 programming layer (code) 
+L3 Module: l3bootstrap 2015/02/28 v5542 L3 Bootstrap code
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\misc\etex.sty"
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count104
+)
+L3 Module: l3names 2015/02/24 v5535 L3 Namespace for primitives
+L3 Module: l3basics 2015/01/27 v5500 L3 Basic definitions
+L3 Module: l3expan 2014/11/27 v5472 L3 Argument expansion
+L3 Module: l3tl 2015/01/27 v5500 L3 Token lists
+L3 Module: l3str 2015/03/01 v5545 L3 Strings
+L3 Module: l3seq 2014/08/23 v5354 L3 Sequences and stacks
+L3 Module: l3int 2015/02/21 v5529 L3 Integers
+\c_max_int=\count105
+\l_tmpa_int=\count106
+\l_tmpb_int=\count107
+\g_tmpa_int=\count108
+\g_tmpb_int=\count109
+L3 Module: l3quark 2014/08/23 v5354 L3 Quarks
+L3 Module: l3prg 2014/08/23 v5354 L3 Control structures
+\g__prg_map_int=\count110
+L3 Module: l3clist 2014/08/23 v5354 L3 Comma separated lists
+L3 Module: l3token 2014/09/15 v5422 L3 Experimental token manipulation
+L3 Module: l3prop 2014/08/23 v5354 L3 Property lists
+L3 Module: l3msg 2015/02/26 v5537 L3 Messages
+L3 Module: l3file 2014/08/24 v5369 L3 File and I/O operations
+\l_iow_line_count_int=\count111
+\l__iow_target_count_int=\count112
+\l__iow_current_line_int=\count113
+\l__iow_current_word_int=\count114
+\l__iow_current_indentation_int=\count115
+L3 Module: l3skip 2014/08/23 v5354 L3 Dimensions and skips
+\c_zero_dim=\dimen124
+\c_max_dim=\dimen125
+\l_tmpa_dim=\dimen126
+\l_tmpb_dim=\dimen127
+\g_tmpa_dim=\dimen128
+\g_tmpb_dim=\dimen129
+\c_zero_skip=\skip47
+\c_max_skip=\skip48
+\l_tmpa_skip=\skip49
+\l_tmpb_skip=\skip50
+\g_tmpa_skip=\skip51
+\g_tmpb_skip=\skip52
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+L3 Module: l3keys 2015/01/27 v5500 L3 Key-value interfaces
+\g__keyval_level_int=\count116
+\l_keys_choice_int=\count117
+L3 Module: l3fp 2014/08/22 v5336 L3 Floating points
+\c__fp_leading_shift_int=\count118
+\c__fp_middle_shift_int=\count119
+\c__fp_trailing_shift_int=\count120
+\c__fp_big_leading_shift_int=\count121
+\c__fp_big_middle_shift_int=\count122
+\c__fp_big_trailing_shift_int=\count123
+\c__fp_Bigg_leading_shift_int=\count124
+\c__fp_Bigg_middle_shift_int=\count125
+\c__fp_Bigg_trailing_shift_int=\count126
+L3 Module: l3box 2014/08/23 v5354 L3 Experimental boxes
+\c_empty_box=\box32
+\l_tmpa_box=\box33
+\l_tmpb_box=\box34
+\g_tmpa_box=\box35
+\g_tmpb_box=\box36
+L3 Module: l3coffins 2014/08/23 v5354 L3 Coffin code layer
+\l__coffin_internal_box=\box37
+\l__coffin_internal_dim=\dimen130
+\l__coffin_offset_x_dim=\dimen131
+\l__coffin_offset_y_dim=\dimen132
+\l__coffin_x_dim=\dimen133
+\l__coffin_y_dim=\dimen134
+\l__coffin_x_prime_dim=\dimen135
+\l__coffin_y_prime_dim=\dimen136
+\c_empty_coffin=\box38
+\l__coffin_aligned_coffin=\box39
+\l__coffin_aligned_internal_coffin=\box40
+\l_tmpa_coffin=\box41
+\l_tmpb_coffin=\box42
+\l__coffin_display_coffin=\box43
+\l__coffin_display_coord_coffin=\box44
+\l__coffin_display_pole_coffin=\box45
+\l__coffin_display_offset_dim=\dimen137
+\l__coffin_display_x_dim=\dimen138
+\l__coffin_display_y_dim=\dimen139
+L3 Module: l3color 2014/08/23 v5354 L3 Experimental color support
+L3 Module: l3candidates 2015/03/01 v5544 L3 Experimental additions to l3kernel
+\l__box_top_dim=\dimen140
+\l__box_bottom_dim=\dimen141
+\l__box_left_dim=\dimen142
+\l__box_right_dim=\dimen143
+\l__box_top_new_dim=\dimen144
+\l__box_bottom_new_dim=\dimen145
+\l__box_left_new_dim=\dimen146
+\l__box_right_new_dim=\dimen147
+\l__box_internal_box=\box46
+\l__coffin_bounding_shift_dim=\dimen148
+\l__coffin_left_corner_dim=\dimen149
+\l__coffin_right_corner_dim=\dimen150
+\l__coffin_bottom_corner_dim=\dimen151
+\l__coffin_top_corner_dim=\dimen152
+\l__coffin_scaled_total_height_dim=\dimen153
+\l__coffin_scaled_width_dim=\dimen154
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\l3kernel\l3unicode-data.def"
+File: l3unicode-data.def 2015/03/01 v5544 L3 Unicode data
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\l3kernel\l3pdfmode.def"
+File: l3pdfmode.def 2015/03/01 v5544 L3 Experimental driver: PDF mode
+\l__driver_color_stack_int=\count127
+))
+Package: xparse 2014/11/25 v5471 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count128
+\l__xparse_m_args_int=\count129
+\l__xparse_mandatory_args_int=\count130
+\l__xparse_processor_int=\count131
+\l__xparse_v_nesting_int=\count132
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
+Package: etoolbox 2015/03/19 v2.1d e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count133
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\zref-abspage.sty"
+Package: zref-abspage 2012/04/04 v2.24 Module abspage for zref (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\zref-base.sty"
+Package: zref-base 2012/04/04 v2.24 Module base for zref (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty"
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+Package zref Info: New property list: main on input line 759.
+Package zref Info: New property: default on input line 760.
+Package zref Info: New property: page on input line 761.
+)
+\c@abspage=\count134
+Package zref Info: New property: abspage on input line 62.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\needspace\needspace.sty"
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+\mdf@templength=\skip53
+\c@mdf@globalstyle@cnt=\count135
+\mdf@skipabove@length=\skip54
+\mdf@skipbelow@length=\skip55
+\mdf@leftmargin@length=\skip56
+\mdf@rightmargin@length=\skip57
+\mdf@innerleftmargin@length=\skip58
+\mdf@innerrightmargin@length=\skip59
+\mdf@innertopmargin@length=\skip60
+\mdf@innerbottommargin@length=\skip61
+\mdf@splittopskip@length=\skip62
+\mdf@splitbottomskip@length=\skip63
+\mdf@outermargin@length=\skip64
+\mdf@innermargin@length=\skip65
+\mdf@linewidth@length=\skip66
+\mdf@innerlinewidth@length=\skip67
+\mdf@middlelinewidth@length=\skip68
+\mdf@outerlinewidth@length=\skip69
+\mdf@roundcorner@length=\skip70
+\mdf@footenotedistance@length=\skip71
+\mdf@userdefinedwidth@length=\skip72
+\mdf@needspace@length=\skip73
+\mdf@frametitleaboveskip@length=\skip74
+\mdf@frametitlebelowskip@length=\skip75
+\mdf@frametitlerulewidth@length=\skip76
+\mdf@frametitleleftmargin@length=\skip77
+\mdf@frametitlerightmargin@length=\skip78
+\mdf@shadowsize@length=\skip79
+\mdf@extratopheight@length=\skip80
+\mdf@subtitleabovelinewidth@length=\skip81
+\mdf@subtitlebelowlinewidth@length=\skip82
+\mdf@subtitleaboveskip@length=\skip83
+\mdf@subtitlebelowskip@length=\skip84
+\mdf@subtitleinneraboveskip@length=\skip85
+\mdf@subtitleinnerbelowskip@length=\skip86
+\mdf@subsubtitleabovelinewidth@length=\skip87
+\mdf@subsubtitlebelowlinewidth@length=\skip88
+\mdf@subsubtitleaboveskip@length=\skip89
+\mdf@subsubtitlebelowskip@length=\skip90
+\mdf@subsubtitleinneraboveskip@length=\skip91
+\mdf@subsubtitleinnerbelowskip@length=\skip92
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mdframed\md-frame-0.mdf"
+File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
+)
+\mdf@frametitlebox=\box47
+\mdf@footnotebox=\box48
+\mdf@splitbox@one=\box49
+\mdf@splitbox@two=\box50
+\mdf@splitbox@save=\box51
+\mdfsplitboxwidth=\skip93
+\mdfsplitboxtotalwidth=\skip94
+\mdfsplitboxheight=\skip95
+\mdfsplitboxdepth=\skip96
+\mdfsplitboxtotalheight=\skip97
+\mdfframetitleboxwidth=\skip98
+\mdfframetitleboxtotalwidth=\skip99
+\mdfframetitleboxheight=\skip100
+\mdfframetitleboxdepth=\skip101
+\mdfframetitleboxtotalheight=\skip102
+\mdffootnoteboxwidth=\skip103
+\mdffootnoteboxtotalwidth=\skip104
+\mdffootnoteboxheight=\skip105
+\mdffootnoteboxdepth=\skip106
+\mdffootnoteboxtotalheight=\skip107
+\mdftotallinewidth=\skip108
+\mdfboundingboxwidth=\skip109
+\mdfboundingboxtotalwidth=\skip110
+\mdfboundingboxheight=\skip111
+\mdfboundingboxdepth=\skip112
+\mdfboundingboxtotalheight=\skip113
+\mdf@freevspace@length=\skip114
+\mdf@horizontalwidthofbox@length=\skip115
+\mdf@verticalmarginwhole@length=\skip116
+\mdf@horizontalspaceofbox=\skip117
+\mdfsubtitleheight=\skip118
+\mdfsubsubtitleheight=\skip119
+\c@mdfcountframes=\count136
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \newmdtheoremenv with sig. 'O{} m o m o ' on line 601.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \mdtheorem with sig. ' O{} m o m o ' on line 701.
+.................................................
+\mdf@envdepth=\count137
+\c@mdf@env@i=\count138
+\c@mdf@env@ii=\count139
+\c@mdf@zref@counter=\count140
+Package zref Info: New property: mdf@pagevalue on input line 895.
+)
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 68.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 71.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Try loading font information for T1+qpl on input line 68.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Try loading font information for T1+qpl on input line 71.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tex-gyre\t1qpl.fd"
 File: t1qpl.fd 2009/09/25 v1.2 font definition file for T1/qpl
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count104
-\scratchdimen=\dimen124
-\scratchbox=\box32
-\nofMPsegments=\count105
-\nofMParguments=\count106
+\scratchcounter=\count141
+\scratchdimen=\dimen155
+\scratchbox=\box52
+\nofMPsegments=\count142
+\nofMParguments=\count143
 \everyMPshowfont=\toks23
-\MPscratchCnt=\count107
-\MPscratchDim=\dimen125
-\MPnumerator=\count108
-\makeMPintoPDFobject=\count109
+\MPscratchCnt=\count144
+\MPscratchDim=\dimen156
+\MPnumerator=\count145
+\makeMPintoPDFobject=\count146
 \everyMPtoPDFconversion=\toks24
 )
 *geometry* driver: auto-detecting
@@ -453,7 +709,7 @@ File: t1qpl.fd 2009/09/25 v1.2 font definition file for T1/qpl
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 68.
+LaTeX Info: Redefining \microtypecontext on input line 71.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -481,88 +737,88 @@ Package scrpage2 Warning: seems you are using a constant headheight.
 (scrpage2)                into the preamble of your document.
 (scrpage2)                A better solution would be to use typearea package.
 
-\AtBeginShipoutBox=\box33
+\AtBeginShipoutBox=\box53
 <angabe.pdf, id=1, 597.19112pt x 845.19763pt>
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf>
-Package pdftex.def Info: angabe.pdf used on input line 69.
+Package pdftex.def Info: angabe.pdf used on input line 72.
 (pdftex.def)             Requested size: 597.18967pt x 845.19557pt.
 File: angabe.pdf Graphic file (type pdf)
 
 <use angabe.pdf>
-Package pdftex.def Info: angabe.pdf used on input line 69.
+Package pdftex.def Info: angabe.pdf used on input line 72.
 (pdftex.def)             Requested size: 597.18967pt x 845.19557pt.
  <angabe.pdf, id=4, page=1, 597.19112pt x 845.19763pt>
 File: angabe.pdf Graphic file (type pdf)
 
 <use angabe.pdf, page 1>
-Package pdftex.def Info: angabe.pdf, page1 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page1 used on input line 72.
 (pdftex.def)             Requested size: 597.18967pt x 845.19557pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 1>
-Package pdftex.def Info: angabe.pdf, page1 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page1 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 1>
-Package pdftex.def Info: angabe.pdf, page1 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page1 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
 
 <use angabe.pdf, page 1>
-Package pdftex.def Info: angabe.pdf, page1 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page1 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 1>
-Package pdftex.def Info: angabe.pdf, page1 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page1 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
  [1
 
  <D:/Studium/Code/SWO4/uebungMoodle4/Ausarbeitung/angabe.pdf>]
-<angabe.pdf, id=31, page=2, 597.19112pt x 845.19763pt>
+<angabe.pdf, id=27, page=2, 597.19112pt x 845.19763pt>
 File: angabe.pdf Graphic file (type pdf)
 
 <use angabe.pdf, page 2>
-Package pdftex.def Info: angabe.pdf, page2 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page2 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 2>
-Package pdftex.def Info: angabe.pdf, page2 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page2 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 2>
-Package pdftex.def Info: angabe.pdf, page2 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page2 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 
 [2 <D:/Studium/Code/SWO4/uebungMoodle4/Ausarbeitung/angabe.pdf>]
-<angabe.pdf, id=48, page=3, 597.19112pt x 845.19763pt>
+<angabe.pdf, id=41, page=3, 597.19112pt x 845.19763pt>
 File: angabe.pdf Graphic file (type pdf)
 
 <use angabe.pdf, page 3>
-Package pdftex.def Info: angabe.pdf, page3 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page3 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 3>
-Package pdftex.def Info: angabe.pdf, page3 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page3 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 3>
-Package pdftex.def Info: angabe.pdf, page3 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page3 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 
 [3 <D:/Studium/Code/SWO4/uebungMoodle4/Ausarbeitung/angabe.pdf>]
-<angabe.pdf, id=53, page=4, 597.19112pt x 845.19763pt>
+<angabe.pdf, id=46, page=4, 597.19112pt x 845.19763pt>
 File: angabe.pdf Graphic file (type pdf)
 
 <use angabe.pdf, page 4>
-Package pdftex.def Info: angabe.pdf, page4 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page4 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 4>
-Package pdftex.def Info: angabe.pdf, page4 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page4 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 File: angabe.pdf Graphic file (type pdf)
  <use angabe.pdf, page 4>
-Package pdftex.def Info: angabe.pdf, page4 used on input line 69.
+Package pdftex.def Info: angabe.pdf, page4 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 
 [4 <D:/Studium/Code/SWO4/uebungMoodle4/Ausarbeitung/angabe.pdf>])
@@ -617,8 +873,7 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 tsnet/puzzle//Move.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [13]
-[14])
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [13])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -626,7 +881,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
 tsnet/puzzle//SearchNode.java)...executed.
 
- (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg
+
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [14]
 [15] [16] [17] [18])
 runsystem(del Dokumentation.out.pyg)...executed.
 
@@ -643,47 +899,9 @@ runsystem(del Dokumentation.out.pyg)...executed.
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//tests/AbstractTest.java)...executed.
-
- (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg
-[21])
-runsystem(del Dokumentation.out.pyg)...executed.
-
-runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
-erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//tests/BoardTest.java)...executed.
-
- (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg
-[22] [23] [24] [25] [26] [27] [28])
-runsystem(del Dokumentation.out.pyg)...executed.
-
-runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
-erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//tests/SearchNodeTest.java)...executed.
-
-
-(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [29])
-runsystem(del Dokumentation.out.pyg)...executed.
-
-runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
-erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//tests/SlidingPuzzleSolverTest.java)...executed.
-
-
-(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [30]
-[31] [32] [33])
-runsystem(del Dokumentation.out.pyg)...executed.
-
-runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
-erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
 tsnet/puzzle//exceptions/BoardException.java)...executed.
 
-
-(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg)
+ (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg)
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -701,7 +919,7 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 tsnet/puzzle//exceptions/InvalidBoardIndexException.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [34])
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [21])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -722,20 +940,73 @@ tsnet/puzzle//exceptions/NoSolutionException.java)...executed.
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg)
 runsystem(del Dokumentation.out.pyg)...executed.
 
+runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
+erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/test/at/lum
+etsnet/puzzle/tests//AbstractTest.java)...executed.
 
-[35] (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.aux)
+
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [22])
+runsystem(del Dokumentation.out.pyg)...executed.
+
+runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
+erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/test/at/lum
+etsnet/puzzle/tests//BoardTest.java)...executed.
+
+
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [23]
+[24] [25] [26] [27] [28] [29])
+runsystem(del Dokumentation.out.pyg)...executed.
+
+runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
+erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/test/at/lum
+etsnet/puzzle/tests//SearchNodeTest.java)...executed.
+
+
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [30]
+[31] [32])
+runsystem(del Dokumentation.out.pyg)...executed.
+
+runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
+erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/test/at/lum
+etsnet/puzzle/tests//SlidingPuzzleSolverTest.java)...executed.
+
+
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [33]
+[34] [35])
+runsystem(del Dokumentation.out.pyg)...executed.
+
+ [36] <../Screenshots/1.png, id=158, 545.53813pt x 575.14874pt>
+File: ../Screenshots/1.png Graphic file (type png)
+
+<use ../Screenshots/1.png>
+Package pdftex.def Info: ../Screenshots/1.png used on input line 84.
+(pdftex.def)             Requested size: 301.1261pt x 317.47366pt.
+
+<../Screenshots/2.png, id=160, 559.59062pt x 403.5075pt>
+File: ../Screenshots/2.png Graphic file (type png)
+
+<use ../Screenshots/2.png>
+Package pdftex.def Info: ../Screenshots/2.png used on input line 87.
+(pdftex.def)             Requested size: 301.1261pt x 217.13965pt.
+ [37 <D:/Studium/Code/SWO4/uebungMoodle4/Screenshots/1.png> <D:/Studium/Code/SW
+O4/uebungMoodle4/Screenshots/2.png>]
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 7804 strings out of 493921
- 123921 string characters out of 3144877
- 226115 words of memory out of 3000000
- 10918 multiletter control sequences out of 15000+200000
+ 14732 strings out of 493921
+ 266085 string characters out of 3144877
+ 356603 words of memory out of 3000000
+ 17793 multiletter control sequences out of 15000+200000
  33162 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 41i,18n,43p,407b,422s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,18n,43p,10421b,422s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Roman\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
 ecit1000.pk> <C:\Users\Roman\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
 ec\dpi600\ectt1000.pk>{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/tex-gy
@@ -743,9 +1014,9 @@ re/q-ts1.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.e
 nc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplb.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplr.pfb><C:/Program
  Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on Dokumentation.pdf (35 pages, 486275 bytes).
+Output written on Dokumentation.pdf (37 pages, 753418 bytes).
 PDF statistics:
- 315 PDF objects out of 1000 (max. 8388607)
+ 322 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11812 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 11822 words of extra memory for PDF output out of 12000 (max. 10000000)
 
