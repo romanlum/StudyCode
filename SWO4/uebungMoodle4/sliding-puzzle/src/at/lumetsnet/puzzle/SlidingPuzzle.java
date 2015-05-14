@@ -1,9 +1,8 @@
 package at.lumetsnet.puzzle;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -19,45 +18,38 @@ public class SlidingPuzzle {
 	 * @return
 	 */
 	public List<Move> solve(Board board) {
-		Queue<SearchNode> queue = new PriorityQueue<SearchNode>();
-		Map<Board, SearchNode> closedMap = new HashMap<Board, SearchNode>();
-		Map<Board, SearchNode> openMap = new HashMap<Board, SearchNode>();
+		Queue<SearchNode> openQueue = new PriorityQueue<SearchNode>();
+		HashSet<SearchNode> closedSet = new HashSet<SearchNode>();
 
 		// create search node from current board
 		SearchNode current = new SearchNode(board);
-		queue.add(current);
-		openMap.put(current.getBoard(), current);
-		while (!queue.isEmpty()) {
+		openQueue.add(current);
 
-			current = queue.poll();
-			// remove board from the open list
-			openMap.remove(current.getBoard());
+		while (!openQueue.isEmpty()) {
+			// get next node
+			current = openQueue.poll();
+
+			// estimatedCostsToTarget = 0 means we found a solution
+			if (current.estimatedCostsToTarget() == 0) {
+				return current.toMoves();
+			}
+
+			closedSet.add(current);
+
 			// calculate the successors
 			final List<SearchNode> successors = getSuccessors(current);
 			for (SearchNode successor : successors) {
 
-				// estimatedCostsToTarget = 0 means we found a solution
-				if (successor.estimatedCostsToTarget() == 0) {
-					return successor.toMoves();
+				if (!closedSet.contains(successor)) {
+					if (openQueue.contains(successor)
+							&& current.estimatedTotalCosts() >= successor
+									.estimatedTotalCosts()) {
+						//remove old node
+						openQueue.remove(successor);
+					}
+					openQueue.add(successor);
 				}
-
-				SearchNode tmpNode = openMap.get(successor.getBoard());
-				if ((tmpNode != null) && (tmpNode.compareTo(successor) <= 0)) {
-					continue;
-				} else {
-					openMap.remove(successor.getBoard());
-				}
-
-				tmpNode = closedMap.get(successor.getBoard());
-				if ((tmpNode != null) && (tmpNode.compareTo(successor) <= 0)) {
-					continue;
-				}
-
-				openMap.put(successor.getBoard(), successor);
-				queue.add(successor);
 			}
-			closedMap.put(current.getBoard(), current);
-
 		}
 		throw new NoSolutionException("Board has no solution");
 	}

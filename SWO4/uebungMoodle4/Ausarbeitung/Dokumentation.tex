@@ -1,0 +1,89 @@
+\input{master.tex}
+
+\ihead{SWO3 SS 2015 - Übung 04}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Verschiebe-Puzzle – A*-Algorithmus }
+\subsection{Lösungsidee}
+Als ersten Schritt der Lösung werden die, in der Angabe erwähnten, Klassen implementiert und die Testfälle erweitert.
+Dabei ist die Implementierung der meisten Methoden trivial. \newline
+Im folgenden werden nur mehr jede Lösungsideen angeführt, die mehr Überlegungen erfordern.
+
+\subsubsection{Board}
+Die Klasse \textit{Board} verwendet als Datenspeicher eine \textit{ArrayList}, wobei hier der Zeilen und Spaltenindex auf den Index in der \textit{ArrayList} abgebildet werden muss.\newline
+
+\subsubsection{SearchNode - calcManhattanDistance}
+Die Manhattan Distance wird in der Klasse \textit{SearchNode} berechnet und wird für den A* Algorithmus benötigt.\newline
+Dabei wird das gesamte Board durchlaufen und für jedes Element die Abweichung zur Zielkonfiguration berechnet.\newline
+Die Zielposition kann folgendermaßen berechnet werden:
+\begin{itemize}
+	\item Zeile: Nummer / Größe des Boards
+	\item Spalte: Nummer \% Größe des Boards
+\end{itemize} 
+Die Manhattan Distance errechnet sich dann aus den Summen der Abweichungen der einzelnen Positionen.
+
+\subsubsection{SearchNode - toMoves}
+Um die Liste der Züge vom Start bis zur aktuellen Konfiguration zu berechnen, muss die verkette Liste aufgelöst werden.\newline
+Das Ergebnis muss dann noch umgedreht werden, da wir ja die Züge vom Start bis zum Ziel benötigen.
+
+\subsubsection{SlidingPuzzle - solve}
+Um das Verschiebe-Puzzle zu lösen wird, wie in der Angabe erwähnt, der A* Algorithmus angewendet. \newline
+Dieser benötigt eine \textbf{openQueue} und ein \textbf{closedSet}.
+\begin{itemize}
+	\item openQueue: enthält die noch zu prüfenden Pfade sortiert nach ihren Kosten zum Ziel. (Darum kann hier eine \textit{PriorityQueue} verwendet werden.)
+	\item closedSet: enthält die bereits geprüften Pfade.
+\end{itemize}
+
+\textbf{Ablauf:}
+\begin{itemize}
+	\item Zu Begin wird die Startkonfiguration in die \textbf{openQueue} eingefügt.
+	\item In einer Schleife wird dann das oberste Element der Queue herausgenommen.
+	\item Ist das Element die Zielkonfiguration, wurde eine Lösung gefunden.
+	\item Wenn nicht, wird das Element in das \textbf{closedSet} eingefügt.
+	\item Dann werden alle Nachfolger berechnet. (gültige Verschiebeoperationen anwenden)
+	\item Jeder Nachfolger wird dann in die \textbf{openQueue} eingefügt, wenn er noch nicht betrachtet wurde oder seine Kosten geringer sind.
+\end{itemize}
+
+
+\pagebreak
+\subsection{Sourcecode}
+
+\textbf{Board.java}
+\javacode{\srcDir/Board.java}
+\textbf{Move.java}
+\javacode{\srcDir/Move.java}
+\textbf{SearchNode.java}
+\javacode{\srcDir/SearchNode.java}	
+\textbf{SlidingPuzzle.java}
+\javacode{\srcDir/SlidingPuzzle.java}
+\textbf{BoardException.java}
+\javacode{\srcDir/exceptions/BoardException.java}
+\textbf{IllegalMoveException.java}
+\javacode{\srcDir/exceptions/IllegalMoveException.java}
+\textbf{InvalidBoardIndexException.java}
+\javacode{\srcDir/exceptions/InvalidBoardIndexException.java}
+\textbf{InvalidTileNumberException.java}
+\javacode{\srcDir/exceptions/InvalidTileNumberException.java}
+\textbf{NoSolutionException.java}
+\javacode{\srcDir/exceptions/NoSolutionException.java}
+\textbf{AbstractTest.java}
+\javacode{\srcDir/tests/AbstractTest.java}
+\textbf{BoardTest.java}
+\javacode{\srcDir/tests/BoardTest.java}
+\textbf{SearchNodeTest.java}
+\javacode{\srcDir/tests/SearchNodeTest.java}
+\textbf{SlidingPuzzleSolverTest.java}
+\javacode{\srcDir/tests/SlidingPuzzleSolverTest.java}
+
+
+
+\subsection{Testfälle}
+\begin{center}
+
+\end{center}
+
+
+
+\end{document}

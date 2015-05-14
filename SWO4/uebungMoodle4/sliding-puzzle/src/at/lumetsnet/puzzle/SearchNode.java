@@ -184,4 +184,21 @@ public class SearchNode implements Comparable<SearchNode> {
 		return manhattanDistanceSum;
 	}
 
+	
+	/***
+	 * calculates the hashcode of the SearchNode
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 17;
+		int result = 1;
+		result = prime * result
+				+ ((board == null) ? 0 : board.hashCode());
+		return result;
+	}
+	
+	
+	
+	
+
 }
