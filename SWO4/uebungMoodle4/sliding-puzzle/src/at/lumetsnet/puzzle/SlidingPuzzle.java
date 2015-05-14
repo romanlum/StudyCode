@@ -44,7 +44,7 @@ public class SlidingPuzzle {
 					if (openQueue.contains(successor)
 							&& current.estimatedTotalCosts() >= successor
 									.estimatedTotalCosts()) {
-						//remove old node
+						// remove old node
 						openQueue.remove(successor);
 					}
 					openQueue.add(successor);

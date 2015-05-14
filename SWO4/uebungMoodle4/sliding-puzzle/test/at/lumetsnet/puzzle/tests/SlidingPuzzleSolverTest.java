@@ -80,12 +80,10 @@ public class SlidingPuzzleSolverTest {
 			board.setTile(3, 2, 5);
 			board.setTile(3, 3, 0);
 
-			Board copy = board.copy();
 			List<Move> moves = solver.solve(board);
-			System.out.println(moves.size());
 			board.makeMoves(moves);
 			assertEquals(new Board(3), board);
-			solver.printMoves(copy, moves);
+			assertEquals(26, moves.size());
 		} catch (NoSolutionException nse) {
 			fail("NoSolutionException is not expected.");
 		}

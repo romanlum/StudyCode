@@ -1,13 +1,14 @@
 package at.lumetsnet.puzzle.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Categories.ExcludeCategory;
 
 import at.lumetsnet.puzzle.Board;
 import at.lumetsnet.puzzle.Move;
@@ -328,9 +329,9 @@ public class BoardTest extends AbstractTest {
 	public void shuffleTest() {
 		Board board = getTestBoard();
 		board.shuffle();
+		assertTrue(board.isValid());
 		// check that the board is not the same as the
 		// original board
-		assertTrue(board.isValid());
 		assertFalse(board.equals(getTestBoard()));
 
 	}
