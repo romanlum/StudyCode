@@ -40,9 +40,10 @@ public class BoardTest extends AbstractTest {
 		assertEquals(2, board.getEmptyTileRow());
 	}
 
+	@Test
 	public void sizeTest() {
 		Board board = getTestBoard();
-		assertEquals(2, board.size());
+		assertEquals(3, board.size());
 		board = new Board(9);
 		assertEquals(9, board.size());
 	}
