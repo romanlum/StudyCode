@@ -14,6 +14,8 @@ import at.lumetsnet.puzzle.Board;
 import at.lumetsnet.puzzle.Move;
 import at.lumetsnet.puzzle.exceptions.BoardException;
 import at.lumetsnet.puzzle.exceptions.IllegalMoveException;
+import at.lumetsnet.puzzle.exceptions.InvalidBoardIndexException;
+import at.lumetsnet.puzzle.exceptions.InvalidTileNumberException;
 
 public class BoardTest extends AbstractTest {
 
@@ -31,6 +33,18 @@ public class BoardTest extends AbstractTest {
 		assertEquals(1, board.getTile(1, 1));
 		board.setTile(1, 1, 2);
 		assertEquals(2, board.getTile(1, 1));
+	}
+	
+	@Test(expected = InvalidBoardIndexException.class)
+	public void setTileInvalidTest() {
+		Board board = new Board(3);
+		board.setTile(0, 0, 1);
+	}
+	
+	@Test(expected = InvalidTileNumberException.class)
+	public void setTileInvalidTileNumber() {
+		Board board = new Board(3);
+		board.setTile(1, 1, 10);
 	}
 
 	@Test
@@ -351,4 +365,5 @@ public class BoardTest extends AbstractTest {
 		assertEquals(3, board.getEmptyTileRow());
 		assertEquals(2, board.getEmptyTileColumn());
 	}
+	
 }

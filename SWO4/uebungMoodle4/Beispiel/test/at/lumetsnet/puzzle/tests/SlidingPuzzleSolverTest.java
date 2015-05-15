@@ -152,5 +152,17 @@ public class SlidingPuzzleSolverTest {
 			fail("NoSolutionException is not expected.");
 		}
 	}
+	
+	@Test (expected = NoSolutionException.class)
+	public void noSolutionTest() {
+		SlidingPuzzle solver = new SlidingPuzzle();
+		Board board = new Board(2);
+		board.setTile(1, 1, 0);
+		board.setTile(1, 2, 3);
+		board.setTile(2, 1, 1);
+		board.setTile(2, 2, 2);
+		solver.solve(board);
+
+	}
 
 }
