@@ -134,7 +134,7 @@ public class SearchNode implements Comparable<SearchNode> {
 	}
 
 	/***
-	 * Compare the costs of the node against the other
+	 * Compare the costs of the node to the other
 	 * 
 	 * @return
 	 */
@@ -144,7 +144,7 @@ public class SearchNode implements Comparable<SearchNode> {
 	}
 
 	/***
-	 * Converts the list into a list of moves from the start
+	 * Creates a list of moves from the start
 	 * 
 	 * @return
 	 */
@@ -185,7 +185,7 @@ public class SearchNode implements Comparable<SearchNode> {
 	}
 
 	/***
-	 * calculates the hashcode of the SearchNode
+	 * Calculates the hashcode of the SearchNode
 	 */
 	@Override
 	public int hashCode() {

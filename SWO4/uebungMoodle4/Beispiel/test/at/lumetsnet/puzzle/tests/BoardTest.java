@@ -19,6 +19,11 @@ import at.lumetsnet.puzzle.exceptions.InvalidTileNumberException;
 
 public class BoardTest extends AbstractTest {
 
+	@Test(expected = IllegalArgumentException.class)
+	public void invalidConstructorArgumentsTest() {
+		@SuppressWarnings("unused")
+		Board board = new Board(-1);
+	}
 	@Test
 	public void getTileTest() {
 		Board board = getTestBoard();
@@ -365,5 +370,6 @@ public class BoardTest extends AbstractTest {
 		assertEquals(3, board.getEmptyTileRow());
 		assertEquals(2, board.getEmptyTileColumn());
 	}
+	
 	
 }

@@ -153,8 +153,8 @@ public class SlidingPuzzleSolverTest {
 		}
 	}
 	
-	@Test (expected = NoSolutionException.class)
-	public void noSolutionTest() {
+	@Test(expected = NoSolutionException.class)
+	public void noSolutionTest() throws NoSolutionException {
 		SlidingPuzzle solver = new SlidingPuzzle();
 		Board board = new Board(2);
 		board.setTile(1, 1, 0);
@@ -162,7 +162,7 @@ public class SlidingPuzzleSolverTest {
 		board.setTile(2, 1, 1);
 		board.setTile(2, 2, 2);
 		solver.solve(board);
-
+		
 	}
 
 }

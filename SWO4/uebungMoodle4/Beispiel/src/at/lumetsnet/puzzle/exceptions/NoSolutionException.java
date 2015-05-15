@@ -1,6 +1,6 @@
 package at.lumetsnet.puzzle.exceptions;
 
-public class NoSolutionException extends RuntimeException {
+public class NoSolutionException extends Exception {
 	/**
 	 * Serial Id
 	 */

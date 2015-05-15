@@ -58,7 +58,7 @@ public class Board implements Comparable<Board> {
 	}
 
 	/***
-	 * gets the tile on the given position
+	 * Gets the tile from the given position
 	 * 
 	 * @param rowIdx
 	 * @param colIdx
@@ -72,7 +72,7 @@ public class Board implements Comparable<Board> {
 	}
 
 	/***
-	 * Sets the tile on the given index
+	 * Sets the tile from the given position
 	 * 
 	 * @param rowIdx
 	 * @param colIdx
@@ -148,11 +148,11 @@ public class Board implements Comparable<Board> {
 	}
 
 	/***
-	 * Shuffle the board
+	 * Shuffles the board
 	 */
 	public void shuffle() {
 		Random rnd = new Random(System.nanoTime());
-		// Do 100 random moves
+		// Do SHUFFLE_COUNT random moves
 		for (int i = 0; i < SHUFFLE_COUNT; i++) {
 			int random = rnd.nextInt(4);
 			try {
@@ -190,6 +190,7 @@ public class Board implements Comparable<Board> {
 		int curRowIdx = getEmptyTileRow();
 		int curColIdx = getEmptyTileColumn();
 
+		//Check if move is valid
 		if ((Math.abs(curRowIdx - rowIdx) == 1 && (curColIdx - colIdx == 0))
 				|| (curRowIdx - rowIdx == 0 && Math.abs(curColIdx - colIdx) == 1)) {
 
@@ -259,7 +260,7 @@ public class Board implements Comparable<Board> {
 	}
 
 	/***
-	 * Execute the series of moves
+	 * Executes a series of moves
 	 * 
 	 * @param moves
 	 * @throws IllegalMoveException
@@ -271,7 +272,7 @@ public class Board implements Comparable<Board> {
 	}
 
 	/***
-	 * clones the board
+	 * Clones the board
 	 */
 	@Override
 	public Object clone() {
@@ -279,7 +280,7 @@ public class Board implements Comparable<Board> {
 	}
 
 	/**
-	 * Compares the size of this and the other board
+	 * Compares the size of this board to the other board
 	 */
 	@Override
 	public int compareTo(Board o) {
@@ -287,7 +288,7 @@ public class Board implements Comparable<Board> {
 	}
 
 	/***
-	 * checks if the boards are equal
+	 * Checks if the boards are equal
 	 */
 	@Override
 	public boolean equals(Object other) {
@@ -307,7 +308,7 @@ public class Board implements Comparable<Board> {
 	}
 
 	/***
-	 * calculates the hashcode of the board
+	 * Calculates the hashcode of the board
 	 */
 	@Override
 	public int hashCode() {
@@ -319,7 +320,7 @@ public class Board implements Comparable<Board> {
 	}
 
 	/***
-	 * prints the board
+	 * Prints the board
 	 */
 	@Override
 	public String toString() {

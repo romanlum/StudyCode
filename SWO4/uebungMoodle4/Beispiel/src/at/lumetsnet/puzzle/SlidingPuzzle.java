@@ -17,7 +17,7 @@ public class SlidingPuzzle {
 	 * @param board
 	 * @return
 	 */
-	public List<Move> solve(Board board) {
+	public List<Move> solve(Board board) throws NoSolutionException {
 		Queue<SearchNode> openQueue = new PriorityQueue<SearchNode>();
 		HashSet<SearchNode> closedSet = new HashSet<SearchNode>();
 
@@ -55,7 +55,7 @@ public class SlidingPuzzle {
 	}
 
 	/***
-	 * returns the successors for the node
+	 * Returns the successors for the node
 	 * 
 	 * @param parent
 	 * @return
