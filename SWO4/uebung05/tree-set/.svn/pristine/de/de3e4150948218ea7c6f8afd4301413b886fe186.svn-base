@@ -1,0 +1,128 @@
+package swe4.test;
+
+import static org.junit.Assert.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import org.junit.Test;
+import swe4.collections.BSTMultiSet;
+import swe4.collections.SortedMultiSet;
+
+public class BSTMultiSetTest {
+
+  @Test
+  public void testAdd() {
+    SortedMultiSet<Integer> s = new BSTMultiSet<>();
+    assertEquals(0, s.size());
+    s.add(5);
+    assertEquals(1, s.size());
+    s.add(1);
+    assertEquals(2, s.size());
+  }
+
+  @Test
+  public void testGet() {
+    SortedMultiSet<Integer> s = new BSTMultiSet<>();
+    s.add(5);
+    s.add(1);
+    s.add(3);
+    assertEquals(1, s.get(1).intValue());
+    assertEquals(3, s.get(3).intValue());
+    assertEquals(5, s.get(5).intValue());
+    assertNull(s.get(99));
+  }
+
+  @Test
+  public void testMultiAdd() {
+    SortedMultiSet<Integer> s = new BSTMultiSet<>();
+    s.add(5);
+    s.add(1);
+    s.add(1);
+    assertEquals(3, s.size());
+    
+    s.add(5);
+    assertEquals(4, s.size());
+    
+    assertEquals(1, s.get(1).intValue());
+    assertEquals(5, s.get(5).intValue());
+  }
+  
+  @Test
+  public void testContains() {
+    SortedMultiSet<Integer> s = new BSTMultiSet<>();
+    s.add(5);
+    s.add(1);
+    s.add(3);
+    assertTrue(s.contains(1));
+    assertFalse(s.contains(99));
+  }
+
+  @Test
+  public void testToString() {
+    SortedMultiSet<String> s = new BSTMultiSet<>();
+    s.add("B");
+    s.add("A");
+    s.add("C");
+
+    s.toString().contains("A");
+    s.toString().contains("B");
+    s.toString().contains("C");
+  }
+
+  @Test
+  public void testIteratorNext() {
+    SortedMultiSet<Integer> s = new BSTMultiSet<>();
+    s.add(5);
+    
+    Iterator<Integer> it = s.iterator();
+    assertNotNull(it);
+    
+    Integer i1 = it.next();
+    assertNotNull(i1);
+    assertEquals(5, i1.intValue());
+  }
+
+  @Test
+  public void testIteratorHasNext() {
+    SortedMultiSet<Integer> s = new BSTMultiSet<>();
+    s.add(5);
+    s.add(1);
+    
+    Iterator<Integer> it = s.iterator();
+    assertTrue(it.hasNext());
+    assertTrue(it.hasNext());
+    
+    it.next();
+    assertTrue(it.hasNext());
+    assertTrue(it.hasNext());
+
+    it.next();
+    assertFalse(it.hasNext());
+    assertFalse(it.hasNext());
+  }
+  
+  @Test(expected=NoSuchElementException.class)
+  public void testNoSuchElementException() {
+    SortedMultiSet<Integer> s = new BSTMultiSet<>();
+    s.add(5);
+    
+    Iterator<Integer> it = s.iterator();
+    it.next();
+    it.next();
+  }
+  
+  @Test()
+  public void testElementOrder() {
+    SortedMultiSet<Integer> s = new BSTMultiSet<>();
+    s.add(3);
+    s.add(1);
+    s.add(5);
+    s.add(3);
+    
+    Iterator<Integer> it = s.iterator();
+    assertEquals(1, it.next().intValue());
+    assertEquals(3, it.next().intValue());
+    assertEquals(3, it.next().intValue());
+    assertEquals(5, it.next().intValue());
+  }
+
+}
