@@ -5,8 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
-public class BSTSet<T> extends AbstractSortedTreeSet<T> implements
-		SortedTreeSet<T> {
+public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 
 	/***
 	 * Node helper class
@@ -66,13 +65,10 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T> implements
 	}
 
 	private Node<T> root;
-	private int size;
-	private int level;
+	
 
 	public BSTSet() {
-		super(null);
-		root = null;
-		level = -1;
+		this(null);
 	}
 
 	public BSTSet(Comparator<T> comparator) {
@@ -129,11 +125,6 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T> implements
 	}
 
 	@Override
-	public boolean contains(T elem) {
-		return get(elem) != null;
-	}
-
-	@Override
 	public T get(T elem) {
 		Node<T> t = root;
 		while (t != null) {
@@ -149,10 +140,7 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T> implements
 		return null;
 	}
 
-	@Override
-	public int size() {
-		return size;
-	}
+	
 
 	@Override
 	public T first() {
@@ -178,14 +166,5 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T> implements
 		return tmp.value;
 	}
 
-	@Override
-	public Comparator<T> comparator() {
-		return comparator;
-	}
 
-	
-	@Override
-	public int height() {
-		return level;
-	}
 }

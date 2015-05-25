@@ -2,31 +2,41 @@ package at.lumetsnet.swe4.collections;
 
 import java.util.Comparator;
 
-public class AbstractSortedTreeSet<T> {
+public abstract class AbstractSortedTreeSet<T> implements SortedTreeSet<T> {
 	
 	protected Comparator<T> comparator;
+	protected int size;
+	protected int level;
 	
 	public AbstractSortedTreeSet(Comparator<T> comparator) {
 		this.comparator = comparator;
+		this.size = 0;
+		this.level = -1;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected int compareElements(T left, T right) {
-		if ((left == null) && (right == null)) {
-			return 0;
-		} else if (left == null) {
-			return -1;
-		} else if (right == null) {
-			return 1;
-		}
-		if(comparator != null) {
-			return comparator.compare(left, right); 
-		}
-		
-		if(!(left instanceof Comparable<?>)) {
-			throw new IllegalArgumentException("Elements are not comparable"); //TODO: check
-		}
-		return ((Comparable<T>)left).compareTo(right);
+		return Util.compareElements(left, right, comparator);
 	}
+	
+	@Override
+	public Comparator<T> comparator() {
+		return comparator;
+	}
+
+	@Override
+	public int height() {
+		return level;
+	}
+	
+	@Override
+	public int size() {
+		return size;
+	}
+	
+	@Override
+	public boolean contains(T elem) {
+		return get(elem) != null;
+	}
+	
 	
 }
