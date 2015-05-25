@@ -32,13 +32,14 @@ public class TwoThreeFourTreeSet<T> extends AbstractSortedTreeSet<T> {
 		TTFNode<T> tmp = root;
 		while(tmp != null) {
 			if(tmp.isFull()) {
-				TTFNode<T> newRoot = tmp.split();
-				if(newRoot != null) {
-					root = newRoot;
-				}
-				tmp = root; //TODO: use correct node
+				TTFNode<T> result = tmp.split();
+				if(result.getParent() == null)
+					root = result;
+				tmp = result;
 			} else {
-			
+				if(tmp.contains(elem))
+					return false;
+				
 				if(tmp.hasChildren()) {
 					tmp = tmp.getChild(elem);
 				} else {
@@ -84,7 +85,10 @@ public class TwoThreeFourTreeSet<T> extends AbstractSortedTreeSet<T> {
 			throw new NoSuchElementException("Set is empty");
 		}
 		TTFNode<T> tmp = root;
-		return null;
+		while(tmp != null && tmp.getLastChild() != null) {
+			tmp = tmp.getLastChild();
+		}
+		return tmp.getLastValue();
 	}
 	
 	@Override

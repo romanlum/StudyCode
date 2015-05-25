@@ -59,10 +59,10 @@ public class TwoThreeFourSetTest extends SortedTreeSetTestBase {
   @Test
   public void splitMiddleNodeTest() {
 	  SortedTreeSet<Integer> set = createSet();
-	  for(int i = 1 ; i <= 6; i++) {
+	  for(int i = 1 ; i <= 8; i++) {
 		  set.add(i);
 	  }
-	  for(int i = 1 ; i <= 6; i++) {
+	  for(int i = 1 ; i <= 8; i++) {
 		  assertEquals((Integer)i, set.get(i));
 	  }
   }

@@ -20,7 +20,7 @@ public class TTFNode<T> {
 
 	public TTFNode(Comparator<T> comparator, TTFNode<T> parent, T value) {
 		this(comparator, parent);
-		this.values.set(0,value);
+		this.values.add(0,value);
 	}
 	
 	public TTFNode(Comparator<T> comparator, TTFNode<T> parent, T value, TTFNode<T> left,TTFNode<T> right) {
@@ -82,9 +82,10 @@ public class TTFNode<T> {
 	public TTFNode<T> split() {
 		TTFNode<T> tmpParent = parent;
 		if (tmpParent == null) {
-			tmpParent = new TTFNode<T>(comparator, null);
+			tmpParent = new TTFNode<T>(comparator,null);
 		}
-
+		tmpParent.addValue(values.get(1));
+		
 		TTFNode<T> left = new TTFNode<T>(comparator, tmpParent, values.get(0),
 				getChildByPosition(0),
 				getChildByPosition(1));
@@ -93,46 +94,16 @@ public class TTFNode<T> {
 				getChildByPosition(2),
 				getChildByPosition(3));
 		
-		//int childIndex = tmpParent.getChildIndex(this.values.get(2));
-		
-		if (tmpParent.values.size() == 0) {
-			tmpParent.setChild(0, left);
-			tmpParent.setChild(1, right);
-		} else if (tmpParent.values.size() == 1
-				&& this == tmpParent.children.get(0)) {
-			tmpParent.setChild(2, tmpParent.children.get(1));
-			tmpParent.setChild(0, left);
-			tmpParent.setChild(1, right);
-		} else if (tmpParent.values.size() == 1
-				&& this == tmpParent.children.get(1)) {
-			tmpParent.setChild(1, left);
-			tmpParent.setChild(2, right);
-		} else if (tmpParent.values.size() == 2
-				&& this == tmpParent.children.get(0)) {
-			tmpParent.setChild(3, tmpParent.children.get(2));
-			tmpParent.setChild(2, tmpParent.children.get(1));
-			tmpParent.setChild(0, left);
-			tmpParent.setChild(1, right);
-		} else if (tmpParent.values.size() == 2
-				&& this == tmpParent.children.get(1)) {
-			tmpParent.setChild(3, tmpParent.children.get(2));
-			tmpParent.setChild(1, left);
-			tmpParent.setChild(2, right);
-		} else if (tmpParent.values.size() == 2
-				&& this == tmpParent.children.get(2)) {
-
-			tmpParent.setChild(2, left);
-			tmpParent.setChild(3, right);
-		}
-		tmpParent.addValue(values.get(1));
-
-		if (parent == null)
-			return tmpParent;
+		int childIndex = tmpParent.getChildIndex(this.values.get(0));
+		if(childIndex < tmpParent.children.size()) 
+			tmpParent.children.remove(childIndex);
+		tmpParent.children.add(childIndex, right);
+		tmpParent.children.add(childIndex, left);
 
 		if (tmpParent.values.size() == 3)
 			return tmpParent.split();
 
-		return null;
+		return tmpParent;
 	}
 
 	public T get(T elem) {
@@ -175,6 +146,19 @@ public class TTFNode<T> {
 
 	public T getValue(int pos) {
 		return values.get(pos);
+	}
+	
+	public TTFNode<T> getParent() {
+		return parent;
+	}
+	
+	public T getLastValue() {
+		return values.get(values.size()-1);
+	}
+	
+	public TTFNode<T> getLastChild() {
+		if(children.size() == 0) return null;
+		return children.get(children.size()-1);
 	}
 
 	@Override
