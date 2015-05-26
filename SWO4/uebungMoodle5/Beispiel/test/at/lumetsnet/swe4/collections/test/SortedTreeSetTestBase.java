@@ -155,6 +155,7 @@ public abstract class SortedTreeSetTestBase  {
     for (int i=0; i<NELEMS; i++)
       assertEquals(i, set.get(i).intValue());
   }
+  
 
   @Test
   public void testContainsSimple() {
@@ -292,7 +293,33 @@ public abstract class SortedTreeSetTestBase  {
     
     assertTrue(isSortedInComparatorOrder(set));
   }
-
+  
+  @Test
+  public void stringFirstLastTest() {
+	  SortedSet<String> set = createSet();
+	  set.add("a");
+	  set.add("b");
+	  set.add("c");
+	  set.add("d");
+	  set.add("e");
+	  assertEquals("a", set.first());
+	  assertEquals("e", set.last());
+	  
+  }
+  
+  @Test
+  public void testGetEmpty() {
+	 SortedSet<Integer> set = createSet();
+	 assertNull(set.get(1));
+  }
+  
+  @Test
+  public void testNotContains() {
+	  SortedSet<Integer> set = createSet();
+	  set.add(1);
+	  assertFalse(set.contains(2));
+  }
+  
   protected boolean isSorted(SortedSet<Integer> set) {
     Iterator<Integer> it = set.iterator();
     if (!it.hasNext())

@@ -1,15 +1,12 @@
 package at.lumetsnet.swe4.collections.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Comparator;
-import java.util.Iterator;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import at.lumetsnet.swe4.collections.BSTSet;
-import at.lumetsnet.swe4.collections.SortedSet;
 import at.lumetsnet.swe4.collections.SortedTreeSet;
 
 

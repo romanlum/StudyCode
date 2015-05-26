@@ -11,6 +11,7 @@ public class TTFNode<T> {
 	private Comparator<T> comparator;
 	private TTFNode<T> parent;
 
+	
 	public TTFNode(Comparator<T> comparator, TTFNode<T> parent) {
 		this.values = new ArrayList<>(3);
 		this.children = new ArrayList<>(4);
@@ -26,35 +27,189 @@ public class TTFNode<T> {
 	public TTFNode(Comparator<T> comparator, TTFNode<T> parent, T value, TTFNode<T> left,TTFNode<T> right) {
 		this(comparator, parent);
 		this.values.add(0,value);
+		//update parent
 		if(left != null) {
 			left.parent = this;
 			children.add(0, left);
 		}
+		//update parent
 		if(right != null) {
 			right.parent = this;
 			children.add(1, right);
 		}
 	}
 
-	void getVals(List<T> iteratorList) {
+	/***
+	 * Returns all the values used for the iterator
+	 * @param iteratorList
+	 */
+	void getValues(List<T> iteratorList) {
 		if (children.size() != 0) {
 			for (int i = 0; i < values.size(); i++) {
-				children.get(i).getVals(iteratorList);
+				children.get(i).getValues(iteratorList);
 				iteratorList.add(values.get(i));
 			}
-			children.get(children.size() - 1).getVals(iteratorList);
+			children.get(children.size() - 1).getValues(iteratorList);
 		} else
 			iteratorList.addAll(values);
 	}
 
+	/***
+	 * Gets if the node is full (4-Node)
+	 * @return
+	 */
 	public boolean isFull() {
 		return values.size() == 3;
 	}
 
+	/**
+	 * Gets if the node has children
+	 * @return
+	 */
 	public boolean hasChildren() {
 		return children.size() != 0;
 	}
+	
+	
+	/***
+	 * Gets the child in which the element should be in
+	 * @param elem
+	 * @return
+	 */
+	public TTFNode<T> getChild(T elem) {
+		if (children.size() == 0)
+			return null;
+		return (children.get(getChildIndex(elem)));
+	}
+	
+	/***
+	 * splits the node
+	 * @return
+	 */
+	public TTFNode<T> split() {
+		TTFNode<T> tmpParent = parent;
+		if (tmpParent == null) {
+			//create new parent (used for splitting root)
+			tmpParent = new TTFNode<T>(comparator,null);
+		}
+		//add the value to the node
+		tmpParent.addValue(values.get(1));
+		
+		TTFNode<T> left = new TTFNode<T>(comparator, tmpParent, values.get(0),
+				getChildByPosition(0),
+				getChildByPosition(1));
+		
+		TTFNode<T> right = new TTFNode<T>(comparator, tmpParent, values.get(2),
+				getChildByPosition(2),
+				getChildByPosition(3));
+		
+		//get the correct child index
+		int childIndex = tmpParent.getChildIndex(this.values.get(0));
+		if(childIndex < tmpParent.children.size()) 
+			tmpParent.children.remove(childIndex); //remove old child
+		//insert childs
+		tmpParent.children.add(childIndex, right);
+		tmpParent.children.add(childIndex, left);
+		
+		return tmpParent;
+	}
 
+	/***
+	 * Gets the element 
+	 * @param elem
+	 * @return
+	 */
+	public T get(T elem) {
+		int idx = values.indexOf(elem);
+		if (idx == -1)
+			throw new NoSuchElementException("Element "+elem+" not found");
+		
+		return values.get(idx);
+	}
+
+	/***
+	 * Checks if the node contains the value
+	 * @param elem
+	 * @return
+	 */
+	public boolean contains(T elem) {
+		return values.contains(elem);
+	}
+
+	/***
+	 * Adds a value to the node
+	 * @param value
+	 */
+	public void addValue(T value) {
+		values.add(value);
+		//sort the values
+		values.sort(comparator);
+	}
+
+	/***
+	 * Gets the parent
+	 * @return
+	 */
+	public TTFNode<T> getParent() {
+		return parent;
+	}
+	
+	/***
+	 * Gets the first value
+	 * @return
+	 */
+	public T getFirstValue() {
+		if(values.isEmpty()) {
+			throw new NoSuchElementException("Node is empty");
+		}
+		return values.get(0);
+	}
+	
+	/***
+	 * Gets the last value according to node size
+	 * @return
+	 */
+	public T getLastValue() {
+		if(values.isEmpty()) {
+			throw new NoSuchElementException("Node is empty");
+		}
+		return values.get(values.size()-1);
+	}
+	
+	/***
+	 * Gets the first child
+	 * @return
+	 */
+	public TTFNode<T> getFirstChild() {
+		if(children.isEmpty()) return null;
+		return children.get(0);
+	}
+	
+	/***
+	 * Gets the last child
+	 * @return
+	 */
+	public TTFNode<T> getLastChild() {
+		if(children.isEmpty()) return null;
+		return children.get(children.size()-1);
+	}
+	
+	/***
+	 * gets the child if available
+	 * @param index
+	 * @return 
+	 */
+	private TTFNode<T> getChildByPosition(int index) {
+		if(index < children.size())
+			return children.get(index);
+		return null;
+	}
+	
+	/***
+	 * calculates the correct child index for the given element
+	 * @param elem
+	 * @return
+	 */
 	private int getChildIndex(T elem) {
 		if (Util.compareElements(values.get(0), elem, comparator) > 0)
 			return 0;
@@ -67,105 +222,4 @@ public class TTFNode<T> {
 		else
 			return 3;
 	}
-
-	public TTFNode<T> getChild(T elem) {
-		if (children.size() == 0)
-			return null;
-		return (children.get(getChildIndex(elem)));
-	}
-
-	private TTFNode<T> getChildByPosition(int index) {
-		if(index < children.size())
-			return children.get(index);
-		return null;
-	}
-	public TTFNode<T> split() {
-		TTFNode<T> tmpParent = parent;
-		if (tmpParent == null) {
-			tmpParent = new TTFNode<T>(comparator,null);
-		}
-		tmpParent.addValue(values.get(1));
-		
-		TTFNode<T> left = new TTFNode<T>(comparator, tmpParent, values.get(0),
-				getChildByPosition(0),
-				getChildByPosition(1));
-		
-		TTFNode<T> right = new TTFNode<T>(comparator, tmpParent, values.get(2),
-				getChildByPosition(2),
-				getChildByPosition(3));
-		
-		int childIndex = tmpParent.getChildIndex(this.values.get(0));
-		if(childIndex < tmpParent.children.size()) 
-			tmpParent.children.remove(childIndex);
-		tmpParent.children.add(childIndex, right);
-		tmpParent.children.add(childIndex, left);
-
-		if (tmpParent.values.size() == 3)
-			return tmpParent.split();
-
-		return tmpParent;
-	}
-
-	public T get(T elem) {
-		int idx = values.indexOf(elem);
-		if (idx == -1)
-			return null;
-		return values.get(idx);
-	}
-
-	public boolean contains(T elem) {
-		return values.contains(elem);
-	}
-
-	public void setChild(int pos, TTFNode<T> child) {
-		if (pos < 0 && pos > 3)
-			throw new IndexOutOfBoundsException("Index not valid");
-
-		if (child == null)
-			return; // TODO: check
-
-		if (children.size() < (pos + 1))
-			children.add(pos, child);
-		else
-			children.set(pos, child);
-	}
-
-	public TTFNode<T> getChild(int pos) {
-		if (pos < 0 && pos > 3)
-			throw new IndexOutOfBoundsException("Index not valid");
-		if ((pos + 1) < children.size()) {
-			return children.get(pos);
-		}
-		return null;
-	}
-
-	public void addValue(T value) {
-		values.add(value);
-		values.sort(comparator);
-	}
-
-	public T getValue(int pos) {
-		return values.get(pos);
-	}
-	
-	public TTFNode<T> getParent() {
-		return parent;
-	}
-	
-	public T getLastValue() {
-		return values.get(values.size()-1);
-	}
-	
-	public TTFNode<T> getLastChild() {
-		if(children.size() == 0) return null;
-		return children.get(children.size()-1);
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		values.forEach(x -> builder.append(x + ","));
-		return builder.toString();
-	}
-
 }

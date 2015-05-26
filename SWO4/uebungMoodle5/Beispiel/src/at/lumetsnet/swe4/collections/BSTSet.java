@@ -82,6 +82,12 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 		return new BSTIterator<>(root);
 	}
 
+	/***
+	 * Adds an element to the set
+	 * 
+	 * @param elem
+	 * @return true if the item was added, otherwise false
+	 */
 	@Override
 	public boolean add(T elem) {
 		int curLevel = -1;
@@ -124,6 +130,12 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 		return true;
 	}
 
+	/***
+	 * Searches for an element in the set
+	 * 
+	 * @param elem
+	 * @return found element or null if the element was not found
+	 */
 	@Override
 	public T get(T elem) {
 		Node<T> t = root;
@@ -141,7 +153,11 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 	}
 
 	
-
+	/***
+	 * Gets the smallest element of the set
+	 * 
+	 * @return
+	 */
 	@Override
 	public T first() {
 		if (root == null) {
@@ -154,6 +170,11 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 		return tmp.value;
 	}
 
+	/***
+	 * Gets the biggest element of the set
+	 * 
+	 * @return
+	 */
 	@Override
 	public T last() {
 		if (root == null) {
