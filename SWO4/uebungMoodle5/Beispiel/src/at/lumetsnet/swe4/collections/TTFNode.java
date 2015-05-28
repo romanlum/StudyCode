@@ -5,6 +5,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/***
+ * Node class used for 2-3-4 tree
+ * @author romanlum
+ *
+ * @param <T>
+ */
 public class TTFNode<T> {
 	private ArrayList<T> values;
 	private ArrayList<TTFNode<T>> children;
