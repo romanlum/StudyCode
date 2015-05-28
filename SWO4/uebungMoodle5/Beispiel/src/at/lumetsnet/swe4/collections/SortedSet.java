@@ -25,7 +25,7 @@ public interface SortedSet<T> extends Iterable<T> {
 	 * checks if the set contains the element
 	 * 
 	 * @param elem
-	 * @return
+	 * @return true if element found, false if not
 	 */
 	boolean contains(T elem);
 

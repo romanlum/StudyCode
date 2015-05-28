@@ -5,10 +5,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
-public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
+public class BSTSet<T> extends AbstractSortedTreeSet<T> {
 
 	/***
 	 * Node helper class
+	 * 
 	 * @author romanlum
 	 *
 	 * @param <T>
@@ -26,6 +27,7 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 
 	/***
 	 * Iterator class
+	 * 
 	 * @author romanlum
 	 *
 	 * @param <T>
@@ -65,7 +67,6 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 	}
 
 	private Node<T> root;
-	
 
 	public BSTSet() {
 		this(null);
@@ -91,7 +92,7 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 	@Override
 	public boolean add(T elem) {
 		int curLevel = -1;
-		
+
 		Node<T> newNode = new Node<>(elem, null, null);
 
 		if (root == null) {
@@ -101,9 +102,10 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 			curLevel++;
 			while (current != null) {
 				int cmpResult = compareElements(current.value, elem);
-				if (cmpResult == 0) return false; //duplicate element
-				
-				if( cmpResult > 0) {
+				if (cmpResult == 0)
+					return false; // duplicate element
+
+				if (cmpResult > 0) {
 					if (current.left == null) {
 						current.left = newNode;
 						break;
@@ -124,9 +126,9 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 		}
 		size++;
 		curLevel++;
-		
-		if(curLevel > level)
-			level = curLevel; //update current level
+
+		if (curLevel > level)
+			level = curLevel; // update current level
 		return true;
 	}
 
@@ -152,7 +154,6 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 		return null;
 	}
 
-	
 	/***
 	 * Gets the smallest element of the set
 	 * 
@@ -186,6 +187,5 @@ public class BSTSet<T> extends AbstractSortedTreeSet<T>  {
 		}
 		return tmp.value;
 	}
-
 
 }
