@@ -19,14 +19,14 @@ public class BSTSetTest extends SortedTreeSetTestBase {
   
 
   @Test
-  public void emptyContructorTest() {
+  public void testEmptyContructor() {
 	  BSTSet<Integer> set = new BSTSet<Integer>();
 	  assertEquals(0, set.size());
 	  assertEquals(-1, set.height());
   }
   
   @Test
-  public void heightTest() {
+  public void testHeight() {
 	  SortedTreeSet<Integer> set = createSet();
 	  set.add(2);
 	  assertEquals(0, set.height());
@@ -37,7 +37,7 @@ public class BSTSetTest extends SortedTreeSetTestBase {
   }
   
   @Test
-  public void emptyTreeHeightTest() {
+  public void testEmptyTreeHeight() {
 	  SortedTreeSet<Integer> set = createSet();
 	  assertEquals(-1, set.height());
   }

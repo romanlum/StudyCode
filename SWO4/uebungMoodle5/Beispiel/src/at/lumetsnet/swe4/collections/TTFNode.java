@@ -44,14 +44,18 @@ public class TTFNode<T> {
 	 * @param iteratorList
 	 */
 	void getValues(List<T> iteratorList) {
+		//Check if we have children
 		if (children.size() != 0) {
 			for (int i = 0; i < values.size(); i++) {
+				//add child values
 				children.get(i).getValues(iteratorList);
+				//add node value
 				iteratorList.add(values.get(i));
 			}
 			children.get(children.size() - 1).getValues(iteratorList);
-		} else
+		} else {
 			iteratorList.addAll(values);
+		}
 	}
 
 	/***

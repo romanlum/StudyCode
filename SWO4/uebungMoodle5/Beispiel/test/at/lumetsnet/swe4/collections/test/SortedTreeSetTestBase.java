@@ -295,7 +295,7 @@ public abstract class SortedTreeSetTestBase  {
   }
   
   @Test
-  public void stringFirstLastTest() {
+  public void testStringFirstLast() {
 	  SortedSet<String> set = createSet();
 	  set.add("a");
 	  set.add("b");
@@ -319,6 +319,26 @@ public abstract class SortedTreeSetTestBase  {
 	  set.add(1);
 	  assertFalse(set.contains(2));
   }
+  
+  @Test(expected = NoSuchElementException.class)
+  public void TestEmptyIterator() {
+	  SortedSet<Integer> set = createSet();
+	  set.iterator().next();
+  }
+  
+  @Test(expected = NoSuchElementException.class)
+  public void testIteratorOverflow() {
+	  SortedSet<Integer> set = createSet();
+	  set.add(1);
+	  set.add(2);
+	  set.add(3);
+	  Iterator it = set.iterator();
+	  assertEquals((Integer)1,it.next());
+	  assertEquals((Integer)2,it.next());
+	  assertEquals((Integer)3,it.next());
+	  it.next();
+  }
+
   
   protected boolean isSorted(SortedSet<Integer> set) {
     Iterator<Integer> it = set.iterator();

@@ -1,0 +1,78 @@
+\input{master.tex}
+
+\ihead{SWO3 SS 2015 - Übung 05}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Binäre Suchbäume}
+\subsection{Lösungsidee}
+Für die Implementierung des \textit{SortedTreeSet} als binären Suchbaum muss die Lösung der Übung nur um die geforderten Methoden erweitert werden. \newline
+Beim Ausführen der Testfälle wurde festgestellt, dass bei großen Datenmengen eine \textit{StackOverflowException} geworfen wird. Dies hatte zur Folge, dass die Implementierung der Methode \textit{get} von rekursiv auf iterativ umgebaut werden musste.
+
+\subsubsection{Höhe des Baums}
+Laut Definition ist die Höhe die Anzahl der Kanten von jenem Konten, der am Weitesten von der Wurzel entfernt ist, bis zur Wurzel.
+D.h.: 
+\begin{itemize}
+	\item Ein leerer Baum hat Höhe - 1
+	\item Ein Baum mit nur einem Knoten hat Höhe 0
+	\item ...
+\end{itemize}
+Die Höhe des Suchbaums kann gleich beim Einfügen mitgerechnet werden und erfordert somit keine spezielle Implementierung. \newline
+
+\section{2-3-4 Bäume}
+\subsection{Lösungsidee}
+Die grunsätzliche Idee eines \textbf{2-3-4} Baumes ist bereits in der Angabe beschrieben und wird hier nicht mehr extra aufgeführt. \newline
+Diese Implementierung benötigt eine eigene \textit{Node} Klasse, die Datenkomponenten aufnehmen kann. \newline
+\begin{itemize}
+	\item Liste von Werten (max 3).
+	\item Liste der Kindknoten (max 4).
+\end{itemize}
+
+\subsubsection{Einfügen (\textit{add})}
+Beim Einfügen wird der Baum durchlaufen, um ein Blatt zu finden, indem der Wert eingefügt werden kann. \newline
+Dabei wird der Wert immer mit dem in den Knoten gespeicherten Werten verglichen und somit der richtige Kindknoten bestimmt. \newline
+Bei dieser Art des Einfügens in einen \textbf{2-3-4 Baum} ist zu beachten, dass jene Konten, die schon 3 Werte gespeichert haben, gleich beim Besuchen aufgespalten werden.
+
+\subsubsection{Suchen (\textit{get})}
+Um einen Wert in einem \textbf{2-3-4 Baum} zu suchen, muss der Baum durchlaufen werden und bei jedem Knoten anhand eines Vergleichs der richtige Kindknoten ermittelt werden.
+
+\subsubsection{Iterator}
+Beim \textit{Iterator} müssen alle Knoten und deren Werte und Kinder in der korrekten Reihenfolge durchlaufen werden.\newline
+Eine einfache Möglichkeit dies zu bewerkstelligen ist es, eine Liste der Werte rekursiv zu ermitteln und dann dessen \textit{Iterator} nach außen weiterzugben.
+
+\subsubsection{Höhe des Baums}
+Die Höhe des Suchbaums kann auch hier gleich beim Einfügen mitgerechnet werden und erfordert somit keine spezielle Implementierung. \newline
+
+
+\pagebreak
+\subsection{Sourcecode}
+
+\textbf{SortedSet.java}
+\javacode{\srcDir/SortedSet.java}
+\textbf{SortedTreeSet.java}
+\javacode{\srcDir/SortedTreeSet.java}
+\textbf{AbstractSortedTreeSet.java}
+\javacode{\srcDir/AbstractSortedTreeSet.java}	
+\textbf{BSTSet.java}
+\javacode{\srcDir/BSTSet.java}
+\textbf{TTFNode.java}
+\javacode{\srcDir/TTFNode.java}
+\textbf{TwoThreeFourTreeSet.java}
+\javacode{\srcDir/TwoThreeFourTreeSet.java}
+\textbf{Util.java}
+\javacode{\srcDir/Util.java}
+
+\pagebreak
+\subsection{Testfälle}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/1.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/2.png}
+\end{mdframed}
+
+
+
+
+\end{document}

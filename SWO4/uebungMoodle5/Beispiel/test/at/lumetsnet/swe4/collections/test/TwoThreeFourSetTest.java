@@ -18,11 +18,11 @@ public class TwoThreeFourSetTest extends SortedTreeSetTestBase {
   }
   
   @Test
-  public void emptyConstructorTest() {
+  public void testEmptyConstructor() {
 	  TwoThreeFourTreeSet<Integer> set = new TwoThreeFourTreeSet<>();
 	  assertEquals(null, set.comparator());
   }
-
+  
   @Test
   public void testHeight() {
     final int NELEMS = 10000;
@@ -34,6 +34,26 @@ public class TwoThreeFourSetTest extends SortedTreeSetTestBase {
       int n = set.size();
       assertTrue("height(set) <= ld(size(set))+1", h <= Math.log((double)n)/Math.log(2.0)+1);
     }
+  }
+  
+  @Test
+  public void testSingleNodeHeight() {
+	  SortedTreeSet<Integer> set = createSet();
+	  set.add(1);
+	  assertEquals(0, set.height());
+	  assertEquals(1, set.size());
+  }
+  
+  @Test
+  public void testHeightAfterSplit() {
+	  SortedTreeSet<Integer> set = createSet();
+	  set.add(1);
+	  set.add(2);
+	  set.add(3);
+	  set.add(4); //split
+	  assertEquals(1, set.height());
+	  assertEquals(4, set.size());
+	  
   }
   
 }
