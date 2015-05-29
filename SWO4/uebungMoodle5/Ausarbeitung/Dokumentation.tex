@@ -11,19 +11,19 @@ Für die Implementierung des \textit{SortedTreeSet} als binären Suchbaum muss die
 Beim Ausführen der Testfälle wurde festgestellt, dass bei großen Datenmengen eine \textit{StackOverflowException} geworfen wird. Dies hatte zur Folge, dass die Implementierung der Methode \textit{get} von rekursiv auf iterativ umgebaut werden musste.
 
 \subsubsection{Höhe des Baums}
-Laut Definition ist die Höhe die Anzahl der Kanten von jenem Konten, der am Weitesten von der Wurzel entfernt ist, bis zur Wurzel.
+Laut Definition ist die Höhe eines Baumes die Anzahl der Kanten von jenem Knoten, der am weitesten von der Wurzel entfernt ist, bis zur Wurzel.
 D.h.: 
 \begin{itemize}
-	\item Ein leerer Baum hat Höhe - 1
-	\item Ein Baum mit nur einem Knoten hat Höhe 0
+	\item Ein leerer Baum hat Höhe -1.
+	\item Ein Baum mit nur einem Knoten hat Höhe 0.
 	\item ...
 \end{itemize}
 Die Höhe des Suchbaums kann gleich beim Einfügen mitgerechnet werden und erfordert somit keine spezielle Implementierung. \newline
 
 \section{2-3-4 Bäume}
 \subsection{Lösungsidee}
-Die grunsätzliche Idee eines \textbf{2-3-4} Baumes ist bereits in der Angabe beschrieben und wird hier nicht mehr extra aufgeführt. \newline
-Diese Implementierung benötigt eine eigene \textit{Node} Klasse, die Datenkomponenten aufnehmen kann. \newline
+Die grundsätzliche Idee eines \textbf{2-3-4 Baumes} ist bereits in der Angabe beschrieben und wird hier nicht mehr extra angeführt. \newline
+Diese Implementierung benötigt eine eigene \textit{Node} Klasse, die Datenkomponenten aufnehmen kann. 
 \begin{itemize}
 	\item Liste von Werten (max 3).
 	\item Liste der Kindknoten (max 4).
@@ -39,7 +39,7 @@ Um einen Wert in einem \textbf{2-3-4 Baum} zu suchen, muss der Baum durchlaufen 
 
 \subsubsection{Iterator}
 Beim \textit{Iterator} müssen alle Knoten und deren Werte und Kinder in der korrekten Reihenfolge durchlaufen werden.\newline
-Eine einfache Möglichkeit dies zu bewerkstelligen ist es, eine Liste der Werte rekursiv zu ermitteln und dann dessen \textit{Iterator} nach außen weiterzugben.
+Eine einfache Möglichkeit dies zu bewerkstelligen ist es, eine Liste der Werte rekursiv zu ermitteln und dann dessen \textit{Iterator} nach außen weiterzugeben.
 
 \subsubsection{Höhe des Baums}
 Die Höhe des Suchbaums kann auch hier gleich beim Einfügen mitgerechnet werden und erfordert somit keine spezielle Implementierung. \newline
@@ -62,6 +62,15 @@ Die Höhe des Suchbaums kann auch hier gleich beim Einfügen mitgerechnet werden u
 \javacode{\srcDir/TwoThreeFourTreeSet.java}
 \textbf{Util.java}
 \javacode{\srcDir/Util.java}
+
+\subsection{Test - Sourcecode}
+
+\textbf{SortedTreeSetTestBase.java}
+\javacode{\testDir/SortedTreeSetTestBase.java}
+\textbf{BSTSetTest.java}
+\javacode{\testDir/BSTSetTest.java}
+\textbf{TwoThreeFourSetTest.java}
+\javacode{\testDir/TwoThreeFourSetTest.java}
 
 \pagebreak
 \subsection{Testfälle}
