@@ -1,0 +1,36 @@
+
+.nav-container {
+	-fx-border-width: 0 0 2 0;
+	-fx-border-color: black;
+	-fx-spacing: 10;
+	-fx-padding: 10;
+} 
+
+.nav-username {
+	-fx-font: bold 18pt "Arial";
+}
+
+.nav-role {
+	-fx-font: 14pt "Arial";
+}
+
+.nav-command-container {
+	-fx-spacing: 10;
+	-fx-alignment: baseline-right;
+}
+
+.nav-command {
+	-fx-spacing: 10;
+	-fx-padding: 10;
+	-fx-font: 14pt "Arial";
+}
+
+.nav-command-selected {
+	-fx-background-color: Red;
+}
+
+#nav-top-icon {
+	-fx-graphic: url('ic-login.png');
+	-fx-alignment: baseline-center;
+	-fx-content-display: center;
+}
