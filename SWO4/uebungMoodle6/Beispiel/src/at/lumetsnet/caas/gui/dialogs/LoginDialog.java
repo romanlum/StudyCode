@@ -1,6 +1,6 @@
-package at.lumetsnet.caas.dialogs;
+package at.lumetsnet.caas.gui.dialogs;
 
-import at.lumetsnet.caas.dialogs.viewmodel.LoginViewModel;
+import at.lumetsnet.caas.viewmodel.LoginViewModel;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +22,7 @@ public class LoginDialog extends Dialog {
 		dialogStage
 				.getScene()
 				.getStylesheets()
-				.add(getClass().getResource("../gui/css/login-dialog.css")
+				.add(getClass().getResource("../css/login-dialog.css")
 						.toExternalForm());
 	}
 	
@@ -34,7 +34,7 @@ public class LoginDialog extends Dialog {
 	
 	@Override
 	protected Node createContentPane() {
-		viewModel = new LoginViewModel(); //TODO: change
+		
 		VBox box = new VBox();
 		box.getStyleClass().add("form-container");
 		Label lab = new Label();

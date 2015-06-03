@@ -1,4 +1,4 @@
-package at.lumetsnet.caas.dialogs;
+package at.lumetsnet.caas.gui.dialogs;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -24,7 +24,7 @@ public abstract class Dialog {
 		layout.setBottom(createBottomPane());
 		
 		Scene dialogScene = new Scene(layout);
-		dialogScene.getStylesheets().add(getClass().getResource("../gui/css/dialog.css")
+		dialogScene.getStylesheets().add(getClass().getResource("../css/dialog.css")
                 .toExternalForm());
 		
 	    dialogStage.initOwner(owner);

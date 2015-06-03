@@ -2,8 +2,8 @@ package at.lumetsnet.caas;
 
 import java.util.logging.LogManager;
 
-import at.lumetsnet.caas.dialogs.LoginDialog;
 import at.lumetsnet.caas.gui.MainWindow;
+import at.lumetsnet.caas.gui.dialogs.LoginDialog;
 import at.lumetsnet.caas.model.User;
 import javafx.application.Application;
 import javafx.stage.Stage;

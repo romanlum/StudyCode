@@ -8,6 +8,28 @@ public class Menu {
 	private long price;
 	private LocalDateTime begin;
 	private LocalDateTime end;
+	private MenuCategory category;
+	
+	public Menu() {
+	}
+	
+	/**
+	 * @param id
+	 * @param description
+	 * @param price
+	 * @param begin
+	 * @param end
+	 * @param category
+	 */
+	public Menu(long id, String description, long price, LocalDateTime begin,
+			LocalDateTime end, MenuCategory category) {
+		this.id = id;
+		this.description = description;
+		this.price = price;
+		this.begin = begin;
+		this.end = end;
+		this.category = category;
+	}
 	/**
 	 * @return the id
 	 */
@@ -68,6 +90,19 @@ public class Menu {
 	public void setEnd(LocalDateTime end) {
 		this.end = end;
 	}
+	/**
+	 * @return the category
+	 */
+	public MenuCategory getCategory() {
+		return category;
+	}
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(MenuCategory category) {
+		this.category = category;
+	}
+	
 	
 	
 	

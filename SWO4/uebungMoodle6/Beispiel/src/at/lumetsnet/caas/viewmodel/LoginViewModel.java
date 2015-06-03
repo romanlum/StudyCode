@@ -1,4 +1,4 @@
-package at.lumetsnet.caas.dialogs.viewmodel;
+package at.lumetsnet.caas.viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

@@ -34,3 +34,12 @@
 	-fx-alignment: baseline-center;
 	-fx-content-display: center;
 }
+
+.page-content-container {
+	-fx-padding: 10;
+}
+
+.page-title {
+	-fx-padding: 0 0 10 0;
+	-fx-font: 14pt "Arial";
+}

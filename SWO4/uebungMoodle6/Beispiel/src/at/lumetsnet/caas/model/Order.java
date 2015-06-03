@@ -1,10 +1,32 @@
 package at.lumetsnet.caas.model;
 
+import java.time.LocalDateTime;
+
 public class Order {
 	private long id;
-	private long menuId;
-	private long userId;
+	private Menu menu;
+	private User user;
+	private LocalDateTime time;
 	private String comment;
+	
+	public Order() {
+	}
+	
+	/**
+	 * @param id
+	 * @param menu
+	 * @param user
+	 * @param time
+	 * @param comment
+	 */
+	public Order(long id, Menu menu, User user, LocalDateTime time,
+			String comment) {
+		this.id = id;
+		this.menu = menu;
+		this.user = user;
+		this.time = time;
+		this.comment = comment;
+	}
 	/**
 	 * @return the id
 	 */
@@ -17,29 +39,32 @@ public class Order {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	
+	
 	/**
-	 * @return the menuId
+	 * @return the menu
 	 */
-	public long getMenuId() {
-		return menuId;
+	public Menu getMenu() {
+		return menu;
 	}
 	/**
-	 * @param menuId the menuId to set
+	 * @param menu the menu to set
 	 */
-	public void setMenuId(long menuId) {
-		this.menuId = menuId;
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 	/**
-	 * @return the userId
+	 * @return the user
 	 */
-	public long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 	/**
-	 * @param userId the userId to set
+	 * @param user the user to set
 	 */
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	/**
 	 * @return the comment
@@ -53,6 +78,20 @@ public class Order {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	/**
+	 * @return the time
+	 */
+	public LocalDateTime getTime() {
+		return time;
+	}
+	/**
+	 * @param time the time to set
+	 */
+	public void setTime(LocalDateTime time) {
+		this.time = time;
+	}
+	
+	
 	
 	
 }

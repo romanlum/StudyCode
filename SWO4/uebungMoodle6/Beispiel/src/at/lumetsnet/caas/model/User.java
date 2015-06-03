@@ -8,6 +8,34 @@ public class User {
 	private String lastName;
 	private boolean locked;
 	private boolean isAdmin;
+	
+	
+	
+	public User() {
+	}
+	
+	
+	/**
+	 * @param id
+	 * @param userName
+	 * @param password
+	 * @param firstName
+	 * @param lastName
+	 * @param locked
+	 * @param isAdmin
+	 */
+	public User(long id, String userName, String password, String firstName,
+			String lastName, boolean locked, boolean isAdmin) {
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.locked = locked;
+		this.isAdmin = isAdmin;
+	}
+
+
 	/**
 	 * @return the id
 	 */

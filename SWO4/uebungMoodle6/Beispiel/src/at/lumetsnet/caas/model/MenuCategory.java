@@ -3,6 +3,20 @@ package at.lumetsnet.caas.model;
 public class MenuCategory {
 	private long id;
 	private String name;
+	
+	
+	
+	public MenuCategory() {
+	}
+	
+	/**
+	 * @param id
+	 * @param name
+	 */
+	public MenuCategory(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 	/**
 	 * @return the id
 	 */
