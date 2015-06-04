@@ -1,0 +1,80 @@
+\input{master.tex}
+
+\ihead{SWO3 SS 2015 - Übung 06}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{CaaS – Campina as a Service}
+\subsection{Lösungsidee}
+Da es bei dieser Aufgabe um einen GUI Prototypen geht ist es besonders wichtig, die Business-Logik nicht mit der GUI zu vermischen. \newline
+Ein Ansatz das zu erreichen ist es, die Business-Logik in eigene Klassen auszulagern. \newline Diese können dann als Singleton verwendet werden.\newline
+Weiters sollte die Gui mit eigenen Datenobjekten arbeiten um nicht von der Struktur der Datenhaltung abhängig zu sein.
+
+\pagebreak
+\includepdf[pages=-]{mockup.pdf}
+
+\pagebreak
+\subsection{Sourcecode}
+\javacode{\srcDir/Main.java}
+\javacode{\srcDir/business/MenuService.java}
+\javacode{\srcDir/business/OrderService.java}
+\javacode{\srcDir/business/UserService.java}
+\javacode{\srcDir/business/Util.java}
+\javacode{\srcDir/gui/ActionTableCell.java}
+\javacode{\srcDir/gui/AmountTableCell.java}
+\javacode{\srcDir/gui/DateTableCell.java}
+\javacode{\srcDir/gui/MainWindow.java}
+\javacode{\srcDir/gui/ManageUserActionCell.java}
+\javacode{\srcDir/gui/Util.java}
+\javacode{\srcDir/gui/dialogs/Dialog.java}
+\javacode{\srcDir/gui/dialogs/ErrorDialog.java}
+\javacode{\srcDir/gui/dialogs/ManageEntityDialog.java}
+\javacode{\srcDir/gui/dialogs/ManageMenuCategoryDialog.java}
+\javacode{\srcDir/gui/dialogs/ManageMenuDialog.java}
+\javacode{\srcDir/gui/dialogs/ManageUserDialog.java}
+\javacode{\srcDir/gui/pages/ManageMenusPage.java}
+\javacode{\srcDir/gui/pages/ManageUsersPage.java}
+\javacode{\srcDir/gui/pages/OrdersPage.java}
+\javacode{\srcDir/gui/pages/Showable.java}
+\javacode{\srcDir/model/Entity.java}
+\javacode{\srcDir/model/Menu.java}
+\javacode{\srcDir/model/MenuCategory.java}
+\javacode{\srcDir/model/Order.java}
+\javacode{\srcDir/model/User.java}
+\javacode{\srcDir/viewmodel/ManageMenusViewModel.java}
+\javacode{\srcDir/viewmodel/ManageUsersViewModel.java}
+\javacode{\srcDir/viewmodel/MenuCategoryViewModel.java}
+\javacode{\srcDir/viewmodel/MenuViewModel.java}
+\javacode{\srcDir/viewmodel/OrdersPageViewModel.java}
+\javacode{\srcDir/viewmodel/OrderViewModel.java}
+\javacode{\srcDir/viewmodel/UserViewModel.java}
+
+
+\pagebreak
+\subsection{Testfälle}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/1.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/2.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/3.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/4.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/5.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/6.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/7.png}
+\end{mdframed}
+
+
+
+\end{document}
