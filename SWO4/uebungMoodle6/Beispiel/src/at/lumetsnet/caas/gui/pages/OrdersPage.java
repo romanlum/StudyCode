@@ -2,6 +2,7 @@ package at.lumetsnet.caas.gui.pages;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import at.lumetsnet.caas.viewmodel.OrderViewModel;
@@ -47,16 +48,21 @@ public class OrdersPage extends VBox implements Showable {
 
 		column = new TableColumn<>("Zeit");
 		column.setCellValueFactory(x -> x.getValue().getTimeProperty());
+		column.setSortType(SortType.ASCENDING);
 		table.getColumns().add(column);
+		table.getSortOrder().clear();
+		table.getSortOrder().add(column);
 
 		column = new TableColumn<>("Kommentar");
 		column.setCellValueFactory(x -> x.getValue().getCommentProperty());
 
 		table.getColumns().add(column);
+		
 		return table;
 	}
 
 	public void show() {
 		viewModel.update();
+		table.sort();
 	}
 }

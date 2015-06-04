@@ -36,11 +36,16 @@ public class OrderService {
 		Menu menu = new Menu(1, "Wienerschnitzel mit Pommes", 0, null, null,
 				new MenuCategory());
 
-		orders.add(new Order(1, menu, user, LocalDateTime.now(),
+		LocalDateTime time = LocalDateTime.now();
+		
+		orders.add(new Order(1, menu, user,time ,
 				"ohne Preiselbeeren"));
-		orders.add(new Order(1, menu, user, LocalDateTime.now(),
+		time = time.minusHours(1);
+		orders.add(new Order(1, menu, user,time,
 				"mit Preiselbeeren"));
-
+		time = time.minusMinutes(1);
+		orders.add(new Order(1, menu, user,time,
+				"normal"));
 		return orders;
 	}
 }

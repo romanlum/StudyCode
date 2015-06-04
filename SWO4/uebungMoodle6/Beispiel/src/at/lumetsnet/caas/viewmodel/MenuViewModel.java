@@ -120,7 +120,6 @@ public class MenuViewModel implements Validatable {
 	public boolean validate() {
 		boolean val = descriptionProperty.get() != null
 				&& !descriptionProperty.get().isEmpty()
-				&& beginProperty.get() != null && endProperty.get() != null
 				&& categoryProperty.get() != null
 				&& categoryProperty.get().getIdProperty().get() != -1;
 
