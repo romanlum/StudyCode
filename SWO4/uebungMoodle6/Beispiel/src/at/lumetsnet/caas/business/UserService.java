@@ -34,12 +34,6 @@ public class UserService {
 		return instance;
 	}
 
-	public boolean login(String user, String pass) {
-		return users.stream().anyMatch(
-				x -> x.getUserName().equals(user)
-						&& x.getPassword().equals(pass));
-	}
-
 	public Collection<User> getAllUsers() {
 		return users;
 	}

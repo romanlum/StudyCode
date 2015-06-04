@@ -22,7 +22,7 @@ import at.lumetsnet.caas.model.User;
 public class MainWindow {
 
 	private enum VIEW_TYPE {
-		ADMIN_ORDERS, ADMIN_USERS, ADMIN_MENUS, USER_ORDER
+		ADMIN_ORDERS, ADMIN_USERS, ADMIN_MENUS
 	}
 
 	private User user;
@@ -33,7 +33,6 @@ public class MainWindow {
 	private Button adminOrdersViewButton;
 	private Button adminUsersViewButton;
 	private Button adminMenusViewButton;
-	private Button userOrderViewButton;
 
 	public MainWindow(Window owner, User user) {
 		this.user = user;
@@ -81,7 +80,7 @@ public class MainWindow {
 
 		Label descLabel = new Label();
 		descLabel.getStyleClass().add("nav-role");
-		descLabel.setText(user.isAdmin() ? "Administrator" : "User");
+		descLabel.setText("Administrator");
 
 		descBox.getChildren().add(userNameLabel);
 		descBox.getChildren().add(descLabel);
@@ -89,36 +88,27 @@ public class MainWindow {
 		HBox commandBox = new HBox();
 		commandBox.getStyleClass().add("nav-command-container");
 
-		if (user.isAdmin()) {
-			adminOrdersViewButton = new Button();
-			adminOrdersViewButton.getStyleClass().add("nav-command");
-			adminOrdersViewButton.setText("Bestellungen");
-			adminOrdersViewButton
-					.setOnAction(x -> switchView(VIEW_TYPE.ADMIN_ORDERS));
-			commandBox.getChildren().add(adminOrdersViewButton);
+		adminOrdersViewButton = new Button();
+		adminOrdersViewButton.getStyleClass().add("nav-command");
+		adminOrdersViewButton.setText("Bestellungen");
+		adminOrdersViewButton
+				.setOnAction(x -> switchView(VIEW_TYPE.ADMIN_ORDERS));
+		commandBox.getChildren().add(adminOrdersViewButton);
 
-			adminUsersViewButton = new Button();
-			adminUsersViewButton.getStyleClass().add("nav-command");
-			adminUsersViewButton.setText("Benutzerverwaltung");
-			adminUsersViewButton
-					.setOnAction(x -> switchView(VIEW_TYPE.ADMIN_USERS));
-			commandBox.getChildren().add(adminUsersViewButton);
+		adminUsersViewButton = new Button();
+		adminUsersViewButton.getStyleClass().add("nav-command");
+		adminUsersViewButton.setText("Benutzerverwaltung");
+		adminUsersViewButton
+				.setOnAction(x -> switchView(VIEW_TYPE.ADMIN_USERS));
+		commandBox.getChildren().add(adminUsersViewButton);
 
-			adminMenusViewButton = new Button();
-			adminMenusViewButton.getStyleClass().add("nav-command");
-			adminMenusViewButton.setText("Speisekarte verwalten");
-			adminMenusViewButton
-					.setOnAction(x -> switchView(VIEW_TYPE.ADMIN_MENUS));
-			commandBox.getChildren().add(adminMenusViewButton);
-		} else {
-			userOrderViewButton = new Button();
-			userOrderViewButton.getStyleClass().add("nav-command");
-			userOrderViewButton.setText("Bestellung aufgeben");
-			userOrderViewButton
-					.setOnAction(x -> switchView(VIEW_TYPE.USER_ORDER));
-			commandBox.getChildren().add(userOrderViewButton);
-		}
-
+		adminMenusViewButton = new Button();
+		adminMenusViewButton.getStyleClass().add("nav-command");
+		adminMenusViewButton.setText("Speisekarte verwalten");
+		adminMenusViewButton
+				.setOnAction(x -> switchView(VIEW_TYPE.ADMIN_MENUS));
+		commandBox.getChildren().add(adminMenusViewButton);
+		
 		HBox.setHgrow(commandBox, Priority.ALWAYS);
 
 		topContainer.getChildren().add(iconLabel);
@@ -128,15 +118,11 @@ public class MainWindow {
 	}
 
 	private void switchView(VIEW_TYPE type) {
-		if (user.isAdmin()) {
-			adminOrdersViewButton.getStyleClass()
-					.remove("nav-command-selected");
-			adminUsersViewButton.getStyleClass().remove("nav-command-selected");
-			adminMenusViewButton.getStyleClass().remove("nav-command-selected");
-		} else {
-			userOrderViewButton.getStyleClass().remove("nav-command-selected");
-		}
-
+		adminOrdersViewButton.getStyleClass()
+				.remove("nav-command-selected");
+		adminUsersViewButton.getStyleClass().remove("nav-command-selected");
+		adminMenusViewButton.getStyleClass().remove("nav-command-selected");
+	
 		Button selected = null;
 		switch (type) {
 		case ADMIN_USERS:
@@ -148,9 +134,6 @@ public class MainWindow {
 			break;
 		case ADMIN_MENUS:
 			selected = adminMenusViewButton;
-			break;
-		case USER_ORDER:
-			selected = userOrderViewButton;
 			break;
 		}
 		if (selected != null)

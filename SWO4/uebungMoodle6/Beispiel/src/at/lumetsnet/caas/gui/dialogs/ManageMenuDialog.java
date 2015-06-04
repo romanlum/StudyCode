@@ -1,10 +1,7 @@
 package at.lumetsnet.caas.gui.dialogs;
 
-import com.sun.rowset.internal.InsertRow;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.HBox;
