@@ -108,7 +108,7 @@ public class MainWindow {
 		adminMenusViewButton
 				.setOnAction(x -> switchView(VIEW_TYPE.ADMIN_MENUS));
 		commandBox.getChildren().add(adminMenusViewButton);
-		
+
 		HBox.setHgrow(commandBox, Priority.ALWAYS);
 
 		topContainer.getChildren().add(iconLabel);
@@ -118,11 +118,10 @@ public class MainWindow {
 	}
 
 	private void switchView(VIEW_TYPE type) {
-		adminOrdersViewButton.getStyleClass()
-				.remove("nav-command-selected");
+		adminOrdersViewButton.getStyleClass().remove("nav-command-selected");
 		adminUsersViewButton.getStyleClass().remove("nav-command-selected");
 		adminMenusViewButton.getStyleClass().remove("nav-command-selected");
-	
+
 		Button selected = null;
 		switch (type) {
 		case ADMIN_USERS:

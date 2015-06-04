@@ -38,23 +38,25 @@ public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 		VBox box = new VBox();
 		box.getStyleClass().add("form-container");
 		box.getChildren().addAll(
-				Util.getTextFieldForm("Beschreibung", viewModel
-						.getDescriptionProperty()));
-		box.getChildren().addAll(Util.getComboboxForm("Bereich", viewModel
-						.getCategoryProperty(),
-						getMenuCategories()));
-		
-		box.getChildren().addAll(Util.getTextFieldForm("Preis",viewModel.getPriceAsStringProperty()));
+				Util.getTextFieldForm("Beschreibung",
+						viewModel.getDescriptionProperty()));
+		box.getChildren().addAll(
+				Util.getComboboxForm("Bereich",
+						viewModel.getCategoryProperty(), getMenuCategories()));
+
+		box.getChildren().addAll(
+				Util.getTextFieldForm("Preis",
+						viewModel.getPriceAsStringProperty()));
 		DatePicker picker = new DatePicker();
 		box.getChildren().add(Util.getFormLabel("Zeitraum"));
-		
+
 		HBox rangeBox = new HBox();
 		rangeBox.setSpacing(10);
-		
+
 		picker.valueProperty().bindBidirectional(viewModel.getBeginProperty());
 		picker.getStyleClass().add("form-datepicker");
 		rangeBox.getChildren().add(picker);
-			
+
 		picker = new DatePicker();
 		picker.getStyleClass().add("form-datepicker");
 		picker.valueProperty().bindBidirectional(viewModel.getEndProperty());
@@ -63,22 +65,25 @@ public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 		return box;
 	}
 
-	
 	private ObservableList<MenuCategoryViewModel> getMenuCategories() {
-		ObservableList<MenuCategoryViewModel> data= FXCollections.observableArrayList();
-		MenuService.getInstance().getAllCategories().forEach(x -> data.add(new MenuCategoryViewModel(x)));
+		ObservableList<MenuCategoryViewModel> data = FXCollections
+				.observableArrayList();
+		MenuService.getInstance().getAllCategories()
+				.forEach(x -> data.add(new MenuCategoryViewModel(x)));
 		return data;
 	}
 
 	@Override
 	protected void saveCommand() {
-		MenuService.getInstance().saveOrUpdateMenu(viewModel.toMenuModel());
-		dialogStage.close();
+		if (validate()) {
+			MenuService.getInstance().saveOrUpdateMenu(viewModel.toMenuModel());
+			dialogStage.close();
+		}
+
 	}
 
-	
 	@Override
-	protected  void cancelCommand() {
+	protected void cancelCommand() {
 		canceled = true;
 		dialogStage.close();
 	}

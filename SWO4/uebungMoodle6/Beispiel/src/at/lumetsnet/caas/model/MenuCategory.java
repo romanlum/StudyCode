@@ -1,7 +1,7 @@
 package at.lumetsnet.caas.model;
 
 public class MenuCategory extends Entity {
-	
+
 	private String name;
 
 	public MenuCategory() {
@@ -15,8 +15,6 @@ public class MenuCategory extends Entity {
 		this.id = id;
 		this.name = name;
 	}
-
-	
 
 	/**
 	 * @return the name

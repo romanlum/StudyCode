@@ -50,3 +50,9 @@
 -fx-font: 14pt "Arial";
 }
 
+.error-label {
+	-fx-font: 14pt "Arial";
+	-fx-text-fill: Red;
+	-fx-padding: 10;
+	-fx-content-display: center;
+}

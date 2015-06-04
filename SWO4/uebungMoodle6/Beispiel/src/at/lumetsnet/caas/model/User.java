@@ -1,7 +1,7 @@
 package at.lumetsnet.caas.model;
 
 public class User extends Entity {
-	
+
 	private String userName;
 	private String password;
 	private String firstName;
@@ -31,7 +31,6 @@ public class User extends Entity {
 		this.locked = locked;
 		this.isAdmin = isAdmin;
 	}
-
 
 	/**
 	 * @return the userName

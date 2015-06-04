@@ -21,9 +21,9 @@ public class MenuService {
 
 		menus = new ArrayList<>();
 		menus.add(new Menu(0, "Wienerschnitzel", 1000, LocalDate.now(),
-				LocalDate.now() , categories.get(0)));
-		menus.add(new Menu(1, "Gericht 2", 20000, LocalDate.now(),
-				LocalDate.now(), categories.get(1)));
+				LocalDate.now(), categories.get(0)));
+		menus.add(new Menu(1, "Gericht 2", 20000, LocalDate.now(), LocalDate
+				.now(), categories.get(1)));
 	}
 
 	public static MenuService getInstance() {
@@ -40,7 +40,7 @@ public class MenuService {
 	public void deleteCategory(long id) {
 		categories.removeIf(x -> x.getId() == id);
 	}
-	
+
 	public void deleteMenu(long id) {
 		menus.removeIf(x -> x.getId() == id);
 	}
@@ -48,7 +48,7 @@ public class MenuService {
 	public void saveOrUpdateCategory(MenuCategory data) {
 		Util.saveOrUpdate(data, categories);
 	}
-	
+
 	public void saveOrUpdateMenu(Menu data) {
 		Util.saveOrUpdate(data, menus);
 	}

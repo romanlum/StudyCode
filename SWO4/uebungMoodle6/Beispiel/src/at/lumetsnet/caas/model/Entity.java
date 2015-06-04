@@ -2,6 +2,7 @@ package at.lumetsnet.caas.model;
 
 public class Entity {
 	protected long id;
+
 	/**
 	 * @return the id
 	 */

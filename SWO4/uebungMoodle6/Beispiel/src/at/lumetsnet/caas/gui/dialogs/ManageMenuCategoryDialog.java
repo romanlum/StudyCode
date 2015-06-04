@@ -8,17 +8,19 @@ import at.lumetsnet.caas.gui.Util;
 import at.lumetsnet.caas.model.MenuCategory;
 import at.lumetsnet.caas.viewmodel.MenuCategoryViewModel;
 
-public class ManageMenuCategoryDialog extends ManageEntityDialog<MenuCategoryViewModel> {
+public class ManageMenuCategoryDialog extends
+		ManageEntityDialog<MenuCategoryViewModel> {
 
 	public ManageMenuCategoryDialog(Window owner, MenuCategory data) {
 		viewModel = new MenuCategoryViewModel(data);
 		createGui(owner, "Bereich verwalten",
 				"Bitte geben Sie die Daten des Bereichs ein.");
-		
+
 		dialogStage
 				.getScene()
 				.getStylesheets()
-				.add(getClass().getResource("../css/manage-menu-category-dialog.css")
+				.add(getClass().getResource(
+						"../css/manage-menu-category-dialog.css")
 						.toExternalForm());
 	}
 
@@ -27,19 +29,22 @@ public class ManageMenuCategoryDialog extends ManageEntityDialog<MenuCategoryVie
 
 		VBox box = new VBox();
 		box.getStyleClass().add("form-container");
-		box.getChildren().addAll(Util.getTextFieldForm("Name", viewModel.getNameProperty()));
-		
+		box.getChildren().addAll(
+				Util.getTextFieldForm("Name", viewModel.getNameProperty()));
+
 		return box;
 	}
 
-	
 	@Override
 	protected void saveCommand() {
-		MenuService.getInstance().saveOrUpdateCategory(viewModel.toCategoryModel());
-		dialogStage.close();
+		if (validate()) {
+			MenuService.getInstance().saveOrUpdateCategory(
+					viewModel.toCategoryModel());
+			dialogStage.close();
+		}
+
 	}
 
-	
 	@Override
 	protected void cancelCommand() {
 		canceled = true;
@@ -47,7 +52,8 @@ public class ManageMenuCategoryDialog extends ManageEntityDialog<MenuCategoryVie
 	}
 
 	public static boolean show(Window owner, MenuCategory model) {
-		ManageMenuCategoryDialog dialog = new ManageMenuCategoryDialog(owner, model);
+		ManageMenuCategoryDialog dialog = new ManageMenuCategoryDialog(owner,
+				model);
 		return dialog.show();
 
 	}

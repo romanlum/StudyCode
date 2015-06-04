@@ -3,7 +3,7 @@ package at.lumetsnet.caas.model;
 import java.time.LocalDate;
 
 public class Menu extends Entity {
-	
+
 	private String description;
 	private long price;
 	private LocalDate begin;

@@ -19,13 +19,14 @@ public class ManageMenusViewModel {
 	}
 
 	public void updateCategories() {
-		Collection<MenuCategory> data = MenuService.getInstance().getAllCategories();
+		Collection<MenuCategory> data = MenuService.getInstance()
+				.getAllCategories();
 		categories.clear();
 		if (data != null) {
 			data.forEach(x -> categories.add(new MenuCategoryViewModel(x)));
 		}
 	}
-	
+
 	public void updateMenus() {
 		Collection<Menu> data = MenuService.getInstance().getAllMenus();
 		menus.clear();
@@ -37,7 +38,7 @@ public class ManageMenusViewModel {
 	public ObservableList<MenuCategoryViewModel> getCategoryList() {
 		return categories;
 	}
-	
+
 	public ObservableList<MenuViewModel> getMenuList() {
 		return menus;
 	}
@@ -47,7 +48,7 @@ public class ManageMenusViewModel {
 		updateCategories();
 
 	}
-	
+
 	public void deleteMenuCommand(Number id) {
 		MenuService.getInstance().deleteMenu((long) id);
 		updateMenus();

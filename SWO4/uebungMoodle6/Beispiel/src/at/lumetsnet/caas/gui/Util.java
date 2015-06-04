@@ -15,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class Util {
-	
+
 	public static Node getFormLabel(String text) {
 		Label lab = new Label();
 		lab.setText(text);
@@ -35,7 +35,7 @@ public class Util {
 		nodes.add(field);
 		return nodes;
 	}
-	
+
 	public static Collection<Node> getPasswordFieldForm(String text,
 			StringProperty property) {
 
@@ -48,9 +48,9 @@ public class Util {
 		nodes.add(field);
 		return nodes;
 	}
-	
+
 	public static <T> Collection<Node> getComboboxForm(String text,
-			ObjectProperty<T> property, ObservableList<T> data ) {
+			ObjectProperty<T> property, ObservableList<T> data) {
 
 		Collection<Node> nodes = new ArrayList<Node>();
 		nodes.add(getFormLabel(text));
@@ -58,18 +58,18 @@ public class Util {
 		ComboBox<T> field = new ComboBox<>();
 		field.getStyleClass().add("form-combobox");
 		field.setItems(data);
-		field.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<T>() {
-               @Override
-				public void changed(ObservableValue<? extends T> item, T arg1,
-						T arg2) {
-            	   property.setValue(item.getValue());
-					
-               }
-		});
+		field.getSelectionModel().selectedItemProperty()
+				.addListener(new ChangeListener<T>() {
+					@Override
+					public void changed(ObservableValue<? extends T> item,
+							T arg1, T arg2) {
+						property.setValue(item.getValue());
+
+					}
+				});
 		field.selectionModelProperty().get().select(property.get());
 		nodes.add(field);
 		return nodes;
 	}
-	
 
 }

@@ -33,31 +33,31 @@ public class ManageUserDialog extends ManageEntityDialog<UserViewModel> {
 		VBox box = new VBox();
 		box.getStyleClass().add("form-container");
 		box.getChildren().addAll(
-				Util.getTextFieldForm("Benutzername", viewModel
-						.getUserNameProperty()));
+				Util.getTextFieldForm("Benutzername",
+						viewModel.getUserNameProperty()));
 		box.getChildren().addAll(
-				Util.getPasswordFieldForm("Passwort", viewModel
-						.getPasswordProperty()));
+				Util.getPasswordFieldForm("Passwort",
+						viewModel.getPasswordProperty()));
 		box.getChildren().addAll(
-				Util.getTextFieldForm("Vorname", viewModel
-						.getFirstNameProperty()));
+				Util.getTextFieldForm("Vorname",
+						viewModel.getFirstNameProperty()));
 		box.getChildren().addAll(
-				Util.getTextFieldForm("Nachname", viewModel
-						.getLastNameProperty()));
+				Util.getTextFieldForm("Nachname",
+						viewModel.getLastNameProperty()));
 
 		return box;
 	}
 
-	
 	@Override
 	protected void saveCommand() {
-		UserService.getInstance().saveOrUpdate(viewModel.toUserModel());
-		dialogStage.close();
+		if (validate()) {
+			UserService.getInstance().saveOrUpdate(viewModel.toUserModel());
+			dialogStage.close();
+		}
 	}
 
-	
 	@Override
-	protected  void cancelCommand() {
+	protected void cancelCommand() {
 		canceled = true;
 		dialogStage.close();
 	}

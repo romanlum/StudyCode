@@ -3,7 +3,7 @@ package at.lumetsnet.caas.model;
 import java.time.LocalDateTime;
 
 public class Order extends Entity {
-	
+
 	private Menu menu;
 	private User user;
 	private LocalDateTime time;
@@ -28,7 +28,6 @@ public class Order extends Entity {
 		this.comment = comment;
 	}
 
-	
 	/**
 	 * @return the menu
 	 */

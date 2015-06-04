@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import at.lumetsnet.caas.model.User;
 
-public class UserViewModel {
+public class UserViewModel implements Validatable {
 
 	private LongProperty idProperty;
 	private StringProperty userNameProperty;
@@ -19,7 +19,7 @@ public class UserViewModel {
 	private BooleanProperty isAdminProperty;
 
 	public UserViewModel(User user) {
-		if(user == null) {
+		if (user == null) {
 			user = new User();
 			user.setId(-1);
 		}
@@ -101,6 +101,19 @@ public class UserViewModel {
 	 */
 	public BooleanProperty getIsAdminProperty() {
 		return isAdminProperty;
+	}
+
+	@Override
+	public boolean validate() {
+		return userNameProperty.get() != null
+				&& !userNameProperty.get().isEmpty()
+				&& passwordProperty.get() != null
+				&& !passwordProperty.get().isEmpty()
+				&& firstNameProperty.get() != null
+				&& !firstNameProperty.get().isEmpty()
+				&& lastNameProperty.get() != null
+				&& !lastNameProperty.get().isEmpty();
+
 	}
 
 }

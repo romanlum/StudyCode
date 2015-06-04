@@ -6,20 +6,19 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import at.lumetsnet.caas.model.MenuCategory;
 
-public class MenuCategoryViewModel {
+public class MenuCategoryViewModel implements Validatable {
 
 	private LongProperty idProperty;
 	private StringProperty nameProperty;
-	
 
 	public MenuCategoryViewModel(MenuCategory input) {
-		if(input == null) {
+		if (input == null) {
 			input = new MenuCategory();
 			input.setId(-1);
 		}
 		idProperty = new SimpleLongProperty(input.getId());
 		nameProperty = new SimpleStringProperty(input.getName());
-	
+
 	}
 
 	public MenuCategory toCategoryModel() {
@@ -29,12 +28,11 @@ public class MenuCategoryViewModel {
 		return result;
 
 	}
-	
-	
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	public boolean validate() {
+		return nameProperty.get() != null && !nameProperty.get().isEmpty();
+	}
+
 	@Override
 	public String toString() {
 		return getNameProperty().get();

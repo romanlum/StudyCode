@@ -29,13 +29,16 @@ public class ManageUserActionCell<S, T> extends ActionTableCell<S, T> {
 			if (getTableRow() != null && getTableRow().getItem() != null) {
 				Object model = getTableRow().getItem();
 				if (model instanceof UserViewModel) {
-					lockButton.getStyleClass().removeIf(x -> x.startsWith("table-command"));
+					lockButton.getStyleClass().removeIf(
+							x -> x.startsWith("table-command"));
 					if (((UserViewModel) model).getLockedProperty().get()) {
 						lockButton.setText("Entsperren");
-						lockButton.getStyleClass().addAll("table-command", "table-command-unlock");
+						lockButton.getStyleClass().addAll("table-command",
+								"table-command-unlock");
 					} else {
 						lockButton.setText("Sperren");
-						lockButton.getStyleClass().addAll("table-command","table-command-lock");
+						lockButton.getStyleClass().addAll("table-command",
+								"table-command-lock");
 					}
 				}
 			}

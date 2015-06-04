@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import at.lumetsnet.caas.model.Menu;
 
-public class MenuViewModel {
+public class MenuViewModel implements Validatable {
 
 	private LongProperty idProperty;
 	private StringProperty descriptionProperty;
@@ -32,29 +32,32 @@ public class MenuViewModel {
 		priceProperty = new SimpleLongProperty(data.getPrice());
 		beginProperty = new SimpleObjectProperty<LocalDate>(data.getBegin());
 		endProperty = new SimpleObjectProperty<LocalDate>(data.getEnd());
-		categoryProperty = new SimpleObjectProperty<>(new MenuCategoryViewModel(data.getCategory()));
-		if(data.getBegin() != null && data.getEnd()!=null) {
-		usageRangeProperty = new SimpleStringProperty(data.getBegin().format(
-				DateTimeFormatter.ISO_LOCAL_DATE)
-				+ " - " + data.getEnd().format(DateTimeFormatter.ISO_LOCAL_DATE));
+		categoryProperty = new SimpleObjectProperty<>(
+				new MenuCategoryViewModel(data.getCategory()));
+		if (data.getBegin() != null && data.getEnd() != null) {
+			usageRangeProperty = new SimpleStringProperty(data.getBegin()
+					.format(DateTimeFormatter.ISO_LOCAL_DATE)
+					+ " - "
+					+ data.getEnd().format(DateTimeFormatter.ISO_LOCAL_DATE));
 		} else {
 			usageRangeProperty = new SimpleStringProperty("");
 		}
-		priceAsStringProperty =new SimpleStringProperty(""+(data.getPrice()/(double)100));
+		priceAsStringProperty = new SimpleStringProperty(""
+				+ (data.getPrice() / (double) 100));
 	}
-	
+
 	public Menu toMenuModel() {
 		Menu menu = new Menu();
 		menu.setId(idProperty.get());
 		menu.setBegin(beginProperty.get());
 		menu.setEnd(endProperty.get());
 		menu.setDescription(descriptionProperty.get());
-		
-		long amount = (long)(Double.parseDouble(priceAsStringProperty.get())*100);
+
+		long amount = (long) (Double.parseDouble(priceAsStringProperty.get()) * 100);
 		menu.setPrice(amount);
 		menu.setCategory(categoryProperty.get().toCategoryModel());
 		return menu;
-		
+
 	}
 
 	/**
@@ -113,7 +116,24 @@ public class MenuViewModel {
 		return priceAsStringProperty;
 	}
 
-	
+	@Override
+	public boolean validate() {
+		boolean val = descriptionProperty.get() != null
+				&& !descriptionProperty.get().isEmpty()
+				&& beginProperty.get() != null && endProperty.get() != null
+				&& categoryProperty.get() != null
+				&& categoryProperty.get().getIdProperty().get() != -1;
 
-	
+		if (!val)
+			return val;
+		// extended validation of price
+		try {
+			Double.parseDouble(priceAsStringProperty.get());
+
+		} catch (NumberFormatException ex) {
+			return false;
+		}
+		return true;
+	}
+
 }

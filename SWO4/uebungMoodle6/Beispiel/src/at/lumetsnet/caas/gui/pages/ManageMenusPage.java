@@ -39,7 +39,7 @@ public class ManageMenusPage extends VBox implements Showable {
 		topPane.getChildren().add(commandContainer);
 		categoryTable = createCategoryTableView();
 		categoryTable.setItems(viewModel.getCategoryList());
-		
+
 		HBox menuTopPane = new HBox();
 		menuTopPane.getChildren().add(createTitle("Menüs"));
 		HBox menuCommandContainer = new HBox();
@@ -50,9 +50,8 @@ public class ManageMenusPage extends VBox implements Showable {
 		menuTopPane.getChildren().add(menuCommandContainer);
 		menuTable = createMenuTableView();
 		menuTable.setItems(viewModel.getMenuList());
-		
-		
-		getChildren().addAll(topPane, categoryTable,menuTopPane, menuTable);
+
+		getChildren().addAll(topPane, categoryTable, menuTopPane, menuTable);
 
 	}
 
@@ -62,7 +61,7 @@ public class ManageMenusPage extends VBox implements Showable {
 		button.setOnAction(x -> addCategoryCommand());
 		return button;
 	}
-	
+
 	private Node createAddMenuButton() {
 		Button button = new Button("Menü anlegen");
 		button.getStyleClass().add("page-command");
@@ -85,7 +84,6 @@ public class ManageMenusPage extends VBox implements Showable {
 				"Name");
 		column.setCellValueFactory(x -> x.getValue().getNameProperty());
 		table.getColumns().add(column);
-		
 
 		TableColumn<MenuCategoryViewModel, Number> actionColumn = new TableColumn<>(
 				"Aktion");
@@ -105,16 +103,16 @@ public class ManageMenusPage extends VBox implements Showable {
 		TableColumn<MenuViewModel, String> column = new TableColumn<>("Name");
 		column.setCellValueFactory(x -> x.getValue().getDescriptionProperty());
 		table.getColumns().add(column);
-		
-		TableColumn<MenuViewModel, Number> priceColumn = new TableColumn<>("Preis");
+
+		TableColumn<MenuViewModel, Number> priceColumn = new TableColumn<>(
+				"Preis");
 		priceColumn.setCellValueFactory(x -> x.getValue().getPriceProperty());
 		priceColumn.setCellFactory(x -> new AmountTableCell<MenuViewModel>());
 		table.getColumns().add(priceColumn);
-		
+
 		column = new TableColumn<>("Zeitraum");
 		column.setCellValueFactory(x -> x.getValue().getUsageRangeProperty());
 		table.getColumns().add(column);
-		
 
 		TableColumn<MenuViewModel, Number> actionColumn = new TableColumn<>(
 				"Aktion");
@@ -125,25 +123,26 @@ public class ManageMenusPage extends VBox implements Showable {
 		table.getColumns().add(actionColumn);
 		return table;
 	}
-	
+
 	private void deleteCategoryCommand(Number x) {
 		viewModel.deleteCategoryCommand(x);
 
 	}
 
 	private void editCategoryCommand(Number id) {
-		Optional<MenuCategoryViewModel> model = categoryTable.getItems().stream()
-				.filter(x -> x.getIdProperty().get() == (long) id).findFirst();
+		Optional<MenuCategoryViewModel> model = categoryTable.getItems()
+				.stream().filter(x -> x.getIdProperty().get() == (long) id)
+				.findFirst();
 
 		if (model.isPresent()) {
-			boolean result = ManageMenuCategoryDialog.show(getScene().getWindow(),
-					model.get().toCategoryModel());
+			boolean result = ManageMenuCategoryDialog.show(getScene()
+					.getWindow(), model.get().toCategoryModel());
 			if (!result) {
 				viewModel.updateCategories();
 			}
 		}
 	}
-	
+
 	private void deleteMenuCommand(Number x) {
 		viewModel.deleteMenuCommand(x);
 
@@ -163,12 +162,13 @@ public class ManageMenusPage extends VBox implements Showable {
 	}
 
 	private void addCategoryCommand() {
-		boolean result = ManageMenuCategoryDialog.show(getScene().getWindow(), null);
+		boolean result = ManageMenuCategoryDialog.show(getScene().getWindow(),
+				null);
 		if (!result) {
 			viewModel.updateCategories();
 		}
 	}
-	
+
 	private void addMenuCommand() {
 		boolean result = ManageMenuDialog.show(getScene().getWindow(), null);
 		if (!result) {

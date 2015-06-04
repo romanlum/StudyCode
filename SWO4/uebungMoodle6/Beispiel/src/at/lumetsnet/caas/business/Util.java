@@ -8,8 +8,9 @@ import at.lumetsnet.caas.model.Entity;
 
 public class Util {
 
-	public static <T extends Entity> void saveOrUpdate(T model, ArrayList<T> list) {
-	
+	public static <T extends Entity> void saveOrUpdate(T model,
+			ArrayList<T> list) {
+
 		if (model.getId() == -1) {
 			// new item
 			OptionalLong max = list.stream().mapToLong(x -> x.getId()).max();
@@ -18,10 +19,11 @@ public class Util {
 			}
 			list.add(model);
 		} else {
-			//replace old one
-			Optional<T> old = list.stream().filter(x -> x.getId() == model.getId()).findAny();
+			// replace old one
+			Optional<T> old = list.stream()
+					.filter(x -> x.getId() == model.getId()).findAny();
 			list.set(list.indexOf(old.get()), model);
-			
+
 		}
 
 	}
