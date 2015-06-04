@@ -2,12 +2,10 @@ package at.lumetsnet.caas.viewmodel;
 
 import java.util.Collection;
 
-import at.lumetsnet.caas.business.OrderService;
-import at.lumetsnet.caas.business.UserService;
-import at.lumetsnet.caas.model.Order;
-import at.lumetsnet.caas.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import at.lumetsnet.caas.business.OrderService;
+import at.lumetsnet.caas.model.Order;
 
 public class OrdersPageViewModel {
 

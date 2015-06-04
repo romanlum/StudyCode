@@ -8,7 +8,7 @@ public class LoginViewModel {
 	private StringProperty userName;
 	private StringProperty password;
 	private boolean loginResult;
-	
+
 	public LoginViewModel() {
 		this.userName = new SimpleStringProperty();
 		this.password = new SimpleStringProperty();
@@ -17,25 +17,19 @@ public class LoginViewModel {
 	public StringProperty userNameProperty() {
 		return userName;
 	}
-	
+
 	public StringProperty passwordProperty() {
 		return password;
 	}
-	
+
 	public boolean getLoginResult() {
 		return loginResult;
 	}
-	
+
 	public void login() {
-		System.out.println("user: "+userName.get() + " pass: "+password.get());
+		System.out.println("user: " + userName.get() + " pass: "
+				+ password.get());
 		loginResult = true;
 	}
-	
-	
-	
 
-	
-	
-	
-	
 }

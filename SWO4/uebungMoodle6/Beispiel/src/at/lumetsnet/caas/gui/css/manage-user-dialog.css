@@ -1,0 +1,6 @@
+
+#dialog-icon {
+	-fx-graphic: url('ic-login.png');
+	-fx-alignment: baseline-center;
+	-fx-content-display: center;
+}

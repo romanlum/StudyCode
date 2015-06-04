@@ -2,12 +2,13 @@ package at.lumetsnet.caas.business;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import at.lumetsnet.caas.model.User;
 
 public class UserService {
 
-	Collection<User> users;
+	ArrayList<User> users;
 
 	private static UserService instance = null;
 
@@ -18,7 +19,7 @@ public class UserService {
 		users.add(new User(1, "romanlum", "password", "Roman", "Lumetsberger",
 				false, true));
 		users.add(new User(2, "christophlum", "password", "Christoph",
-				"Lumetsberger", false, false));
+				"Lumetsberger", true, false));
 		users.add(new User(3, "moe", "password", "Moe", "Sislec", false, true));
 
 	}
@@ -42,8 +43,20 @@ public class UserService {
 	public Collection<User> getAllUsers() {
 		return users;
 	}
-	
+
 	public void deleteUser(long id) {
 		users.removeIf(x -> x.getId() == id);
+	}
+
+	public void toggleLockState(long id) {
+		Optional<User> result = users.stream().filter(x -> x.getId() == id)
+				.findFirst();
+		if (result.isPresent()) {
+			result.get().setLocked(!result.get().isLocked());
+		}
+	}
+
+	public void saveOrUpdate(User userModel) {
+		Util.saveOrUpdate(userModel, users);
 	}
 }

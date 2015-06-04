@@ -1,18 +1,18 @@
 package at.lumetsnet.caas.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-public class Menu {
-	private long id;
+public class Menu extends Entity {
+	
 	private String description;
 	private long price;
-	private LocalDateTime begin;
-	private LocalDateTime end;
+	private LocalDate begin;
+	private LocalDate end;
 	private MenuCategory category;
-	
+
 	public Menu() {
 	}
-	
+
 	/**
 	 * @param id
 	 * @param description
@@ -21,8 +21,8 @@ public class Menu {
 	 * @param end
 	 * @param category
 	 */
-	public Menu(long id, String description, long price, LocalDateTime begin,
-			LocalDateTime end, MenuCategory category) {
+	public Menu(long id, String description, long price, LocalDate begin,
+			LocalDate end, MenuCategory category) {
 		this.id = id;
 		this.description = description;
 		this.price = price;
@@ -30,80 +30,80 @@ public class Menu {
 		this.end = end;
 		this.category = category;
 	}
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
 		return description;
 	}
+
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	/**
 	 * @return the price
 	 */
 	public long getPrice() {
 		return price;
 	}
+
 	/**
-	 * @param price the price to set
+	 * @param price
+	 *            the price to set
 	 */
 	public void setPrice(long price) {
 		this.price = price;
 	}
+
 	/**
 	 * @return the begin
 	 */
-	public LocalDateTime getBegin() {
+	public LocalDate getBegin() {
 		return begin;
 	}
+
 	/**
-	 * @param begin the begin to set
+	 * @param begin
+	 *            the begin to set
 	 */
-	public void setBegin(LocalDateTime begin) {
+	public void setBegin(LocalDate begin) {
 		this.begin = begin;
 	}
+
 	/**
 	 * @return the end
 	 */
-	public LocalDateTime getEnd() {
+	public LocalDate getEnd() {
 		return end;
 	}
+
 	/**
-	 * @param end the end to set
+	 * @param end
+	 *            the end to set
 	 */
-	public void setEnd(LocalDateTime end) {
+	public void setEnd(LocalDate end) {
 		this.end = end;
 	}
+
 	/**
 	 * @return the category
 	 */
 	public MenuCategory getCategory() {
 		return category;
 	}
+
 	/**
-	 * @param category the category to set
+	 * @param category
+	 *            the category to set
 	 */
 	public void setCategory(MenuCategory category) {
 		this.category = category;
 	}
-	
-	
-	
-	
+
 }

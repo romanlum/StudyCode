@@ -2,16 +2,16 @@ package at.lumetsnet.caas.model;
 
 import java.time.LocalDateTime;
 
-public class Order {
-	private long id;
+public class Order extends Entity {
+	
 	private Menu menu;
 	private User user;
 	private LocalDateTime time;
 	private String comment;
-	
+
 	public Order() {
 	}
-	
+
 	/**
 	 * @param id
 	 * @param menu
@@ -27,20 +27,7 @@ public class Order {
 		this.time = time;
 		this.comment = comment;
 	}
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	
+
 	
 	/**
 	 * @return the menu
@@ -48,50 +35,58 @@ public class Order {
 	public Menu getMenu() {
 		return menu;
 	}
+
 	/**
-	 * @param menu the menu to set
+	 * @param menu
+	 *            the menu to set
 	 */
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+
 	/**
 	 * @return the user
 	 */
 	public User getUser() {
 		return user;
 	}
+
 	/**
-	 * @param user the user to set
+	 * @param user
+	 *            the user to set
 	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	/**
 	 * @return the comment
 	 */
 	public String getComment() {
 		return comment;
 	}
+
 	/**
-	 * @param comment the comment to set
+	 * @param comment
+	 *            the comment to set
 	 */
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 	/**
 	 * @return the time
 	 */
 	public LocalDateTime getTime() {
 		return time;
 	}
+
 	/**
-	 * @param time the time to set
+	 * @param time
+	 *            the time to set
 	 */
 	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
-	
-	
-	
-	
+
 }

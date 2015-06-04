@@ -1,6 +1,5 @@
 package at.lumetsnet.caas.gui.dialogs;
 
-import at.lumetsnet.caas.viewmodel.LoginViewModel;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,32 +8,32 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Window;
+import at.lumetsnet.caas.viewmodel.LoginViewModel;
 
 public class LoginDialog extends Dialog {
-	
+
 	private LoginViewModel viewModel;
-	
+
 	public LoginDialog(Window owner) {
 		viewModel = new LoginViewModel();
 		createGui(owner, "CaaS-Login",
-		"Bitte geben Sie Ihren Benutzernamen und das Passwort ein.");
-		
+				"Bitte geben Sie Ihren Benutzernamen und das Passwort ein.");
+
 		dialogStage
 				.getScene()
 				.getStylesheets()
 				.add(getClass().getResource("../css/login-dialog.css")
 						.toExternalForm());
 	}
-	
+
 	public boolean show() {
-	    dialogStage.showAndWait();
-	    return viewModel.getLoginResult();
+		dialogStage.showAndWait();
+		return viewModel.getLoginResult();
 	}
-	
-	
+
 	@Override
 	protected Node createContentPane() {
-		
+
 		VBox box = new VBox();
 		box.getStyleClass().add("form-container");
 		Label lab = new Label();

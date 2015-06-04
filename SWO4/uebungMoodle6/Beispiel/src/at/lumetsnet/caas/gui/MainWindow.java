@@ -13,6 +13,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import at.lumetsnet.caas.gui.pages.ManageMenusPage;
 import at.lumetsnet.caas.gui.pages.ManageUsersPage;
 import at.lumetsnet.caas.gui.pages.OrdersPage;
 import at.lumetsnet.caas.gui.pages.Showable;
@@ -44,8 +45,7 @@ public class MainWindow {
 
 		Scene scene = new Scene(container);
 		scene.getStylesheets().add(
-				getClass().getResource("css/main-window.css")
-						.toExternalForm());
+				getClass().getResource("css/main-window.css").toExternalForm());
 
 		stage.initOwner(owner);
 		stage.setScene(scene);
@@ -58,6 +58,7 @@ public class MainWindow {
 		HashMap<VIEW_TYPE, Pane> pages = new HashMap<>();
 		pages.put(VIEW_TYPE.ADMIN_ORDERS, new OrdersPage());
 		pages.put(VIEW_TYPE.ADMIN_USERS, new ManageUsersPage());
+		pages.put(VIEW_TYPE.ADMIN_MENUS, new ManageMenusPage());
 
 		return pages;
 	}

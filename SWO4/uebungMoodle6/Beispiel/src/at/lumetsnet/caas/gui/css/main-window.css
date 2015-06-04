@@ -35,6 +35,10 @@
 	-fx-content-display: center;
 }
 
+.cell-command-container {
+	-fx-spacing: 10;
+}
+
 .page-content-container {
 	-fx-padding: 10;
 }
@@ -42,4 +46,12 @@
 .page-title {
 	-fx-padding: 0 0 10 0;
 	-fx-font: 14pt "Arial";
+}
+
+.page-command-container {
+	-fx-padding: 10;
+	-fx-alignment: baseline-right;
+}
+.page-command {
+	
 }
