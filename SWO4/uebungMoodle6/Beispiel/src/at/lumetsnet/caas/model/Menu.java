@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Menu extends Entity {
 
 	private String description;
+	//price is stored in smallest currency unit!
 	private long price;
 	private LocalDate begin;
 	private LocalDate end;
@@ -47,7 +48,8 @@ public class Menu extends Entity {
 	}
 
 	/**
-	 * @return the price
+	 * @return the price in the smallest currency unit
+	 * 	
 	 */
 	public long getPrice() {
 		return price;
@@ -56,6 +58,8 @@ public class Menu extends Entity {
 	/**
 	 * @param price
 	 *            the price to set
+	 *            this price is set in the smallest 
+	 *            currency unit
 	 */
 	public void setPrice(long price) {
 		this.price = price;
