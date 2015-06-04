@@ -34,6 +34,7 @@ public class OrdersPage extends VBox implements Showable {
 
 	private TableView<OrderViewModel> createTableView() {
 		TableView<OrderViewModel> table = new TableView<>();
+		table.getStyleClass().add("table");
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		TableColumn<OrderViewModel, String> column = new TableColumn<>(
 				"Benutzer");

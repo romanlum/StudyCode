@@ -36,7 +36,7 @@ public class ManageUserDialog extends ManageEntityDialog<UserViewModel> {
 				Util.getTextFieldForm("Benutzername", viewModel
 						.getUserNameProperty()));
 		box.getChildren().addAll(
-				Util.getTextFieldForm("Passwort", viewModel
+				Util.getPasswordFieldForm("Passwort", viewModel
 						.getPasswordProperty()));
 		box.getChildren().addAll(
 				Util.getTextFieldForm("Vorname", viewModel

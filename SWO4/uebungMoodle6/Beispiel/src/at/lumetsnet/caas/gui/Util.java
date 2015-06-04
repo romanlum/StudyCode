@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class Util {
@@ -29,6 +30,19 @@ public class Util {
 		nodes.add(getFormLabel(text));
 
 		TextField field = new TextField();
+		field.getStyleClass().add("form-textfield");
+		field.textProperty().bindBidirectional(property);
+		nodes.add(field);
+		return nodes;
+	}
+	
+	public static Collection<Node> getPasswordFieldForm(String text,
+			StringProperty property) {
+
+		Collection<Node> nodes = new ArrayList<Node>();
+		nodes.add(getFormLabel(text));
+
+		PasswordField field = new PasswordField();
 		field.getStyleClass().add("form-textfield");
 		field.textProperty().bindBidirectional(property);
 		nodes.add(field);

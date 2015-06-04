@@ -54,6 +54,7 @@ public class ManageUsersPage extends VBox implements Showable {
 
 	private TableView<UserViewModel> createTableView() {
 		TableView<UserViewModel> table = new TableView<>();
+		table.getStyleClass().add("table");
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		TableColumn<UserViewModel, String> column = new TableColumn<>(

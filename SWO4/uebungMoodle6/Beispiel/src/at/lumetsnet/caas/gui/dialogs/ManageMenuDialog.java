@@ -1,9 +1,13 @@
 package at.lumetsnet.caas.gui.dialogs;
 
+import com.sun.rowset.internal.InsertRow;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Window;
 import at.lumetsnet.caas.business.MenuService;
@@ -45,13 +49,20 @@ public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 		
 		box.getChildren().addAll(Util.getTextFieldForm("Preis",viewModel.getPriceAsStringProperty()));
 		DatePicker picker = new DatePicker();
-		box.getChildren().add(Util.getFormLabel("Begin"));
+		box.getChildren().add(Util.getFormLabel("Zeitraum"));
+		
+		HBox rangeBox = new HBox();
+		rangeBox.setSpacing(10);
+		
 		picker.valueProperty().bindBidirectional(viewModel.getBeginProperty());
-		box.getChildren().add(picker);
-		box.getChildren().add(Util.getFormLabel("End"));
+		picker.getStyleClass().add("form-datepicker");
+		rangeBox.getChildren().add(picker);
+			
 		picker = new DatePicker();
+		picker.getStyleClass().add("form-datepicker");
 		picker.valueProperty().bindBidirectional(viewModel.getEndProperty());
-		box.getChildren().add(picker);
+		rangeBox.getChildren().add(picker);
+		box.getChildren().add(rangeBox);
 		return box;
 	}
 

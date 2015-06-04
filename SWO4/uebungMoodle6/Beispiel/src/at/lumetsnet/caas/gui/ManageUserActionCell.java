@@ -14,7 +14,6 @@ public class ManageUserActionCell<S, T> extends ActionTableCell<S, T> {
 			Consumer<T> deleteAction, Consumer<T> lockAction) {
 		super(editAction, deleteAction);
 		this.lockAction = lockAction;
-		lockButton.getStyleClass().addAll("cell-command", "lock-cell-command");
 		box.getChildren().addAll(lockButton);
 	}
 
@@ -30,10 +29,13 @@ public class ManageUserActionCell<S, T> extends ActionTableCell<S, T> {
 			if (getTableRow() != null && getTableRow().getItem() != null) {
 				Object model = getTableRow().getItem();
 				if (model instanceof UserViewModel) {
+					lockButton.getStyleClass().removeIf(x -> x.startsWith("table-command"));
 					if (((UserViewModel) model).getLockedProperty().get()) {
 						lockButton.setText("Entsperren");
+						lockButton.getStyleClass().addAll("table-command", "table-command-unlock");
 					} else {
 						lockButton.setText("Sperren");
+						lockButton.getStyleClass().addAll("table-command","table-command-lock");
 					}
 				}
 			}

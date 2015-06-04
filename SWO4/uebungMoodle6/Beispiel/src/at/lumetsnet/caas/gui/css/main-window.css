@@ -26,17 +26,42 @@
 }
 
 .nav-command-selected {
-	-fx-background-color: Red;
+	-fx-background-color: #4CAF50;
 }
 
 #nav-top-icon {
-	-fx-graphic: url('ic-login.png');
+	-fx-padding: 10 0 0 0;
+	-fx-graphic: url('ic-info.png');
 	-fx-alignment: baseline-center;
 	-fx-content-display: center;
 }
 
-.cell-command-container {
+.table {
+	-fx-font: 14pt "Arial";
+}
+
+.table-command-container {
+	-fx-alignment: baseline-right;
 	-fx-spacing: 10;
+}
+
+.table-command {
+	-fx-max-width: 30px;
+	-fx-background-position: center;
+	-fx-text-fill: transparent;
+}
+.table-command-edit {
+	-fx-graphic: url('ic-edit.png');	
+}
+
+.table-command-delete {
+	-fx-graphic: url('ic-delete.png');
+}
+.table-command-lock {
+	-fx-graphic: url('ic-lock.png');
+}
+.table-command-unlock {
+	-fx-graphic: url('ic-unlock.png');
 }
 
 .page-content-container {
@@ -45,7 +70,7 @@
 
 .page-title {
 	-fx-padding: 0 0 10 0;
-	-fx-font: 14pt "Arial";
+	-fx-font: 16pt Arial;
 }
 
 .page-command-container {
@@ -53,5 +78,5 @@
 	-fx-alignment: baseline-right;
 }
 .page-command {
-	
+	-fx-font: 14pt "Arial";
 }

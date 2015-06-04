@@ -78,6 +78,7 @@ public class ManageMenusPage extends VBox implements Showable {
 
 	private TableView<MenuCategoryViewModel> createCategoryTableView() {
 		TableView<MenuCategoryViewModel> table = new TableView<>();
+		table.getStyleClass().add("table");
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		TableColumn<MenuCategoryViewModel, String> column = new TableColumn<>(
@@ -98,6 +99,7 @@ public class ManageMenusPage extends VBox implements Showable {
 
 	private TableView<MenuViewModel> createMenuTableView() {
 		TableView<MenuViewModel> table = new TableView<>();
+		table.getStyleClass().add("table");
 		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		TableColumn<MenuViewModel, String> column = new TableColumn<>("Name");

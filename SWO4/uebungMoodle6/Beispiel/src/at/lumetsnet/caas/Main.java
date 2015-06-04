@@ -12,8 +12,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		//LoginDialog dlg = new LoginDialog(arg0);
-		//dlg.show();
+		//fake logged in user
 		User user = new User();
 		user.setAdmin(true);
 		user.setFirstName("Roman");

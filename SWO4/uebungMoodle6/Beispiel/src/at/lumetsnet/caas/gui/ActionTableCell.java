@@ -17,10 +17,10 @@ public class ActionTableCell<S, T> extends TableCell<S, T> {
 	public ActionTableCell(Consumer<T> editAction, Consumer<T> deleteAction) {
 		this.editAction = editAction;
 		this.deleteAction = deleteAction;
-		box.getStyleClass().add("cell-command-container");
-		editButton.getStyleClass().addAll("cell-command", "edit-cell-command");
-		deleteButton.getStyleClass().addAll("cell-command",
-				"delete-cell-command");
+		box.getStyleClass().add("table-command-container");
+		editButton.getStyleClass().addAll("table-command", "table-command-edit");
+		deleteButton.getStyleClass().addAll("table-command",
+				"table-command-delete");
 		box.getChildren().addAll(editButton, deleteButton);
 	}
 

@@ -27,8 +27,7 @@ public class LoginViewModel {
 	}
 
 	public void login() {
-		System.out.println("user: " + userName.get() + " pass: "
-				+ password.get());
+		//TODO: call UserService
 		loginResult = true;
 	}
 
