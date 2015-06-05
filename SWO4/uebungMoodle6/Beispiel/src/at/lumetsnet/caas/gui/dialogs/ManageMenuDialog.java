@@ -17,8 +17,8 @@ public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 
 	public ManageMenuDialog(Window owner, Menu menu) {
 		viewModel = new MenuViewModel(menu);
-		createGui(owner, "Menü verwalten",
-				"Bitte geben Sie die Daten des Menüs ein.");
+		createGui(owner, "Hauptspeise verwalten",
+				"Bitte geben Sie die Daten der Hauptspeise ein.");
 
 		dialogStage
 				.getScene()

@@ -41,7 +41,7 @@ public class ManageMenusPage extends VBox implements Showable {
 		categoryTable.setItems(viewModel.getCategoryList());
 
 		HBox menuTopPane = new HBox();
-		menuTopPane.getChildren().add(createTitle("Menüs"));
+		menuTopPane.getChildren().add(createTitle("Hauptspeisen"));
 		HBox menuCommandContainer = new HBox();
 		menuCommandContainer.getStyleClass().add("page-command-container");
 		menuCommandContainer.getChildren().add(createAddMenuButton());
@@ -63,7 +63,7 @@ public class ManageMenusPage extends VBox implements Showable {
 	}
 
 	private Node createAddMenuButton() {
-		Button button = new Button("Menü anlegen");
+		Button button = new Button("Hauptspeise anlegen");
 		button.getStyleClass().add("page-command");
 		button.setOnAction(x -> addMenuCommand());
 		return button;

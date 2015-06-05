@@ -42,7 +42,7 @@ public class OrdersPage extends VBox implements Showable {
 		column.setCellValueFactory(x -> x.getValue().getUserNameProperty());
 		table.getColumns().add(column);
 
-		column = new TableColumn<>("Menü");
+		column = new TableColumn<>("Gericht");
 		column.setCellValueFactory(x -> x.getValue().getMenuProperty());
 		table.getColumns().add(column);
 
