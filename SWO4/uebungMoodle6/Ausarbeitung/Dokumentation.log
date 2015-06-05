@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  5 JUN 2015 16:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  5 JUN 2015 19:32
 entering extended mode
 **Dokumentation.tex
 (D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.tex
@@ -1115,7 +1115,7 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 caas//gui/pages/Showable.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [42])
+(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg)
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1124,7 +1124,7 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 caas//model/Entity.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg)
+(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [42])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1153,7 +1153,7 @@ caas//model/Order.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [46]
-[47] [48])
+[47])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1161,9 +1161,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
 caas//model/User.java)...executed.
 
-
-(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [49]
-[50])
+ (D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg
+[48] [49] [50])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1171,8 +1170,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
 caas//viewmodel/Validatable.java)...executed.
 
- (D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg
-[51])
+
+(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [51])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1180,8 +1179,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
 caas//viewmodel/ManageMenusPageViewModel.java)...executed.
 
- (D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg
-[52])
+
+(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [52])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1189,8 +1188,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
 caas//viewmodel/ManageUsersPageViewModel.java)...executed.
 
- (D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg
-[53])
+
+(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [53])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1198,8 +1197,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
 caas//viewmodel/MenuCategoryViewModel.java)...executed.
 
- (D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg
-[54])
+
+(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [54])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1207,8 +1206,9 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
 caas//viewmodel/MenuViewModel.java)...executed.
 
- (D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg
-[55] [56] [57])
+
+(D:\Studium\Code\SWO4\uebungMoodle6\Ausarbeitung\Dokumentation.out.pyg [55]
+[56] [57])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -1367,11 +1367,11 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 14808 strings out of 493921
- 270293 string characters out of 3144877
+ 14804 strings out of 493921
+ 270255 string characters out of 3144877
  355674 words of memory out of 3000000
  17815 multiletter control sequences out of 15000+200000
- 32513 words of font info for 37 fonts, out of 3000000 for 9000
+ 32247 words of font info for 35 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  47i,18n,43p,10421b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Roman\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
@@ -1380,7 +1380,7 @@ ec\dpi600\ectt1000.pk>{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/tex-gy
 re/q-ec.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplb
 .pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplr.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on Dokumentation.pdf (70 pages, 906063 bytes).
+Output written on Dokumentation.pdf (70 pages, 905843 bytes).
 PDF statistics:
  527 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

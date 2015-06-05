@@ -7,26 +7,26 @@
 
 \section{CaaS – Campina as a Service}
 \subsection{Lösungsidee}
-Da es bei dieser Aufgabe um einen GUI Prototypen geht ist es besonders wichtig, die Business-Logik nicht mit der GUI zu vermischen. \newline
-Ein Ansatz das zu erreichen ist es, die Business-Logik in eigene Klassen auszulagern. \newline 
+Da bei dieser Aufgabe ein GUI Prototyp gefordert ist, ist es besonders wichtig die Business-Logik nicht mit der GUI zu vermischen. \newline
+Ein Ansatz dies zu erreichen ist es, die Business-Logik in eigene Klassen auszulagern. \newline 
 Diese können dann als Singleton verwendet werden.\newline
-Weiters sollte die GUI mit eigenen Datenobjekten arbeiten um nicht von der Struktur der Datenhaltung abhängig zu sein.\newline
+Weiters sollte die GUI mit eigenen Objekten arbeiten um nicht von der Struktur der Datenhaltung abhängig zu sein.\newline
 
 \subsubsection{Businesslogik}
-Alle benötigten Business-Methoden werden in eigene Business Klassen ausgelagert. Diese implementieren das \textit{Singleton} Entwurfsmuster. \newline
+Alle benötigten Business-Methoden werden in eigene Klassen ausgelagert. Diese implementieren das \textit{Singleton} Entwurfsmuster. \newline
 
 \subsubsection{ViewModel}
-Die Datenobjekte für die GUI werden in eigene \textit{ViewModel} Klassen gekapselt. Dadurch ist man unabhängig von der Struktur der Businessobjekte.
+Die Daten für die GUI werden in eigenen \textit{ViewModel} Klassen gekapselt. Dadurch ist man unabhängig von der externen Struktur.
 
 \subsubsection{Pages}
 Die Oberfläche kann mit Pages umgesetzt werden. Eine Page wird im mittleren Bereich des Hauptfensters angezeigt. \newline
 Über die Menübuttons kann zwischen den Pages gewechselt werden. (siehe Mockups)
 
-\subsubsection{Dialogs}
+\subsubsection{Dialoge}
 Zum Editieren und Anlegen von Elementen können Dialoge verwendet werden.
 
 \subsubsection{Design}
-Das Design sollte mit CSS gesteuert werden können, d.h. im Code sollten nur die benötigten Elemente angelegt und dann CSS-Klassen vergeben werden.
+Das Design sollte mit CSS gesteuert werden können, d. h. im Code sollten nur die benötigten Elemente angelegt und CSS-Klassen vergeben werden.
 Diese Klassen können dann in der CSS Datei nach Belieben geändert werden.
 
 \pagebreak
@@ -119,7 +119,7 @@ Diese Klassen können dann in der CSS Datei nach Belieben geändert werden.
 \csscode{\srcDir/gui/css/manage-user-dialog.css}
 \pagebreak
 
-\subsection{Testfälle}
+\subsection{Test - Screenshots}
 \begin{mdframed}
 \includegraphics[width=300px]{../Screenshots/1.png}
 \end{mdframed}
