@@ -1,5 +1,10 @@
 package at.lumetsnet.caas.model;
 
+/***
+ * Base data entity
+ * @author romanlum
+ *
+ */
 public class Entity {
 	protected long id;
 

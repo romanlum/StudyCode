@@ -19,6 +19,12 @@ import at.lumetsnet.caas.gui.pages.OrdersPage;
 import at.lumetsnet.caas.gui.pages.Showable;
 import at.lumetsnet.caas.model.User;
 
+/***
+ * Main windows class
+ * Creates all pages and manages page switching
+ * @author romanlum
+ *
+ */
 public class MainWindow {
 
 	private enum VIEW_TYPE {
@@ -121,6 +127,10 @@ public class MainWindow {
 		return topContainer;
 	}
 
+	/***
+	 * Switches the view 
+	 * @param type
+	 */
 	private void switchView(VIEW_TYPE type) {
 		adminOrdersViewButton.getStyleClass().remove("nav-command-selected");
 		adminUsersViewButton.getStyleClass().remove("nav-command-selected");

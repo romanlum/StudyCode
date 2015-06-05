@@ -5,6 +5,14 @@ import java.util.function.Consumer;
 import javafx.scene.control.Button;
 import at.lumetsnet.caas.viewmodel.UserViewModel;
 
+/***
+ * TableCell used for displaying additional lock/unlock
+ * button inside the TableView
+ * @author romanlum
+ *
+ * @param <S>
+ * @param <T>
+ */
 public class ManageUserActionCell<S, T> extends ActionTableCell<S, T> {
 
 	protected Button lockButton = new Button("Sperren");

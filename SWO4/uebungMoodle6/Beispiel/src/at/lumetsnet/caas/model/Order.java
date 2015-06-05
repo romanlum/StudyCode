@@ -2,6 +2,12 @@ package at.lumetsnet.caas.model;
 
 import java.time.LocalDateTime;
 
+/***
+ * Order data entity
+ * @author romanlum
+ *
+ */
+
 public class Order extends Entity {
 
 	private Menu menu;

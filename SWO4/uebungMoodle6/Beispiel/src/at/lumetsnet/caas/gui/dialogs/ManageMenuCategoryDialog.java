@@ -8,6 +8,11 @@ import at.lumetsnet.caas.gui.Util;
 import at.lumetsnet.caas.model.MenuCategory;
 import at.lumetsnet.caas.viewmodel.MenuCategoryViewModel;
 
+/***
+ * Edit/Add dialog for MenuCategories
+ * @author romanlum
+ *
+ */
 public class ManageMenuCategoryDialog extends
 		ManageEntityDialog<MenuCategoryViewModel> {
 
@@ -38,6 +43,7 @@ public class ManageMenuCategoryDialog extends
 	@Override
 	protected void saveCommand() {
 		if (validate()) {
+			//Saves the entity
 			MenuService.getInstance().saveOrUpdateCategory(
 					viewModel.toCategoryModel());
 			dialogStage.close();
@@ -45,12 +51,12 @@ public class ManageMenuCategoryDialog extends
 
 	}
 
-	@Override
-	protected void cancelCommand() {
-		canceled = true;
-		dialogStage.close();
-	}
-
+	/***
+	 * Static method for showing the dialog
+	 * @param owner
+	 * @param model
+	 * @return
+	 */
 	public static boolean show(Window owner, MenuCategory model) {
 		ManageMenuCategoryDialog dialog = new ManageMenuCategoryDialog(owner,
 				model);

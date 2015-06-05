@@ -6,6 +6,13 @@ import java.util.Optional;
 
 import at.lumetsnet.caas.model.User;
 
+/***
+ * Mock user business logic class
+ * Used as singleton, should be replaced with 
+ * real logic class
+ * @author romanlum
+ *
+ */
 public class UserService {
 
 	ArrayList<User> users;
@@ -25,7 +32,7 @@ public class UserService {
 	}
 
 	/**
-     * 
+     * Singleton instance class
      */
 	public static UserService getInstance() {
 		if (instance == null) {
@@ -34,14 +41,26 @@ public class UserService {
 		return instance;
 	}
 
+	/***
+	 * Fetches all users
+	 * @return
+	 */
 	public Collection<User> getAllUsers() {
 		return users;
 	}
 
+	/***
+	 * delete the user
+	 * @param id
+	 */
 	public void deleteUser(long id) {
 		users.removeIf(x -> x.getId() == id);
 	}
 
+	/***
+	 * Toggles the locked state of a user
+	 * @param id
+	 */
 	public void toggleLockState(long id) {
 		Optional<User> result = users.stream().filter(x -> x.getId() == id)
 				.findFirst();
@@ -50,6 +69,10 @@ public class UserService {
 		}
 	}
 
+	/***
+	 * Saves or adds the user
+	 * @param userModel
+	 */
 	public void saveOrUpdate(User userModel) {
 		Util.saveOrUpdate(userModel, users);
 	}

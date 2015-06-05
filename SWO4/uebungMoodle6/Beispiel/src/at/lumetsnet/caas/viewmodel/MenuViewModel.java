@@ -11,6 +11,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import at.lumetsnet.caas.model.Menu;
 
+/***
+ * ViewModel wrapper for Menu entity
+ * Uses javafx properties for databinding
+ * @author romanlum
+ *
+ */
+
 public class MenuViewModel implements Validatable {
 
 	private LongProperty idProperty;

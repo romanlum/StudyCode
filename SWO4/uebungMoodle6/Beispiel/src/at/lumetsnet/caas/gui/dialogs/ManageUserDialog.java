@@ -3,6 +3,7 @@ package at.lumetsnet.caas.gui.dialogs;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.stage.Window;
+import at.lumetsnet.caas.business.MenuService;
 import at.lumetsnet.caas.business.UserService;
 import at.lumetsnet.caas.gui.Util;
 import at.lumetsnet.caas.model.User;
@@ -20,11 +21,6 @@ public class ManageUserDialog extends ManageEntityDialog<UserViewModel> {
 				.getStylesheets()
 				.add(getClass().getResource("../css/manage-user-dialog.css")
 						.toExternalForm());
-	}
-
-	public boolean show() {
-		dialogStage.showAndWait();
-		return canceled;
 	}
 
 	@Override
@@ -51,17 +47,18 @@ public class ManageUserDialog extends ManageEntityDialog<UserViewModel> {
 	@Override
 	protected void saveCommand() {
 		if (validate()) {
+			//Saves the entity
 			UserService.getInstance().saveOrUpdate(viewModel.toUserModel());
 			dialogStage.close();
 		}
 	}
 
-	@Override
-	protected void cancelCommand() {
-		canceled = true;
-		dialogStage.close();
-	}
-
+	/***
+	 * Static method for showing the dialog
+	 * @param owner
+	 * @param model
+	 * @return
+	 */
 	public static boolean show(Window owner, User model) {
 		ManageUserDialog dialog = new ManageUserDialog(owner, model);
 		return dialog.show();

@@ -6,6 +6,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import at.lumetsnet.caas.model.Order;
 
+/***
+ * ViewModel wrapper for order entity
+ * Uses javafx properties for databinding
+ * @author romanlum
+ *
+ */
 public class OrderViewModel {
 
 	private StringProperty userNameProperty;

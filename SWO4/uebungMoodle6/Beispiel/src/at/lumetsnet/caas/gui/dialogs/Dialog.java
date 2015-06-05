@@ -12,6 +12,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
+/***
+ * Dialog base class used for all dialogs
+ * @author romanlum
+ *
+ */
 public abstract class Dialog {
 
 	protected Stage dialogStage = new Stage();
@@ -67,6 +72,10 @@ public abstract class Dialog {
 
 	}
 
+	/***
+	 * Content used for the dialog
+	 * @return
+	 */
 	protected abstract Node createContentPane();
 
 }

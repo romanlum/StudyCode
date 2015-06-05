@@ -1,5 +1,11 @@
 package at.lumetsnet.caas.model;
 
+/***
+ * user data entity
+ * @author romanlum
+ *
+ */
+
 public class User extends Entity {
 
 	private String userName;

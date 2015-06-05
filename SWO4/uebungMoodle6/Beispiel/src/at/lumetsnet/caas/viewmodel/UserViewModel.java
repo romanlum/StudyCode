@@ -8,6 +8,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import at.lumetsnet.caas.model.User;
 
+/***
+ * ViewModel wrapper for User entity
+ * Uses javafx properties for databinding
+ * @author romanlum
+ *
+ */
+
 public class UserViewModel implements Validatable {
 
 	private LongProperty idProperty;

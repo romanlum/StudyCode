@@ -7,6 +7,11 @@ import javafx.collections.ObservableList;
 import at.lumetsnet.caas.business.OrderService;
 import at.lumetsnet.caas.model.Order;
 
+/***
+ * ViewModel (logic) class for OrdersPage
+ * @author romanlum
+ *
+ */
 public class OrdersPageViewModel {
 
 	private ObservableList<OrderViewModel> orders;

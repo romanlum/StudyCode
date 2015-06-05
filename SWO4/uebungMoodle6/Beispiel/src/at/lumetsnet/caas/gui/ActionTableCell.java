@@ -6,6 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 
+/***
+ * TableCell used for displaying edit / delete buttons
+ * inside a TableView
+ * @author romanlum
+ *
+ * @param <S>
+ * @param <T>
+ */
 public class ActionTableCell<S, T> extends TableCell<S, T> {
 	protected HBox box = new HBox();
 	protected Button editButton = new Button("Bearbeiten");

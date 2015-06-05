@@ -7,6 +7,13 @@ import java.util.Collection;
 import at.lumetsnet.caas.model.Menu;
 import at.lumetsnet.caas.model.MenuCategory;
 
+/***
+ * Mock menu business logic class
+ * Used as singleton, should be replaced with 
+ * real logic class
+ * @author romanlum
+ *
+ */
 public class MenuService {
 
 	ArrayList<MenuCategory> categories;
@@ -26,6 +33,10 @@ public class MenuService {
 				.now(), categories.get(1)));
 	}
 
+	/***
+	 * Singleton instance class
+	 * @return
+	 */
 	public static MenuService getInstance() {
 		if (instance == null) {
 			instance = new MenuService();
@@ -33,26 +44,50 @@ public class MenuService {
 		return instance;
 	}
 
+	/***
+	 * Fetches all categories
+	 * @return
+	 */
 	public Collection<MenuCategory> getAllCategories() {
 		return categories;
 	}
 
+	/***
+	 * Deletes the category with the given id
+	 * @param id
+	 */
 	public void deleteCategory(long id) {
 		categories.removeIf(x -> x.getId() == id);
 	}
 
+	/***
+	 * Deletes the menu with the given id
+	 * @param id
+	 */
 	public void deleteMenu(long id) {
 		menus.removeIf(x -> x.getId() == id);
 	}
 
+	/***
+	 * Saves or adds the category
+	 * @param data
+	 */
 	public void saveOrUpdateCategory(MenuCategory data) {
 		Util.saveOrUpdate(data, categories);
 	}
 
+	/***
+	 * Saves or adds teh menu
+	 * @param data
+	 */
 	public void saveOrUpdateMenu(Menu data) {
 		Util.saveOrUpdate(data, menus);
 	}
 
+	/***
+	 * Fetches all menus
+	 * @return
+	 */
 	public Collection<Menu> getAllMenus() {
 		return menus;
 	}

@@ -5,6 +5,13 @@ import java.time.format.DateTimeFormatter;
 
 import javafx.scene.control.TableCell;
 
+/***
+ * TableCell used for displaying LocalDate values 
+ * inside a TableView
+ * @author romanlum
+ *
+ * @param <S>
+ */
 public class DateTableCell<S> extends TableCell<S, LocalDate> {
 
 	@Override

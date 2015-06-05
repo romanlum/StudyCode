@@ -14,8 +14,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/***
+ * Common gui utils
+ * @author romanlum
+ *
+ */
 public class Util {
 
+	/***
+	 * Creates a form label
+	 * @param text
+	 * @return
+	 */
 	public static Node getFormLabel(String text) {
 		Label lab = new Label();
 		lab.setText(text);
@@ -23,6 +33,12 @@ public class Util {
 		return lab;
 	}
 
+	/***
+	 * Creates a text field form and label
+	 * @param text
+	 * @param property
+	 * @return
+	 */
 	public static Collection<Node> getTextFieldForm(String text,
 			StringProperty property) {
 
@@ -36,6 +52,12 @@ public class Util {
 		return nodes;
 	}
 
+	/***
+	 * Creates a password form field and label
+	 * @param text
+	 * @param property
+	 * @return
+	 */
 	public static Collection<Node> getPasswordFieldForm(String text,
 			StringProperty property) {
 
@@ -49,6 +71,13 @@ public class Util {
 		return nodes;
 	}
 
+	/***
+	 * Creates a combo box form and label
+	 * @param text
+	 * @param property
+	 * @param data
+	 * @return
+	 */
 	public static <T> Collection<Node> getComboboxForm(String text,
 			ObjectProperty<T> property, ObservableList<T> data) {
 

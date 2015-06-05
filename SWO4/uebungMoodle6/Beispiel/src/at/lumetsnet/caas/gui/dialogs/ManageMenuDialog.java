@@ -13,6 +13,11 @@ import at.lumetsnet.caas.model.Menu;
 import at.lumetsnet.caas.viewmodel.MenuCategoryViewModel;
 import at.lumetsnet.caas.viewmodel.MenuViewModel;
 
+/***
+ * Edit/Add dialog for menus
+ * @author romanlum
+ *
+ */
 public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 
 	public ManageMenuDialog(Window owner, Menu menu) {
@@ -25,11 +30,6 @@ public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 				.getStylesheets()
 				.add(getClass().getResource("../css/manage-menu-dialog.css")
 						.toExternalForm());
-	}
-
-	public boolean show() {
-		dialogStage.showAndWait();
-		return canceled;
 	}
 
 	@Override
@@ -76,18 +76,19 @@ public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 	@Override
 	protected void saveCommand() {
 		if (validate()) {
+			//Saves the entity
 			MenuService.getInstance().saveOrUpdateMenu(viewModel.toMenuModel());
 			dialogStage.close();
 		}
 
 	}
 
-	@Override
-	protected void cancelCommand() {
-		canceled = true;
-		dialogStage.close();
-	}
-
+	/***
+	 * Static method for showing the dialog
+	 * @param owner
+	 * @param model
+	 * @return
+	 */
 	public static boolean show(Window owner, Menu model) {
 		ManageMenuDialog dialog = new ManageMenuDialog(owner, model);
 		return dialog.show();

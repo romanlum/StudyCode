@@ -14,19 +14,25 @@ import at.lumetsnet.caas.gui.ActionTableCell;
 import at.lumetsnet.caas.gui.AmountTableCell;
 import at.lumetsnet.caas.gui.dialogs.ManageMenuCategoryDialog;
 import at.lumetsnet.caas.gui.dialogs.ManageMenuDialog;
-import at.lumetsnet.caas.viewmodel.ManageMenusViewModel;
+import at.lumetsnet.caas.viewmodel.ManageMenusPageViewModel;
 import at.lumetsnet.caas.viewmodel.MenuCategoryViewModel;
 import at.lumetsnet.caas.viewmodel.MenuViewModel;
 
+/***
+ * View page used for managing menus
+ * Uses a ManageMenusPageViewModel for business logic operations
+ * @author romanlum
+ *
+ */
 public class ManageMenusPage extends VBox implements Showable {
 
 	TableView<MenuCategoryViewModel> categoryTable;
 	TableView<MenuViewModel> menuTable;
-	ManageMenusViewModel viewModel;
+	ManageMenusPageViewModel viewModel;
 
 	public ManageMenusPage() {
 
-		viewModel = new ManageMenusViewModel();
+		viewModel = new ManageMenusPageViewModel();
 		getStyleClass().add("page-content-container");
 
 		HBox topPane = new HBox();

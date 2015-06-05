@@ -8,12 +8,17 @@ import at.lumetsnet.caas.business.MenuService;
 import at.lumetsnet.caas.model.Menu;
 import at.lumetsnet.caas.model.MenuCategory;
 
-public class ManageMenusViewModel {
+/***
+ * ViewModel (logic) class for ManageMenusPage
+ * @author romanlum
+ *
+ */
+public class ManageMenusPageViewModel {
 
 	private ObservableList<MenuCategoryViewModel> categories;
 	private ObservableList<MenuViewModel> menus;
 
-	public ManageMenusViewModel() {
+	public ManageMenusPageViewModel() {
 		categories = FXCollections.observableArrayList();
 		menus = FXCollections.observableArrayList();
 	}

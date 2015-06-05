@@ -8,6 +8,12 @@ import javafx.scene.layout.VBox;
 import at.lumetsnet.caas.viewmodel.OrderViewModel;
 import at.lumetsnet.caas.viewmodel.OrdersPageViewModel;
 
+/***
+ * View page used for showing the orders
+ * Uses a OrdersPageViewModel for business logic operations
+ * @author romanlum
+ *
+ */
 public class OrdersPage extends VBox implements Showable {
 
 	TableView<OrderViewModel> table;

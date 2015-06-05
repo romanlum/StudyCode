@@ -1,5 +1,11 @@
 package at.lumetsnet.caas.model;
 
+/***
+ * MenuCategory data entity
+ * @author romanlum
+ *
+ */
+
 public class MenuCategory extends Entity {
 
 	private String name;

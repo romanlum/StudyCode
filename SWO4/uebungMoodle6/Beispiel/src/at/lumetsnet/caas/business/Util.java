@@ -6,8 +6,18 @@ import java.util.OptionalLong;
 
 import at.lumetsnet.caas.model.Entity;
 
+/***
+ * Utility class used for mock services
+ * @author romanlum
+ *
+ */
 public class Util {
 
+	/***
+	 * Adds or replaces an object in the given list
+	 * @param model
+	 * @param list
+	 */
 	public static <T extends Entity> void saveOrUpdate(T model,
 			ArrayList<T> list) {
 

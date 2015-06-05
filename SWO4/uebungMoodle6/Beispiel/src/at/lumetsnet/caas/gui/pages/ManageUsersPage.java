@@ -12,17 +12,23 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import at.lumetsnet.caas.gui.ManageUserActionCell;
 import at.lumetsnet.caas.gui.dialogs.ManageUserDialog;
-import at.lumetsnet.caas.viewmodel.ManageUsersViewModel;
+import at.lumetsnet.caas.viewmodel.ManageUsersPageViewModel;
 import at.lumetsnet.caas.viewmodel.UserViewModel;
 
+/***
+ * View page used for managing users
+ * Uses a ManageUsersPageViewModel for business logic operations
+ * @author romanlum
+ *
+ */
 public class ManageUsersPage extends VBox implements Showable {
 
 	TableView<UserViewModel> table;
-	ManageUsersViewModel viewModel;
+	ManageUsersPageViewModel viewModel;
 
 	public ManageUsersPage() {
 
-		viewModel = new ManageUsersViewModel();
+		viewModel = new ManageUsersPageViewModel();
 		getStyleClass().add("page-content-container");
 
 		HBox topPane = new HBox();
@@ -86,7 +92,7 @@ public class ManageUsersPage extends VBox implements Showable {
 	}
 
 	private void toggleLockStateCommand(Number x) {
-		viewModel.toggleLockState(x);
+		viewModel.toggleLockStateCommand(x);
 	}
 
 	private void deleteCommand(Number x) {
@@ -99,6 +105,7 @@ public class ManageUsersPage extends VBox implements Showable {
 				.filter(x -> x.getIdProperty().get() == (long) id).findFirst();
 
 		if (model.isPresent()) {
+			//call edit dialog
 			boolean result = ManageUserDialog.show(getScene().getWindow(),
 					model.get().toUserModel());
 			if (!result) {
@@ -108,6 +115,7 @@ public class ManageUsersPage extends VBox implements Showable {
 	}
 
 	private void addUserCommand() {
+		//call add dialog
 		boolean result = ManageUserDialog.show(getScene().getWindow(), null);
 		if (!result) {
 			viewModel.update();

@@ -10,6 +10,14 @@ import at.lumetsnet.caas.model.MenuCategory;
 import at.lumetsnet.caas.model.Order;
 import at.lumetsnet.caas.model.User;
 
+/***
+ * Mock order business logic class
+ * Used as singleton, should be replaced with 
+ * real logic class
+ * @author romanlum
+ *
+ */
+
 public class OrderService {
 
 	private static OrderService instance = null;
@@ -19,7 +27,7 @@ public class OrderService {
 	}
 
 	/**
-     * 
+     * singleton instance 
      */
 	public static OrderService getInstance() {
 		if (instance == null) {
@@ -28,6 +36,10 @@ public class OrderService {
 		return instance;
 	}
 
+	/***
+	 * Fetches the orders of today
+	 * @return
+	 */
 	public Collection<Order> getTodaysOrders() {
 		List<Order> orders = new ArrayList<Order>();
 

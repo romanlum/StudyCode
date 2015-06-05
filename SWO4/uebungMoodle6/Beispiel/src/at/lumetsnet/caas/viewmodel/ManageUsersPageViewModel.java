@@ -7,11 +7,17 @@ import javafx.collections.ObservableList;
 import at.lumetsnet.caas.business.UserService;
 import at.lumetsnet.caas.model.User;
 
-public class ManageUsersViewModel {
+/***
+ * ViewModel (logic) class for ManageUsersPage
+ * @author romanlum
+ *
+ */
+
+public class ManageUsersPageViewModel {
 
 	private ObservableList<UserViewModel> users;
 
-	public ManageUsersViewModel() {
+	public ManageUsersPageViewModel() {
 		users = FXCollections.observableArrayList();
 	}
 
@@ -33,7 +39,7 @@ public class ManageUsersViewModel {
 
 	}
 
-	public void toggleLockState(Number userId) {
+	public void toggleLockStateCommand(Number userId) {
 		UserService.getInstance().toggleLockState((long) userId);
 		update();
 	}
