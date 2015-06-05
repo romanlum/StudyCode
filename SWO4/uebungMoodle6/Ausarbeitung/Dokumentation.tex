@@ -8,50 +8,117 @@
 \section{CaaS – Campina as a Service}
 \subsection{Lösungsidee}
 Da es bei dieser Aufgabe um einen GUI Prototypen geht ist es besonders wichtig, die Business-Logik nicht mit der GUI zu vermischen. \newline
-Ein Ansatz das zu erreichen ist es, die Business-Logik in eigene Klassen auszulagern. \newline Diese können dann als Singleton verwendet werden.\newline
-Weiters sollte die Gui mit eigenen Datenobjekten arbeiten um nicht von der Struktur der Datenhaltung abhängig zu sein.
+Ein Ansatz das zu erreichen ist es, die Business-Logik in eigene Klassen auszulagern. \newline 
+Diese können dann als Singleton verwendet werden.\newline
+Weiters sollte die GUI mit eigenen Datenobjekten arbeiten um nicht von der Struktur der Datenhaltung abhängig zu sein.\newline
+
+\subsubsection{Businesslogik}
+Alle benötigten Business-Methoden werden in eigene Business Klassen ausgelagert. Diese implementieren das \textit{Singleton} Entwurfsmuster. \newline
+
+\subsubsection{ViewModel}
+Die Datenobjekte für die GUI werden in eigene \textit{ViewModel} Klassen gekapselt. Dadurch ist man unabhängig von der Struktur der Businessobjekte.
+
+\subsubsection{Pages}
+Die Oberfläche kann mit Pages umgesetzt werden. Eine Page wird im mittleren Bereich des Hauptfensters angezeigt. \newline
+Über die Menübuttons kann zwischen den Pages gewechselt werden. (siehe Mockups)
+
+\subsubsection{Dialogs}
+Zum Editieren und Anlegen von Elementen können Dialoge verwendet werden.
+
+\subsubsection{Design}
+Das Design sollte mit CSS gesteuert werden können, d.h. im Code sollten nur die benötigten Elemente angelegt und dann CSS-Klassen vergeben werden.
+Diese Klassen können dann in der CSS Datei nach Belieben geändert werden.
 
 \pagebreak
 \includepdf[pages=-]{mockup.pdf}
 
 \pagebreak
-\subsection{Sourcecode}
+\subsection{Sourcecode - Java}
+\textbf{Main.java}
 \javacode{\srcDir/Main.java}
+\textbf{MenuService.java}
 \javacode{\srcDir/business/MenuService.java}
+\textbf{OrderService.java}
 \javacode{\srcDir/business/OrderService.java}
+\textbf{UserService.java}
 \javacode{\srcDir/business/UserService.java}
+\textbf{Util.java}
 \javacode{\srcDir/business/Util.java}
+\textbf{ActionTableCell.java}
 \javacode{\srcDir/gui/ActionTableCell.java}
+\textbf{AmountTableCell.java}
 \javacode{\srcDir/gui/AmountTableCell.java}
+\textbf{DateTableCell.java}
 \javacode{\srcDir/gui/DateTableCell.java}
+\textbf{MainWindow.java}
 \javacode{\srcDir/gui/MainWindow.java}
+\textbf{ManageUserActionCell.java}
 \javacode{\srcDir/gui/ManageUserActionCell.java}
+\textbf{Util.java}
 \javacode{\srcDir/gui/Util.java}
+\textbf{Dialog.java}
 \javacode{\srcDir/gui/dialogs/Dialog.java}
+\textbf{ErrorDialog.java}
 \javacode{\srcDir/gui/dialogs/ErrorDialog.java}
+\textbf{ManageEntityDialog.java}
 \javacode{\srcDir/gui/dialogs/ManageEntityDialog.java}
+\textbf{ManageMenuCategoryDialog.java}
 \javacode{\srcDir/gui/dialogs/ManageMenuCategoryDialog.java}
+\textbf{ManageMenuDialog.java}
 \javacode{\srcDir/gui/dialogs/ManageMenuDialog.java}
+\textbf{ManageUserDialog.java}
 \javacode{\srcDir/gui/dialogs/ManageUserDialog.java}
+\textbf{ManageMenusPage.java}
 \javacode{\srcDir/gui/pages/ManageMenusPage.java}
+\textbf{ManageUsersPage.java}
 \javacode{\srcDir/gui/pages/ManageUsersPage.java}
+\textbf{OrdersPage.java}
 \javacode{\srcDir/gui/pages/OrdersPage.java}
+\textbf{Showable.java}
 \javacode{\srcDir/gui/pages/Showable.java}
+\textbf{Entity.java}
 \javacode{\srcDir/model/Entity.java}
+\textbf{Menu.java}
 \javacode{\srcDir/model/Menu.java}
+\textbf{MenuCategory.java}
 \javacode{\srcDir/model/MenuCategory.java}
+\textbf{Order.java}
 \javacode{\srcDir/model/Order.java}
+\textbf{User.java}
 \javacode{\srcDir/model/User.java}
-\javacode{\srcDir/viewmodel/ManageMenusViewModel.java}
-\javacode{\srcDir/viewmodel/ManageUsersViewModel.java}
+\textbf{Validatable.java}
+\javacode{\srcDir/viewmodel/Validatable.java}
+\textbf{ManageMenusPageViewModel.java}
+\javacode{\srcDir/viewmodel/ManageMenusPageViewModel.java}
+\textbf{ManageUsersPageViewModel.java}
+\javacode{\srcDir/viewmodel/ManageUsersPageViewModel.java}
+\textbf{MenuCategoryViewModel.java}
 \javacode{\srcDir/viewmodel/MenuCategoryViewModel.java}
+\textbf{MenuViewModel.java}
 \javacode{\srcDir/viewmodel/MenuViewModel.java}
+\textbf{OrdersPageViewModel.java}
 \javacode{\srcDir/viewmodel/OrdersPageViewModel.java}
+\textbf{OrderViewModel.java}
 \javacode{\srcDir/viewmodel/OrderViewModel.java}
+\textbf{UserViewModel.java}
 \javacode{\srcDir/viewmodel/UserViewModel.java}
 
-
 \pagebreak
+\subsection{Sourcecode - CSS}
+\textbf{main-window.css}
+\csscode{\srcDir/gui/css/main-window.css}
+\textbf{dialog.css}
+\csscode{\srcDir/gui/css/dialog.css}
+\textbf{derror-ialog.css}
+\csscode{\srcDir/gui/css/error-dialog.css}
+\textbf{manage-menu-category-dialog.css}
+\csscode{\srcDir/gui/css/manage-menu-category-dialog.css}
+\textbf{manage-menu-dialog.css}
+\csscode{\srcDir/gui/css/manage-menu-dialog.css}
+\textbf{manage-user-dialog.css}
+\csscode{\srcDir/gui/css/manage-user-dialog.css}
+\pagebreak
+
 \subsection{Testfälle}
 \begin{mdframed}
 \includegraphics[width=300px]{../Screenshots/1.png}
@@ -73,6 +140,9 @@ Weiters sollte die Gui mit eigenen Datenobjekten arbeiten um nicht von der Struk
 \end{mdframed}
 \begin{mdframed}
 \includegraphics[width=300px]{../Screenshots/7.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/8.png}
 \end{mdframed}
 
 
