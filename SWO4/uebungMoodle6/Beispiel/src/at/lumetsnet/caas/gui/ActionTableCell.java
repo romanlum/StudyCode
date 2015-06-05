@@ -17,6 +17,7 @@ public class ActionTableCell<S, T> extends TableCell<S, T> {
 	public ActionTableCell(Consumer<T> editAction, Consumer<T> deleteAction) {
 		this.editAction = editAction;
 		this.deleteAction = deleteAction;
+		
 		box.getStyleClass().add("table-command-container");
 		editButton.getStyleClass()
 				.addAll("table-command", "table-command-edit");

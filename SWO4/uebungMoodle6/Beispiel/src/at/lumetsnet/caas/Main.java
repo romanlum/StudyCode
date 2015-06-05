@@ -10,11 +10,12 @@ import at.lumetsnet.caas.model.User;
 public class Main extends Application {
 
 	@Override
-	public void start(Stage arg0) throws Exception {
+	public void start(Stage stage) throws Exception {
 		User user = new User();
 		user.setFirstName("Roman");
 		user.setLastName("Lumetsberger");
-		MainWindow wnd = new MainWindow(arg0, user);
+		
+		MainWindow wnd = new MainWindow(stage, user);
 		wnd.show();
 
 	}
