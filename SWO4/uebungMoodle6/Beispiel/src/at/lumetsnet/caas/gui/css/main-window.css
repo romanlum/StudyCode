@@ -1,17 +1,17 @@
 
 .nav-container {
-	-fx-border-width: 0 0 2 0;
+	-fx-border-width: 0 0 1 0;
 	-fx-border-color: black;
 	-fx-spacing: 10;
 	-fx-padding: 10;
 } 
 
 .nav-username {
-	-fx-font: bold 18pt "Arial";
+	-fx-font: bold 10pt "Arial";
 }
 
 .nav-role {
-	-fx-font: 14pt "Arial";
+	-fx-font: 10pt "Arial";
 }
 
 .nav-command-container {
@@ -22,7 +22,7 @@
 .nav-command {
 	-fx-spacing: 10;
 	-fx-padding: 10;
-	-fx-font: 14pt "Arial";
+	-fx-font: 10pt "Arial";
 }
 
 .nav-command-selected {
@@ -37,7 +37,7 @@
 }
 
 .table {
-	-fx-font: 14pt "Arial";
+	-fx-font: 10pt "Arial";
 }
 
 .table-command-container {
@@ -46,9 +46,10 @@
 }
 
 .table-command {
-	-fx-max-width: 30px;
 	-fx-background-position: center;
-	-fx-text-fill: transparent;
+	-fx-content-display:  graphic-only;
+	-fx-min-height: 40px;
+	-fx-min-width: 40px;
 }
 .table-command-edit {
 	-fx-graphic: url('ic-edit.png');	
@@ -70,7 +71,7 @@
 
 .page-title {
 	-fx-padding: 0 0 10 0;
-	-fx-font: 16pt Arial;
+	-fx-font: 14pt Arial;
 }
 
 .page-command-container {
@@ -78,5 +79,5 @@
 	-fx-alignment: baseline-right;
 }
 .page-command {
-	-fx-font: 14pt "Arial";
+	-fx-font: 10pt "Arial";
 }

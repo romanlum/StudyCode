@@ -49,6 +49,9 @@ public class MainWindow {
 		stage.initOwner(owner);
 		stage.setScene(scene);
 		stage.setTitle("CaaS");
+		//start with 1024/768
+		stage.setWidth(1024);
+		stage.setHeight(768);
 		switchView(VIEW_TYPE.ADMIN_ORDERS);
 
 	}
@@ -63,6 +66,7 @@ public class MainWindow {
 	}
 
 	public void show() {
+		
 		stage.show();
 	}
 
