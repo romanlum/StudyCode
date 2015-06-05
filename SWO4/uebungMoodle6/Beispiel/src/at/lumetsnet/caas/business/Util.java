@@ -23,10 +23,8 @@ public class Util {
 
 		if (model.getId() == -1) {
 			// new item
-			OptionalLong max = list.stream().mapToLong(x -> x.getId()).max();
-			if (max.isPresent()) {
-				model.setId(max.getAsLong() + 1);
-			}
+			long max = list.stream().mapToLong(x -> x.getId()).max().orElse(-1);
+			model.setId(max + 1);
 			list.add(model);
 		} else {
 			// replace old one
