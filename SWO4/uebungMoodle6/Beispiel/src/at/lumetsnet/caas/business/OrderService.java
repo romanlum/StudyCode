@@ -33,6 +33,7 @@ public class OrderService {
 
 		User user = new User(1, "romanlum", "", "Roman", "Lumetsberger", false,
 				true);
+
 		Menu menu = new Menu(1, "Wienerschnitzel mit Pommes", 0, null, null,
 				new MenuCategory());
 
@@ -41,9 +42,13 @@ public class OrderService {
 		orders.add(new Order(1, menu, user,time ,
 				"ohne Preiselbeeren"));
 		time = time.minusHours(1);
+		user = new User(1, "christophlum", "", "Christoph", "Lumetsberger", false,
+				true);
 		orders.add(new Order(1, menu, user,time,
 				"mit Preiselbeeren"));
 		time = time.minusMinutes(1);
+		user = new User(1, "romanlum", "", "Moe", "Sislec", false,
+				true);
 		orders.add(new Order(1, menu, user,time,
 				"normal"));
 		return orders;
