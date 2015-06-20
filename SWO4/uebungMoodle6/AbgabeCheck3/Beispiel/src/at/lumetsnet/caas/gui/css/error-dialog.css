@@ -1,7 +1,0 @@
-/* styles used for error dialog */
-#dialog-icon {
-	-fx-padding: 10 0 0 0;
-	-fx-graphic: url('ic-error.png');
-	-fx-alignment: baseline-center;
-	-fx-content-display: center;
-}
