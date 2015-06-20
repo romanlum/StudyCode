@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  28 MAY 2015 11:38
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  29 MAY 2015 21:48
 entering extended mode
 **Dokumentation.tex
 (D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.tex
@@ -774,7 +774,7 @@ Package pdftex.def Info: angabe.pdf, page1 used on input line 72.
  [1
 
  <D:/Studium/Code/SWO4/uebungMoodle5/Ausarbeitung/angabe.pdf>]
-<angabe.pdf, id=30, page=2, 597.19112pt x 845.19763pt>
+<angabe.pdf, id=27, page=2, 597.19112pt x 845.19763pt>
 File: angabe.pdf Graphic file (type pdf)
 
 <use angabe.pdf, page 2>
@@ -790,7 +790,7 @@ Package pdftex.def Info: angabe.pdf, page2 used on input line 72.
 (pdftex.def)             Requested size: 597.217pt x 845.23425pt.
 
 [2 <D:/Studium/Code/SWO4/uebungMoodle5/Ausarbeitung/angabe.pdf>]
-<angabe.pdf, id=38, page=3, 597.19112pt x 845.19763pt>
+<angabe.pdf, id=35, page=3, 597.19112pt x 845.19763pt>
 File: angabe.pdf Graphic file (type pdf)
 
 <use angabe.pdf, page 3>
@@ -812,11 +812,6 @@ LaTeX Font Info:    Try loading font information for TS1+qpl on input line 17.
 File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
 )
 Underfull \hbox (badness 10000) in paragraph at lines 21--22
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 25--27
 
  []
 
@@ -875,7 +870,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 swe4/collections/AbstractSortedTreeSet.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [7])
+(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [7]
+[8])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -883,9 +879,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
 swe4/collections/BSTSet.java)...executed.
 
-
-(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [8]
-[9] [10] [11])
+ (D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg
+[9] [10] [11] [12])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -894,8 +889,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 swe4/collections/TTFNode.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [12]
-[13] [14] [15] [16])
+(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [13]
+[14] [15] [16] [17])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -904,8 +899,8 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 swe4/collections/TwoThreeFourTreeSet.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [17]
-[18] [19])
+(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [18]
+[19] [20])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
@@ -914,443 +909,471 @@ erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
 swe4/collections/Util.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg)
+(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [21])
 runsystem(del Dokumentation.out.pyg)...executed.
 
+runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
+erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/test/at/lumetsnet
+/swe4/collections/test//SortedTreeSetTestBase.java)...executed.
 
-[20] <../Screenshots/1.png, id=127, 634.37pt x 616.80438pt>
+
+(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [22]
+[23] [24] [25] [26] [27] [28])
+runsystem(del Dokumentation.out.pyg)...executed.
+
+runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
+erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/test/at/lumetsnet
+/swe4/collections/test//BSTSetTest.java)...executed.
+
+
+(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [29])
+runsystem(del Dokumentation.out.pyg)...executed.
+
+runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
+erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/test/at/lumetsnet
+/swe4/collections/test//TwoThreeFourSetTest.java)...executed.
+
+
+(D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.out.pyg [30]
+[31])
+runsystem(del Dokumentation.out.pyg)...executed.
+
+ [32] <../Screenshots/1.png, id=154, 624.3325pt x 649.92813pt>
 File: ../Screenshots/1.png Graphic file (type png)
 
 <use ../Screenshots/1.png>
-Package pdftex.def Info: ../Screenshots/1.png used on input line 69.
-(pdftex.def)             Requested size: 301.1261pt x 292.79689pt.
+Package pdftex.def Info: ../Screenshots/1.png used on input line 78.
+(pdftex.def)             Requested size: 301.1261pt x 313.47928pt.
 
-<../Screenshots/2.png, id=129, 653.44125pt x 594.72188pt>
+<../Screenshots/2.png, id=156, 645.91313pt x 646.415pt>
 File: ../Screenshots/2.png Graphic file (type png)
 
 <use ../Screenshots/2.png>
-Package pdftex.def Info: ../Screenshots/2.png used on input line 72.
-(pdftex.def)             Requested size: 301.1261pt x 274.06541pt.
+Package pdftex.def Info: ../Screenshots/2.png used on input line 81.
+(pdftex.def)             Requested size: 301.1261pt x 301.35909pt.
 
-Overfull \vbox (27.30283pt too high) detected at line 73
+Overfull \vbox (75.27888pt too high) detected at line 82
  []
 
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 73.
+(mdframed)              on input line 82.
 
-Overfull \vbox (28.30283pt too high) detected at line 73
+Overfull \vbox (76.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (29.30283pt too high) detected at line 73
+Overfull \vbox (77.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (30.30283pt too high) detected at line 73
+Overfull \vbox (78.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (31.30283pt too high) detected at line 73
+Overfull \vbox (79.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (32.30283pt too high) detected at line 73
+Overfull \vbox (80.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (33.30283pt too high) detected at line 73
+Overfull \vbox (81.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (34.30283pt too high) detected at line 73
+Overfull \vbox (82.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (35.30283pt too high) detected at line 73
+Overfull \vbox (83.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (36.30283pt too high) detected at line 73
+Overfull \vbox (84.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (37.30283pt too high) detected at line 73
+Overfull \vbox (85.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (38.30283pt too high) detected at line 73
+Overfull \vbox (86.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (39.30283pt too high) detected at line 73
+Overfull \vbox (87.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (40.30283pt too high) detected at line 73
+Overfull \vbox (88.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (41.30283pt too high) detected at line 73
+Overfull \vbox (89.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (42.30283pt too high) detected at line 73
+Overfull \vbox (90.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (43.30283pt too high) detected at line 73
+Overfull \vbox (91.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (44.30283pt too high) detected at line 73
+Overfull \vbox (92.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (45.30283pt too high) detected at line 73
+Overfull \vbox (93.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (46.30283pt too high) detected at line 73
+Overfull \vbox (94.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (47.30283pt too high) detected at line 73
+Overfull \vbox (95.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (48.30283pt too high) detected at line 73
+Overfull \vbox (96.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (49.30283pt too high) detected at line 73
+Overfull \vbox (97.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (50.30283pt too high) detected at line 73
+Overfull \vbox (98.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (51.30283pt too high) detected at line 73
+Overfull \vbox (99.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (52.30283pt too high) detected at line 73
+Overfull \vbox (100.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (53.30283pt too high) detected at line 73
+Overfull \vbox (101.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (54.30283pt too high) detected at line 73
+Overfull \vbox (102.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (55.30283pt too high) detected at line 73
+Overfull \vbox (103.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (56.30283pt too high) detected at line 73
+Overfull \vbox (104.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (57.30283pt too high) detected at line 73
+Overfull \vbox (105.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (58.30283pt too high) detected at line 73
+Overfull \vbox (106.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (59.30283pt too high) detected at line 73
+Overfull \vbox (107.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (60.30283pt too high) detected at line 73
+Overfull \vbox (108.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (61.30283pt too high) detected at line 73
+Overfull \vbox (109.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (62.30283pt too high) detected at line 73
+Overfull \vbox (110.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (63.30283pt too high) detected at line 73
+Overfull \vbox (111.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (64.30283pt too high) detected at line 73
+Overfull \vbox (112.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (65.30283pt too high) detected at line 73
+Overfull \vbox (113.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (66.30283pt too high) detected at line 73
+Overfull \vbox (114.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (67.30283pt too high) detected at line 73
+Overfull \vbox (115.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (68.30283pt too high) detected at line 73
+Overfull \vbox (116.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (69.30283pt too high) detected at line 73
+Overfull \vbox (117.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (70.30283pt too high) detected at line 73
+Overfull \vbox (118.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (71.30283pt too high) detected at line 73
+Overfull \vbox (119.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (72.30283pt too high) detected at line 73
+Overfull \vbox (120.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (73.30283pt too high) detected at line 73
+Overfull \vbox (121.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (74.30283pt too high) detected at line 73
+Overfull \vbox (122.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (75.30283pt too high) detected at line 73
+Overfull \vbox (123.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (76.30283pt too high) detected at line 73
+Overfull \vbox (124.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (77.30283pt too high) detected at line 73
+Overfull \vbox (125.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (78.30283pt too high) detected at line 73
+Overfull \vbox (126.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (79.30283pt too high) detected at line 73
+Overfull \vbox (127.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (80.30283pt too high) detected at line 73
+Overfull \vbox (128.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (81.30283pt too high) detected at line 73
+Overfull \vbox (129.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (82.30283pt too high) detected at line 73
+Overfull \vbox (130.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (83.30283pt too high) detected at line 73
+Overfull \vbox (131.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (84.30283pt too high) detected at line 73
+Overfull \vbox (132.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (85.30283pt too high) detected at line 73
+Overfull \vbox (133.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (86.30283pt too high) detected at line 73
+Overfull \vbox (134.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (87.30283pt too high) detected at line 73
+Overfull \vbox (135.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (88.30283pt too high) detected at line 73
+Overfull \vbox (136.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (89.30283pt too high) detected at line 73
+Overfull \vbox (137.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (90.30283pt too high) detected at line 73
+Overfull \vbox (138.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (91.30283pt too high) detected at line 73
+Overfull \vbox (139.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (92.30283pt too high) detected at line 73
+Overfull \vbox (140.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (93.30283pt too high) detected at line 73
+Overfull \vbox (141.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (94.30283pt too high) detected at line 73
+Overfull \vbox (142.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (95.30283pt too high) detected at line 73
+Overfull \vbox (143.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (96.30283pt too high) detected at line 73
+Overfull \vbox (144.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (97.30283pt too high) detected at line 73
+Overfull \vbox (145.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (98.30283pt too high) detected at line 73
+Overfull \vbox (146.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (99.30283pt too high) detected at line 73
+Overfull \vbox (147.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (100.30283pt too high) detected at line 73
+Overfull \vbox (148.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (101.30283pt too high) detected at line 73
+Overfull \vbox (149.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (102.30283pt too high) detected at line 73
+Overfull \vbox (150.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (103.30283pt too high) detected at line 73
+Overfull \vbox (151.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (104.30283pt too high) detected at line 73
+Overfull \vbox (152.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (105.30283pt too high) detected at line 73
+Overfull \vbox (153.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (106.30283pt too high) detected at line 73
+Overfull \vbox (154.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (107.30283pt too high) detected at line 73
+Overfull \vbox (155.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (108.30283pt too high) detected at line 73
+Overfull \vbox (156.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (109.30283pt too high) detected at line 73
+Overfull \vbox (157.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (110.30283pt too high) detected at line 73
+Overfull \vbox (158.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (111.30283pt too high) detected at line 73
+Overfull \vbox (159.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (112.30283pt too high) detected at line 73
+Overfull \vbox (160.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (113.30283pt too high) detected at line 73
+Overfull \vbox (161.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (114.30283pt too high) detected at line 73
+Overfull \vbox (162.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (115.30283pt too high) detected at line 73
+Overfull \vbox (163.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (116.30283pt too high) detected at line 73
+Overfull \vbox (164.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (117.30283pt too high) detected at line 73
+Overfull \vbox (165.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (118.30283pt too high) detected at line 73
+Overfull \vbox (166.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (119.30283pt too high) detected at line 73
+Overfull \vbox (167.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (120.30283pt too high) detected at line 73
+Overfull \vbox (168.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (121.30283pt too high) detected at line 73
+Overfull \vbox (169.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (122.30283pt too high) detected at line 73
+Overfull \vbox (170.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (123.30283pt too high) detected at line 73
+Overfull \vbox (171.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (124.30283pt too high) detected at line 73
+Overfull \vbox (172.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (125.30283pt too high) detected at line 73
+Overfull \vbox (173.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (126.30283pt too high) detected at line 73
+Overfull \vbox (174.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (127.30283pt too high) detected at line 73
+Overfull \vbox (175.27888pt too high) detected at line 82
  []
 
 
-Overfull \vbox (128.30283pt too high) detected at line 73
+Overfull \vbox (176.27888pt too high) detected at line 82
  []
 
 
 Package mdframed Warning: correct box splittet fails
  It seems you are using a non splittable contents
-(mdframed)                 on input line 73.
+(mdframed)                 on input line 82.
 
 Package mdframed Info: You first box width is to small
  mdframed fixed it
-(mdframed)              on input line 73.
-[21 <D:/Studium/Code/SWO4/uebungMoodle5/Screenshots/1.png>] [22 <D:/Studium/Cod
+(mdframed)              on input line 82.
+[33 <D:/Studium/Code/SWO4/uebungMoodle5/Screenshots/1.png>] [34 <D:/Studium/Cod
 e/SWO4/uebungMoodle5/Screenshots/2.png>]
 (D:\Studium\Code\SWO4\uebungMoodle5\Ausarbeitung\Dokumentation.aux)
 
@@ -1358,9 +1381,9 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 14730 strings out of 493921
- 265338 string characters out of 3144877
- 355610 words of memory out of 3000000
+ 14736 strings out of 493921
+ 265754 string characters out of 3144877
+ 355609 words of memory out of 3000000
  17792 multiletter control sequences out of 15000+200000
  36155 words of font info for 46 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -1373,9 +1396,9 @@ nc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplb.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplbi.pfb><C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplr.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on Dokumentation.pdf (22 pages, 797030 bytes).
+Output written on Dokumentation.pdf (34 pages, 852362 bytes).
 PDF statistics:
- 269 PDF objects out of 1000 (max. 8388607)
+ 311 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  12329 words of extra memory for PDF output out of 14400 (max. 10000000)
 

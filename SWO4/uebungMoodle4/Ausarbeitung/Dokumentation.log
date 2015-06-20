@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  14 MAY 2015 14:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  15 MAY 2015 20:31
 entering extended mode
 **Dokumentation.tex
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.tex
@@ -845,8 +845,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [5{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [6]
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//Board.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//Board.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg
@@ -869,8 +869,8 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//Move.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//Move.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [13])
@@ -878,8 +878,8 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//SearchNode.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//SearchNode.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [14]
@@ -888,8 +888,8 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//SlidingPuzzle.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//SlidingPuzzle.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [19]
@@ -898,16 +898,16 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//exceptions/BoardException.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//exceptions/BoardException.java)...executed.
 
  (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg)
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//exceptions/IllegalMoveException.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//exceptions/IllegalMoveException.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg)
@@ -915,8 +915,8 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//exceptions/InvalidBoardIndexException.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//exceptions/InvalidBoardIndexException.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [21])
@@ -924,8 +924,8 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//exceptions/InvalidTileNumberException.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//exceptions/InvalidTileNumberException.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg)
@@ -933,8 +933,8 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/src/at/lume
-tsnet/puzzle//exceptions/NoSolutionException.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/src/at/lumetsnet/
+puzzle//exceptions/NoSolutionException.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg)
@@ -942,8 +942,8 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/test/at/lum
-etsnet/puzzle/tests//AbstractTest.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/test/at/lumetsnet
+/puzzle/tests//AbstractTest.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [22])
@@ -951,49 +951,468 @@ runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/test/at/lum
-etsnet/puzzle/tests//BoardTest.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/test/at/lumetsnet
+/puzzle/tests//BoardTest.java)...executed.
 
 
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [23]
-[24] [25] [26] [27] [28] [29])
+[24] [25] [26] [27] [28] [29] [30])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/test/at/lum
-etsnet/puzzle/tests//SearchNodeTest.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/test/at/lumetsnet
+/puzzle/tests//SearchNodeTest.java)...executed.
 
 
-(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [30]
-[31] [32])
+(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [31]
+[32])
 runsystem(del Dokumentation.out.pyg)...executed.
 
 runsystem(pygmentize -l java -f latex -F tokenmerge            -P linenos -P "v
 erboptions= ,numbersep=5pt,frame=lines,tabsize=2,framesep=2mm" -O encoding=UTF-
-8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../sliding-puzzle/test/at/lum
-etsnet/puzzle/tests//SlidingPuzzleSolverTest.java)...executed.
+8,outencoding=iso-8859-1 -o Dokumentation.out.pyg ../Beispiel/test/at/lumetsnet
+/puzzle/tests//SlidingPuzzleSolverTest.java)...executed.
 
-
-(D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg [33]
-[34] [35])
+ (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.out.pyg
+[33] [34] [35] [36])
 runsystem(del Dokumentation.out.pyg)...executed.
 
- [36] <../Screenshots/1.png, id=158, 545.53813pt x 575.14874pt>
+ [37]
+<../Screenshots/1.png, id=162, 554.07pt x 654.94687pt>
 File: ../Screenshots/1.png Graphic file (type png)
 
 <use ../Screenshots/1.png>
 Package pdftex.def Info: ../Screenshots/1.png used on input line 84.
-(pdftex.def)             Requested size: 301.1261pt x 317.47366pt.
+(pdftex.def)             Requested size: 301.1261pt x 355.9546pt.
 
-<../Screenshots/2.png, id=160, 559.59062pt x 403.5075pt>
+<../Screenshots/2.png, id=164, 560.0925pt x 372.39125pt>
 File: ../Screenshots/2.png Graphic file (type png)
 
 <use ../Screenshots/2.png>
 Package pdftex.def Info: ../Screenshots/2.png used on input line 87.
-(pdftex.def)             Requested size: 301.1261pt x 217.13965pt.
- [37 <D:/Studium/Code/SWO4/uebungMoodle4/Screenshots/1.png> <D:/Studium/Code/SW
-O4/uebungMoodle4/Screenshots/2.png>]
+(pdftex.def)             Requested size: 301.1261pt x 200.21889pt.
+
+Overfull \vbox (16.61401pt too high) detected at line 88
+ []
+
+Package mdframed Info: Box was splittet wrong
+ starting loop to iterate the splitting point
+(mdframed)              on input line 88.
+
+Overfull \vbox (17.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (18.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (19.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (20.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (21.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (22.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (23.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (24.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (25.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (26.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (27.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (28.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (29.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (30.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (31.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (32.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (33.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (34.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (35.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (36.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (37.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (38.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (39.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (40.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (41.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (42.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (43.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (44.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (45.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (46.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (47.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (48.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (49.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (50.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (51.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (52.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (53.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (54.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (55.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (56.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (57.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (58.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (59.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (60.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (61.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (62.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (63.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (64.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (65.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (66.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (67.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (68.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (69.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (70.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (71.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (72.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (73.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (74.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (75.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (76.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (77.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (78.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (79.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (80.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (81.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (82.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (83.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (84.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (85.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (86.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (87.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (88.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (89.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (90.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (91.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (92.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (93.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (94.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (95.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (96.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (97.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (98.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (99.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (100.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (101.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (102.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (103.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (104.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (105.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (106.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (107.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (108.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (109.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (110.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (111.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (112.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (113.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (114.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (115.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (116.61401pt too high) detected at line 88
+ []
+
+
+Overfull \vbox (117.61401pt too high) detected at line 88
+ []
+
+
+Package mdframed Warning: correct box splittet fails
+ It seems you are using a non splittable contents
+(mdframed)                 on input line 88.
+
+Package mdframed Info: You first box width is to small
+ mdframed fixed it
+(mdframed)              on input line 88.
+[38 <D:/Studium/Code/SWO4/uebungMoodle4/Screenshots/1.png>] [39 <D:/Studium/Cod
+e/SWO4/uebungMoodle4/Screenshots/2.png>]
 (D:\Studium\Code\SWO4\uebungMoodle4\Ausarbeitung\Dokumentation.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1002,7 +1421,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  14730 strings out of 493921
  266065 string characters out of 3144877
- 356603 words of memory out of 3000000
+ 356591 words of memory out of 3000000
  17793 multiletter control sequences out of 15000+200000
  33029 words of font info for 39 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -1014,9 +1433,9 @@ re/q-ts1.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/tex-gyre/q-ec.e
 nc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplb.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplr.pfb><C:/Program
  Files (x86)/MiKTeX 2.9/fonts/type1/public/tex-gyre/qplri.pfb>
-Output written on Dokumentation.pdf (37 pages, 753616 bytes).
+Output written on Dokumentation.pdf (39 pages, 775869 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
+ 335 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11822 words of extra memory for PDF output out of 12000 (max. 10000000)
 

@@ -15,6 +15,40 @@ public class BSTMultiSet<T extends Comparable<T>> implements SortedMultiSet<T> {
 		}
 	}
 	
+	private static class BSTIterator<T> implements Iterator {
+
+		private Stack<Node<T>> unvisitedParents = new Stack<>();
+		
+		public BSTIterator(Node<T> root) {
+			Node<T> next = root;
+			while(next != null) {
+				unvisitedParents.push(next);
+				next = next.left;
+			}
+		}
+		
+		@Override
+		public boolean hasNext() {
+			return !unvisitedParents.isEmpty();
+		}
+
+		@Override
+		public Object next() {
+			if(!hasNext()) {
+				throw new NoSuchElementException("Stack is empty");
+			}
+			
+			Node<T> cur = unvisitedParents.pop();
+			Node<T> next = cur.right;
+			while(next != null) {
+				unvisitedParents.add(next);
+				next = next.left;
+			}
+			return cur.value;
+		}
+		
+	}
+	
 	private Node<T> root;
 	private int size;
 	
@@ -38,8 +72,7 @@ public class BSTMultiSet<T extends Comparable<T>> implements SortedMultiSet<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new BSTIterator<>(root);
 	}
 
 	@Override

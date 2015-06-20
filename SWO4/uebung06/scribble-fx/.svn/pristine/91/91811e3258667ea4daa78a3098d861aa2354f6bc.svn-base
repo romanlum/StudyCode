@@ -1,0 +1,34 @@
+// Konstanten für Randlinie und Hintergrundfarbe der Zeichenfläche
+  private static final Border DEFAULT_BORDER = new Border(new BorderStroke(Color.DIMGREY, BorderStrokeStyle.SOLID, null, null));
+  private static final Background CANVAS_BACKGROUND = new Background(new BackgroundFill(Color.CORNSILK, null, null));
+
+// ListView für Nachrichten-Trace hinzufügen
+
+  private ListView<String> messageList;
+  private ObservableList<String> messages = FXCollections.observableArrayList();
+
+  private ListView<String> createMessageList() {
+    messageList = new ListView<String>();
+    messageList.setItems(messages);
+
+    messageList.setId("message-list");
+    HBox.setHgrow(messageList, Priority.ALWAYS); // messageList will get remaining space in HBox. 
+    // styling:
+    messageList.setPrefHeight(100);
+    messageList.setBorder(new Border(new BorderStroke(Color.DIMGREY, BorderStrokeStyle.SOLID, null, null)));
+
+    return messageList;
+  }
+
+// Hinzufügen eine Zeile zur Nachrichtenliste
+  private void appendMessage(String message) {
+    messages.add(message);
+    messageList.scrollTo(messages.size());
+  }
+
+// JDK-Logging deaktiven
+LogManager.getLogManager().reset(); // turn off JDK logging
+
+// Stylesheet laden
+scene.getStylesheets().add(getClass().getResource("css/scribble-fx.css").toExternalForm());
+

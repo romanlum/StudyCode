@@ -1,0 +1,1 @@
+@java -cp bin swe4.gui.ScribbleFX
