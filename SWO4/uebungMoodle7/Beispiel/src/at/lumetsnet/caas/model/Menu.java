@@ -16,6 +16,7 @@ public class Menu extends Entity {
 	private LocalDate begin;
 	private LocalDate end;
 	private MenuCategory category;
+	private long categoryId;
 
 	public Menu() {
 	}
@@ -115,5 +116,21 @@ public class Menu extends Entity {
 	public void setCategory(MenuCategory category) {
 		this.category = category;
 	}
+
+	/**
+	 * @return the categoryId
+	 */
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	/**
+	 * @param categoryId the categoryId to set
+	 */
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
+	}
+	
+	
 
 }

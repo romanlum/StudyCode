@@ -17,7 +17,11 @@ public class MenuCategoryDaoTest extends GenericDaoTest {
 	private MenuCategoryDaoJdbc dao;  
 	@Before
 	public void setUp() {
+		cleanTable("Order");
+		cleanTable("Menu");
 		cleanTable("MenuCategory");
+		cleanTable("User");
+		
 		dao = new MenuCategoryDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD);
 	}
 	

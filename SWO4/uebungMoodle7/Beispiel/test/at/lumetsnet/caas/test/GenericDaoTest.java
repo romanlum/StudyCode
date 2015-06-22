@@ -17,7 +17,7 @@ public class GenericDaoTest {
 	public void cleanTable(String table) {
 		try(Connection con = DriverManager.getConnection(CONNECTION_STRING, USER_NAME, PASSWORD)){
 			//clean table
-			try(PreparedStatement stmt =  con.prepareStatement(String.format("Delete from %s", table))) {
+			try(PreparedStatement stmt =  con.prepareStatement(String.format("Delete from `%s`", table))) {
 				stmt.executeUpdate();
 			}
 		} catch(SQLException ex) {

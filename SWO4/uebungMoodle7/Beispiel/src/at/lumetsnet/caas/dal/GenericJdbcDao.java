@@ -7,12 +7,22 @@ import java.beans.PropertyDescriptor;
 import java.io.Closeable;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+
+import com.mysql.jdbc.ResultSetMetaData;
 
 import at.lumetsnet.caas.model.Entity;
 
@@ -52,7 +62,7 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 	@Override
 	public void saveOrUpdate(T entity) {
 		if(entity.getId() == -1) {
-			try(PreparedStatement stmt = DaoUtil.generateInsertStatement(getConnection(), entity,tableName)) {
+			try(PreparedStatement stmt = DaoUtil.generateInsertStatement(getConnection(), entity,tableName, getPropertyFilter())) {
 				stmt.executeUpdate();
 				try(ResultSet rs = stmt.getGeneratedKeys()) {
 					if(rs!=null && rs.next()) {
@@ -65,7 +75,7 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 				throw new DataAccessException(ex.getMessage());
 			}
 		} else {
-			try(PreparedStatement stmt = DaoUtil.generateUpdateStatement(getConnection(), entity,tableName)) {
+			try(PreparedStatement stmt = DaoUtil.generateUpdateStatement(getConnection(), entity,tableName, getPropertyFilter())) {
 				stmt.executeUpdate();
 			} catch(Exception ex){
 				throw new DataAccessException(ex.getMessage());
@@ -86,7 +96,7 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 		
 		PropertyDescriptor[] pds = info.getPropertyDescriptors();
 		
-		String sql = String.format("Select * from %s %s", tableName, query);
+		String sql = String.format("Select * from `%s` %s", tableName, query);
 		System.out.println(sql);
 		try(PreparedStatement pstmt = getConnection()
 				.prepareStatement(sql))
@@ -98,10 +108,24 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 			try(ResultSet rs = pstmt.executeQuery()) {
 				while(rs.next()) {
 					T entity = entityClass.newInstance();
-					for(int i = 0; i<pds.length;i++) {
-						if(!pds[i].getName().equalsIgnoreCase("class")) {
-							pds[i].getWriteMethod().invoke(entity, rs.getObject(pds[i].getName()));
+					java.sql.ResultSetMetaData metaData = rs.getMetaData();
+					for(int i = 1;i<= metaData.getColumnCount(); i++) {
+						Object data = rs.getObject(i);
+						String columnName = metaData.getColumnName(i);
+						PropertyDescriptor descriptor =Arrays.stream(pds)
+								.filter(x -> x.getName().equals(columnName))
+								.findFirst().orElse(null);
+						if(descriptor != null) {
+							if(metaData.getColumnType(i) == Types.DATE  ) {
+								Instant instant = Instant.ofEpochMilli(((Date)data).getTime());
+						        data = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+							} else if(metaData.getColumnType(i) == Types.TIMESTAMP  ) {
+								Instant instant = Instant.ofEpochMilli(((Timestamp)data).getTime());
+						        data = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+							}
+							descriptor.getWriteMethod().invoke(entity, data);
 						}
+						
 					}
 					c.add(entity);
 				}
@@ -126,7 +150,7 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 	@Override
 	public void delete(long id) {
 		try(PreparedStatement pstmt = getConnection()
-				.prepareStatement(String.format("DELETE FROM %s where id = ?",tableName))) {
+				.prepareStatement(String.format("DELETE FROM `%s` where id = ?",tableName))) {
 			pstmt.setLong(1,id);
 			pstmt.executeUpdate();
 		}
@@ -147,4 +171,12 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 			}
 		}
 	}
+	
+	public Collection<String> getPropertyFilter() {
+		ArrayList<String> filter= new ArrayList<>();
+		filter.add("class");
+		filter.add("id");
+		return filter;
+	}
+	
 }

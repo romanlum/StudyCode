@@ -10,10 +10,13 @@ import java.time.LocalDateTime;
 
 public class Order extends Entity {
 
-	private Menu menu;
-	private User user;
-	private LocalDateTime time;
-	private String comment;
+		private Menu menu;
+		private User user;
+		private LocalDateTime time;
+		private String comment;
+		private long menuId;
+		private long userId;
+	
 
 	public Order() {
 	}
@@ -93,5 +96,35 @@ public class Order extends Entity {
 	public void setTime(LocalDateTime time) {
 		this.time = time;
 	}
+
+	/**
+	 * @return the menuId
+	 */
+	public long getMenuId() {
+		return menuId;
+	}
+
+	/**
+	 * @param menuId the menuId to set
+	 */
+	public void setMenuId(long menuId) {
+		this.menuId = menuId;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public long getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	
+	
 
 }

@@ -16,7 +16,11 @@ public class UserDaoTest extends GenericDaoTest {
 	private UserDao dao;  
 	@Before
 	public void setUp() {
+		cleanTable("Order");
+		cleanTable("Menu");
+		cleanTable("MenuCategory");
 		cleanTable("User");
+		
 		dao = new UserDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD);
 	}
 	
