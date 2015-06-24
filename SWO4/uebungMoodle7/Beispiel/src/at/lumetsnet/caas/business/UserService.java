@@ -14,7 +14,7 @@ import at.lumetsnet.caas.rmi.interfaces.RemoteUserService;
  * @author romanlum
  *
  */
-public class UserService extends Service<RemoteUserService>  {
+public class UserService extends RmiService<RemoteUserService>  {
 	
 	private static UserService instance = null;
 	private UserService() {

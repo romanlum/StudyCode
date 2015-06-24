@@ -20,7 +20,7 @@ import at.lumetsnet.caas.rmi.interfaces.RemoteOrderService;
  *
  */
 
-public class OrderService extends Service<RemoteOrderService> {
+public class OrderService extends RmiService<RemoteOrderService> {
 
 	private static OrderService instance = null;
 

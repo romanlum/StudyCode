@@ -3,7 +3,6 @@ package at.lumetsnet.caas.gui.dialogs;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.stage.Window;
-import at.lumetsnet.caas.business.MenuService;
 import at.lumetsnet.caas.business.UserService;
 import at.lumetsnet.caas.gui.Util;
 import at.lumetsnet.caas.model.User;

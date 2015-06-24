@@ -20,7 +20,7 @@ import at.lumetsnet.caas.rmi.interfaces.RemoteMenuService;
  * @author romanlum
  *
  */
-public class MenuService extends Service<RemoteMenuService> {
+public class MenuService extends RmiService<RemoteMenuService> {
 
 	
 	private static MenuService instance = null;
