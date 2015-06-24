@@ -1,13 +1,14 @@
 package at.lumetsnet.caas.business;
 
 import java.rmi.Naming;
+import java.rmi.Remote;
 
 /***
  * Base class for all services using RMI
  * @author romanlum
  *
  */
-public class RmiService<T> {
+public class RmiService<T extends Remote> {
 
 	protected T service;
 	

@@ -2,7 +2,6 @@ package at.lumetsnet.caas.dal;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 import at.lumetsnet.caas.model.Order;

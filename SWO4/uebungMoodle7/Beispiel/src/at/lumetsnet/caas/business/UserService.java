@@ -1,6 +1,5 @@
 package at.lumetsnet.caas.business;
 
-import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.Collection;
 

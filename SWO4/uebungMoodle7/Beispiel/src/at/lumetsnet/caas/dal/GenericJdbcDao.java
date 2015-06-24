@@ -15,14 +15,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-
-import com.mysql.jdbc.ResultSetMetaData;
 
 import at.lumetsnet.caas.model.Entity;
 

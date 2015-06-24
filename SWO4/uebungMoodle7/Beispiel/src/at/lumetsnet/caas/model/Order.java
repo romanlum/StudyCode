@@ -10,6 +10,10 @@ import java.time.LocalDateTime;
 
 public class Order extends Entity {
 
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9188235335595584261L;
 		private Menu menu;
 		private User user;
 		private LocalDateTime time;

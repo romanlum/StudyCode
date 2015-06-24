@@ -4,8 +4,6 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.Collection;
 
-import at.lumetsnet.caas.dal.MenuCategoryDao;
-import at.lumetsnet.caas.dal.MenuCategoryDaoJdbc;
 import at.lumetsnet.caas.dal.MenuDao;
 import at.lumetsnet.caas.dal.MenuDaoJdbc;
 import at.lumetsnet.caas.dal.OrderDao;

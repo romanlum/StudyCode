@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import at.lumetsnet.caas.dal.UserDao;
 import at.lumetsnet.caas.dal.UserDaoJdbc;
-import at.lumetsnet.caas.model.MenuCategory;
 import at.lumetsnet.caas.model.User;
 
 public class UserDaoTest extends GenericDaoTest {

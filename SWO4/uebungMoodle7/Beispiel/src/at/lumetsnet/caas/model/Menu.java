@@ -10,6 +10,11 @@ import java.time.LocalDate;
 
 public class Menu extends Entity {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2683509052388984064L;
+	
 	private String description;
 	//price is stored in smallest currency unit!
 	private long price;

@@ -12,11 +12,8 @@ import at.lumetsnet.caas.dal.MenuCategoryDao;
 import at.lumetsnet.caas.dal.MenuCategoryDaoJdbc;
 import at.lumetsnet.caas.dal.MenuDao;
 import at.lumetsnet.caas.dal.MenuDaoJdbc;
-import at.lumetsnet.caas.dal.UserDao;
-import at.lumetsnet.caas.dal.UserDaoJdbc;
 import at.lumetsnet.caas.model.Menu;
 import at.lumetsnet.caas.model.MenuCategory;
-import at.lumetsnet.caas.model.User;
 
 public class MenuDaoTest extends GenericDaoTest {
 

@@ -2,7 +2,6 @@ package at.lumetsnet.caas.rmi.impl;
 
 import java.util.Collection;
 
-import at.lumetsnet.caas.business.MenuService;
 import at.lumetsnet.caas.dal.MenuCategoryDao;
 import at.lumetsnet.caas.dal.MenuCategoryDaoJdbc;
 import at.lumetsnet.caas.dal.MenuDao;

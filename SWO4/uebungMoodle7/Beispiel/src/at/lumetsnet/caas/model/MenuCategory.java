@@ -8,6 +8,10 @@ package at.lumetsnet.caas.model;
 
 public class MenuCategory extends Entity {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6364790602658825179L;
 	private String name;
 
 	public MenuCategory() {

@@ -8,6 +8,10 @@ import java.io.Serializable;
  *
  */
 public class Entity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8439956639376975911L;
 	protected long id;
 
 	/**
