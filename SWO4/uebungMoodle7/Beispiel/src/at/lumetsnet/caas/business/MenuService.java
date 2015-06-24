@@ -1,11 +1,17 @@
 package at.lumetsnet.caas.business;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import at.lumetsnet.caas.dal.MenuCategoryDao;
+import at.lumetsnet.caas.dal.MenuCategoryDaoJdbc;
+import at.lumetsnet.caas.dal.MenuDao;
+import at.lumetsnet.caas.dal.MenuDaoJdbc;
 import at.lumetsnet.caas.model.Menu;
 import at.lumetsnet.caas.model.MenuCategory;
+import at.lumetsnet.caas.rmi.interfaces.RemoteMenuService;
 
 /***
  * Mock menu business logic class
@@ -14,23 +20,13 @@ import at.lumetsnet.caas.model.MenuCategory;
  * @author romanlum
  *
  */
-public class MenuService {
+public class MenuService extends Service<RemoteMenuService> {
 
-	ArrayList<MenuCategory> categories;
-	ArrayList<Menu> menus;
-
+	
 	private static MenuService instance = null;
-
+	
 	private MenuService() {
-		categories = new ArrayList<>();
-		categories.add(new MenuCategory(0, "Vegetarisch"));
-		categories.add(new MenuCategory(1, "Fleisch und Fisch"));
-
-		menus = new ArrayList<>();
-		menus.add(new Menu(0, "Wienerschnitzel", 1000, LocalDate.now(),
-				LocalDate.now(), categories.get(0)));
-		menus.add(new Menu(1, "Gericht 2", 20000, LocalDate.now(), LocalDate
-				.now(), categories.get(1)));
+		super("localhost:1931","CaasMenuService");
 	}
 
 	/***
@@ -49,7 +45,13 @@ public class MenuService {
 	 * @return
 	 */
 	public Collection<MenuCategory> getAllCategories() {
-		return categories;
+		try {
+			return service.getAllCategories();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/***
@@ -57,15 +59,27 @@ public class MenuService {
 	 * @param id
 	 */
 	public void deleteCategory(long id) {
-		categories.removeIf(x -> x.getId() == id);
+		try {
+			service.deleteCategory(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
 	}
+	
+	
 
 	/***
 	 * Deletes the menu with the given id
 	 * @param id
 	 */
 	public void deleteMenu(long id) {
-		menus.removeIf(x -> x.getId() == id);
+		try {
+			service.deleteMenu(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/***
@@ -73,15 +87,25 @@ public class MenuService {
 	 * @param data
 	 */
 	public void saveOrUpdateCategory(MenuCategory data) {
-		Util.saveOrUpdate(data, categories);
+		try {
+			service.saveOrUpdateCategory(data);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/***
-	 * Saves or adds teh menu
+	 * Saves or adds the menu
 	 * @param data
 	 */
 	public void saveOrUpdateMenu(Menu data) {
-		Util.saveOrUpdate(data, menus);
+		try {
+			service.saveOrUpdateMenu(data);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/***
@@ -89,7 +113,13 @@ public class MenuService {
 	 * @return
 	 */
 	public Collection<Menu> getAllMenus() {
-		return menus;
+		try {
+			return service.getAllMenus();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

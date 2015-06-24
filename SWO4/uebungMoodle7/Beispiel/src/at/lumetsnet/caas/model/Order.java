@@ -14,9 +14,7 @@ public class Order extends Entity {
 		private User user;
 		private LocalDateTime time;
 		private String comment;
-		private long menuId;
-		private long userId;
-	
+		
 
 	public Order() {
 	}
@@ -101,28 +99,30 @@ public class Order extends Entity {
 	 * @return the menuId
 	 */
 	public long getMenuId() {
-		return menuId;
+		return menu != null ? menu.getId() : -1;
 	}
 
 	/**
 	 * @param menuId the menuId to set
 	 */
 	public void setMenuId(long menuId) {
-		this.menuId = menuId;
+		this.menu = new Menu();
+		this.menu.setId(menuId);
 	}
 
 	/**
 	 * @return the userId
 	 */
 	public long getUserId() {
-		return userId;
+		return user != null ? user.getId() : -1;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
 	public void setUserId(long userId) {
-		this.userId = userId;
+		this.user = new User();
+		this.user.setId(userId);
 	}
 	
 	

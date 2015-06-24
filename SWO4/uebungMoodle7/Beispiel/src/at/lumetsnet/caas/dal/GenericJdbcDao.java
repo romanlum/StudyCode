@@ -111,6 +111,10 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 					java.sql.ResultSetMetaData metaData = rs.getMetaData();
 					for(int i = 1;i<= metaData.getColumnCount(); i++) {
 						Object data = rs.getObject(i);
+						
+						if(data == null)
+							continue;
+						
 						String columnName = metaData.getColumnName(i);
 						PropertyDescriptor descriptor =Arrays.stream(pds)
 								.filter(x -> x.getName().equals(columnName))

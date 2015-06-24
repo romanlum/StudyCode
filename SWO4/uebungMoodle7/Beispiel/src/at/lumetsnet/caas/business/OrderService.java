@@ -1,5 +1,6 @@
 package at.lumetsnet.caas.business;
 
+import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +10,7 @@ import at.lumetsnet.caas.model.Menu;
 import at.lumetsnet.caas.model.MenuCategory;
 import at.lumetsnet.caas.model.Order;
 import at.lumetsnet.caas.model.User;
+import at.lumetsnet.caas.rmi.interfaces.RemoteOrderService;
 
 /***
  * Mock order business logic class
@@ -18,12 +20,12 @@ import at.lumetsnet.caas.model.User;
  *
  */
 
-public class OrderService {
+public class OrderService extends Service<RemoteOrderService> {
 
 	private static OrderService instance = null;
 
 	private OrderService() {
-
+		super("localhost:1931","CaasOrderService");
 	}
 
 	/**
@@ -41,25 +43,12 @@ public class OrderService {
 	 * @return
 	 */
 	public Collection<Order> getTodaysOrders() {
-		List<Order> orders = new ArrayList<Order>();
-
-		User user = new User(1, "romanlum", "", "Roman", "Lumetsberger", false);
-
-		Menu menu = new Menu(1, "Wienerschnitzel mit Pommes", 0, null, null,
-				new MenuCategory());
-
-		LocalDateTime time = LocalDateTime.now();
-		
-		orders.add(new Order(1, menu, user,time ,
-				"ohne Preiselbeeren"));
-		time = time.minusHours(1);
-		user = new User(1, "christophlum", "", "Christoph", "Lumetsberger", false);
-		orders.add(new Order(1, menu, user,time,
-				"mit Preiselbeeren"));
-		time = time.minusMinutes(1);
-		user = new User(1, "romanlum", "", "Moe", "Sislec", false);
-		orders.add(new Order(1, menu, user,time,
-				"normal"));
-		return orders;
+		try {
+			return service.getTodaysOrders();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

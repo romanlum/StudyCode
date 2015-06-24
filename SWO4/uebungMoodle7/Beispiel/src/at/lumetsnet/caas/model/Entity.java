@@ -1,11 +1,13 @@
 package at.lumetsnet.caas.model;
 
+import java.io.Serializable;
+
 /***
  * Base data entity
  * @author romanlum
  *
  */
-public class Entity {
+public class Entity implements Serializable {
 	protected long id;
 
 	/**

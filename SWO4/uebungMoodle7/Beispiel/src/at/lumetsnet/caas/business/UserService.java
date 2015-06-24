@@ -1,10 +1,11 @@
 package at.lumetsnet.caas.business;
 
-import java.util.ArrayList;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.Collection;
-import java.util.Optional;
 
 import at.lumetsnet.caas.model.User;
+import at.lumetsnet.caas.rmi.interfaces.RemoteUserService;
 
 /***
  * Mock user business logic class
@@ -13,20 +14,11 @@ import at.lumetsnet.caas.model.User;
  * @author romanlum
  *
  */
-public class UserService {
-
-	ArrayList<User> users;
-
+public class UserService extends Service<RemoteUserService>  {
+	
 	private static UserService instance = null;
-
 	private UserService() {
-		users = new ArrayList<>();
-		users.add(new User(0, "admin", "admin", "Roman", "Lumetsberger", false));
-		users.add(new User(1, "romanlum", "password", "Roman", "Lumetsberger",false));
-		users.add(new User(2, "christophlum", "password", "Christoph",
-				"Lumetsberger", false));
-		users.add(new User(3, "moe", "password", "Moe", "Sislec", true));
-
+		super("localhost:1931","CaasUserService");
 	}
 
 	/**
@@ -43,16 +35,27 @@ public class UserService {
 	 * Fetches all users
 	 * @return
 	 */
-	public Collection<User> getAllUsers() {
-		return users;
+	public Collection<User> getAllUsers(){
+		try {
+			return service.getAllUsers();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/***
 	 * delete the user
 	 * @param id
 	 */
-	public void deleteUser(long id) {
-		users.removeIf(x -> x.getId() == id);
+	public void deleteUser(long id){
+		try {
+			service.deleteUser(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/***
@@ -60,10 +63,11 @@ public class UserService {
 	 * @param id
 	 */
 	public void toggleLockState(long id) {
-		Optional<User> result = users.stream().filter(x -> x.getId() == id)
-				.findFirst();
-		if (result.isPresent()) {
-			result.get().setLocked(!result.get().isLocked());
+		try {
+			service.toggleLockState(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -72,6 +76,11 @@ public class UserService {
 	 * @param userModel
 	 */
 	public void saveOrUpdate(User userModel) {
-		Util.saveOrUpdate(userModel, users);
+		try {
+			service.saveOrUpdate(userModel);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
