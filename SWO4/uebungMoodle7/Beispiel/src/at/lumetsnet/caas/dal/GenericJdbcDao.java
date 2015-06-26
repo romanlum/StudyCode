@@ -23,6 +23,12 @@ import java.util.Collection;
 
 import at.lumetsnet.caas.model.Entity;
 
+/***
+ * Generic dao for JDBC
+ * @author romanlum
+ *
+ * @param <T>
+ */
 public abstract class GenericJdbcDao<T extends Entity> implements Closeable, GenericDao<T>   {
 
 	protected Connection con;
@@ -31,7 +37,6 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 	protected String password;
 	protected String tableName;
 	protected Class<T> entityClass;
-	
 	
 	
 	public GenericJdbcDao(Class<T> entityClass, String tableName, String conString, String userName, String password) {
@@ -43,6 +48,11 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 		
 	}
 
+	/***
+	 * Gets and opens the connection
+	 * @return
+	 * @throws DataAccessException
+	 */
 	public Connection getConnection() throws DataAccessException {
 		try
 		{
@@ -56,6 +66,27 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 		}
 	}
 	
+	/***
+	 * Closes the connection
+	 */
+	@Override
+	public void close() throws IOException {
+		if(con != null) {
+			try {
+				con.close();
+				con = null;
+			} catch (SQLException e) {
+				throw new DataAccessException(e.getMessage());
+			}
+		}
+	}
+	
+	
+	/***
+	 * Inserts or updates an entity based on the id
+	 * ID == -1 means new entity
+	 * Auto generated id is set after inserting
+	 */
 	@Override
 	public void saveOrUpdate(T entity) {
 		if(entity.getId() == -1) {
@@ -81,6 +112,13 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 		}
 	}
 	
+	/***
+	 * Gets a list of entities by using a where statement
+	 * @param query
+	 * @param args
+	 * @return
+	 * @throws DataAccessException
+	 */
 	protected Collection<T> getFromWhere(String query, Object... args) throws DataAccessException {
 		Collection<T> c = new ArrayList<T>();
 		
@@ -93,8 +131,10 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 		
 		PropertyDescriptor[] pds = info.getPropertyDescriptors();
 		
+		//build statement
 		String sql = String.format("Select * from `%s` %s", tableName, query);
-		System.out.println(sql);
+		
+		/// create statement
 		try(PreparedStatement pstmt = getConnection()
 				.prepareStatement(sql))
 		{
@@ -104,11 +144,16 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 			
 			try(ResultSet rs = pstmt.executeQuery()) {
 				while(rs.next()) {
+					//create a new instance
 					T entity = entityClass.newInstance();
+					
+					//fetch the meta data
 					java.sql.ResultSetMetaData metaData = rs.getMetaData();
 					for(int i = 1;i<= metaData.getColumnCount(); i++) {
 						Object data = rs.getObject(i);
 						
+						//skip null values because they are already
+						//null in the new object
 						if(data == null)
 							continue;
 						
@@ -118,12 +163,15 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 								.findFirst().orElse(null);
 						if(descriptor != null) {
 							if(metaData.getColumnType(i) == Types.DATE  ) {
+								//Date handling
 								Instant instant = Instant.ofEpochMilli(((Date)data).getTime());
 						        data = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
 							} else if(metaData.getColumnType(i) == Types.TIMESTAMP  ) {
+								//Time handling
 								Instant instant = Instant.ofEpochMilli(((Timestamp)data).getTime());
 						        data = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 							}
+							//set the property
 							descriptor.getWriteMethod().invoke(entity, data);
 						}
 						
@@ -138,16 +186,25 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 		}
 	}
 	
+	/***
+	 * Gets the entity by id
+	 */
 	@Override
 	public T get(long id) {
 		return getFromWhere("where id = ?",id).stream().findFirst().orElse(null);
 	}
 	
+	/***
+	 * Gets all entites
+	 */
 	@Override
 	public Collection<T> getAll() {
 		return getFromWhere("");
 	}
 	
+	/***
+	 * Deletes an entity
+	 */
 	@Override
 	public void delete(long id) {
 		try(PreparedStatement pstmt = getConnection()
@@ -161,18 +218,11 @@ public abstract class GenericJdbcDao<T extends Entity> implements Closeable, Gen
 	
 	}
 	
-	@Override
-	public void close() throws IOException {
-		if(con != null) {
-			try {
-				con.close();
-				con = null;
-			} catch (SQLException e) {
-				throw new DataAccessException(e.getMessage());
-			}
-		}
-	}
-	
+	/***
+	 * Property filter used for insert and update statements
+	 * These properties are skipped
+	 * @return
+	 */
 	public Collection<String> getPropertyFilter() {
 		ArrayList<String> filter= new ArrayList<>();
 		filter.add("class");

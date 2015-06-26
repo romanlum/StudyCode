@@ -10,6 +10,11 @@ import at.lumetsnet.caas.model.Menu;
 import at.lumetsnet.caas.model.MenuCategory;
 import at.lumetsnet.caas.rmi.interfaces.RemoteMenuService;
 
+/***
+ * MenuService impl using jdbc
+ * @author romanlum
+ *
+ */
 public class MenuServiceImpl extends ServiceImpl implements RemoteMenuService {
 	
 	private MenuDao menuDao;

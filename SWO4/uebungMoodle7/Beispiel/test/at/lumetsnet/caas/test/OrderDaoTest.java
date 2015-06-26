@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -119,7 +120,24 @@ public class OrderDaoTest extends GenericDaoTest {
 		dao.saveOrUpdate(entity);
 		assertTrue(dao.get(entity.getId()) != null);
 		dao.delete(entity.getId());
+		
 		assertTrue(dao.get(entity.getId()) == null);
+	}
+	
+	@Test
+	public void getOrdersByDateTest() {
+		Order entity = new Order(-1,null,null,LocalDateTime.now(),"today");
+		entity.setMenuId(menuId);
+		entity.setUserId(userId);
+		dao.saveOrUpdate(entity);
+		entity = new Order(-1,null,null,LocalDateTime.now().plusDays(1),"other");
+		entity.setMenuId(menuId);
+		entity.setUserId(userId);
+		dao.saveOrUpdate(entity);
+		
+		Collection<Order> result = dao.getOrdersByDate(LocalDate.now());
+		assertEquals(1,result.size());
+		assertEquals("today",result.stream().findFirst().orElse(null).getComment());
 	}
 
 }

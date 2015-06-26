@@ -8,6 +8,11 @@ import at.lumetsnet.caas.dal.UserDaoJdbc;
 import at.lumetsnet.caas.model.User;
 import at.lumetsnet.caas.rmi.interfaces.RemoteUserService;
 
+/***
+ * User service impl using jdbc
+ * @author romanlum
+ *
+ */
 public class UserServiceImpl extends ServiceImpl implements RemoteUserService {
 	
 	private UserDao dao;

@@ -19,7 +19,7 @@ public class OrderService extends RmiService<RemoteOrderService> {
 	private static OrderService instance = null;
 
 	private OrderService() {
-		super("localhost:1931","CaasOrderService");
+		super("CaasOrderService");
 	}
 
 	/**
@@ -40,7 +40,6 @@ public class OrderService extends RmiService<RemoteOrderService> {
 		try {
 			return service.getTodaysOrders();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

@@ -17,7 +17,7 @@ public class UserService extends RmiService<RemoteUserService>  {
 	
 	private static UserService instance = null;
 	private UserService() {
-		super("localhost:1931","CaasUserService");
+		super("CaasUserService");
 	}
 
 	/**
@@ -38,7 +38,6 @@ public class UserService extends RmiService<RemoteUserService>  {
 		try {
 			return service.getAllUsers();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -52,7 +51,6 @@ public class UserService extends RmiService<RemoteUserService>  {
 		try {
 			service.deleteUser(id);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -65,7 +63,6 @@ public class UserService extends RmiService<RemoteUserService>  {
 		try {
 			service.toggleLockState(id);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -78,7 +75,6 @@ public class UserService extends RmiService<RemoteUserService>  {
 		try {
 			service.saveOrUpdate(userModel);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

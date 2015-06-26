@@ -51,6 +51,7 @@ public class ManageMenusPageViewModel {
 	public void deleteCategoryCommand(Number userId) {
 		MenuService.getInstance().deleteCategory((long) userId);
 		updateCategories();
+		updateMenus();
 
 	}
 

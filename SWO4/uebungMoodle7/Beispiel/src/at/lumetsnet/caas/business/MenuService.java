@@ -20,7 +20,7 @@ public class MenuService extends RmiService<RemoteMenuService> {
 	private static MenuService instance = null;
 	
 	private MenuService() {
-		super("localhost:1931","CaasMenuService");
+		super("CaasMenuService");
 	}
 
 	/***
@@ -42,7 +42,6 @@ public class MenuService extends RmiService<RemoteMenuService> {
 		try {
 			return service.getAllCategories();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -56,7 +55,6 @@ public class MenuService extends RmiService<RemoteMenuService> {
 		try {
 			service.deleteCategory(id);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		};
 	}
@@ -70,8 +68,7 @@ public class MenuService extends RmiService<RemoteMenuService> {
 	public void deleteMenu(long id) {
 		try {
 			service.deleteMenu(id);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+		} catch (RemoteException e) { 
 			e.printStackTrace();
 		}
 	}
@@ -83,8 +80,7 @@ public class MenuService extends RmiService<RemoteMenuService> {
 	public void saveOrUpdateCategory(MenuCategory data) {
 		try {
 			service.saveOrUpdateCategory(data);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+		} catch (RemoteException e) {			
 			e.printStackTrace();
 		}
 	}
@@ -97,7 +93,6 @@ public class MenuService extends RmiService<RemoteMenuService> {
 		try {
 			service.saveOrUpdateMenu(data);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -110,7 +105,6 @@ public class MenuService extends RmiService<RemoteMenuService> {
 		try {
 			return service.getAllMenus();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

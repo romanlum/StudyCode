@@ -13,6 +13,11 @@ import at.lumetsnet.caas.dal.UserDaoJdbc;
 import at.lumetsnet.caas.model.Order;
 import at.lumetsnet.caas.rmi.interfaces.RemoteOrderService;
 
+/***
+ * Order service impl using jdbc
+ * @author romanlum
+ *
+ */
 public class OrderServiceImpl extends ServiceImpl implements RemoteOrderService{
 	private OrderDao orderDao;
 	private MenuDao menuDao;  
