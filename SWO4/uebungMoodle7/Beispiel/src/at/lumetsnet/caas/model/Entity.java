@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /***
  * Base data entity
+ * 
  * @author romanlum
  *
  */

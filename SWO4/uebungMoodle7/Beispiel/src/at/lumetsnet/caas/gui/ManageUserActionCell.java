@@ -6,8 +6,9 @@ import javafx.scene.control.Button;
 import at.lumetsnet.caas.viewmodel.UserViewModel;
 
 /***
- * TableCell used for displaying additional lock/unlock
- * button inside the TableView
+ * TableCell used for displaying additional lock/unlock button inside the
+ * TableView
+ * 
  * @author romanlum
  *
  * @param <S>

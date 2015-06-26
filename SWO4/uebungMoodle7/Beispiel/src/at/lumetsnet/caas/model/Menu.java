@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 /***
  * Menu data entity
+ * 
  * @author romanlum
  *
  */
@@ -14,14 +15,14 @@ public class Menu extends Entity {
 	 * 
 	 */
 	private static final long serialVersionUID = 2683509052388984064L;
-	
+
 	private String description;
-	//price is stored in smallest currency unit!
+	// price is stored in smallest currency unit!
 	private long price;
 	private LocalDate begin;
 	private LocalDate end;
 	private MenuCategory category;
-	
+
 	public Menu() {
 	}
 
@@ -60,7 +61,7 @@ public class Menu extends Entity {
 
 	/**
 	 * @return the price in the smallest currency unit
-	 * 	
+	 * 
 	 */
 	public long getPrice() {
 		return price;
@@ -68,9 +69,8 @@ public class Menu extends Entity {
 
 	/**
 	 * @param price
-	 *            the price to set
-	 *            this price is set in the smallest 
-	 *            currency unit
+	 *            the price to set this price is set in the smallest currency
+	 *            unit
 	 */
 	public void setPrice(long price) {
 		this.price = price;
@@ -129,13 +129,12 @@ public class Menu extends Entity {
 	}
 
 	/**
-	 * @param categoryId the categoryId to set
+	 * @param categoryId
+	 *            the categoryId to set
 	 */
 	public void setCategoryId(long categoryId) {
 		this.category = new MenuCategory();
 		this.category.setId(categoryId);
 	}
-	
-	
 
 }

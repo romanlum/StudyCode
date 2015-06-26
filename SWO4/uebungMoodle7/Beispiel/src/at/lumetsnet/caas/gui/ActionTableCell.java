@@ -7,8 +7,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 
 /***
- * TableCell used for displaying edit / delete buttons
- * inside a TableView
+ * TableCell used for displaying edit / delete buttons inside a TableView
+ * 
  * @author romanlum
  *
  * @param <S>
@@ -25,7 +25,7 @@ public class ActionTableCell<S, T> extends TableCell<S, T> {
 	public ActionTableCell(Consumer<T> editAction, Consumer<T> deleteAction) {
 		this.editAction = editAction;
 		this.deleteAction = deleteAction;
-		
+
 		box.getStyleClass().add("table-command-container");
 		editButton.getStyleClass()
 				.addAll("table-command", "table-command-edit");

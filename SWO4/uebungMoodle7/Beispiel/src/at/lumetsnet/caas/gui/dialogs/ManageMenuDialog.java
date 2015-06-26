@@ -15,6 +15,7 @@ import at.lumetsnet.caas.viewmodel.MenuViewModel;
 
 /***
  * Edit/Add dialog for menus
+ * 
  * @author romanlum
  *
  */
@@ -76,7 +77,7 @@ public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 	@Override
 	protected void saveCommand() {
 		if (validate()) {
-			//Saves the entity
+			// Saves the entity
 			MenuService.getInstance().saveOrUpdateMenu(viewModel.toMenuModel());
 			dialogStage.close();
 		}
@@ -85,6 +86,7 @@ public class ManageMenuDialog extends ManageEntityDialog<MenuViewModel> {
 
 	/***
 	 * Static method for showing the dialog
+	 * 
 	 * @param owner
 	 * @param model
 	 * @return

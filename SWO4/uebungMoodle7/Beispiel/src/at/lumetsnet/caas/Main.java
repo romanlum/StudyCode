@@ -17,7 +17,7 @@ public class Main extends Application {
 		User user = new User();
 		user.setFirstName("Roman");
 		user.setLastName("Lumetsberger");
-		
+
 		MainWindow wnd = new MainWindow(stage, user);
 		wnd.show();
 
@@ -25,32 +25,32 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		LogManager.getLogManager().reset();
-		
+
 		String rmiServer = "localhost:1099";
-		if(args.length > 0) {
+		if (args.length > 0) {
 			rmiServer = args[0];
 		}
-		
+
 		initializeServices(rmiServer);
-		
+
 		launch(args);
 
 	}
 
 	private static void initializeServices(String rmiServer) {
-		if(!UserService.getInstance().initialize(rmiServer)) {
+		if (!UserService.getInstance().initialize(rmiServer)) {
 			System.out.println("Error initializing user service");
 			System.exit(-1);
 		}
-		if(!OrderService.getInstance().initialize(rmiServer)){
+		if (!OrderService.getInstance().initialize(rmiServer)) {
 			System.out.println("Error initializing order service");
 			System.exit(-1);
 		}
-		if(!MenuService.getInstance().initialize(rmiServer)) {
+		if (!MenuService.getInstance().initialize(rmiServer)) {
 			System.out.println("Error initializing menu service");
 			System.exit(-1);
 		}
-		
+
 	}
 
 }

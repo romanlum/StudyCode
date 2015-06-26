@@ -10,6 +10,7 @@ import at.lumetsnet.caas.model.MenuCategory;
 
 /***
  * ViewModel (logic) class for ManageMenusPage
+ * 
  * @author romanlum
  *
  */

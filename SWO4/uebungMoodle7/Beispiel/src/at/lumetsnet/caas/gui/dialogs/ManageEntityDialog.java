@@ -8,6 +8,7 @@ import at.lumetsnet.caas.viewmodel.Validatable;
 
 /***
  * Base dialog used for editing a viewmodel entity
+ * 
  * @author romanlum
  *
  * @param <T>
@@ -19,8 +20,8 @@ public abstract class ManageEntityDialog<T> extends Dialog {
 	protected BooleanProperty validationErrorProperty = new SimpleBooleanProperty();
 
 	/***
-	 * Shows the dialog and waits for exit
-	 * returns if the action was canceled
+	 * Shows the dialog and waits for exit returns if the action was canceled
+	 * 
 	 * @return
 	 */
 	public boolean show() {
@@ -34,8 +35,7 @@ public abstract class ManageEntityDialog<T> extends Dialog {
 	protected abstract void saveCommand();
 
 	/***
-	 * Cancel action
-	 * Default: closes the dialog and sets canceled flag
+	 * Cancel action Default: closes the dialog and sets canceled flag
 	 */
 	protected void cancelCommand() {
 		canceled = true;
@@ -44,11 +44,11 @@ public abstract class ManageEntityDialog<T> extends Dialog {
 	}
 
 	/***
-	 * Validates the viewmodel if it is Validatable
-	 * Shows error dialog if validation fails
-	 * @return true if the viewmodel is not validatable 
-	 *         true on successfull validation 
-	 *         otherwise false
+	 * Validates the viewmodel if it is Validatable Shows error dialog if
+	 * validation fails
+	 * 
+	 * @return true if the viewmodel is not validatable true on successfull
+	 *         validation otherwise false
 	 */
 	protected boolean validate() {
 		if (!(viewModel instanceof Validatable)) {

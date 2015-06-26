@@ -10,19 +10,21 @@ import at.lumetsnet.caas.rmi.interfaces.RemoteUserService;
 
 /***
  * User service impl using jdbc
+ * 
  * @author romanlum
  *
  */
 public class UserServiceImpl extends ServiceImpl implements RemoteUserService {
-	
+
 	private UserDao dao;
-	
+
 	public UserServiceImpl() {
-		dao = new UserDaoJdbc(CONNECTION_STRING,USER_NAME,PASSWORD);
+		dao = new UserDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD);
 	}
 
 	/***
 	 * Fetches all users
+	 * 
 	 * @return
 	 */
 	public Collection<User> getAllUsers() throws RemoteException {
@@ -31,19 +33,21 @@ public class UserServiceImpl extends ServiceImpl implements RemoteUserService {
 
 	/***
 	 * delete the user
+	 * 
 	 * @param id
 	 */
-	public void deleteUser(long id) throws RemoteException{
+	public void deleteUser(long id) throws RemoteException {
 		dao.delete(id);
 	}
 
 	/***
 	 * Toggles the locked state of a user
+	 * 
 	 * @param id
 	 */
 	public void toggleLockState(long id) throws RemoteException {
 		User user = dao.get(id);
-		if(user != null) {
+		if (user != null) {
 			user.setLocked(!user.isLocked());
 		}
 		saveOrUpdate(user);
@@ -51,9 +55,10 @@ public class UserServiceImpl extends ServiceImpl implements RemoteUserService {
 
 	/***
 	 * Saves or adds the user
+	 * 
 	 * @param userModel
 	 */
-	public void saveOrUpdate(User userModel)throws RemoteException {
+	public void saveOrUpdate(User userModel) throws RemoteException {
 		dao.saveOrUpdate(userModel);
 	}
 

@@ -9,8 +9,8 @@ import javafx.beans.property.StringProperty;
 import at.lumetsnet.caas.model.User;
 
 /***
- * ViewModel wrapper for User entity
- * Uses javafx properties for databinding
+ * ViewModel wrapper for User entity Uses javafx properties for databinding
+ * 
  * @author romanlum
  *
  */
@@ -23,7 +23,7 @@ public class UserViewModel implements Validatable {
 	private StringProperty firstNameProperty;
 	private StringProperty lastNameProperty;
 	private BooleanProperty lockedProperty;
-	
+
 	public UserViewModel(User user) {
 		if (user == null) {
 			user = new User();
@@ -35,7 +35,7 @@ public class UserViewModel implements Validatable {
 		firstNameProperty = new SimpleStringProperty(user.getFirstName());
 		lastNameProperty = new SimpleStringProperty(user.getLastName());
 		lockedProperty = new SimpleBooleanProperty(user.isLocked());
-	
+
 	}
 
 	public User toUserModel() {

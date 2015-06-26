@@ -46,7 +46,7 @@ public class ManageUserDialog extends ManageEntityDialog<UserViewModel> {
 	@Override
 	protected void saveCommand() {
 		if (validate()) {
-			//Saves the entity
+			// Saves the entity
 			UserService.getInstance().saveOrUpdate(viewModel.toUserModel());
 			dialogStage.close();
 		}
@@ -54,6 +54,7 @@ public class ManageUserDialog extends ManageEntityDialog<UserViewModel> {
 
 	/***
 	 * Static method for showing the dialog
+	 * 
 	 * @param owner
 	 * @param model
 	 * @return

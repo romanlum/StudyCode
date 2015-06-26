@@ -15,18 +15,18 @@ import at.lumetsnet.caas.rmi.interfaces.RemoteOrderService;
 
 /***
  * Order service impl using jdbc
+ * 
  * @author romanlum
  *
  */
-public class OrderServiceImpl extends ServiceImpl implements RemoteOrderService{
+public class OrderServiceImpl extends ServiceImpl implements RemoteOrderService {
 	private OrderDao orderDao;
-	private MenuDao menuDao;  
+	private MenuDao menuDao;
 	private UserDao userDao;
-	
-	
+
 	public OrderServiceImpl() {
 		orderDao = new OrderDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD);
-		menuDao = new MenuDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD); 
+		menuDao = new MenuDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD);
 		userDao = new UserDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD);
 	}
 
@@ -40,6 +40,5 @@ public class OrderServiceImpl extends ServiceImpl implements RemoteOrderService{
 		});
 		return result;
 	}
-	
-	
+
 }

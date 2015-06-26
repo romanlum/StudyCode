@@ -2,6 +2,7 @@ package at.lumetsnet.caas.rmi.impl;
 
 /***
  * Base class for all service impls
+ * 
  * @author romanlum
  *
  */

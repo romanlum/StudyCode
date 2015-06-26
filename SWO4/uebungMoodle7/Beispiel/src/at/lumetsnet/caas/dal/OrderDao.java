@@ -6,7 +6,8 @@ import java.util.Collection;
 import at.lumetsnet.caas.model.Order;
 
 /***
- * Order dao 
+ * Order dao
+ * 
  * @author romanlum
  *
  */
@@ -15,6 +16,7 @@ public interface OrderDao extends GenericDao<Order> {
 
 	/***
 	 * Gets the orders by date
+	 * 
 	 * @param date
 	 * @return
 	 */

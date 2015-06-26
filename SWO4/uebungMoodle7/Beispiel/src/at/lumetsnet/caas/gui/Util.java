@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 
 /***
  * Common gui utils
+ * 
  * @author romanlum
  *
  */
@@ -23,6 +24,7 @@ public class Util {
 
 	/***
 	 * Creates a form label
+	 * 
 	 * @param text
 	 * @return
 	 */
@@ -35,6 +37,7 @@ public class Util {
 
 	/***
 	 * Creates a text field form and label
+	 * 
 	 * @param text
 	 * @param property
 	 * @return
@@ -54,6 +57,7 @@ public class Util {
 
 	/***
 	 * Creates a password form field and label
+	 * 
 	 * @param text
 	 * @param property
 	 * @return
@@ -73,6 +77,7 @@ public class Util {
 
 	/***
 	 * Creates a combo box form and label
+	 * 
 	 * @param text
 	 * @param property
 	 * @param data

@@ -9,8 +9,9 @@ import at.lumetsnet.caas.viewmodel.OrderViewModel;
 import at.lumetsnet.caas.viewmodel.OrdersPageViewModel;
 
 /***
- * View page used for showing the orders
- * Uses a OrdersPageViewModel for business logic operations
+ * View page used for showing the orders Uses a OrdersPageViewModel for business
+ * logic operations
+ * 
  * @author romanlum
  *
  */
@@ -63,7 +64,7 @@ public class OrdersPage extends VBox implements Showable {
 		column.setCellValueFactory(x -> x.getValue().getCommentProperty());
 
 		table.getColumns().add(column);
-		
+
 		return table;
 	}
 

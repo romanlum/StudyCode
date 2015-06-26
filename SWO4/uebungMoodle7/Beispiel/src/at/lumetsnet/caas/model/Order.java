@@ -4,21 +4,21 @@ import java.time.LocalDateTime;
 
 /***
  * Order data entity
+ * 
  * @author romanlum
  *
  */
 
 public class Order extends Entity {
 
-		/**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -9188235335595584261L;
-		private Menu menu;
-		private User user;
-		private LocalDateTime time;
-		private String comment;
-		
+	private Menu menu;
+	private User user;
+	private LocalDateTime time;
+	private String comment;
 
 	public Order() {
 	}
@@ -107,7 +107,8 @@ public class Order extends Entity {
 	}
 
 	/**
-	 * @param menuId the menuId to set
+	 * @param menuId
+	 *            the menuId to set
 	 */
 	public void setMenuId(long menuId) {
 		this.menu = new Menu();
@@ -122,13 +123,12 @@ public class Order extends Entity {
 	}
 
 	/**
-	 * @param userId the userId to set
+	 * @param userId
+	 *            the userId to set
 	 */
 	public void setUserId(long userId) {
 		this.user = new User();
 		this.user.setId(userId);
 	}
-	
-	
 
 }

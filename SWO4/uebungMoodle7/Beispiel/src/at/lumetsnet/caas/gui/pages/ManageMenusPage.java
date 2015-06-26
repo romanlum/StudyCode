@@ -19,8 +19,9 @@ import at.lumetsnet.caas.viewmodel.MenuCategoryViewModel;
 import at.lumetsnet.caas.viewmodel.MenuViewModel;
 
 /***
- * View page used for managing menus
- * Uses a ManageMenusPageViewModel for business logic operations
+ * View page used for managing menus Uses a ManageMenusPageViewModel for
+ * business logic operations
+ * 
  * @author romanlum
  *
  */

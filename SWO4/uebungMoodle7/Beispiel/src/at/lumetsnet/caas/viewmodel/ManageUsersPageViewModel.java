@@ -9,6 +9,7 @@ import at.lumetsnet.caas.model.User;
 
 /***
  * ViewModel (logic) class for ManageUsersPage
+ * 
  * @author romanlum
  *
  */

@@ -2,6 +2,7 @@ package at.lumetsnet.caas.model;
 
 /***
  * MenuCategory data entity
+ * 
  * @author romanlum
  *
  */

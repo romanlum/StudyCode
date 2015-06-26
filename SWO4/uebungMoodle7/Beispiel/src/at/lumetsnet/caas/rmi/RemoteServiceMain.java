@@ -10,12 +10,10 @@ import java.rmi.server.UnicastRemoteObject;
 import at.lumetsnet.caas.rmi.impl.MenuServiceImpl;
 import at.lumetsnet.caas.rmi.impl.OrderServiceImpl;
 import at.lumetsnet.caas.rmi.impl.UserServiceImpl;
-import at.lumetsnet.caas.rmi.interfaces.RemoteMenuService;
-import at.lumetsnet.caas.rmi.interfaces.RemoteOrderService;
-import at.lumetsnet.caas.rmi.interfaces.RemoteUserService;
 
 /***
  * Rmi remote service class
+ * 
  * @author romanlum
  *
  */
@@ -24,10 +22,10 @@ public class RemoteServiceMain {
 	public static void main(String[] args) {
 		try {
 			String host = "localhost:1099";
-			if(args.length == 1) {
+			if (args.length == 1) {
 				host = args[0];
 			}
-			
+
 			LocateRegistry.createRegistry(getPort(host));
 			registerSerice(new UserServiceImpl(), host, "CaasUserService");
 			registerSerice(new MenuServiceImpl(), host, "CaasMenuService");
@@ -39,9 +37,10 @@ public class RemoteServiceMain {
 		}
 
 	}
-	
+
 	/***
 	 * Creates and exports the service
+	 * 
 	 * @param remote
 	 * @param host
 	 * @param name
@@ -49,19 +48,20 @@ public class RemoteServiceMain {
 	public static void registerSerice(Remote remote, String host, String name) {
 		Remote serviceStub;
 		try {
-			serviceStub = UnicastRemoteObject.exportObject(remote,0);
-			Naming.rebind("rmi://" + host + "/"+name,serviceStub);
-			System.out.println(name+" available on port " + "rmi://" + host + "/"+name);
+			serviceStub = UnicastRemoteObject.exportObject(remote, 0);
+			Naming.rebind("rmi://" + host + "/" + name, serviceStub);
+			System.out.println(name + " available on port " + "rmi://" + host
+					+ "/" + name);
 		} catch (RemoteException | MalformedURLException e) {
-			System.out.println("Could not register service "+name);
+			System.out.println("Could not register service " + name);
 			e.printStackTrace();
-		} 
-		
+		}
+
 	}
-	
+
 	/***
-	 * Gets the port from host:port string
-	 * Defaults to 1099 (RMI default port)
+	 * Gets the port from host:port string Defaults to 1099 (RMI default port)
+	 * 
 	 * @param hostPort
 	 * @return
 	 */
@@ -74,5 +74,4 @@ public class RemoteServiceMain {
 		}
 	}
 
-	
 }

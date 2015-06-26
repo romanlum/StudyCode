@@ -6,9 +6,9 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 
 /***
- * Own dialog class used because 
- * javafx does not have dialogs before update 40
+ * Own dialog class used because javafx does not have dialogs before update 40
  * :(
+ * 
  * @author romanlum
  *
  */

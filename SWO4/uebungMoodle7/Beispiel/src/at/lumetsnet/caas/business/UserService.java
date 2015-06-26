@@ -7,22 +7,23 @@ import at.lumetsnet.caas.model.User;
 import at.lumetsnet.caas.rmi.interfaces.RemoteUserService;
 
 /***
- * Mock user business logic class
- * Used as singleton, should be replaced with 
+ * Mock user business logic class Used as singleton, should be replaced with
  * real logic class
+ * 
  * @author romanlum
  *
  */
-public class UserService extends RmiService<RemoteUserService>  {
-	
+public class UserService extends RmiService<RemoteUserService> {
+
 	private static UserService instance = null;
+
 	private UserService() {
 		super("CaasUserService");
 	}
 
 	/**
-     * Singleton instance class
-     */
+	 * Singleton instance class
+	 */
 	public static UserService getInstance() {
 		if (instance == null) {
 			instance = new UserService();
@@ -32,9 +33,10 @@ public class UserService extends RmiService<RemoteUserService>  {
 
 	/***
 	 * Fetches all users
+	 * 
 	 * @return
 	 */
-	public Collection<User> getAllUsers(){
+	public Collection<User> getAllUsers() {
 		try {
 			return service.getAllUsers();
 		} catch (RemoteException e) {
@@ -45,9 +47,10 @@ public class UserService extends RmiService<RemoteUserService>  {
 
 	/***
 	 * delete the user
+	 * 
 	 * @param id
 	 */
-	public void deleteUser(long id){
+	public void deleteUser(long id) {
 		try {
 			service.deleteUser(id);
 		} catch (RemoteException e) {
@@ -57,6 +60,7 @@ public class UserService extends RmiService<RemoteUserService>  {
 
 	/***
 	 * Toggles the locked state of a user
+	 * 
 	 * @param id
 	 */
 	public void toggleLockState(long id) {
@@ -69,6 +73,7 @@ public class UserService extends RmiService<RemoteUserService>  {
 
 	/***
 	 * Saves or adds the user
+	 * 
 	 * @param userModel
 	 */
 	public void saveOrUpdate(User userModel) {

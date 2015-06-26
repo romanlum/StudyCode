@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /***
  * user data entity
+ * 
  * @author romanlum
  *
  */
@@ -14,7 +15,7 @@ public class User extends Entity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -9121752719148285484L;
-	
+
 	private String userName;
 	private String password;
 	private String firstName;

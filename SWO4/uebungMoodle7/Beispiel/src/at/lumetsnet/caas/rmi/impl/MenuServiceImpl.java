@@ -12,21 +12,24 @@ import at.lumetsnet.caas.rmi.interfaces.RemoteMenuService;
 
 /***
  * MenuService impl using jdbc
+ * 
  * @author romanlum
  *
  */
 public class MenuServiceImpl extends ServiceImpl implements RemoteMenuService {
-	
+
 	private MenuDao menuDao;
 	private MenuCategoryDao categoryDao;
-	
+
 	public MenuServiceImpl() {
 		menuDao = new MenuDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD);
-		categoryDao = new MenuCategoryDaoJdbc(CONNECTION_STRING, USER_NAME, PASSWORD);
+		categoryDao = new MenuCategoryDaoJdbc(CONNECTION_STRING, USER_NAME,
+				PASSWORD);
 	}
-	
+
 	/***
 	 * Fetches all categories
+	 * 
 	 * @return
 	 */
 	public Collection<MenuCategory> getAllCategories() {
@@ -35,16 +38,16 @@ public class MenuServiceImpl extends ServiceImpl implements RemoteMenuService {
 
 	/***
 	 * Deletes the category with the given id
+	 * 
 	 * @param id
 	 */
 	public void deleteCategory(long id) {
 		categoryDao.delete(id);
 	}
-	
-	
 
 	/***
 	 * Deletes the menu with the given id
+	 * 
 	 * @param id
 	 */
 	public void deleteMenu(long id) {
@@ -53,6 +56,7 @@ public class MenuServiceImpl extends ServiceImpl implements RemoteMenuService {
 
 	/***
 	 * Saves or adds the category
+	 * 
 	 * @param data
 	 */
 	public void saveOrUpdateCategory(MenuCategory data) {
@@ -61,6 +65,7 @@ public class MenuServiceImpl extends ServiceImpl implements RemoteMenuService {
 
 	/***
 	 * Saves or adds the menu
+	 * 
 	 * @param data
 	 */
 	public void saveOrUpdateMenu(Menu data) {
@@ -69,6 +74,7 @@ public class MenuServiceImpl extends ServiceImpl implements RemoteMenuService {
 
 	/***
 	 * Fetches all menus
+	 * 
 	 * @return
 	 */
 	public Collection<Menu> getAllMenus() {
@@ -77,6 +83,6 @@ public class MenuServiceImpl extends ServiceImpl implements RemoteMenuService {
 			x.setCategory(categoryDao.get(x.getCategoryId()));
 		});
 		return data;
-		
+
 	}
 }

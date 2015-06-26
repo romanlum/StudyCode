@@ -14,6 +14,7 @@ import javafx.stage.Window;
 
 /***
  * Dialog base class used for all dialogs
+ * 
  * @author romanlum
  *
  */
@@ -74,6 +75,7 @@ public abstract class Dialog {
 
 	/***
 	 * Content used for the dialog
+	 * 
 	 * @return
 	 */
 	protected abstract Node createContentPane();

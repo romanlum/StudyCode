@@ -3,7 +3,8 @@ package at.lumetsnet.caas.dal;
 import at.lumetsnet.caas.model.MenuCategory;
 
 /***
- * MenuCategory dao 
+ * MenuCategory dao
+ * 
  * @author romanlum
  *
  */

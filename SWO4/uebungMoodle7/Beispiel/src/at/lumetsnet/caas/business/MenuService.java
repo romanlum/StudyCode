@@ -8,23 +8,23 @@ import at.lumetsnet.caas.model.MenuCategory;
 import at.lumetsnet.caas.rmi.interfaces.RemoteMenuService;
 
 /***
- * Mock menu business logic class
- * Used as singleton, should be replaced with 
+ * Mock menu business logic class Used as singleton, should be replaced with
  * real logic class
+ * 
  * @author romanlum
  *
  */
 public class MenuService extends RmiService<RemoteMenuService> {
 
-	
 	private static MenuService instance = null;
-	
+
 	private MenuService() {
 		super("CaasMenuService");
 	}
 
 	/***
 	 * Singleton instance class
+	 * 
 	 * @return
 	 */
 	public static MenuService getInstance() {
@@ -36,6 +36,7 @@ public class MenuService extends RmiService<RemoteMenuService> {
 
 	/***
 	 * Fetches all categories
+	 * 
 	 * @return
 	 */
 	public Collection<MenuCategory> getAllCategories() {
@@ -49,6 +50,7 @@ public class MenuService extends RmiService<RemoteMenuService> {
 
 	/***
 	 * Deletes the category with the given id
+	 * 
 	 * @param id
 	 */
 	public void deleteCategory(long id) {
@@ -56,37 +58,39 @@ public class MenuService extends RmiService<RemoteMenuService> {
 			service.deleteCategory(id);
 		} catch (RemoteException e) {
 			e.printStackTrace();
-		};
+		}
+		;
 	}
-	
-	
 
 	/***
 	 * Deletes the menu with the given id
+	 * 
 	 * @param id
 	 */
 	public void deleteMenu(long id) {
 		try {
 			service.deleteMenu(id);
-		} catch (RemoteException e) { 
+		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
 
 	/***
 	 * Saves or adds the category
+	 * 
 	 * @param data
 	 */
 	public void saveOrUpdateCategory(MenuCategory data) {
 		try {
 			service.saveOrUpdateCategory(data);
-		} catch (RemoteException e) {			
+		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
 
 	/***
 	 * Saves or adds the menu
+	 * 
 	 * @param data
 	 */
 	public void saveOrUpdateMenu(Menu data) {
@@ -99,6 +103,7 @@ public class MenuService extends RmiService<RemoteMenuService> {
 
 	/***
 	 * Fetches all menus
+	 * 
 	 * @return
 	 */
 	public Collection<Menu> getAllMenus() {

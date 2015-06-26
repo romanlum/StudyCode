@@ -10,6 +10,7 @@ import at.lumetsnet.caas.viewmodel.MenuCategoryViewModel;
 
 /***
  * Edit/Add dialog for MenuCategories
+ * 
  * @author romanlum
  *
  */
@@ -43,7 +44,7 @@ public class ManageMenuCategoryDialog extends
 	@Override
 	protected void saveCommand() {
 		if (validate()) {
-			//Saves the entity
+			// Saves the entity
 			MenuService.getInstance().saveOrUpdateCategory(
 					viewModel.toCategoryModel());
 			dialogStage.close();
@@ -53,6 +54,7 @@ public class ManageMenuCategoryDialog extends
 
 	/***
 	 * Static method for showing the dialog
+	 * 
 	 * @param owner
 	 * @param model
 	 * @return

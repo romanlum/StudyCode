@@ -16,8 +16,9 @@ import at.lumetsnet.caas.viewmodel.ManageUsersPageViewModel;
 import at.lumetsnet.caas.viewmodel.UserViewModel;
 
 /***
- * View page used for managing users
- * Uses a ManageUsersPageViewModel for business logic operations
+ * View page used for managing users Uses a ManageUsersPageViewModel for
+ * business logic operations
+ * 
  * @author romanlum
  *
  */
@@ -105,7 +106,7 @@ public class ManageUsersPage extends VBox implements Showable {
 				.filter(x -> x.getIdProperty().get() == (long) id).findFirst();
 
 		if (model.isPresent()) {
-			//call edit dialog
+			// call edit dialog
 			boolean result = ManageUserDialog.show(getScene().getWindow(),
 					model.get().toUserModel());
 			if (!result) {
@@ -115,7 +116,7 @@ public class ManageUsersPage extends VBox implements Showable {
 	}
 
 	private void addUserCommand() {
-		//call add dialog
+		// call add dialog
 		boolean result = ManageUserDialog.show(getScene().getWindow(), null);
 		if (!result) {
 			viewModel.update();

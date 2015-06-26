@@ -9,6 +9,7 @@ import at.lumetsnet.caas.model.Order;
 
 /***
  * ViewModel (logic) class for OrdersPage
+ * 
  * @author romanlum
  *
  */

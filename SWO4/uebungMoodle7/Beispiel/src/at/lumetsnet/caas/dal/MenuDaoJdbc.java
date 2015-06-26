@@ -5,7 +5,8 @@ import java.util.Collection;
 import at.lumetsnet.caas.model.Menu;
 
 /***
- * Menu dao jdbc impl 
+ * Menu dao jdbc impl
+ * 
  * @author romanlum
  *
  */

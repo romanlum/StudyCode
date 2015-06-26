@@ -7,9 +7,9 @@ import at.lumetsnet.caas.model.Order;
 import at.lumetsnet.caas.rmi.interfaces.RemoteOrderService;
 
 /***
- * Mock order business logic class
- * Used as singleton, should be replaced with 
+ * Mock order business logic class Used as singleton, should be replaced with
  * real logic class
+ * 
  * @author romanlum
  *
  */
@@ -23,8 +23,8 @@ public class OrderService extends RmiService<RemoteOrderService> {
 	}
 
 	/**
-     * singleton instance 
-     */
+	 * singleton instance
+	 */
 	public static OrderService getInstance() {
 		if (instance == null) {
 			instance = new OrderService();
@@ -34,6 +34,7 @@ public class OrderService extends RmiService<RemoteOrderService> {
 
 	/***
 	 * Fetches the orders of today
+	 * 
 	 * @return
 	 */
 	public Collection<Order> getTodaysOrders() {

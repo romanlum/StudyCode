@@ -1,8 +1,8 @@
 package at.lumetsnet.caas.gui.pages;
 
 /***
- * Simple interface used for marking pages 
- * as showable
+ * Simple interface used for marking pages as showable
+ * 
  * @author romanlum
  *
  */
