@@ -1,0 +1,5 @@
+D:\Studium\Code\SWK5\uebung02\HashDictionary\HashDictionary\bin\Debug\HashDictionary.dll
+D:\Studium\Code\SWK5\uebung02\HashDictionary\HashDictionary\bin\Debug\HashDictionary.pdb
+D:\Studium\Code\SWK5\uebung02\HashDictionary\HashDictionary\obj\Debug\HashDictionary.csprojResolveAssemblyReference.cache
+D:\Studium\Code\SWK5\uebung02\HashDictionary\HashDictionary\obj\Debug\HashDictionary.dll
+D:\Studium\Code\SWK5\uebung02\HashDictionary\HashDictionary\obj\Debug\HashDictionary.pdb

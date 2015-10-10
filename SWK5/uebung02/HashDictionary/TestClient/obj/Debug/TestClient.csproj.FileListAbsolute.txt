@@ -1,0 +1,8 @@
+D:\Studium\Code\SWK5\uebung02\HashDictionary\TestClient\bin\Debug\TestClient.exe.config
+D:\Studium\Code\SWK5\uebung02\HashDictionary\TestClient\bin\Debug\TestClient.exe
+D:\Studium\Code\SWK5\uebung02\HashDictionary\TestClient\bin\Debug\TestClient.pdb
+D:\Studium\Code\SWK5\uebung02\HashDictionary\TestClient\bin\Debug\HashDictionary.dll
+D:\Studium\Code\SWK5\uebung02\HashDictionary\TestClient\bin\Debug\HashDictionary.pdb
+D:\Studium\Code\SWK5\uebung02\HashDictionary\TestClient\obj\Debug\TestClient.csprojResolveAssemblyReference.cache
+D:\Studium\Code\SWK5\uebung02\HashDictionary\TestClient\obj\Debug\TestClient.exe
+D:\Studium\Code\SWK5\uebung02\HashDictionary\TestClient\obj\Debug\TestClient.pdb
