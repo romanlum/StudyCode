@@ -1,0 +1,87 @@
+#include <assert.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "list_adt.h"
+
+typedef struct Node {
+  struct Node *next;
+  int value;
+} Node;
+
+struct List {
+  Node *first;
+  int n;
+};
+
+static Node* createNode(int value) {
+  Node *n = (Node*) malloc(sizeof(Node));
+  if (n == NULL) {
+    return NULL;
+  }
+  
+  n->next = NULL; /* equal to (*n).next = NULL */
+  n->value = value;
+  return n;
+}
+
+List* createList() {
+  List *l = (List*) malloc (sizeof(List));
+  if (l == NULL) return NULL;
+  
+  l->first = NULL;
+  l->n = 0;
+  return l;
+}
+
+bool prepend(List *l, int value) {
+  Node *newNode = createNode(value);
+  assert (l != NULL);
+  
+  if (newNode == NULL) {
+    return false;
+  }
+  newNode->next = l->first;
+  l->first = newNode;
+  l->n++;
+  return true;
+}
+
+void printList(List* l) {
+  Node *n;
+  assert( l!= NULL);
+  n = l->first;
+  while (n != NULL) {
+    printf("%d ", n->value);
+    if (n->next != NULL)
+      printf(", ");
+    n = n->next;
+  }
+  printf("\n"); 
+}
+
+void destroy(List **l) {
+  Node *current, *next;
+  assert (*l != NULL );
+ 
+  current = (*l)->first;
+  while (current != NULL) {
+    next = current->next;
+    free (current);
+    current = next;
+  }
+  free(*l);
+  l = NULL;
+  
+}
+
+void forEach(List *l, Visitor v) {
+  Node *current;
+  assert (l != NULL);
+  assert (v != NULL);
+  
+  current = l->first;
+  while (current != NULL) {
+    v(current->value);
+    current = current->next;
+  }
+}

@@ -1,0 +1,160 @@
+\input{master.tex}
+
+\ihead{SWO3 WS 2014/15 - Übung 04}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Aufgabe 1 - Stdlib / Find }
+\subsection{Lösungsidee}
+Es müssen alle Dateien und Verzeichnisse rekursiv durchlaufen werden und für jede reguläre Datei muss ein Funktionszeiger aufgerufen werden. 
+Dieser implementiert dann eine spezielle Funktion.
+
+\subsubsection{a) walkDir}
+Die erste Aufgabe implementiert die rekursive Funktion, um alle Dateien zu finden und den Funktionszeiger aufzurufen.
+Diese läuft über alle Dateien und Verzeichnisse in dem übergebenen Pfad.
+\begin{itemize}
+\item Wird ein Verzeichnis gefunden, wird die Funktion wieder rekursiv mit dem neuen Verzeichnis aufgerufen.
+\item Wird eine \textbf{reguläre} Datei gefunden, dann werden die Dateistati ausgelesen und der Funktionszeiger aufgerufen.
+\end{itemize} 
+
+\textbf{Folgende Funktionen der Standardbibliothek werden benötigt:}
+\begin{itemize}
+\item opendir/closedir: Öffnet/Schließt ein Verzeichnis um alle Dateien/Ordner auszulesen.\newline
+Liefert einen Zeiger auf das Verzeichnis, oder NULL, wenn ein Fehler aufgetreten ist.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  DIR *opendir(const char *name);
+  int closedir(DIR *dirp);
+\end{minted}
+ 
+\item readdir: Liefert den nächsten Verzeichniseintrag eines mit opendir geöffneten Verzeichnisses.\newline
+Liefert \textit{NULL}, wenn das Ende erreicht wurde oder ein Fehler aufgetreten ist.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  struct dirent *readdir(DIR *dirp);
+\end{minted}
+
+\item lstat: Liefert die Dateistati für die angegebe Datei.\newline
+Liefert \textit{0} bei Erfolg, \textit{-1} bei einem Fehler.\newline
+\textit{buf} enthält die Dateistati, die dann mit den definierten Makros \textit{S\_*} ausgewertet werden können.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+/* needs _XOPEN_SOURCE >= 700 */
+  int lstat(const char *path, struct stat *buf);
+\end{minted}
+\end{itemize} 
+
+\subsubsection{b) Auswahl der Funktion}
+Im Hauptprogramm müssen die Parameter ausgewertet werden, um die korrekte Funktion festlegen zu können.\newline
+Die Funktion walkDir muss um optionale Parameter \(StdArg\) erweitert werden. \newline
+\textbf{Anmerkung:} Bei der Umsetztung wurde auf eine möglichst generische Schnittstelle geachtet, die es erlaubt, neue Visitors zu implementieren, ohne die Methode \textit{walkDir} ändern zu müssen.\newline
+Die Übergabe der generischen Parameter wird mit dem Datentyp \textit{va\_list} implementiert, somit können beliebige Datentypen and die Visitor Funktion übergeben werden.
+\textbf{Folgende Funktionen der Standardbibliothek werden benötigt:}
+\begin{itemize}
+\item va\_start: Initialisiert die Liste mit den optionalen Parametern. (Makro) 
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  void va_start(va_list ap, last);
+\end{minted}
+\item va\_end: Gibt die Liste mit den optionalen Parametern wieder frei.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  void va_end(va_list ap);
+\end{minted}
+\item va\_arg: Gibt den nächsten Parameter als \textit{type} zurück.\newline
+\textbf{Achtung:} Der Datentyp wird nicht konvertiert und muss genau übereinstimmen, sonst ist das Ergebnis undefiniert.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  type va_arg(va_list ap, type);
+
+\end{minted}
+\end{itemize} 
+
+\subsubsection{c) print}
+Hier muss eine neue Funktion, die dem Funktionsmuster \textit{Visitor} folgt, implementiert werden. \newline
+Diese wertet die Dateistati aus und gibt sie formatiert aus.\newline
+Die Zugriffsrechte werden über den Wert \textit{st\_mode} ausgelesen.\newline
+Die Zeit wird über den Wert st\_mtime ausgelesen.\newline
+\line(1,0){450}\newline
+\textbf{Wichtig:} Das im Code vorhandene \textbf{\#Pragma} wird bewusst verwendet, um keine Warnings beim kompilieren zu bekommen, da nicht alle Parameter verwendet werden.\newline
+\line(1,0){450}\newline
+\textbf{Folgende Funktionen der Standardbibliothek werden benötigt:}
+\begin{itemize}
+\item localtime: Wandelt die übergebene Zeit in die Datenstruktur \textit{struct tm} um und konvertiert sie dabei in die aktuelle Zeitzone des Users.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  struct tm *localtime(const time_t *timep);
+\end{minted}
+
+\item strftime: Formatiert die angegebene Zeit und liefert sie als Zeichenkette zurück.\newline
+Für die Formatierung wird hier \textbf{\%c} verwendet. Dies formatiert das Datum/Zeit in das im Benutzerprofil definierten Format.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  size_t strftime(char *s, size_t max, const char *format,
+                       const struct tm *tm);
+\end{minted}
+\end{itemize} 
+
+\subsubsection{d) grep}
+Hier muss eine neue Funktion, die dem Funktionsmuster \textit{Visitor} folgt, implementiert werden. \newline
+Diese benötigt einen weiteren Parameter, der über das StdArg Interface abgerufen werden kann.\newline
+\newline
+Die Funktion öffnet dann die Datei, ließt sie zeilenweise aus und sucht nach der übergebenen Zeichenkette.\newline
+Wird die Zeichenkette gefunden, wird die Zeile ausgegeben.\newline
+\line(1,0){450}\newline
+\textbf{Wichtig:} Das im Code vorhandene \textbf{\#Pragma} wird bewusst verwendet, um keine Warnings beim kompilieren zu bekommen, da nicht alle Parameter verwendet werden.\newline
+\line(1,0){450}\newline
+
+\textbf{Folgende Funktionen der Standardbibliothek werden benötigt:}
+\newline
+\begin{itemize}
+\item fopen/fclose: Öffnet/Schließt eine Datei. Dabei kann mit dem Parameter \textit{mode} angegeben werden, ob sie zum Lesen oder Schreiben geöffnet werden soll.\newline
+Die Funktion liefert einen Zeiger auf die Datei, oder NULL, wenn sie nicht geöffnet werden konnte.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  FILE *fopen(const char *path, const char *mode);
+	int fclose(FILE *fp);
+\end{minted}
+
+\item getline: Liest eine Zeile einer Datei aus und gibt diese im Parameter \textbf{lineptr} zurück.\newline
+Dabei wird der benötigte Speicherplatz für die Zeichenkette automatisch allokiert, sofern \textit{*lineptr} NULL ist.\newline
+\textbf{Wichtig:} Der allokierte Speicherplatz muss wieder freigegeben werden.\newline
+Die Funktion liefert \textit{-1}, wenn das Ende der Datei erreicht ist oder ein Fehler auftritt.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  /* needs _XOPEN_SOURCE >= 500 */
+  ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+\end{minted}
+\end{itemize} 
+
+\pagebreak
+\subsection{Sourcecode}
+\ccode{../Beispiel/find.c}
+\subsection{Testfälle}
+
+
+\subsubsection{Testfall 1 - Ungültige Parameter}
+\includegraphics[width=400px, clip=true,trim=0px 200px 0px 0px]{../screenshots/1.png}
+
+\subsubsection{Testfall 2 - Ungültiges Verzeichnis}
+\includegraphics[width=400px, clip=true,trim=0px 500px 0px 0px]{../screenshots/2.png}
+
+\subsubsection{Testfall 3 - Funktion print}
+\includegraphics[width=400px, clip=true,trim=0px 100px 0px 0px]{../screenshots/3.png}
+
+\subsubsection{Testfall 4 - Valgrind Funktion print}
+Prüft, ob der allokierte Speicher wieder freigegeben wurde.\newline
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../screenshots/5.png}
+
+\subsubsection{Testfall 5 - Funktion grep}
+\includegraphics[width=400px, clip=true,trim=0px 700px 0px 0px]{../screenshots/6.png}
+
+\subsubsection{Testfall 6 - Funktion grep (mehr Fundstellen)}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../screenshots/7.png}
+
+\subsubsection{Testfall 7 - Valgrind Funktion grep}
+Prüft, ob der allokierte Speicher wieder freigegeben wurde.\newline
+\includegraphics[width=400px, clip=true,trim=0px 200px 0px 0px]{../screenshots/8.png}
+
+\end{document}

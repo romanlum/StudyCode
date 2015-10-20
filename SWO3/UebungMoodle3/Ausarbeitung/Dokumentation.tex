@@ -1,0 +1,160 @@
+\input{master.tex}
+
+\ihead{SWO3 WS 2014/15 - Übung 03}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Aufgabe 1 - Repräsentation von gewichteten Graphen}
+\subsection{Lösungsidee}
+Zu Beginn muss das Interface \textit{dg\_adt.h} definiert werden. Dabei wird die Schnittstelle der Angabe verwendet.
+Wichtig ist hier, dass der Type \textit{graph} deklariert wird, ohne eine konkrete interne Struktur vorzugeben.\newline
+\textbf{In diesem Beispiel werden als Knotennamen 1 - n verwendet, wobei intern die Speicherung mit Index 0 erfolgt.}
+\subsubsection{Adjazenzmatrix}
+Beim diesem Beispiel wird der Graph als Adjazenzmatrix implementiert. \newline
+Eine Adjazenzmatrix ist eine Matrix mit n * n Elementen. Dabei wird für jede mögliche Kombination das Gewicht der Kante gespeichert. \newline
+Ist das Gewicht Null, dann existiert keine Kante zwischen den Knoten.
+\begin{itemize}
+\item Beim Einfügen einer Kante wird einfach das Gewicht an die richtige Stelle der Matrix geschrieben.
+\item Beim Löschen wird der Wert wieder auf Null gesetzt.
+\end{itemize} 
+\textbf{Speicherverwaltung}\newline
+Beim Erstellen des Graphen wird die gesamte Matrix allokiert, beim Löschen wird sie wieder freigegeben.
+
+\subsubsection{Adjazenzliste}
+Bei dieser Variante der Speicherung eines Graphen wird ein Array verwendet, welches für jeden Knoten eine Liste der Kanten bereitstellt. \newline
+Die Implementierung verwendet eine einfach verkette Liste.
+
+\begin{itemize}
+\item Beim Einfügen einer Kante wird ein neues Element in die Liste des Ausgangsknoten eingefügt
+\item Beim Löschen wird das Element der Liste wieder entfernt
+\end{itemize}
+\textbf{Speicherverwaltung}\newline
+Beim Erstellen des Graphen wird nur das Array mit den Zeigern auf die Liste allokiert.  
+\begin{itemize}
+\item Wird ein Element eingefügt, wird ein neues Listenelement allokiert und in die Liste eingefügt.
+\item Beim Löschen einer Kante muss das Element gesucht, die Verkettung der Liste aktualisiert und das Element freigegeben werden.
+\item Beim Löschen des Graphen müssen zuerst die Listenelemente, dann das Array der Knoten und dann der Graph selbst freigegeben werden.
+\end{itemize}
+
+
+\pagebreak
+\subsection{Sourcecode}
+\subsubsection{Makefile}
+In der Abgabe Zip Datei ist ein Makefile enthalten, dass für jede Implementierung ein Target enthält.
+\begin{itemize}
+\item Target graphm: Erstellt das Programm \textbf{graphm}, das als Implementierung die Adjazenzmatrix (dg\_adt\_m.o) verwendet
+\item Target graphl: Erstellt das Programm \textbf{graphl}, das als Implementierung die Adjazenzliste (dg\_adt\_l.o) verwendet
+\end{itemize}
+\ccode{../beispiel1/dg_adt.h}
+\ccode{../beispiel1/dg_adt_m.c}
+\ccode{../beispiel1/dg_adt_l.c}
+\ccode{../beispiel1/graph.c}
+\subsection{Testfälle}
+
+
+\subsubsection{Testfall 1 - Adjazenzmatrix}
+\begin{itemize}
+\item Erzeugen eines Graphen mit 6 Knoten
+\item Ausgeben des leeren Graphen
+\item Hinzufügen aller Kanten des Angabenbeispiels
+\item Überschreiben einer Kante mit einem anderen Gewicht
+\item Ausgeben des Graphen
+\item Löschen einiger Kanten
+\item Ausgeben des Graphen
+\item Freigeben des Graphen
+\end{itemize}
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel1/1.png}
+
+\subsubsection{Testfall 2 - Adjazenzmatrix - Valgrind}
+Gleiche Operationen wie in Testfall 1, nur diesmal mit valgrind (Memory Leak Detector) ausgeführt, um zu zeigen, dass der Speicher wieder korrekt freigeben wird. \newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel1/2.png}
+
+\subsubsection{Testfall 3 - Adjazenzliste}
+Gleiche Operationen wie in Testfall 1, nur diesmal mit der Listenimplementierung\newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel1/3.png}
+
+\subsubsection{Testfall 4 - Adjazenzliste - Valgrind}
+Gleiche Operationen wie in Testfall 3, nur diesmal mit valgrind (Memory Leak Detector) ausgeführt, um zu zeigen, dass der Speicher wieder korrekt freigeben wird. \newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel1/4.png}
+
+\section{Aufgabe 2 - Graphenalgorithmen}
+\subsection{Lösungsidee}
+Um die benötigten Algorithmen umzusetzen werden 2 neue Methoden benötigt
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+/* gets the count of vertices */
+int getVerticesCount(Graph *g);
+
+/* gets the weight of the edge between source and target
+returns 0 if there is no edge
+source and target are starting with 1 */
+double getEdgeWeight(Graph *g, int source, int target); 
+\end{minted}
+Mit diesen Methoden können dann in einer Schleife alle Knoten durchlaufen und die Kanten geprüft werden.
+
+\subsubsection{invert}
+Um den Graphen zu invertieren, muss zuerst ein neuer Graph mit der korrekten Anzahl an Knoten angelegt werden.\newline
+Dann müssen alle Knoten in einer verschachtelten Schleife durchlaufen werden
+\begin{itemize}
+\item Gibt es eine Kante muss in den neuen Graph eine Kante in umgekehrter Richtung eingefügt werden.
+\end{itemize}
+\subsubsection{isReflexive}
+Ein Graph ist reflexiv, wenn jeder Knoten eine Kante auf sich selbst hat.\newline
+D.h. alle Knoten durchlaufen und prüfen, ob eine Kante zu sich selbst existiert.
+
+\subsubsection{isSymmetric}
+Ein Graph ist symmetrisch, wenn jede Kante in beiden Richtungen vorhanden ist.\newline
+D.h. alle Kanten durchlaufen und prüfen, ob auch die Kante in umgekehrter Richtung existiert.
+
+\subsubsection{isAsymmetric}
+Ein Graph ist asymmetrisch, wenn jede Kante nur in einer Richtungen vorhanden ist.\newline
+D.h. alle Kanten durchlaufen und prüfen, dass keine Kante in umgekehrter Richtung existiert.
+
+
+\subsubsection{isTransitivev}
+Ein Graph ist transitiv, wenn jeder Knoten, der über einen anderen Knoten erreichbar ist, auch eine direkte Kante hat.\newline
+D.h. alle Knoten und deren Pfade durchlaufen und prüfen ob auch eine direkte Verbindung vom Ausgangsknoten existiert.
+
+\subsubsection{printGraphProperties}
+Wendet die oben angeführten Funktionen auf den Graph an und gibt die Ergebnisse aus.
+	
+\subsection{Sourcecode}
+\subsubsection{Makefile}
+In der Abgabe Zip Datei ist ein Makefile enthalten, dass für jede Implementierung ein Target enthält.
+\begin{itemize}
+\item Target graphm: Erstellt das Programm \textbf{graphm}, das als Implementierung die Adjazenzmatrix (dg\_adt\_m.o) verwendet
+\item Target graphl: Erstellt das Programm \textbf{graphl}, das als Implementierung die Adjazenzliste (dg\_adt\_l.o) verwendet
+\end{itemize}
+\ccode{../beispiel2/dg_adt.h}
+\ccode{../beispiel2/dg_adt_m.c}
+\ccode{../beispiel2/dg_adt_l.c}
+\ccode{../beispiel2/graph_algs.h}
+\ccode{../beispiel2/graph_algs.c}
+\ccode{../beispiel2/graph.c}
+\subsection{Testfälle}
+
+\subsubsection{Testfall 1 - invers}
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel2/0.png}
+
+\subsubsection{Testfall 2 - reflexiv}
+\includegraphics[width=200px, clip=true,trim=0px 000px 0px 0px]{./graphen/1.png}\newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel2/1.png}
+
+\subsubsection{Testfall 3 - symmetrisch}
+\includegraphics[width=200px, clip=true,trim=0px 000px 0px 0px]{./graphen/2.png}\newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel2/2.png}
+
+\subsubsection{Testfall 4 - asymmetrisch}
+\includegraphics[width=200px, clip=true,trim=0px 000px 0px 0px]{./graphen/3.png}\newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel2/3.png}
+
+\subsubsection{Testfall 5 - transitiv}
+\includegraphics[width=200px, clip=true,trim=0px 000px 0px 0px]{./graphen/4.png}\newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel2/4.png}
+
+\subsubsection{Testfall 6 - reflexiv, symmetrisch, transitiv}
+\includegraphics[width=200px, clip=true,trim=0px 000px 0px 0px]{./graphen/5.png}\newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../screenshots/beispiel2/5.png}
+
+\end{document}

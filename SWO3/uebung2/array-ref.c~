@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+void squareAll(int values[], int len) {
+  int i;
+  for ( i = 0; i < len; i++) {
+    values[i] = values[i]*values[i];
+  }
+}
+
+int main() {
+  int values[] = {1, 2, 3, 4, 5};
+  int i;
+
+  squareAll(values,5);
+  for( i = 0; i < 5; i++) {
+    printf("%d ",values[i]);
+  
+  printf("\n");
+  return 0;
+}

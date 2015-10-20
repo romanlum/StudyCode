@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article} 
+\usepackage{graphicx} 
+\usepackage[ngerman]{babel} 
+\usepackage[ansinew]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage{tgpagella} 
+\usepackage{geometry} 
+\usepackage{color} 
+\usepackage{microtype} 
+\usepackage{minted}
+\usepackage{caption}
+\usepackage[headsepline,footsepline]{scrpage2}
+\usepackage{textcomp}
+
+\title{Dokumentation - 1 Übung - SEb14.3.SWE1}
+\author{Roman Lumetsberger}
+\date{\today}
+
+\newmintedfile[ccode]{c}{
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm
+}
+\captionsetup{
+  font=footnotesize,
+  justification=raggedright,
+  singlelinecheck=false
+}
+
+\definecolor{lineColor}{RGB}{151,0,0}
+\pagestyle{scrheadings}
+\clearscrheadfoot

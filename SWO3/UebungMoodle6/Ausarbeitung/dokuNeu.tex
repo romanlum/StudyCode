@@ -1,0 +1,86 @@
+\documentclass[a4paper]{article}
+
+\usepackage[german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{SEb - SWO3 - Übung 1}
+
+\author{Roman Lumetsberger}
+
+\date{\today}
+
+\begin{document}
+
+\section{Aufgabe 1 - Dreieck - Tester}
+\subsection{Lösungsidee}
+Das Programm braucht genau 3 Eingabewerte, die geprüft und auf Fließkommawerte umgewandelt werden müssen.
+Folgende Überprüfungen müssen dann mit den Werte durchgeführt werden:
+
+\subsubsection{Gültigkeit des Dreiecks}
+Dies kann mit \textbf{Hinweis 1} geprüft werden, wobei hier alle Kombinationen getestet werden müssen. Es macht aber keinen Unterschied ob man a+b <= c oder b+a <= c betrachtet.\newline
+Dadurch ergeben sich genau 3 Fälle:
+\begin{itemize}
+\item a+b <= c
+\item a+c <= b
+\item b+c <= a
+\end{itemize}
+
+\subsubsection{Gleichseitiges Dreieck}
+Ein Dreieck ist gleichseitig, wenn alle 3 Seiten gleich sind.
+\begin{itemize}
+\item a = b = c
+\end{itemize}
+
+\subsubsection{Gleichschenkliges Dreieck}
+Ein Dreieck ist gleichschenklig, wenn 2 Seiten gleich sind. Hier ergeben sich wieder 3 Fälle:
+\begin{itemize}
+\item a = b
+\item a = c 
+\item b = a
+\end{itemize}                             
+
+\subsubsection{Rechtwinkliges Dreieck}
+Ob ein Dreieck rechtwinklig ist, kann mit dem Satz von Pythagoras überprüft werden.
+Auch hier gibt es wieder 3 Fälle:
+\begin{itemize}
+\item \(a^2\) + \(b^2\) = \(c^2\)
+\item \(a^2\) + \(c^2\) = \(b^2\)
+\item \(b^2\) + \(c^2\) = \(a^2\)
+\end{itemize}  
+
+
+
+\section{Aufgabe 2 - Primfaktorenzerlegung}
+\subsection{Lösungsidee}
+Das Programm braucht genau einen Eingabewert, der geprüft und auf int konvertiert werden muss.
+Die Zahl muss größer als 0 sein. \newline
+Der Algorithmus läuft dann über alle Teiler ab 2 durch und prüft, ob die Zahl dividiert durch den Teiler 0 Rest ergiebt.
+\begin{itemize}
+\item Ist dies der Fall, so wird ein Zähler, der die Anzahl der Teilungen angibt, erhöht und die Zahl durch den Teiler dividiert. 
+\item Ist dies nicht der Fall, dann muss geprüft werden, ob der Zähler größer 0 ist und wenn ja, dann muss der Teiler und Zähler als Exponentenschreibweise ausgegeben werden. Der Zähler wird anschließend auf 0 gesetzt und der Teiler um 1 erhöht.
+\end{itemize}             
+Ist der Teiler größer als die Zahl selbst, dann kann der Vorgang beendet werden.
+
+
+\section{Aufgabe 3 - ERRNO \& Co}
+\subsection{Lösungsidee}
+Die man-page von atoi erklärt, dass \textbf{strtol} als Alternative von atoi verwendet werden kann. Diese Methode funktioniert grundsätzlich wie atoi, hat aber eine Fehlererkennung.
+Diese Methode setzt hierzu die Variable \textbf{errno}, die in der Datei \textit{errno.h} definiert ist.
+\subsubsection{Beschreibung ERRNO}
+Diese Variable ist in der C-Standardbibliothek \textit{errno.h} definiert und kann verwendet werden um Fehler, die bei einem vorherigen Funktionsaufruf aufgetreten sind, auszuwerten. Dabei ist der Wert nur dann aussagekräftig, wenn die aufgerufene Funktion signalisiert, das ein Fehler aufgetreten ist.\newline
+Bei \textbf{strol} ist dieser Rückgabewert 0 \newline
+Wichtig ist, dass die Variable vor dem Aufruf auf 0 gesetzt wird und direkt nach dem Aufruf ausgewertet wird.
+In der C-Standardbibliothek werden verschiedene Fehlercodes definiert, die in der man-page nachgelesen werden können.\newline
+\subsubsection{Beschreibung strtol}
+Diese Funktion konvertiert eine Zeichenkette in einen int.\newline
+long int strtol(const char *nptr, char **endptr, int base);\newline
+Dabei ist zu beachten, dass die richtige Basis angegeben wird. In diesem Beispiel 10, für Dezimal.\newline
+Diese Funktion setzt bei einem Fehler die Variable errno und liefert dann als Rückgabewert 0. Weiters liefert die Funktion einen Zeiger auf eine Zeichenkette \(\textit{endptr}\) zurück, die auf das erste ungültige Zeichen der Eingabe zeigt.
+\begin{itemize}
+\item Ist dieser Zeiger gleich mit der Eingabe ==> ganze Zeichenkette ungültig
+\item Ist das Zeichen an der Zeigerposition '\textbackslash 0' ==> ganze Zeichenkette gültig
+\end{itemize}
+\end{document}

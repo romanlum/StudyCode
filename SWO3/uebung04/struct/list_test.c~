@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include "list_adt.h"
+
+void printInt(int i) {
+  printf("%d\n", i);
+}
+
+int main() {
+  List *l = createList();
+  prepend(l, 1);
+  prepend(l, 2);
+  prepend(l, 3);
+  printList(l);
+  forEach(l, printInt);
+  destroy(&l);
+  return 0;
+}

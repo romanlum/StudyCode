@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="minilibCollection" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/minilibCollection" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/minilibCollection" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-pedantic" />
+			<Add option="-std=c++11" />
+			<Add option="-Wextra" />
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="minilib/include" />
+		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --cflags gtk+-2.0`" />
+			<Add library="ML" />
+			<Add directory="minilib/bin/Debug" />
+		</Linker>
+		<Unit filename="include/Bag.h" />
+		<Unit filename="include/BagNode.h" />
+		<Unit filename="include/List.h" />
+		<Unit filename="include/Node.h" />
+		<Unit filename="include/Set.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Bag.cpp" />
+		<Unit filename="src/BagNode.cpp" />
+		<Unit filename="src/List.cpp" />
+		<Unit filename="src/Node.cpp" />
+		<Unit filename="src/Set.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

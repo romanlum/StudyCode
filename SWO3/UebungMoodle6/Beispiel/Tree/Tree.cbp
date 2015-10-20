@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Tree" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Tree" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-pedantic" />
+					<Add option="-std=c++11" />
+					<Add option="-Wextra" />
+					<Add option="-g" />
+					<Add directory="../minilib/include" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="`pkg-config --cflags gtk+-2.0`" />
+					<Add library="ML" />
+					<Add directory="../minilib/bin/Debug" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Tree" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="include/Directory.h" />
+		<Unit filename="include/FSNode.h" />
+		<Unit filename="include/File.h" />
+		<Unit filename="include/FileSystem.h" />
+		<Unit filename="include/IntNode.h" />
+		<Unit filename="include/Node.h" />
+		<Unit filename="include/Tree.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Directory.cpp" />
+		<Unit filename="src/FSNode.cpp" />
+		<Unit filename="src/File.cpp" />
+		<Unit filename="src/FileSystem.cpp" />
+		<Unit filename="src/IntNode.cpp" />
+		<Unit filename="src/Node.cpp" />
+		<Unit filename="src/Tree.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

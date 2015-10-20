@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  char first[] = "Roman";
+  char last[] = "Lumetsberger";
+  char full[19];
+
+  strcpy(full,first);
+  strcat(full," ");
+  strcat(full,last);
+
+  printf("fullname %s\n",full);
+  return 0;
+}

@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1417253125 source:/mnt/hgfs/SWO3/uebung07/Queue/main.cpp
+	<iostream>
+	"Queue.h"
+	"Data.h"
+
+1417253563 /mnt/hgfs/SWO3/uebung07/Queue/include/Queue.h
+	<ostream>
+	"Data.h"
+
+1417253473 /mnt/hgfs/SWO3/uebung07/Queue/include/Data.h
+	<string>
+	<ostream>
+
+1417253534 source:/mnt/hgfs/SWO3/uebung07/Queue/src/Data.cpp
+	<string>
+	<iostream>
+	"Data.h"
+
+1417868414 source:/mnt/hgfs/SWO3/uebung08/Queue/main.cpp
+	<iostream>
+	"Queue.h"
+	"Data.h"
+
+1417869814 /mnt/hgfs/SWO3/uebung08/Queue/include/Queue.h
+	<ostream>
+	"Data.h"
+
+1417868744 /mnt/hgfs/SWO3/uebung08/Queue/include/Data.h
+	<string>
+	<ostream>
+
+1417868962 source:/mnt/hgfs/SWO3/uebung08/Queue/src/Data.cpp
+	<string>
+	<iostream>
+	"Data.h"
+
+1417869613 source:/mnt/hgfs/SWO3/uebung08/Queue/src/PData.cpp
+	"PData.h"
+	<string>
+	<iostream>
+
+1417869242 /mnt/hgfs/SWO3/uebung08/Queue/include/PData.h
+	<ostream>
+	"Data.h"
+

@@ -1,0 +1,31 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Aufgabe 1 - Krafttraining}{2}
+\contentsline {subsection}{\numberline {1.1}L\"osungsidee}{2}
+\contentsline {subsection}{\numberline {1.2}Sourcecode}{3}
+\contentsline {subsection}{\numberline {1.3}Testf\"alle}{5}
+\contentsline {subsubsection}{\numberline {1.3.1}Testfall 1 - ung\"ultige Parameter}{5}
+\contentsline {subsubsection}{\numberline {1.3.2}Testfall 2 - L\"osung ohne Scheiben}{5}
+\contentsline {subsubsection}{\numberline {1.3.3}Testfall 3 - L\"osung 1 Paar}{6}
+\contentsline {subsubsection}{\numberline {1.3.4}Testfall 4 - L\"osung mit mehreren Paaren}{6}
+\contentsline {subsubsection}{\numberline {1.3.5}Testfall 5 - L\"osung mit allen Paaren}{6}
+\contentsline {subsubsection}{\numberline {1.3.6}Testfall 6 - keine L\"osung}{7}
+\contentsline {section}{\numberline {2}Aufgabe 2 - Mathematik mit Polynomen \newline und Divide \& Conquer}{8}
+\contentsline {subsection}{\numberline {2.1}L\"osungsidee}{8}
+\contentsline {subsubsection}{\numberline {2.1.1}printPoly}{8}
+\contentsline {subsubsection}{\numberline {2.1.2}evalPoly}{8}
+\contentsline {subsubsection}{\numberline {2.1.3}polySum}{8}
+\contentsline {subsubsection}{\numberline {2.1.4}polyProd}{8}
+\contentsline {subsubsection}{\numberline {2.1.5}polyProdFast}{8}
+\contentsline {subsection}{\numberline {2.2}Sourcecode}{9}
+\contentsline {subsection}{\numberline {2.3}Testf\"alle}{15}
+\contentsline {subsubsection}{\numberline {2.3.1}Testfall 1 - printPoly}{15}
+\contentsline {subsubsection}{\numberline {2.3.2}Testfall 2 - printPoly - Polynom 2}{15}
+\contentsline {subsubsection}{\numberline {2.3.3}Testfall 3 - evalPoly}{15}
+\contentsline {subsubsection}{\numberline {2.3.4}Testfall 4 - evalPoly - Polynom 2}{16}
+\contentsline {subsubsection}{\numberline {2.3.5}Testfall 5 - polySum - Polynomgrade gleich}{16}
+\contentsline {subsubsection}{\numberline {2.3.6}Testfall 6 - polySum - Polynomgrad q > p}{16}
+\contentsline {subsubsection}{\numberline {2.3.7}Testfall 7 - polySum - Polynomgrad p > q}{16}
+\contentsline {subsubsection}{\numberline {2.3.8}Testfall 8 - polyProd - Polynomgrade gleich}{16}
+\contentsline {subsubsection}{\numberline {2.3.9}Testfall 9 - polyProd - Polynomgrad q > p}{16}
+\contentsline {subsubsection}{\numberline {2.3.10}Testfall 10 - polyProd - Polynomgrad p > q}{17}
+\contentsline {subsubsection}{\numberline {2.3.11}Testfall 11 - polyProdFast - Polynomgrad 3, 7}{17}

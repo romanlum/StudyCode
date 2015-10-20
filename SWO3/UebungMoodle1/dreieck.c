@@ -1,0 +1,103 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <float.h>
+#include <math.h>
+
+/* Special epsilon is defined here because DBL_EPSILON is 
+   too accurate here to find valid examples */
+#define EPSILON 0.0000001
+
+/* defines the bool type */
+typedef enum bool {false, true} bool;
+
+/*
+  Checks if the given triangle is valid
+*/
+bool checkValidTriangle(double a, double b, double c) {
+  if (( a + b ) <= c )  return false;
+  if (( a + c ) <= b )  return false;
+  if (( b + c ) <= a )  return false;
+  return true;
+}
+
+/*
+  Checks if the given triangle is orthogonal
+  by using pythagoras 
+*/
+bool checkOrthogonal(double a, double b, double c) {
+  /* the absolute value is checked against the defined EPSILON */
+  if (fabs((a*a + b*b ) - c*c) < EPSILON) return true;
+  if (fabs((a*a + c*c ) - b*b) < EPSILON) return true;
+  if (fabs((b*b + c*c ) - a*a) < EPSILON) return true;
+  return false;
+}
+
+/*
+  Checks if the triangle is equilateral
+*/
+bool checkEquilateral(double a, double b, double c) {
+  /* the absolute value is checked against the defined EPSILON */
+  return fabs(a - b) < EPSILON && fabs(a - c) < EPSILON && fabs(b - c) < EPSILON;
+}
+
+/*
+  Checks if the given triangle is equal sided
+*/
+bool checkEqualSided(double a, double b, double c) {
+  /* the absolute value is checked against the defined EPSILON */
+  if ( fabs(a - b) < EPSILON ) return true;
+  if ( fabs(a - c) < EPSILON ) return true;
+  if ( fabs(b - c) < EPSILON ) return true;
+  return false;
+}
+
+int main(int argc, char *argv[]) {
+  double a,b,c;  
+  bool isEqualSided = false;
+  bool isEquilateral = false;
+  bool isOrthogonal = false;
+
+  if ( argc != 4 ) {
+    printf("Fehler - ungueltige Parameter\n");
+    printf("Usage - %s a b c\n", argv[0]);
+    return -1;
+  }
+
+  /* Convert the given parameters to double */
+  a = atof(argv[1]);
+  b = atof(argv[2]);
+  c = atof(argv[3]);
+
+  if ( ! checkValidTriangle(a, b, c)) {
+    printf("Ergebnis:\nungueltig\n");
+    return EXIT_SUCCESS;
+  }
+
+  isEquilateral = checkEquilateral(a, b, c);
+  /* optimization, equilateral triangles are always equal sided 
+     an not orthogonal */
+  if ( isEquilateral ) {
+    isEqualSided = true;
+  }
+  else {
+    isEqualSided = checkEqualSided(a, b, c);  
+    isOrthogonal = checkOrthogonal(a, b, c);
+  }
+ 
+  printf("Ergebnis:\n");
+
+  if( isEqualSided )
+    printf("gleichschenklig\n");
+  
+  if( isEquilateral )
+    printf("gleichseitig\n");
+
+  if( isOrthogonal )
+    printf("rechtwinklig\n");
+
+  if( !isEqualSided && !isEquilateral && !isOrthogonal)
+    printf("sonstiges Dreieck\n");
+
+  return EXIT_SUCCESS;
+
+}

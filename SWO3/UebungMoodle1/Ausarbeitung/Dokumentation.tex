@@ -1,0 +1,232 @@
+\input{master.tex}
+\input{title.tex}
+\begin{document} 
+\begin{titlepage}
+	\titleGP
+\end{titlepage}
+
+
+\ihead{SWO3 WS 2014/15 - Übung 01}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\setcounter{tocdepth}{4}
+\tableofcontents 
+
+\section{Aufgabe 1 - Dreieck - Tester}
+\subsection{Lösungsidee}
+Das Programm braucht genau 3 Eingabewerte, die geprüft und auf Fließkommawerte umgewandelt werden müssen.
+Folgende Überprüfungen müssen dann mit den Werten durchgeführt werden:
+
+\subsubsection{Gültigkeit des Dreiecks}
+Dies kann mit \textbf{Hinweis 1} geprüft werden, wobei hier alle Kombinationen getestet werden müssen. Es macht aber keinen Unterschied, ob man a+b <= c oder b+a <= c betrachtet.\newline
+Dadurch ergeben sich genau 3 Fälle:
+\begin{itemize}
+\item a+b <= c
+\item a+c <= b
+\item b+c <= a
+\end{itemize}
+
+\subsubsection{Gleichseitiges Dreieck}
+Ein Dreieck ist gleichseitig, wenn alle 3 Seiten gleich sind.
+\begin{itemize}
+\item a = b = c
+\end{itemize}
+
+\subsubsection{Gleichschenkliges Dreieck}
+Ein Dreieck ist gleichschenklig, wenn 2 Seiten gleich sind. Hier ergeben sich wieder 3 Fälle:
+\begin{itemize}
+\item a = b
+\item a = c 
+\item b = c
+\end{itemize}                             
+
+\subsubsection{Rechtwinkliges Dreieck}
+Ob ein Dreieck rechtwinklig ist, kann mit dem Satz von Pythagoras überprüft werden.
+Auch hier gibt es wieder 3 Fälle:
+\begin{itemize}
+\item \(a^2\) + \(b^2\) = \(c^2\)
+\item \(a^2\) + \(c^2\) = \(b^2\)
+\item \(b^2\) + \(c^2\) = \(a^2\)
+\end{itemize}  
+
+\subsubsection{Sonstiges Dreieck}
+Wenn ein Dreieck gültig ist, aber weder gleichseitig, rechtwinklig oder gleichschenklig, dann ist es ein sonstiges Dreieck.
+\pagebreak
+\subsection{Sourcecode}
+\ccode{../dreieck.c}
+\subsection{Testfälle}
+
+
+\subsubsection{Testfall 1 - ungültige Parameter}
+Erwartetes Ergebnis: ungueltig\newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/keine_zahlen.png}
+
+\subsubsection{Testfall 2 - gleichseitig}
+Eingabe: 4 4 4\newline
+Eingabe: 0.4 0.4 0.4\newline
+Erwartetes Ergebnis: gleichseitig, gleichschenkelig, da ja auch 2 Seiten gleich lang sind\newline
+\includegraphics[width=300px, clip=true,trim=0px 400px 0px 0px]{../Screenshots/gleichseitig.png}
+
+\subsubsection{Testfall 3 - gleichschenklig}
+Eingabe: 3 3 5\newline
+Eingabe: 5 3 3\newline
+Eingabe: 3 5 3\newline
+Eingabe: 0.3 0.5 0.3\newline
+Erwartetes Ergebnis: gleichschenklig\newline
+\includegraphics[width=300px, clip=true,trim=0px 200px 0px 0px]{../Screenshots/gleichschenklig.png}
+
+\subsubsection{Testfall 4 - rechtwinklig}
+Eingabe: 3 4 5\newline
+Eingabe: 5 4 3\newline
+Eingabe: 4 3 5\newline
+Eingabe: 5 3 4\newline
+Eingabe: 3 5 4\newline
+Eingabe: 4 5 3\newline
+Eingabe: 0.004 0.005 0.003\newline
+Erwartetes Ergebnis: rechtwinklig\newline
+\includegraphics[width=300px, clip=true,trim=0px 000px 0px 0px]{../Screenshots/rechtwinklig.png}
+
+\subsubsection{Testfall 5 - sonstiges Dreieck}
+Eingabe: 2 3 4\newline
+Eingabe: 4 3 2\newline
+Eingabe: 3 2 4\newline
+Eingabe: 4 2 3\newline
+Eingabe: 3 4 2\newline
+Eingabe: 2 4 3\newline
+Eingabe: 2.2 4.11 3.609\newline
+Erwartetes Ergebnis: sonstiges Dreieck\newline
+\includegraphics[width=300px, clip=true,trim=0px 0px 0px 0px]{../Screenshots/sonstiges.png}
+
+\subsubsection{Testfall 6 - ungültiges Dreieck}
+Eingabe: 3 4 42\newline
+Eingabe: 42 4 3\newline
+Eingabe: 0.42 1 3.999\newline
+Eingabe: 0 0 0\newline
+Eingabe: -1 -1 -3\newline
+Eingabe: -1 3 2\newline
+Eingabe: 0.99 -0.2 2\newline
+Erwartetes Ergebnis: ungueltig\newline
+\includegraphics[width=300px, clip=true,trim=0px 0px 0px 0px]{../Screenshots/ungueltig.png}
+
+\subsubsection{Testfall 7 - rechtwinklig gleichschenklig}
+Eingabe: 4.242640687 3 3\newline
+Eingabe: 3 4.242640687 3\newline
+Eingabe: 3 3 4.242640687\newline
+Erwartetes Ergebnis: gleichschenklig, rechtwinklig\newline
+\includegraphics[width=300px, clip=true,trim=0px 200px 0px 0px]{../Screenshots/gleichschenklig_rechtwinklig.png}
+
+\pagebreak
+\section{Aufgabe 2 - Primfaktorzerlegung}
+\subsection{Lösungsidee}
+Das Programm braucht genau einen Eingabewert, der geprüft und auf int konvertiert werden muss.
+Die Zahl muss größer als 0 sein. \newline
+Der Algorithmus läuft dann über alle Teiler ab 2 durch und prüft, ob die Zahl dividiert durch den Teiler 0 Rest ergibt.
+\begin{itemize}
+\item Ist dies der Fall, so wird ein Zähler, der die Anzahl der Teilungen angibt, erhöht und die Zahl durch den Teiler dividiert. 
+\item Ist dies nicht der Fall, dann muss geprüft werden, ob der Zähler größer 0 ist und wenn ja, dann muss der Teiler und Zähler in Exponentialschreibweise ausgegeben werden. Der Zähler wird anschließend auf 0 gesetzt und der Teiler um 1 erhöht.
+\end{itemize}             
+Ist der Teiler größer als die Zahl selbst, dann kann der Vorgang beendet werden.\newline
+Ist der Zähler noch > 0, dann muss auch noch der letzte Teiler ausgegeben werden.
+\subsection{Sourcecode}
+\ccode{../prime.c}
+\subsection{Testfälle}
+
+\subsubsection{Testfall 1 - keine Eingabe}
+Erwartetes Ergebnis: Fehlermeldung \newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/prime/ungueltig.png}
+
+\subsubsection{Testfall 2 - keine Zahl}
+Eingabe: d \newline
+Erwartetes Ergebnis: Meldung, dass eine positive, ganze Zahl eingegeben werden muss, da atoi bei ungültigen Werten 0 liefert\newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/prime/keineZahl.png}
+
+\subsubsection{Testfall 3 - ungültige Eingabe}
+Eingabe: 0 \newline
+Eingabe: -999 \newline
+Erwartetes Ergebnis: Meldung, dass eine positive, ganze Zahl eingegeben werden muss\newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/prime/ungueltig2.png}
+
+\subsubsection{Testfall 4 - erstes gültiges Element}
+Eingabe: 1 \newline
+Erwartetes Ergebnis: \(2^0\)\newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/prime/1.png}
+
+\subsubsection{Testfall 5 - vorgegebenes Beispiel}
+Eingabe: 10\newline
+Erwartetes Ergebnis: \(2^1\) * \(5^1\)\newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/prime/10.png}
+
+\subsubsection{Testfall 6 - vorgegebenes Beispiel}
+Eingabe: 256\newline
+Erwartetes Ergebnis: \(2^8\)\newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/prime/256.png}
+
+\subsubsection{Testfall 7 - vorgegebenes Beispiel}
+Eingabe: 6534\newline
+Erwartetes Ergebnis: \(2^1\) * \(3^3\) * \(11^2\) \newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/prime/6534.png}
+
+\subsubsection{Testfall 8 - vorgegebenes Beispiel}
+Eingabe: 13332\newline
+Erwartetes Ergebnis: \(2^2\) * \(3^1\) * \(11^1\) * \(101^1\)\newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/prime/13332.png}
+
+\pagebreak
+\section{Aufgabe 3 - ERRNO \& Co}
+\subsection{Lösungsidee}
+Die man-page von atoi erklärt, dass \textbf{strtol} als Alternative von atoi verwendet werden kann. Diese Methode funktioniert grundsätzlich wie atoi, hat aber eine Fehlererkennung.
+Diese Methode setzt hierzu die Variable \textbf{errno}, die in der Datei \textit{errno.h} definiert ist.
+\subsubsection{Beschreibung ERRNO}
+Diese Variable ist in der C-Standardbibliothek \textit{errno.h} definiert und kann verwendet werden, um Fehler, die bei einem vorherigen Funktionsaufruf aufgetreten sind, auszuwerten. Dabei ist der Wert nur dann aussagekräftig, wenn die aufgerufene Funktion signalisiert, das ein Fehler aufgetreten ist.\newline
+Bei \textbf{strol} ist dieser Rückgabewert 0. \newline
+Wichtig ist, dass die Variable vor dem Aufruf auf 0 gesetzt und direkt nach dem Aufruf ausgewertet wird.
+In der C-Standardbibliothek werden verschiedene Fehlercodes definiert, die in der man-page nachgelesen werden können.\newline
+\subsubsection{Beschreibung strtol}
+Diese Funktion konvertiert eine Zeichenkette in einen int.
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+  long int strtol(const char *nptr, char **endptr, int base);
+\end{minted}
+
+Dabei ist zu beachten, dass die richtige Basis angegeben wird. In diesem Beispiel 10, für Dezimal.\newline
+Diese Funktion setzt bei einem Fehler die Variable errno und liefert dann als Rückgabewert 0. Weiters liefert die Funktion einen Zeiger auf eine Zeichenkette \(\textit{endptr}\) zurück, die auf das erste ungültige Zeichen der Eingabe zeigt.
+\begin{itemize}
+\item Ist dieser Zeiger gleich mit der Eingabe ==> ganze Zeichenkette ungültig
+\item Ist das Zeichen an der Zeigerposition '\textbackslash 0' ==> ganze Zeichenkette gültig
+
+\end{itemize}
+\pagebreak
+\subsection{Sourcecode}
+\ccode{../primeV2.c}
+\subsection{Testfälle}
+
+\subsubsection{Testfall 1 - keine Eingabe}
+Erwartetes Ergebnis: Fehlermeldung \newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/primeV2/keineEingabe.png}
+
+\subsubsection{Testfall 2 - keine Zahl}
+Eingabe: d\newline
+Eingabe: hallo\newline
+Eingabe: zahl\newline
+Erwartetes Ergebnis: Fehlermeldung \newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/primeV2/keineZahl.png}
+
+\subsubsection{Testfall 3 - Zahlen und Buchstaben}
+Eingabe: 17d\newline
+Eingabe: d17\newline
+Erwartetes Ergebnis: Fehlermeldung \newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/primeV2/keineZahl2.png}
+
+\subsubsection{Testfall 4 - Überlauf}
+Eingabe: 9999999999\newline
+Erwartetes Ergebnis: Fehlermeldung \newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/primeV2/overflow.png}
+
+\subsubsection{Testfall 5 - Unterlauf}
+Eingabe: -99999999999\newline
+Erwartetes Ergebnis: Fehlermeldung \newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/primeV2/underflow.png}
+
+\end{document}

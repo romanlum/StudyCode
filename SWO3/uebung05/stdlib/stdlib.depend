@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1414226316 source:/mnt/hgfs/SWO3/uebung05/stdlib/assert.c
+	<stdio.h>
+	<assert.h>
+
+1414232803 source:/mnt/hgfs/SWO3/uebung05/stdlib/stdio.c
+	<stdio.h>
+	<stdlib.h>
+

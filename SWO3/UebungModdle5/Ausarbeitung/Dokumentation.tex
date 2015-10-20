@@ -1,0 +1,111 @@
+\input{master.tex}
+
+\ihead{SWO3 WS 2014/15 - Übung 05}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Aufgabe 1 - Graph - Objektorientiert }
+\subsection{Lösungsidee}
+\subsubsection{Klasse Vertex}
+Es wird eine Klasse \textit{Vertex} benötigt, die als Datenkapsel für den Kontennamen ( \textit{string} ) dient.\newline
+Weiters wird der Gleichheitsoperator und der Ausgabeoperator benötigt.
+
+\subsubsection{Klasse Graph}
+Diese Klasse enthält die Adjazenzmatrix und ein Array mit den Konten ( \textit{Vertex} ) des Graphen.\newline
+\begin{itemize}
+	\item Beim Konstruktor wird die Matrix und das Array der Knoten allokiert.
+	\item Beim Hinzufügen von Knoten wird in das Array der Konten eingefügt.
+	\item Beim Hinzufügen von Kanten wird das Gewicht in die Matrix eingetragen.
+	\item Beim Löschen der Kanten wird die Matrix wieder auf 0 gesetzt.
+	\item Beim Löschen der Knoten wird die Matrix auf 0 gesetzt und alle Array-Elemente der Knoten auf \textit{nullptr} gesetzt.
+	\item Im Destruktor wird die Matrix und das Array wieder gelöscht.
+\end{itemize}	
+
+\section{Aufgabe 2 - Graph - Durchlaufstrategien }
+\subsection{Tiefensuche}
+Die Tiefensuche arbeitet sich zuerst bis in die tiefste Ebene vor und besucht danach die Knoten von abzweigenden Pfaden.\newline
+\includegraphics[width=150px]{tiefensuche.jpg}\newline
+
+\subsubsection{Algorithmus}
+Dazu wird ein Stack benötigt, dieser wird als eigene Hilfsklasse \textit{VertexStack} implementiert.\newline
+\begin{enumerate}
+	\item Das Startelement wird auf den Stack gelegt und als \textbf{besucht} markiert.
+	\item Solange der Stack nicht leer ist, wird das oberste Element des Stacks betrachtet (\textit{peek}) und die nächste Kante gesucht.
+	\item
+		\begin{itemize}
+			\item a) Wird eine Kante zu einem Knoten gefunden, der noch nicht besucht wurde, wird dieser als \textbf{besucht} markiert und auf den Stack gelegt (\textit{push}).
+			\item b) Wird keine weitere Kante gefunden, wird das Element vom Stack entfernt (\textit{pop}).
+		\end{itemize}
+\end{enumerate}
+
+\subsection{Breitensuche}
+Die Breitensuche besucht zuerst alle vom Startpunkt ausgehenden Knoten und arbeitet sich danach zu den tieferen Ebenen durch.\newline
+\includegraphics[width=150px]{breitensuche.jpg}\newline
+\subsubsection{Algorithmus}
+Dazu wird eine Queue benötigt, diese wird als eigene Hilfsklasse \textit{VertexQueue} implementiert.\newline
+\begin{enumerate}
+	\item Das Startelement wird als \textbf{besucht} markiert und alle erreichbaren Knoten in die Queue eingefügt (\textit{enqueue}) und ebenfalls als \textbf{besucht} markiert.
+	\item Solange die Queue nicht leer, ist wird das nächste Element aus der Queue entfernt (\textit{dequeue}) und die nächste Kante gesucht.
+	\item Wird eine Kante zu einem Knoten, der noch nicht besucht wurde, gefunden, wird dieser als \textbf{besucht} markiert und in die Queue eingefügt (\textit{enqueue}).
+\end{enumerate}
+
+\section{Aufgabe 3 - Graph - Zyklen }
+Um Zyklen in einem Graphen zu erkennen, kann der Algorithmus der Tiefensuche verwendet werden und falls es eine Kante zu einem Knoten gibt, der sich bereits im Stack befindet, dann wurde ein Zyklus gefunden.
+Dieses Verfahren muss für jeden Knoten als Startknoten wiederholt werden, falls noch kein Zyklus gefunden wurde.
+
+\pagebreak
+\subsection{Sourcecode}
+\textbf{Vertex.h}
+\ccode{../Beispiel/include/Vertex.h}
+\textbf{VertexList.h}
+\ccode{../Beispiel/include/VertexList.h}
+\textbf{VertexQueue.h}
+\ccode{../Beispiel/include/VertexQueue.h}
+\textbf{VertexStack.h}
+\ccode{../Beispiel/include/VertexStack.h}
+\textbf{Graph.h}
+\ccode{../Beispiel/include/Graph.h}
+\textbf{Vertex.cpp}
+\ccode{../Beispiel/src/Vertex.cpp}
+\textbf{VertexQueue.cpp}
+\ccode{../Beispiel/src/VertexQueue.cpp}
+\textbf{VertexStack.cpp}
+\ccode{../Beispiel/src/VertexStack.cpp}
+\textbf{Graph.cpp}
+\ccode{../Beispiel/src/Graph.cpp}
+\textbf{main.cpp}
+\ccode{../Beispiel/main.cpp}
+
+\subsection{Testfälle}
+\subsubsection{Testfall 1 - Leerer Graph}
+\includegraphics[width=400px, clip=true,trim=0px 600px 0px 0px]{../screenshots/0.png}
+\subsubsection{Testfall 2 - Graph ohne Kanten}
+\includegraphics[width=400px, clip=true,trim=0px 500px 0px 0px]{../screenshots/1.png}
+\subsubsection{Testfall 3 - Max Knotenanzahl überschritten} 
+\includegraphics[width=400px, clip=true,trim=0px 600px 0px 0px]{../screenshots/2.png}
+\subsubsection{Testfall 4 - Graph mit Kanten}
+\includegraphics[width=400px, clip=true,trim=0px 500px 0px 0px]{../screenshots/3.png}
+\subsubsection{Testfall 5 - Ungültiger Knoten / Gewicht}
+\includegraphics[width=400px, clip=true,trim=0px 600px 0px 0px]{../screenshots/4.png}
+\subsubsection{Testfall 6 - Kanten löschen}
+\includegraphics[width=400px, clip=true,trim=0px 500px 0px 0px]{../screenshots/5.png}
+\subsubsection{Testfall 7 - Knoten löschen / Kopierkonstruktor}
+\includegraphics[width=400px, clip=true,trim=0px 600px 0px 0px]{../screenshots/6.png}
+\subsubsection{Testfall 8 - Tiefensuche}
+\includegraphics[width=400px, clip=true,trim=0px 200px 0px 0px]{../screenshots/7.png}
+\subsubsection{Testfall 9 - Breitensuche}
+\includegraphics[width=400px, clip=true,trim=0px 200px 0px 0px]{../screenshots/8.png}
+\subsubsection{Testfall 10 - Zyklen}
+\includegraphics[width=400px, clip=true,trim=0px 400px 0px 0px]{../screenshots/9.png}
+\subsubsection{Testfall 11 - Zyklen II}
+\includegraphics[width=400px, clip=true,trim=0px 400px 0px 0px]{../screenshots/10.png}
+\subsubsection{Testfall 12 - Keine Zyklen}
+\includegraphics[width=400px, clip=true,trim=0px 400px 0px 0px]{../screenshots/11.png}
+\subsubsection{Testfall 13 - Zuweisungsoperator}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../screenshots/12.png}
+\subsubsection{Testfall 14 - Speichertest}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../screenshots/13.png}
+
+
+\end{document}

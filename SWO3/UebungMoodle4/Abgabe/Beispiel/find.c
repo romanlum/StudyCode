@@ -1,0 +1,182 @@
+/* used for getline and lstat */
+#define _XOPEN_SOURCE 700
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+#include <dirent.h>
+#include <time.h>
+#include <sys/stat.h>
+
+/* definition of the function pointer used for walkDir */
+typedef void (*Visitor) (char *pathname, struct stat* stat, va_list args);
+
+/* walks recursive across the given path and calls the visitor function
+   the args parameter is used for giving the visitor function more arguments */
+void walkDirWithArguments(char *dirname, Visitor visitor, va_list args) {
+  DIR * directory;
+  struct dirent * entry;
+  struct stat entryStat;
+  char *pathname;
+
+  directory = opendir(dirname);
+  if(directory == NULL) {
+    printf("failed to open directory %s\n", dirname);
+    return;
+  }
+	
+  entry = readdir(directory);
+  while (entry != NULL) {
+    /* skip . and .. entries */
+    if ((strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0)) {
+      
+      /* malloc space for the full path (dir + name + / + \0) */
+      pathname = (char *) malloc(sizeof(char) * (strlen(dirname) + strlen(entry->d_name) + 2));
+      if (pathname == NULL) {
+        printf("out of memory\n");
+        abort();
+      }
+      
+      /* create full path */
+      sprintf(pathname,"%s/%s",dirname,entry->d_name);
+     
+      if(lstat(pathname, &entryStat) == 0) {
+        /* check if entry is a directory */
+        if (S_ISDIR(entryStat.st_mode)) {
+          walkDirWithArguments(pathname, visitor, args);
+        }
+        /* check if entry is a regular file */
+        else if (S_ISREG(entryStat.st_mode)) {
+          visitor(pathname, &entryStat, args);
+        }
+      }
+      else {
+        printf("failed to stat %s\n", pathname); 
+      }
+      
+      free(pathname);
+			         
+    }
+    entry = readdir(directory);
+  }
+  
+  closedir(directory);
+}
+
+/* wrapper function used for giving the variable arguments to the real function */
+void walkDir(char *dirname, Visitor visitor, ...) {
+  va_list list;
+
+  /* get the argument list */
+  va_start(list, visitor);
+  walkDirWithArguments(dirname, visitor, list);
+  /* free the arguments */
+  va_end(list);
+}
+
+
+/* disable unsed parameter warning because of the generic interface */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
+/* visitor function used for showing the filename and details */
+void print(char * path, struct stat* stat, va_list args ) {
+  char timeBuffer[80];
+  struct tm *locTime;
+
+  printf( (stat->st_mode & S_IRUSR) ? "r" : "-");
+  printf( (stat->st_mode & S_IWUSR) ? "w" : "-");
+  printf( (stat->st_mode & S_IXUSR) ? "x" : "-");
+  printf( (stat->st_mode & S_IRGRP) ? "r" : "-");
+  printf( (stat->st_mode & S_IWGRP) ? "w" : "-");
+  printf( (stat->st_mode & S_IXGRP) ? "x" : "-");
+  printf( (stat->st_mode & S_IROTH) ? "r" : "-");
+  printf( (stat->st_mode & S_IWOTH) ? "w" : "-");
+  printf( (stat->st_mode & S_IXOTH) ? "x" : "-");
+  printf("\t");
+  printf("%d\t",(int) stat->st_size);
+
+  locTime = localtime(&stat->st_mtime);
+  /* format time */
+  strftime(timeBuffer, sizeof(timeBuffer), "%c", locTime);
+
+  printf("%s\t",timeBuffer);
+  printf("%s\n",path);
+
+}
+/* enable warnings again */
+#pragma GCC diagnostic  pop
+
+
+/* disable unsed parameter warning because of the generic interface */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
+/* read the file and prints all occurances of the given string
+   the string has to be given as parameter type char * */
+void grep(char * path, struct stat* stat, va_list args) {
+  FILE *fp;
+  char *searchString;
+  char *line = NULL;
+  char *strPosition;
+  size_t len = 0;
+  ssize_t read;
+  int linenum;
+
+  searchString = va_arg(args, char *);
+
+  fp = fopen(path, "r");
+  if (fp == NULL) {
+    printf("could not open file %s", path);
+    return;
+  }
+
+  linenum = 1;
+  read = getline(&line, &len, fp);
+  while (read != -1) {
+    strPosition = strstr(line, searchString);
+    if( strPosition != NULL ){
+      printf("%s:%d:%d %s", path, linenum, (strPosition - line), line);
+    }
+    linenum++;
+    read = getline(&line, &len, fp);
+  }
+  
+  if (line != NULL) {
+    free(line);
+  }
+  
+  fclose(fp);
+}
+/* enable warnings again */
+#pragma GCC diagnostic  pop
+
+
+int main(int argc, char *argv[])
+{
+  if (argc < 3) {
+    printf("Invalid parameter\n");
+    printf("Usage: %s dir function\n", argv[0]);
+    printf("\tfunction -print: shows the files and details\n");
+    printf("\tfunction -grep content: shows the files with the given content\n");
+    return EXIT_SUCCESS;
+  }
+
+  if (strcmp(argv[2], "-print") == 0) {
+    walkDir(argv[1], &print);
+  }
+  else if(strcmp(argv[2], "-grep") == 0) {
+    if (argc < 4) {
+        printf("Invalid parameter\n");
+        printf("You have to give a search string\n");
+        return EXIT_SUCCESS;
+    }
+    walkDir(argv[1], &grep, argv[3]);
+  }
+  else {
+    printf("invalid function\n");
+  }
+
+  return EXIT_SUCCESS;
+}

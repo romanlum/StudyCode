@@ -1,0 +1,70 @@
+# depslib dependency file v1.0
+1421875676 source:/mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/main.cpp
+	<iostream>
+	"Set.h"
+	"Bag.h"
+	<MLString.h>
+	<cassert>
+
+1421704152 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/include/Set.h
+	<MLCollection.h>
+	"List.h"
+
+1421572347 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/minilib/include/MLCollection.h
+	<iosfwd>
+	"MLObject.h"
+
+1421572347 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/minilib/include/MLObject.h
+	<iostream>
+	<string>
+	"MetaInfo.h"
+
+1421572347 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/minilib/include/MetaInfo.h
+	<iostream>
+	<string>
+
+1421873165 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/include/List.h
+	<MLCollection.h>
+	"Node.h"
+
+1421481045 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/include/Node.h
+	<string>
+	<MLObject.h>
+
+1421572347 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/minilib/include/MLString.h
+	<iosfwd>
+	<string>
+	"MLObject.h"
+
+1421481280 source:/mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/src/Node.cpp
+	"Node.h"
+
+1421780541 source:/mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/src/Set.cpp
+	"Set.h"
+	"List.h"
+	<cassert>
+	<iostream>
+
+1421873189 source:/mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/src/List.cpp
+	"List.h"
+	<cassert>
+
+1421875569 source:/mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/src/Bag.cpp
+	"Set.h"
+	"Bag.h"
+	<cassert>
+	<iostream>
+
+1421875063 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/include/Bag.h
+	"BagNode.h"
+	"Set.h"
+
+1421701426 source:/mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/src/BagNode.cpp
+	"BagNode.h"
+	<MLObject.h>
+	"Node.h"
+	<sstream>
+
+1421701250 /mnt/hgfs/SWO3/UebungMoodle7/Beispiel/minilibCollection/include/BagNode.h
+	"Node.h"
+

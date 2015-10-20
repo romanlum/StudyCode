@@ -1,0 +1,24 @@
+CC = gcc
+CFLAGS = -g -Og -ansi -pedantic -Wall -Wextra
+
+LD = gcc
+LDFLAGS = -lm
+
+OFILES = main.o geo.o weight.o
+prg: $(OFILES)
+	$(LD) $(LDFLAGS) -o $@ $(OFILES)
+
+clean:
+	rm -f prg $(OFILES)
+  
+# built-in rule
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+	
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
+
+main.o: main.c geo.h weight.h
+geo.o: geo.c geo.h
+weight.o: weight.c weight.h geo.h

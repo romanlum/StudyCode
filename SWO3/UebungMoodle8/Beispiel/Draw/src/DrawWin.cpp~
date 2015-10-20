@@ -1,0 +1,155 @@
+#include <cassert>
+#include "DrawWin.h"
+#include "DrawApp.h"
+#include "Shape.h"
+#include "Line.h"
+#include "Rectangle.h"
+#include "Oval.h"
+using namespace ML;
+#ifdef V2
+#include <iostream>
+using namespace std;
+#endif
+
+DrawWin::DrawWin()
+    : Window("Draw Window"),
+      curLineWidth(1),
+      shapes(new Vector()),
+      app(dynamic_cast<DrawApp*>(Application::instance))
+#ifdef V2
+      ,newShape(nullptr)
+#endif // V2
+#ifdef WITH_SELECTION
+      , selectedShape(nullptr)
+#endif // WITH_SELECTION
+      {
+  Register("DrawWin", "Window");
+  assert(app != nullptr);
+  curShapeCommand = app->lineCmd;
+}
+
+DrawWin::~DrawWin() {
+  shapes->DeleteElements();
+  delete shapes;
+}
+
+void DrawWin::Redraw() {
+  Iterator *it = shapes->NewIterator();
+  for (Object *o = it->Next(); o != nullptr; o = it->Next()) {
+    Shape *s = dynamic_cast<Shape*>(o);
+    assert(s != nullptr);
+    s->InvertInWindow(this);
+#ifdef WITH_SELECTION
+    if (s == selectedShape) {
+      s->SelectInWindow(this);
+    }
+#endif // WITH_SELECTION
+  }
+  delete it;
+}
+
+void DrawWin::OnMousePressed(Point pos) {
+  Shape *s = nullptr;
+#ifdef WITH_SELECTION
+  if(selectedShape != nullptr) {
+    selectedShape->DeselectInWindow(this);
+    selectedShape = nullptr;
+  }
+#endif // WITH_SELECTION
+  if (curShapeCommand == app->lineCmd) {
+    s = new Line(pos, curLineWidth);
+  } else if (curShapeCommand ==  app->rectCmd) {
+    s = new Rectangle(pos, curLineWidth);
+  } else if (curShapeCommand == app->ovalCmd) {
+    s = new Oval(pos, curLineWidth);
+  } else {
+    assert(false); // invalid shape
+  }
+#ifndef V2
+  bool buttonPressed;
+  GetMouseState(buttonPressed, pos);
+  while(buttonPressed) {
+    s->MoveEnd(this, pos);
+    GetMouseState(buttonPressed, pos);
+  }
+  if (s->p1.x != pos.x || s->p1.y != pos.y) {
+    shapes->Add(s);
+  } else {
+    delete s;
+  }
+#else
+  newShape = s;
+#endif
+}
+
+#ifdef V2
+void DrawWin::OnMouseMove(Point pos) {
+  if (newShape == nullptr) return;
+  newShape->MoveEnd(this, pos);
+}
+
+void DrawWin::OnMouseReleased(Point pos) {
+  if (newShape == nullptr) return;
+  newShape->MoveEnd(this, pos);
+  if (newShape->p1.x != pos.x || newShape->p1.y != pos.y) {
+    shapes->Add(newShape);
+  } else {
+    delete newShape;
+#ifdef WITH_SELECTION
+    Iterator *it = shapes->NewIterator();
+    Shape *s;
+    for (Object *o = it->Next(); o != nullptr; o = it->Next()) {
+      s = dynamic_cast<Shape*>(o);
+      assert(s != nullptr);
+      if (s->HitBy(pos)) break;
+    }
+    delete it;
+    if (s != nullptr) {
+      cout << "Selection" << endl;
+      selectedShape = s;
+      selectedShape->SelectInWindow(this);
+    }
+#endif // WITH_SELECTION
+  }
+  newShape = nullptr;
+}
+
+#endif // V2
+
+void DrawWin::OnCommand(int commandNr) {
+#ifdef WITH_SELECTION
+  if (commandNr == cutCommand) {
+    if (selectedShape != nullptr) {
+      shapes->Remove(selectedShape);
+      delete selectedShape; // or pass on to clipboard
+      selectedShape = nullptr;
+      InvalContent();
+      return;
+    }
+  } else
+#endif // WITH_SELECTION
+  if (commandNr == clearCommand) {
+    shapes->DeleteElements();
+    InvalContent();
+    return;
+  } else if (commandNr == app->lineCmd ||
+             commandNr == app->rectCmd ||
+             commandNr == app->ovalCmd) {
+   curShapeCommand = commandNr;
+   return;
+  }
+  for (int i = 0; i<DrawApp::NR_OF_LINE_WIDTHS; i++) {
+    if (commandNr == app->lineWidthCmds[i]) {
+      curLineWidth = i*2+1;
+#ifdef WITH_SELECTION
+      if (selectedShape != nullptr) {
+        selectedShape->InvertInWindow(this);
+        selectedShape->lineWidth = curLineWidth;
+        selectedShape->InvertInWindow(this);
+      }
+#endif
+      return;
+    }
+  }
+  Window::OnCommand(commandNr); // if all else fails
+}

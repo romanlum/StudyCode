@@ -1,0 +1,131 @@
+\input{master.tex}
+
+\ihead{SWO3 WS 2014/15 - Übung 07}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Aufgabe 1 - Objektmengen (sets) }
+\subsection{Anmerkungen}
+Diese Aufgabe wird mit der \textit{minilib} umgesetzt und dadurch werden alle Methoden mit einem großen Anfangsbuchstaben benannt, da dies in der minilib Konvention ist.
+
+\subsection{Lösungsidee}
+Ein \textit{Set} ist im Grunde eine Liste, die keine mehrfachen Elemente enthalten darf.
+Darum wird die Klasse \textit{Set} als Ableitung der Klasse \textit{List}, die wir in der Übung erstellt haben, umgesetzt. \newline
+
+Es wird also eine doppelt verkettete Liste verwendet, die als Element die Klasse \textit{Node} hat.
+Diese Klasse enthält dann das eigentliche Datenobjekt.\newline
+Es braucht dann nur die Methode Add überschrieben werden und um die Prüfung, ob ein Objekt bereits in der Liste vorhanden ist, erweitert werden.
+Diese Prüfung wird mit Hilfe der minilib Methode \textbf{IsEqualTo} realisiert.
+
+\subsubsection{Vereinigung - Union}
+Die Vereinigung zweier Mengen enthält alle Elemente der ersten und alle Elemente der zweiten Menge.\newline
+Wichtig ist, dass jedes gleiche Element nur einmal in der Vereinigungsmenge vorkommt.
+
+\subsubsection{Schnittmenge - Intersect}
+Die Schnittmenge zweier Mengen enthält alle Elemente, die sowohl in der ersten, als auch in der zweiten Menge vorhanden sind.
+
+\subsubsection{Differenz - Difference}
+Die Differenz zweier Mengen enthält jene Elemente der ersten, aber nicht in der zweiten Menge vorkommen.
+
+\subsection{Entwurfsentscheidungen}
+Die Lösung dieser Aufgabe erfordert grundsätzlich keine Änderung der minilib, da beim Einfügen eines bereits im \textit{Set} enthaltenen Objektes eine Fehlermeldung auf \textit{cerr} ausgegeben wird. Zugegeben, das ist nicht die beste Lösung, doch in der kurzen Zeit von nur 1 Woche für die gesamte Übung, habe ich diese Variante gewählt. \newline
+Weiters kann der Verwender der Klasse mit \textit{Contains} prüfen, ob das Element bereits vorhanden ist. 
+
+\subsubsection{Weitere Lösungsmöglichkeiten} 
+Folgende Lösungen wären auch möglich gewesen.
+\begin{itemize}
+	\item Änderung des Rückgabeparameters der Methode \textit{Collection::Add} von \textit{void} auf \textit{bool}, um den Aufrufer mitzuteilen, ob das Objekt eingefügt wurde oder nicht.
+	\item Änderung des Rückgabeparameters der Methode \textit{Collection::Add} von \textit{void} auf \textit{Object *}. Der Rückgabewert würde dann das bereits enthaltene Objekt, falls es bereits vorhanden war, oder eben das einzufügende Objekt liefern. \newline Damit könnte der Aufrufer unterscheiden, ob es bereits vorhanden war oder nicht und bekäme auch noch eine Referenz auf das im Set befindliche Element.
+\end{itemize}
+
+\subsubsection{Implementierung Union, Intersect, Difference}
+Da in der Angabe nicht konkret erwähnt wird, wie die Signatur der Methoden auszusehen haben, wurden sie so umgesetzt, dass sie als Rückgabewert ein neues \textit{Set} liefern, dass dann das Ergebnis der Operation beinhaltet. \\ Dies hat den Vorteil, dass das originale \textit{Set} nicht verändert wird und somit weiterverwendet werden kann. \newline
+\textbf{Dabei werden die Datenelemente aber nicht kopiert, d.h. der Aufrufer darf nicht \textit{DeleteElements} auf das Original und Ergebnis anwenden.}
+
+\subsubsection{SetIterator}
+Laut Angabe wird eine eigene Klasse \textit{SetIterator} verlangt. Dieser wurde \textbf{nicht implementiert}, da das Set von \textit{List} abgeleitet wurde und der dort vorhandene \textit{ListIterator} bereits alle Anforderungen erfüllt, um die Elemente zu durchlaufen. 
+
+\section{Aufgabe 2 - Objektbehälter (bags) }
+\subsection{Anmerkungen}
+Auch diese Aufgabe wird mit der \textit{minilib} umgesetzt und dadurch werden alle Methoden mit einem großen Anfangsbuchstaben benannt, da dies in der minilib Konvention ist.
+
+\subsection{Lösungsidee}
+Ein Bag ist ein Set, indem die Elemente mehrfach vorkommen können. \newline
+Diese Klasse wird durch ableiten der Klasse \textit{Set} realisiert. Dabei wird auch ein neuer Knotentyp \textit{BagNode} von \textit{Node} abgeleitet und durch eine weitere Datenkomponente \textit{count} erweitert. Dies wurde so gemacht, da gefordert ist, dass die mehrfachen Elemente möglichst platzsparend gespeichert werden sollen. \newline
+\\
+Folgende Methoden müssen überschrieben werden, um die Klasse korrekt zu implementieren:
+\begin{itemize}
+	\item Add: Mehrfache Elemente zulassen und inkrementieren der Datenkomponente \textit{count}.
+	\item Remove: Dekrementieren von \textit{count} oder löschen des Knoten ( bei count = 0 ).
+\end{itemize}
+
+\subsubsection{BagIterator}
+Der BagIterator muss für diese Aufgabe implementiert werden, da dieser die mehrfachen Elemente auch mehrfach liefern muss. Der \textit{ListIterator} würde nämlich jedes Objekt nur einmal liefern, da er nur die Knoten durchläuft.
+
+\subsubsection{Vereinigung - Union}
+Die Vereinigung zweier \textit{Bags} enthält alle Elemente der ersten und alle Elemente der zweiten Menge.\newline
+
+\subsubsection{Schnittmenge - Intersect}
+Die Schnittmenge zweier \textit{Bags} enthält alle Elemente, die sowohl in der ersten, als auch in der zweiten Menge vorhanden sind. Sollte ein Element mehrfach vorkommen, dann wird das Minimum genommen.
+
+\subsubsection{Differenz - Difference}
+Die Differenz zweier \textit{Bags} wird als A ohne B implementiert. Dabei wird die Anzahl der Vorkommen in B von der Anzahl in A subtrahiert. Kommt das Element in B nicht vor, dann wird die Anzahl von A ins Ergebnis übernommen.
+
+
+\subsection{Entwurfsentscheidungen}
+Die Methoden \textit{Union}, \textit{Intersect}, \textit{Difference} wurden in \textit{Bag} mit der oben angegebenen Logik neu implementiert. Hier könnte man sich vielleicht überlegen, diese in Collection zu definieren, damit sie für alle Collections anwendbar sind.
+
+\pagebreak
+\subsection{Sourcecode}
+\textbf{List.h}
+\ccode{../Beispiel/minilibCollection/include/List.h}
+\textbf{Node.h}
+\ccode{../Beispiel/minilibCollection/include/Node.h}
+\textbf{Set.h}
+\ccode{../Beispiel/minilibCollection/include/Set.h}
+\textbf{BagNode.h}
+\ccode{../Beispiel/minilibCollection/include/BagNode.h}
+\textbf{Bag.h}
+\ccode{../Beispiel/minilibCollection/include/Bag.h}
+\textbf{List.cpp}
+\ccode{../Beispiel/minilibCollection/src/List.cpp}
+\textbf{Node.cpp}
+\ccode{../Beispiel/minilibCollection/src/Node.cpp}
+\textbf{Set.cpp}
+\ccode{../Beispiel/minilibCollection/src/Set.cpp}
+\textbf{BagNode.cpp}
+\ccode{../Beispiel/minilibCollection/src/BagNode.cpp}
+\textbf{Bag.cpp}
+\ccode{../Beispiel/minilibCollection/src/Bag.cpp}
+\textbf{main.cpp}
+\ccode{../Beispiel/minilibCollection/main.cpp}
+
+\subsection{Testfälle}
+\subsubsection{Testfall 1 - Set Operationen}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../Screenshots/1.png}
+\subsubsection{Testfall 2 - Set Clear}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../Screenshots/2.png}
+\subsubsection{Testfall 3 - Set DeleteElements}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../Screenshots/3.png}
+\subsubsection{Testfall 4 - Set Union}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../Screenshots/4.png}
+\subsubsection{Testfall 5 - Set Difference}
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/5.png}
+\subsubsection{Testfall 6 - Set Intersect }
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../Screenshots/6.png}
+\subsubsection{Testfall 7 - Bag Operationen}
+\includegraphics[width=400px, clip=true,trim=0px 250px 0px 0px]{../Screenshots/7.png}
+\subsubsection{Testfall 8 - Bag Clear}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../Screenshots/8.png}
+\subsubsection{Testfall 9 - Bag DeleteElements}
+\includegraphics[width=400px, clip=true,trim=0px 000px 0px 0px]{../Screenshots/9.png}
+\subsubsection{Testfall 10 - Bag Union}
+\includegraphics[width=400px, clip=true,trim=0px 100px 0px 0px]{../Screenshots/10.png}
+\subsubsection{Testfall 11 - Bag Difference}
+\includegraphics[width=400px, clip=true,trim=0px 100px 0px 0px]{../Screenshots/11.png}
+\subsubsection{Testfall 12 - Bag Intersect}
+\includegraphics[width=400px, clip=true,trim=0px 100px 0px 0px]{../Screenshots/12.png}
+
+
+\end{document}

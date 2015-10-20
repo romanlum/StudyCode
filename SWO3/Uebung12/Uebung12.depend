@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1422690623 source:/mnt/hgfs/SWO3/Uebung12/src/Vector1.cpp
+	"Vector1.h"
+	<cstdlib>
+	<new>
+	<iostream>
+
+1422689424 /mnt/hgfs/SWO3/Uebung12/include/Vector1.h
+

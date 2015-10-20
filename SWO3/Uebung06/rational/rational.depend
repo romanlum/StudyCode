@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1416044415 source:/mnt/hgfs/SWO3/Uebung06/rational/main.cpp
+	<iostream>
+	"Rational.h"
+
+1416044402 /mnt/hgfs/SWO3/Uebung06/rational/include/Rational.h
+	<ostream>
+

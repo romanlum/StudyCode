@@ -1,0 +1,131 @@
+\input{master.tex}
+
+\ihead{SWO3 WS 2014/15 - Übung 02}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Aufgabe 1 - Krafttraining}
+\subsection{Lösungsidee}
+Laut Angabe werden die benötigten Felder als globale Variablen angelegt. Dabei ist die Anzahl der Scheiben \textbf{immer ein Scheibenpaar}. Das heißt, dass immer die doppelte Anzahl an Scheiben vorhanden ist.\newline
+Bsp.:
+\begin{minted}[frame=lines,
+               framesep=2mm]{c}
+weights[0] = 0.5;
+counts[0] = 1; /* 2 Scheiben mit 0.5 kg = 1 kg*/
+\end{minted}
+Dieses Programm erfordert einen Eingabeparameter, der geprüft und auf double konvertiert werden muss.\newline
+Da das Gewicht der Langhantel in dem eingegebenen Gewicht enthalten ist, muss dieses abgezogen werden. Weiters muss das Gewicht dann durch 2 dividiert werden, da die Gewichtscheiben in \textbf{Paaren} angegeben sind. Durch die Division durch 2 wird dann genau 1 Seite der Hantel berechnet.\newline
+Dieses Beispiel ist, wie in der Angabe erwähnt, mit dem Backtracking-Verfahren zu lösen.
+Dabei werden alle möglichen Gewichte rekursiv durchlaufen. Es wird dann für jede verfügbare Anzahl von Gewichten geprüft, ob das aktuelle Gewicht plus die neuen Scheiben kleiner gleich dem gewünschten Gewicht ist.
+\begin{itemize}
+\item Ist dies der Fall, dann kann mit dem nächsten Gewicht weitergemacht werden.
+\item Ist dies nicht der Fall, dann kann die aktuelle Teillösung verworfen werden.
+\end{itemize}
+Wurden alle Gewichte durchlaufen, kann geprüft werden, ob das gewünschte Gewicht erreicht ist. Wenn ja, dann wurde eine mögliche Lösung gefunden und kann ausgegeben werden. 
+
+\pagebreak
+\subsection{Sourcecode}
+\ccode{../aufgabe1/weight.c}
+\subsection{Testfälle}
+
+
+\subsubsection{Testfall 1 - ungültige Parameter}
+Erwartetes Ergebnis: Fehlermeldung\newline
+\includegraphics[width=300px, clip=true,trim=0px 300px 0px 0px]{../screenshots/aufgabe1/Testfall01.png}
+
+\subsubsection{Testfall 2 - Lösung ohne Scheiben}
+Eingabe: 20 \newline
+Erwartetes Ergebnis: nur Hantelstange\newline
+\includegraphics[width=300px, clip=true,trim=0px 500px 0px 0px]{../screenshots/aufgabe1/Testfall02.png}
+
+\subsubsection{Testfall 3 - Lösung 1 Paar}
+Eingabe: 21, 70   \newline
+Erwartetes Ergebnis: Hantelstange + 1 Paar\newline
+\includegraphics[width=300px, clip=true,trim=0px 350px 0px 0px]{../screenshots/aufgabe1/Testfall03.png}
+
+\subsubsection{Testfall 4 - Lösung mit mehreren Paaren}
+Eingabe: 140, 82.5, 115 \newline
+Erwartetes Ergebnis: Hantelstange + mehrere Paare\newline
+\includegraphics[width=300px, clip=true,trim=0px 50px 0px 0px]{../screenshots/aufgabe1/Testfall04.png}
+
+\subsubsection{Testfall 5 - Lösung mit allen Paaren}
+Eingabe: 278,5 \newline
+Erwartetes Ergebnis: Hantelstange + alle Paaren\newline
+\includegraphics[width=300px, clip=true,trim=0px 200px 0px 0px]{../screenshots/aufgabe1/Testfall05.png}
+
+\subsubsection{Testfall 6 - keine Lösung}
+Eingabe: 10, 22, 27, 10000, 1000, 20.1, 44.45  \newline
+Erwartetes Ergebnis: keine Lösung\newline
+\includegraphics[width   =300px, clip=true,trim=0px 100px 0px 0px]{../screenshots/aufgabe1/Testfall06.png}
+
+\pagebreak
+\section{Aufgabe 2 - Mathematik mit Polynomen \newline 
+und Divide \& Conquer}
+\subsection{Lösungsidee}
+Bei dieser Aufgabe müssen die angegebenen Funktionen implementiert werden, dadurch werden die Testfälle direkt im Code erzeugt und können mit einem 
+Kommandozeilenparameter ausgeführt werden.
+\subsubsection{printPoly}
+Diese Funktion gibt ein Polynom, das durch den Grad und das Feld der Koeffizienten definiert ist, auf dem Bildschirm aus. Dabei muss das Feld in einer Schleife durchlaufen werden und die einzelnen Koeffizienten und deren Potenz ausgegeben werden.\newline
+Dabei definiert der Inhalt des Feldes den Koeffizienten und der Index die Potenz von x. Null Werte dürfen nicht ausgegeben werden.
+
+\subsubsection{evalPoly}
+Diese Funktion berechnet ein Polynom für einen bestimmten Wert x. Wie in der Angabe erwähnt, soll das Horner Schema für die Berechnung herangezogen werden. Dies lässt sich durch eine Schleife, die von hinten nach vorne läuft, umsetzen. Dabei wird immer der aktuelle Wert des Feldes an der betrachteten Stelle zum Ergebnis addiert und anschließend mit x multipliziert. Ist der Index = 0, darf nicht mehr mit x multipliziert werden. \newline
+Bsp.:$(((0 + 3)*x  + 4)*x+5)*x + 3$
+
+\subsubsection{polySum}
+Diese Funktion berechnet die Summe zweier Polynome. Dabei muss zu Beginn das Maximum der Grade der Polynome bestimmt werden. Eine Schleife läuft dann von 0 bis zum berechneten Grad. Die Summe der Werte an der aktuellen Position wird in das Ergebnisfeld geschrieben. Dabei muss darauf geachtet werden, dass nicht über die Grenzen der einzelnen Polynome hinausgelaufen wird.\newline
+Der berechnete Grad ist der Rückgabewert der Funktion.
+
+\subsubsection{polyProd}
+Diese Funktion berechnet das Produkt zweier Polynome. Dabei werden 2 verschachtelte Schleifen benötigt. Die erste läuft von 0 bis zur Länge des ersten Feldes. Die zweite auch wieder von 0 bis zur Länge des zweiten Feldes. \newline
+In das Ergebnisfeld wird dann das Produkt von des Koeffizienten des ersten Polynomes multipliziert mit dem Koeffizienten des zweiten Polynoms gespeichert. Dabei ist der Index die Summe der beiden Laufvariablen, da bei einer Multiplikation sich ja auch die Potenz ändert.\newline
+Die Summe der beiden Grade ist der Rückgabewert der Funktion.
+
+\subsubsection{polyProdFast}
+Diese Funktion berechnet ebenfalls das Produkt zweier Polynome. Hier müssen laut Angabe die Polynome gleichen Grades und der Grad $+$ 1 muss eine 2er Potenz sein. Die Polynome müssen dann geteilt werden und dann rl, rh und rm laut Formel in der Angabe berechnet werden. Dabei wird für die Multiplikationen wieder die Methode rekursiv aufgerufen. Die Hilfspolynome rl, rh und rm können dann in einer Schleife zu dem Ergebnis r zusammengefügt werden. Dabei kann $x^{n/2 +1}$ und $x^{n+1}$ durch verschieben des Indexes erreicht werden. \newline
+Die Abbruchbedingung der Rekursion ist, wenn der Grad = 0 ist, denn dann kann die skalare Multiplikation verwendet werden.\newline
+Rückgabewert: 
+\begin{itemize}
+\item Ist der Grad größer Null, dann ist der Rückgabewert die Summe der Grade.
+\item Ist der Grad gleich Null, dann ist dieser gleich 1.
+\end{itemize}
+
+\subsection{Sourcecode}
+\ccode{../aufgabe2/poly.c}
+\subsection{Testfälle}
+
+\subsubsection{Testfall 1 - printPoly}
+\includegraphics[width=400px, clip=true,trim=0px 100px 0px 0px]{../screenshots/aufgabe2/Testfall01.png}
+
+\subsubsection{Testfall 2 - printPoly - Polynom 2}
+\includegraphics[width=400px, clip=true,trim=0px 100px 0px 0px]{../screenshots/aufgabe2/Testfall02.png}
+
+\subsubsection{Testfall 3 - evalPoly}
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../screenshots/aufgabe2/Testfall03.png}
+
+\subsubsection{Testfall 4 - evalPoly - Polynom 2}
+\includegraphics[width=400px, clip=true,trim=0px 200px 0px 0px]{../screenshots/aufgabe2/Testfall04.png}
+
+\subsubsection{Testfall 5 - polySum - Polynomgrade gleich}
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../screenshots/aufgabe2/Testfall05.png}
+
+\subsubsection{Testfall 6 - polySum - Polynomgrad q > p}
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../screenshots/aufgabe2/Testfall06.png}
+
+\subsubsection{Testfall 7 - polySum - Polynomgrad p > q}
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../screenshots/aufgabe2/Testfall07.png}
+
+\subsubsection{Testfall 8 - polyProd - Polynomgrade gleich}
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../screenshots/aufgabe2/Testfall08.png}
+
+\subsubsection{Testfall 9 - polyProd - Polynomgrad q > p}
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../screenshots/aufgabe2/Testfall09.png}
+
+\subsubsection{Testfall 10 - polyProd - Polynomgrad p > q}
+\includegraphics[width=400px, clip=true,trim=0px 300px 0px 0px]{../screenshots/aufgabe2/Testfall10.png}
+
+\subsubsection{Testfall 11 - polyProdFast - Polynomgrad 3, 7}
+\includegraphics[width=400px, clip=true,trim=0px 100px 0px 0px]{../screenshots/aufgabe2/Testfall11.png}
+
+\end{document}

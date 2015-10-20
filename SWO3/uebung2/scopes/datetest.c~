@@ -1,0 +1,9 @@
+#include "date.h"
+
+int main() {
+  initDate();
+  printDate();
+  year = 2021;
+  printDate();
+  return 0;
+}

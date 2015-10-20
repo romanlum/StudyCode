@@ -1,0 +1,131 @@
+# depslib dependency file v1.0
+1420497085 source:/mnt/hgfs/SWO3/UebungMoodle6/Tree/main.cpp
+	<iostream>
+	"Tree.h"
+	"IntNode.h"
+	<MLObject.h>
+	"FileSystem.h"
+
+1420496522 /mnt/hgfs/SWO3/UebungMoodle6/Tree/include/Tree.h
+	<ostream>
+	<MLObject.h>
+	<Node.h>
+
+1419846543 /mnt/hgfs/SWO3/UebungMoodle6/minilib/include/MLObject.h
+	<iostream>
+	<string>
+	"MetaInfo.h"
+
+1419846543 /mnt/hgfs/SWO3/UebungMoodle6/minilib/include/MetaInfo.h
+	<iostream>
+	<string>
+
+1420496477 /mnt/hgfs/SWO3/UebungMoodle6/Tree/include/Node.h
+	<ostream>
+	<MLObject.h>
+
+1420496175 /mnt/hgfs/SWO3/UebungMoodle6/Tree/include/IntNode.h
+	<sstream>
+	"MLObject.h"
+	"Node.h"
+
+1420496334 source:/mnt/hgfs/SWO3/UebungMoodle6/Tree/src/IntNode.cpp
+	<MLObject.h>
+	<sstream>
+	"IntNode.h"
+
+1420495216 source:/mnt/hgfs/SWO3/UebungMoodle6/Tree/src/Node.cpp
+	<ostream>
+	<MLObject.h>
+	"Node.h"
+
+1420496862 source:/mnt/hgfs/SWO3/UebungMoodle6/Tree/src/Tree.cpp
+	"Tree.h"
+	<ostream>
+	<sstream>
+	<cassert>
+	<MLObject.h>
+
+1419952450 source:/mnt/hgfs/SWO3/UebungMoodle6/Tree/src/Directory.cpp
+	"Directory.h"
+	<MLObject.h>
+
+1419955325 /mnt/hgfs/SWO3/UebungMoodle6/Tree/include/Directory.h
+	"FSNode.h"
+
+1420496425 /mnt/hgfs/SWO3/UebungMoodle6/Tree/include/FSNode.h
+	"Node.h"
+
+1419955757 source:/mnt/hgfs/SWO3/UebungMoodle6/Tree/src/File.cpp
+	"File.h"
+	<MLObject.h>
+
+1419950303 /mnt/hgfs/SWO3/UebungMoodle6/Tree/include/File.h
+	"FSNode.h"
+
+1419955863 source:/mnt/hgfs/SWO3/UebungMoodle6/Tree/src/FileSystem.cpp
+	"FileSystem.h"
+	<MLObject.h>
+	<iostream>
+	<cstring>
+	"Directory.h"
+	"File.h"
+
+1419952125 /mnt/hgfs/SWO3/UebungMoodle6/Tree/include/FileSystem.h
+	"Tree.h"
+	"Directory.h"
+
+1420496436 source:/mnt/hgfs/SWO3/UebungMoodle6/Tree/src/FSNode.cpp
+	"FSNode.h"
+
+1421267779 source:/mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/main.cpp
+	<iostream>
+	"Tree.h"
+	"IntNode.h"
+	<MLObject.h>
+	"FileSystem.h"
+
+1420497214 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/include/Tree.h
+	<ostream>
+	<MLObject.h>
+	<Node.h>
+
+1419846543 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/minilib/include/MLObject.h
+	<iostream>
+	<string>
+	"MetaInfo.h"
+
+1419846543 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/minilib/include/MetaInfo.h
+	<iostream>
+	<string>
+
+1420496477 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/include/Node.h
+	<ostream>
+	<MLObject.h>
+
+1420496175 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/include/IntNode.h
+	<sstream>
+	"MLObject.h"
+	"Node.h"
+
+1421345388 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/include/FileSystem.h
+	"Tree.h"
+	"Directory.h"
+
+1421345405 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/include/Directory.h
+	"FSNode.h"
+
+1420496425 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/include/FSNode.h
+	"Node.h"
+
+1421265609 source:/mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/src/Directory.cpp
+	"Directory.h"
+	<MLObject.h>
+
+1421265616 source:/mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/src/File.cpp
+	"File.h"
+	<MLObject.h>
+
+1419950303 /mnt/hgfs/SWO3/UebungMoodle6/Beispiel/Tree/include/File.h
+	"FSNode.h"
+

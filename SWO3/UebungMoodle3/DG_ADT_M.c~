@@ -1,0 +1,39 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "DG_ADT.h"
+
+struct Graph {
+  /* count of vertices */
+  int verticesCount;
+  /* matrix of edges */
+  double **edges;
+};
+
+/* Create the graph with the given vertices count*/
+Graph* createGraph(int n) {
+  Graph *graph =(Graph*) malloc(sizeof(Graph));
+  
+  /* return null if we do not have enough memory */
+  if (graph == NULL)
+    return NULL;
+    
+  graph->verticesCount = n;
+  /* reserve the memory for the matrix */
+  edges = (double **)malloc(sizeof(double) * n * n);
+  memset(edges, 0, sizeof(double) * n * n);
+  return graph;
+}
+
+/* prints the graph matrix */
+void printGraph(Graph *g) {
+  int i, j;
+  for (i = 0; i < g->verticesCount; i++) {
+    for (j = 0; j < g->verticesCount; j++) {
+      printf("%g ",g->edges[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+

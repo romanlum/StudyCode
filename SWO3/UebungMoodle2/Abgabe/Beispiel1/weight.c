@@ -1,0 +1,121 @@
+/********************************************************************************  
+  weight.c
+  Roman Lumetsberger
+  
+  Implements the backtrack algorithm for finding the correct count of weight-pairs
+  for a given weight.
+*********************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <float.h>
+#include <errno.h>
+#include <math.h>
+
+/* defines the length of the input array */
+#define ARRAY_LENGTH 8
+
+/* boolean type */
+typedef enum bool {false,true} bool;
+
+/* global definition of weights */
+const double weights[] = { 0.5, 1.25, 2.5, 5, 10, 15, 20, 25 }; 
+/*global definitions of pairs per weight */
+const int counts[] = { 1, 1, 1, 3, 1, 1, 3, 1 }; 
+/* weight of the bar */
+const double bar = 20;
+
+/* array for used weights */
+int usedWeights[ARRAY_LENGTH];
+
+/* compares 2 double values against the defined epsilon */
+bool compareDouble(double left, double right) {
+  return fabs(left - right) < DBL_EPSILON;
+}
+
+/* prints the solution */
+void printSolution() {
+  int i;
+  printf("Lösung:\n");
+  printf("%6.2f kg : Hantelstange\n", bar);
+  for(i = 0; i < ARRAY_LENGTH; i++) {
+    if(usedWeights[i] > 0)
+      printf("%6.2f kg : %-d Paar(e)\n", weights[i], usedWeights[i]);
+  }
+}
+
+/* recursive backtrack function */
+bool addWeight(int index, double neededWeight) {
+  static double currentWeight;
+  int i;
+  double tmpWeight;
+  
+  /* reset currentWeight on first index*/
+  if ( index == 0 )
+    currentWeight = 0;
+    
+  for(i = 0; i <= counts[index]; i++) {
+    tmpWeight = weights[index] * i;
+    /* backtrack step, check if the new weight is <= needed weight*/
+    if((currentWeight + tmpWeight - neededWeight) < DBL_EPSILON) {
+      usedWeights[index] = i;
+      currentWeight += tmpWeight;
+      /* check if it is the last weight */
+      if( index == ARRAY_LENGTH - 1 ) {
+        /*solution found? */
+        if(compareDouble(currentWeight, neededWeight)) {
+          printSolution(ARRAY_LENGTH, usedWeights);
+          return true;
+        }
+      }
+      else {
+        /* add next weight and stop if a solution is found */
+        if(addWeight(index + 1, neededWeight))
+          return true;
+      }
+      /* remove the weight again */
+      currentWeight -= tmpWeight;
+    }
+  }
+  return false;
+}
+
+int main(int argc, char **argv) {
+  char *endptr;
+  double inputWeight;
+  
+  if(argc != 2 ) {
+    printf("Ungültige Parameter\n");
+    printf("Usage %s Gewicht\n", argv[0]);
+    return EXIT_FAILURE;
+  }
+  
+  endptr = NULL;
+  errno = 0;
+  inputWeight = strtod(argv[1], &endptr);
+  /* Check for errors */
+  if ((errno == ERANGE && (inputWeight == HUGE_VAL || inputWeight == 0))
+      || (inputWeight == 0 && errno != 0)) {
+    printf("Gewicht ungültig, bitte Zahl größer 0 eingeben\n");
+    return EXIT_FAILURE;
+  } 
+ 
+  /* complete or partial string was invalid */
+  if (endptr == argv[1] || *endptr != '\0') {
+    printf("Gewicht ungültig, bitte Zahl größer 0 eingeben\n");
+    return EXIT_FAILURE;
+  }
+  
+  if(inputWeight <= 0) {
+    printf("Gewicht ungültig, bitte Zahl größer 0 eingeben\n");
+    return EXIT_FAILURE;
+  }
+  
+  /* remove the weight of the bar and devide by 2 to calcualte one side */
+  inputWeight = (inputWeight - bar) / 2;
+  /* start with first weight */
+  if(!addWeight(0, inputWeight  )) {
+      printf("Keine Lösung\n");
+  }  
+  return EXIT_SUCCESS;
+}

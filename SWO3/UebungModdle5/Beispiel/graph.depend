@@ -1,0 +1,98 @@
+# depslib dependency file v1.0
+1418150739 source:/mnt/hgfs/SWO3/UebungModdle5/main.cpp
+	<iostream>
+	"Vertex.h"
+	"Graph.h"
+	"VertexStack.h"
+	"VertexQueue.h"
+
+1417899290 /mnt/hgfs/SWO3/UebungModdle5/include/Vertex.h
+	<string>
+
+1418147416 /mnt/hgfs/SWO3/UebungModdle5/include/Graph.h
+	<iostream>
+	"Vertex.h"
+
+1418150671 source:/mnt/hgfs/SWO3/UebungModdle5/src/Graph.cpp
+	<cassert>
+	<cstring>
+	<iostream>
+	"Graph.h"
+	"Vertex.h"
+	"VertexStack.h"
+	"VertexQueue.h"
+
+1417899303 source:/mnt/hgfs/SWO3/UebungModdle5/src/Vertex.cpp
+	"Vertex.h"
+	<string>
+	<iostream>
+
+1418150605 /mnt/hgfs/SWO3/UebungModdle5/include/VertexStack.h
+	"Vertex.h"
+	"VertexList.h"
+
+1417901521 /mnt/hgfs/SWO3/UebungModdle5/include/VertexList.h
+
+1417901633 /mnt/hgfs/SWO3/UebungModdle5/include/VertexQueue.h
+	"Vertex.h"
+	"VertexList.h"
+
+1418049111 source:/mnt/hgfs/SWO3/UebungModdle5/src/VertexQueue.cpp
+	"VertexQueue.h"
+	"Vertex.h"
+	<cassert>
+
+1418150696 source:/mnt/hgfs/SWO3/UebungModdle5/src/VertexStack.cpp
+	"VertexStack.h"
+	<cassert>
+
+1418336300 source:/mnt/hgfs/SWO3/UebungModdle5/Beispiel/main.cpp
+	<iostream>
+	"Vertex.h"
+	"Graph.h"
+	"VertexStack.h"
+	"VertexQueue.h"
+
+1418162831 /mnt/hgfs/SWO3/UebungModdle5/Beispiel/include/Vertex.h
+	<string>
+
+1418232054 /mnt/hgfs/SWO3/UebungModdle5/Beispiel/include/Graph.h
+	<iostream>
+	"Vertex.h"
+
+1418335696 /mnt/hgfs/SWO3/UebungModdle5/Beispiel/include/VertexStack.h
+	"Vertex.h"
+	"VertexList.h"
+
+1418231455 /mnt/hgfs/SWO3/UebungModdle5/Beispiel/include/VertexList.h
+	"Vertex.h"
+
+1418336372 /mnt/hgfs/SWO3/UebungModdle5/Beispiel/include/VertexQueue.h
+	"Vertex.h"
+	"VertexList.h"
+
+1418232468 source:/mnt/hgfs/SWO3/UebungModdle5/Beispiel/src/Graph.cpp
+	<cassert>
+	<cstring>
+	<iostream>
+	"Graph.h"
+	"Vertex.h"
+	"VertexStack.h"
+	"VertexQueue.h"
+
+1418162831 source:/mnt/hgfs/SWO3/UebungModdle5/Beispiel/src/Vertex.cpp
+	<string>
+	<iostream>
+	"Vertex.h"
+
+1418336468 source:/mnt/hgfs/SWO3/UebungModdle5/Beispiel/src/VertexQueue.cpp
+	"VertexQueue.h"
+	"Vertex.h"
+	<cassert>
+
+1418234923 source:/mnt/hgfs/SWO3/UebungModdle5/Beispiel/src/VertexStack.cpp
+	<cassert>
+	"VertexStack.h"
+	"Vertex.h"
+	"VertexList.h"
+
