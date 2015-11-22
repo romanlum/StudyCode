@@ -1,0 +1,6 @@
+D:\Studium\Code\SWK5\KT1\BSP1\test2\bin\Debug\test2.exe.config
+D:\Studium\Code\SWK5\KT1\BSP1\test2\obj\Debug\test2.csprojResolveAssemblyReference.cache
+D:\Studium\Code\SWK5\KT1\BSP1\test2\bin\Debug\test2.exe
+D:\Studium\Code\SWK5\KT1\BSP1\test2\bin\Debug\test2.pdb
+D:\Studium\Code\SWK5\KT1\BSP1\test2\obj\Debug\test2.exe
+D:\Studium\Code\SWK5\KT1\BSP1\test2\obj\Debug\test2.pdb

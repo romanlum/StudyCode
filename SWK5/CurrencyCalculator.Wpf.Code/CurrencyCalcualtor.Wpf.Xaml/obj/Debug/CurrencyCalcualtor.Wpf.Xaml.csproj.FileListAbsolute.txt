@@ -1,0 +1,17 @@
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\bin\Debug\CurrencyCalcualtor.Wpf.Xaml.exe.config
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\bin\Debug\CurrencyCalcualtor.Wpf.Xaml.exe
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\bin\Debug\CurrencyCalcualtor.Wpf.Xaml.pdb
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\CurrencyCalcualtor.Wpf.Xaml.csprojResolveAssemblyReference.cache
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\MainWindow.g.cs
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\App.g.cs
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\CurrencyCalcualtor.Wpf.Xaml_MarkupCompile.cache
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\CurrencyCalcualtor.Wpf.Xaml_MarkupCompile.lref
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\MainWindow.baml
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\CurrencyCalcualtor.Wpf.Xaml.g.resources
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\CurrencyCalcualtor.Wpf.Xaml.Properties.Resources.resources
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\CurrencyCalcualtor.Wpf.Xaml.csproj.GenerateResource.Cache
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\CurrencyCalcualtor.Wpf.Xaml.exe
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\CurrencyCalcualtor.Wpf.Xaml.pdb
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\bin\Debug\CurrencyCalculator.BL.dll
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\bin\Debug\CurrencyCalculator.BL.pdb
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalcualtor.Wpf.Xaml\obj\Debug\GeneratedInternalTypeHelper.g.cs

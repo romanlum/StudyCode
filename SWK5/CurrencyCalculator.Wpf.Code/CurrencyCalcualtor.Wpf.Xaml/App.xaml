@@ -1,0 +1,9 @@
+﻿<Application x:Class="CurrencyCalcualtor.Wpf.Xaml.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CurrencyCalcualtor.Wpf.Xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

@@ -1,0 +1,4 @@
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.Common\bin\Debug\PhoneTariff.DAL.Common.dll
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.Common\bin\Debug\PhoneTariff.DAL.Common.pdb
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.Common\obj\Debug\PhoneTariff.DAL.Common.dll
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.Common\obj\Debug\PhoneTariff.DAL.Common.pdb

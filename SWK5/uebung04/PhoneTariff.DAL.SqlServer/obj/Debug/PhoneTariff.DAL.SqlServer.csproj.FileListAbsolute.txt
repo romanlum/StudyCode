@@ -1,0 +1,7 @@
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.SqlServer\bin\Debug\PhoneTariff.DAL.SqlServer.dll
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.SqlServer\bin\Debug\PhoneTariff.DAL.SqlServer.pdb
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.SqlServer\bin\Debug\PhoneTariff.DAL.Common.dll
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.SqlServer\bin\Debug\PhoneTariff.DAL.Common.pdb
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.SqlServer\obj\Debug\PhoneTariff.DAL.SqlServer.csprojResolveAssemblyReference.cache
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.SqlServer\obj\Debug\PhoneTariff.DAL.SqlServer.dll
+D:\Studium\Code\SWK5\uebung04\PhoneTariff.DAL.SqlServer\obj\Debug\PhoneTariff.DAL.SqlServer.pdb

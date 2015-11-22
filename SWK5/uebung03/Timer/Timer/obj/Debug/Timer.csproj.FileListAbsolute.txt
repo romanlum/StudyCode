@@ -1,0 +1,6 @@
+D:\Studium\Code\SWK5\uebung03\Timer\Timer\bin\Debug\Timer.exe.config
+D:\Studium\Code\SWK5\uebung03\Timer\Timer\bin\Debug\Timer.exe
+D:\Studium\Code\SWK5\uebung03\Timer\Timer\bin\Debug\Timer.pdb
+D:\Studium\Code\SWK5\uebung03\Timer\Timer\obj\Debug\Timer.csprojResolveAssemblyReference.cache
+D:\Studium\Code\SWK5\uebung03\Timer\Timer\obj\Debug\Timer.exe
+D:\Studium\Code\SWK5\uebung03\Timer\Timer\obj\Debug\Timer.pdb

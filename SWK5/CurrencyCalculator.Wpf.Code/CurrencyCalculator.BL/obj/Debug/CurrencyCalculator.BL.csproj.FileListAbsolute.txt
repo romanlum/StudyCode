@@ -1,0 +1,5 @@
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalculator.BL\bin\Debug\CurrencyCalculator.BL.dll
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalculator.BL\bin\Debug\CurrencyCalculator.BL.pdb
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalculator.BL\obj\Debug\CurrencyCalculator.BL.csprojResolveAssemblyReference.cache
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalculator.BL\obj\Debug\CurrencyCalculator.BL.dll
+D:\Studium\Code\SWK5\CurrencyCalculator.Wpf.Code\CurrencyCalculator.BL\obj\Debug\CurrencyCalculator.BL.pdb

@@ -1,0 +1,6 @@
+D:\Studium\Code\SWK5\KT1\BSP1\Bsp\bin\Debug\Bsp.exe.config
+D:\Studium\Code\SWK5\KT1\BSP1\Bsp\bin\Debug\Bsp.exe
+D:\Studium\Code\SWK5\KT1\BSP1\Bsp\bin\Debug\Bsp.pdb
+D:\Studium\Code\SWK5\KT1\BSP1\Bsp\obj\Debug\Bsp.csprojResolveAssemblyReference.cache
+D:\Studium\Code\SWK5\KT1\BSP1\Bsp\obj\Debug\Bsp.exe
+D:\Studium\Code\SWK5\KT1\BSP1\Bsp\obj\Debug\Bsp.pdb
