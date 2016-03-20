@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/drive-analytics.iml" filepath="$PROJECT_DIR$/drive-analytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drive-analytics-distancesensor/drive-analytics-distancesensor.iml" filepath="$PROJECT_DIR$/drive-analytics-distancesensor/drive-analytics-distancesensor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drive-analytics-main/drive-analytics-main.iml" filepath="$PROJECT_DIR$/drive-analytics-main/drive-analytics-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drive-analytics-sensor/drive-analytics-sensor.iml" filepath="$PROJECT_DIR$/drive-analytics-sensor/drive-analytics-sensor.iml" />
+    </modules>
+  </component>
+</project>

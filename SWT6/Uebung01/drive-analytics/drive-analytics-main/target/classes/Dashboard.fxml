@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+          >
+    <children>
+        <Label fx:id="label" alignment="CENTER" prefWidth="100.0" text="HALLO"
+               GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    </children>
+</GridPane>
