@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.GridPane?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
-    <children>
-        <Label fx:id="label" alignment="CENTER" prefWidth="100.0" text="HALLO"
-               GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    </children>
-</GridPane>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.text.Text?>
+<VBox xmlns="http://javafx.com/javafx/2.2" xmlns:fx="http://javafx.com/fxml" stylesheets="@css/style.css"
+      fx:controller="at.swt6.driveanalytics.controller.MainController" >
+
+    <Slider fx:id="intervalSlider" showTickMarks="true" showTickLabels="true" snapToTicks="true"
+            majorTickUnit="1000"
+            minorTickCount="100"
+            blockIncrement="1000"
+            value="1000"
+            min="100"
+            max="10000" />
+    <VBox fx:id="widgetContainer" spacing="10" styleClass="widget-container" />
+
+
+</VBox>

@@ -2,11 +2,11 @@
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Osmorc" name="OSGi">
-      <configuration manifestGenerationMode="OsmorcControlled" manifestLocation="" jarfileLocation="drive-analytics-distancesensor-1.0.jar" outputPathType="CompilerOutputPath" bndFileLocation="" bundlorFileLocation="" bundleActivator="at.swt6.sensor.distance.DistanceSensorActivator" bundleSymbolicName="swt6.drive-analytics-distancesensor" bundleVersion="1.0.0" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false" doNotSynchronizeWithMaven="false">
+      <configuration manifestGenerationMode="OsmorcControlled" manifestLocation="" jarfileLocation="drive-analytics-humiditysensor-1.0.jar" outputPathType="CompilerOutputPath" bndFileLocation="" bundlorFileLocation="" bundleActivator="at.swt6.sensor.humidity.HumiditySensorActivator" bundleSymbolicName="swt6.drive-analytics-humiditysensor" bundleVersion="1.0.0" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false" doNotSynchronizeWithMaven="false">
         <additionalProperties>
-          <property key="Export-Package" value="at.swt6.sensor.distance;version=&quot;1.0&quot;" />
+          <property key="Export-Package" value="at.swt6.sensor.humidity;version=&quot;1.0&quot;" />
           <property key="Import-Package" value="at.swt6.sensor;version=&quot;[1.0,2.0)&quot;,org.osgi.framework;version=&quot;[1.3,2.0)&quot;," />
-          <property key="Bundle-Name" value="drive-analytics-distancesensor" />
+          <property key="Bundle-Name" value="drive-analytics-humiditysensor" />
         </additionalProperties>
         <additionalJARContents />
       </configuration>

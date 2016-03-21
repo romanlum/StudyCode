@@ -23,6 +23,9 @@
 
 				<configuration>
 					<instructions>
+						<Bundle-Activator>
+							at.swt6.sensor.distance.DistanceSensorActivator
+						</Bundle-Activator>
  						<Export-Package>
  							at.swt6.sensor.distance;version="1.0"
  						</Export-Package>

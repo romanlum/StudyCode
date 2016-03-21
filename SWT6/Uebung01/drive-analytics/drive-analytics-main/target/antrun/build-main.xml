@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <copy file="D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-main\target/drive-analytics-main-1.0.jar" todir="d:\Studium\6. Semester\SWT6\SWInstall\bin\apache-karaf-4.0.4/deploy"/>
-</target>
-</project>

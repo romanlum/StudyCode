@@ -18,6 +18,8 @@
 	<modules>
 		<module>drive-analytics-main</module>
 		<module>drive-analytics-sensor</module>
+		<module>drive-analytics-distancesensor</module>
+		<module>drive-analytics-humiditysensor</module>
 	</modules>
 
 	<build>

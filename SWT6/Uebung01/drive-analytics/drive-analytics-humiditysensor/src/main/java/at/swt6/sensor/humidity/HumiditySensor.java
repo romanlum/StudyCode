@@ -1,4 +1,4 @@
-package at.swt6.sensor.distance;
+package at.swt6.sensor.humidity;
 
 import at.swt6.sensor.ISensor;
 
@@ -9,28 +9,28 @@ import java.util.Random;
 /***
  * Distance sensor implementation
  */
-public class DistanceSensor implements ISensor {
+public class HumiditySensor implements ISensor {
 
     private Random random;
 
-    public DistanceSensor() {
+    public HumiditySensor() {
         random = new Random(new Date().getTime());
     }
 
     @Override
     public String getSensorId() {
-        return "Distance Sensor";
+        return "Humidity Sensor";
     }
 
     @Override
     public byte[] getData() {
-        long value = random.nextInt(4000);
-        byte[] bytes = ByteBuffer.allocate(Long.SIZE / Byte.SIZE).putLong(value).array();
+        double value = random.nextDouble();
+        byte[] bytes = ByteBuffer.allocate(Double.SIZE / Byte.SIZE).putDouble(value).array();
         return bytes;
     }
 
     @Override
     public SensorDataFormat getDataFormat() {
-        return SensorDataFormat.ABSOLUTE_VALUE_LONG;
+        return SensorDataFormat.PERCENT;
     }
 }

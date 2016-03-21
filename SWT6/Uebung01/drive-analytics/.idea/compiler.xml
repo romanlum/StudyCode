@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="drive-analytics-distancesensor" />
+        <module name="drive-analytics-humiditysensor" />
         <module name="drive-analytics-main" />
         <module name="drive-analytics-sensor" />
       </profile>
@@ -30,6 +31,7 @@
     <bytecodeTargetLevel>
       <module name="drive-analytics" target="1.8" />
       <module name="drive-analytics-distancesensor" target="1.8" />
+      <module name="drive-analytics-humiditysensor" target="1.8" />
       <module name="drive-analytics-main" target="1.8" />
       <module name="drive-analytics-sensor" target="1.8" />
     </bytecodeTargetLevel>
