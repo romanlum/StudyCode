@@ -13,7 +13,7 @@ namespace VSS.Wator.Original
         // this matrix is shuffled in each time step.
         // Cells of the world must be executed in a random order,
         // otherwise the animal in the first cell is always allowed to move first.
-        private int[,] randomMatrix;
+        private int[] randomMatrix;
 
         // for visualization
         private byte[] rgbValues;
@@ -97,23 +97,19 @@ namespace VSS.Wator.Original
             RandomizeMatrix(randomMatrix);
 
             // go over all cells of the random matrix
-            // the variables row and col contain the actual position of the
-            // grid cell that should be executed.
             int row, col;
-            for (int i = 0; i < Width; i++)
+            for (int i = 0; i < Width*Height; i++)
             {
-                for (int j = 0; j < Height; j++)
-                {
-                    // determine row and col of the grid cell by manipulating the value
-                    // of the current cell in the random matrix
-                    col = randomMatrix[i, j]%Width;
-                    row = randomMatrix[i, j]/Width;
+                // determine row and col of the grid cell by manipulating the value
+                var value = randomMatrix[i];
+                col = value % Width;
+                row = value / Width;
 
-                    // if there is an animal on this cell that has not been moved in this simulation step
-                    // then we execute it
-                    if (Grid[col, row] != null && !Grid[col, row].Moved)
-                        Grid[col, row].ExecuteStep();
-                }
+                // if there is an animal on this cell that has not been moved in this simulation step
+                // then we execute it
+                if (Grid[col, row] != null && !Grid[col, row].Moved)
+                    Grid[col, row].ExecuteStep();
+                
             }
 
             // commit all animals in the grid to prepare for the next simulation step
@@ -257,22 +253,13 @@ namespace VSS.Wator.Original
 
         // create a 2D array containing all numbers in the range 0 .. width * height
         // the numbers are shuffled to create a random ordering
-        private int[,] GenerateRandomMatrix(int width, int height)
-        {
-            int[,] matrix = new int[width, height];
+        private int[] GenerateRandomMatrix(int width, int height)
+        { 
+            int[] matrix = new int[width * height];
 
-            // initialize
-            int row = 0;
-            int col = 0;
             for (int i = 0; i < matrix.Length; i++)
             {
-                matrix[col, row] = i;
-                col++;
-                if (col >= width)
-                {
-                    col = 0;
-                    row++;
-                }
+               matrix[i]=i;
             }
             // shuffle matrix
             RandomizeMatrix(matrix);
@@ -280,45 +267,16 @@ namespace VSS.Wator.Original
         }
 
         // shuffle the values of the 2D array in a random fashion
-        private void RandomizeMatrix(int[,] matrix)
+        private void RandomizeMatrix(int[] matrix)
         {
-            // perform a Knuth shuffle (http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
-            // here we need to shuffle a 2D array instead of a simple array
-            int width = matrix.GetLength(0);
-            int height = matrix.GetLength(1);
-            int temp, selectedRow, selectedCol;
-
-            // row and col are updated in the following loop over all cells
-            // begin in the top left (0/0) position of the matrix
-            int row = 0;
-            int col = 0;
-            // for all cells of the matrix
-            for (int i = 0; i < height*width; i++)
+            //Knuth shuffle for arrays 
+            //https://www.rosettacode.org/wiki/Knuth_shuffle#C.23
+            for (int i = 0; i < matrix.Length; i++)
             {
-                // store the original value
-                temp = matrix[col, row];
-                // select a random row for the swap operation
-                // beginning from the current row (as per Knuth shuffle)
-                selectedRow = random.Next(row, height);
-                // 2 cases: 
-                // 1) the randomly selected row is the current row => select a random column larger than the current column
-                // 2) the randomly selected row is larger than the current row => select a random column in the range 0..width (exclusive)
-                if (selectedRow == row) selectedCol = random.Next(col, width);
-                else selectedCol = random.Next(width);
-
-                // swap the values at the current cell and the randomly selected cell
-                matrix[col, row] = matrix[selectedCol, selectedRow];
-                matrix[selectedCol, selectedRow] = temp;
-
-                // always increment current column
-                col++;
-                // when the current column was the last column in the row 
-                // then increment the current row and reset the column to zero
-                if (col >= width)
-                {
-                    col = 0;
-                    row++;
-                }
+                int j = random.Next(i, matrix.Length); // Don't select from the entire array on subsequent loops
+                int temp = matrix[i];
+                matrix[i] = matrix[j];
+                matrix[j] = temp;
             }
         }
     }
