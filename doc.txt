@@ -1,0 +1,25 @@
+Analysis Report
+
+Der Sourcecode ist grundsätzlich gut dokumentiert und auch lesbar. 
+Die Architektur der Anwendung loose gekoppelt und nachvollziehbar. Zur Implementierung gibt es zu erwähnen, dass in der selben Methode oft auf die gleichen Feldelemente zugefriffen wird. Hier wäre es vielleich
+besser, wenn der Wert einmal zwischengespeichert werden würde, da sonst bei jedem Zugriff Laufzeitüberprüfungen durchgeführt werden. 
+Weiters fällt auf, dass sehr viele Objekte der Klasse \texttt{Point} angelegt werden.
+Zur Methode \texttt{GetNeighbors} gibt es zu erwähnen, dass hier für alle vier Richtungen eigentlich der selbe Code verwendet wird und dieser vielleicht besser in eine Methode ausgelagert werden könnte (bringt 
+natürlich keine Performancesteigerung aber der Code wäre leichter lesbar).
+
+
+Where and what for is most of the runtime consumed?
+ Grundsätzlich wird die meiste CPU-Zeit in der Methode \texttt{GetNeighbors} verbraucht.
+ Diese Methode ist für das Suchen der Nachbarn eines Feldes zuständig und wird daher sehr oft aufgerufen.
+ Die Analsyse der Methode zeigt, dass sehr viele \texttt{Point} Objekte angelegt und dann sogar nochmals kopiert werden. Dadurch wird sehr viel CPU-Zeit verbraucht.
+ 
+ Die Methode \texttt{RandomizeMatrix} ist eine weitere Methode die sehr viel CPU-Zeit benötigt. Diese ist für das zufällige Durchlaufen der Array-Elemente zuständig.
+ 
+ What can be done to improve performance?
+  * Umgang mit den Koordinaten in der Methode \texttt{GetNeighbors} optimieren, damit nicht mehr so viele Objekte angelegt werden müssen.
+   - Verwenden eines statischen Arrays.
+   - Kopieren des Arrays am Ende der Methode vermeiden.
+   
+  * Umstellen der zweidimensionalen Felder auf eindimensionales Felder
+  * Ändern \texttt{Moved} Eigenschaft um die zusätzliche Schleife über alle Elemente zu sparen.
+   - Eine Möglichkeit wäre hier die Iterationsnummer zu verwenden.
