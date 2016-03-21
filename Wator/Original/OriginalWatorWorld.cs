@@ -171,7 +171,7 @@ namespace VSS.Wator.Original
         private readonly Point[] neighbors = new Point[4];
 
         // find all neighbouring cells of the given position that contain an animal of the given type
-        public Point[] GetNeighbors(Type type, Point position)
+        public Point SelectNeighbor(Type type, Point position)
         {
             int neighborIndex;
             int i, j;
@@ -216,12 +216,24 @@ namespace VSS.Wator.Original
                 neighbors[neighborIndex].Y = j;
                 neighborIndex++;
             }
-            
-            // create a result array of the correct length containing only
-            // the discovered cells of the correct type
-            Point[] result = new Point[neighborIndex];
-            Array.Copy(neighbors, result, neighborIndex);
-            return result;
+
+            if (neighborIndex > 1)
+            {
+                // if more than one cell has been found => return a randomly selected cell
+                return neighbors[random.Next(neighborIndex)];
+            }
+            else if (neighborIndex == 1)
+            {
+                // if only a single cell contains an animal of the given type we can save the call to random
+                return neighbors[0];
+            }
+            else
+            {
+                // return a point with negative coordinates to indicate
+                // that no neighbouring cell has found
+                // return value must be checked by the caller
+                return new Point(-1, -1);
+            }
         }
 
         private bool CheckNeighbor(Type type, int xCoord, int yCoord)
@@ -241,29 +253,7 @@ namespace VSS.Wator.Original
             return false;
         }
 
-        // select a random neighbouring cell that contains an animal (or null) of the given type
-        public Point SelectNeighbor(Type type, Point position)
-        {
-            // first determine _all_ neighbours of the given type
-            Point[] neighbors = GetNeighbors(type, position);
-            if (neighbors.Length > 1)
-            {
-                // if more than one cell has been found => return a randomly selected cell
-                return neighbors[random.Next(neighbors.Length)];
-            }
-            else if (neighbors.Length == 1)
-            {
-                // if only a single cell contains an animal of the given type we can save the call to random
-                return neighbors[0];
-            }
-            else
-            {
-                // return a point with negative coordinates to indicate
-                // that no neighbouring cell has found
-                // return value must be checked by the caller
-                return new Point(-1, -1);
-            }
-        }
+        
 
         // create a 2D array containing all numbers in the range 0 .. width * height
         // the numbers are shuffled to create a random ordering
