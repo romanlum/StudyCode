@@ -36,6 +36,11 @@ namespace VSS.Wator.Original
         public int InitialSharkEnergy { get; private set; }
         public int SharkBreedEnergy { get; private set; }
 
+        /// <summary>
+        /// Gets the current iteration of the world
+        /// </summary>
+        public long CurrentIteration { get; private set; }
+
         #endregion
 
         // create and init a new wator world with the given settings
@@ -92,6 +97,7 @@ namespace VSS.Wator.Original
         // use the moved flag.
         public void ExecuteStep()
         {
+            CurrentIteration++;
             // shuffle the values in randomMatrix to make sure
             // that in each time step the order of execution of cells is different (and random)
             RandomizeMatrix(randomMatrix);
@@ -112,15 +118,7 @@ namespace VSS.Wator.Original
                 
             }
 
-            // commit all animals in the grid to prepare for the next simulation step
-            for (int i = 0; i < Width; i++)
-            {
-                for (int j = 0; j < Height; j++)
-                {
-                    if (Grid[i, j] != null)
-                        Grid[i, j].Commit();
-                }
-            }
+          
         }
 
         // generates a bitmap for the current state of the wator world
@@ -231,7 +229,7 @@ namespace VSS.Wator.Original
                 return new Point(-1, -1);
             }
         }
-
+        
         private bool CheckNeighbor(Type type, int xCoord, int yCoord)
         {
             var value = Grid[xCoord, yCoord];
