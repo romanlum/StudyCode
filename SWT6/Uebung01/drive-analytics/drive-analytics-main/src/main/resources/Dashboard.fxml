@@ -9,10 +9,9 @@
 
     <Slider fx:id="intervalSlider" showTickMarks="true" showTickLabels="true" snapToTicks="true"
             majorTickUnit="1000"
-            minorTickCount="100"
             blockIncrement="1000"
             value="1000"
-            min="100"
+            min="0"
             max="10000" />
     <VBox fx:id="widgetContainer" spacing="10" styleClass="widget-container" />
 

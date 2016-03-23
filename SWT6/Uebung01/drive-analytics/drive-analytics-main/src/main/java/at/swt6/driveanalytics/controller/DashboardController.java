@@ -39,7 +39,7 @@ public class DashboardController implements Initializable {
         Activator.controllerInstance = this;
         timer = new Timer();
         timer.setNoTicks(10000);
-
+        intervalSlider.valueProperty().setValue(1000);
         //timer should refresh the widgets
         timer.addTimerListener(x -> {
             try {

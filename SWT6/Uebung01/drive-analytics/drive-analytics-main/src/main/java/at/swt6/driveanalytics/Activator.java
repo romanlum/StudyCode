@@ -3,7 +3,7 @@ package at.swt6.driveanalytics;
 import at.swt6.driveanalytics.controller.DashboardController;
 import at.swt6.sensor.Sensor;
 import at.swt6.sensor.SensorListener;
-import at.swt6.service.SensorListenerService;
+import at.swt6.driveanalytics.service.SensorListenerService;
 import at.swt6.util.JavaFxUtils;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

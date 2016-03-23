@@ -1,4 +1,4 @@
-package at.swt6.service;
+package at.swt6.driveanalytics.service;
 
 import at.swt6.sensor.Sensor;
 import at.swt6.sensor.SensorListener;
