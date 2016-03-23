@@ -23,9 +23,10 @@
 
 				<configuration>
 					<instructions>
- 						<Export-Package>
+						<Export-Package>
  							at.swt6.sensor;version="1.0"
  						</Export-Package>
+
 					</instructions>
 				</configuration>
 			</plugin>

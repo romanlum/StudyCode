@@ -8,6 +8,8 @@
     <file type="Osmorc" url="file://$PROJECT_DIR$/drive-analytics-humiditysensor" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/drive-analytics-main" />
     <file type="Osmorc" url="file://$PROJECT_DIR$/drive-analytics-sensor" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/drive-analytics-tireprssuresensor" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/drive-analytics-util" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

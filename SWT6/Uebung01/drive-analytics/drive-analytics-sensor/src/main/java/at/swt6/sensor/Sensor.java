@@ -8,7 +8,7 @@ public interface Sensor {
     /***
      * Data formant of the sensor value
      */
-    public enum SensorDataFormat {
+    enum SensorDataFormat {
         PERCENT /*double*/,
         ABSOLUTE_VALUE_LONG /*long*/
     }

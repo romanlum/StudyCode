@@ -1,2 +1,3 @@
-at\swt6\sensor\ISensor.class
-at\swt6\sensor\ISensor$SensorDataFormat.class
+at\swt6\sensor\Sensor.class
+at\swt6\sensor\SensorListener.class
+at\swt6\sensor\Sensor$SensorDataFormat.class

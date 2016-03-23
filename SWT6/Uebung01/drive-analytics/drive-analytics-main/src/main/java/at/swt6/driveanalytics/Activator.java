@@ -2,6 +2,8 @@ package at.swt6.driveanalytics;
 
 import at.swt6.driveanalytics.controller.DashboardController;
 import at.swt6.sensor.Sensor;
+import at.swt6.sensor.SensorListener;
+import at.swt6.service.SensorListenerService;
 import at.swt6.util.JavaFxUtils;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -25,6 +27,7 @@ public class Activator implements BundleActivator {
      */
 	@Override
 	public void start(BundleContext context) throws Exception {
+        context.registerService(SensorListener.class,new SensorListenerService() ,null);
 		JavaFxUtils.initJavaFx();
 		JavaFxUtils.runAndWait(()->startUI(context));
 		sensorTracker = new ServiceTracker<>(context, Sensor.class, new SensorTrackerCustomizer(context, controllerInstance));

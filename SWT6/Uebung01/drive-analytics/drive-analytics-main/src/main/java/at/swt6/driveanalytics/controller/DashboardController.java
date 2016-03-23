@@ -5,7 +5,7 @@ import at.swt6.driveanalytics.ui.PercentSensorWidget;
 import at.swt6.driveanalytics.ui.ValueSensorWidget;
 import at.swt6.sensor.Sensor;
 import at.swt6.util.JavaFxUtils;
-import at.swt6.util.Timer;
+import at.swt6.util.timer.Timer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;

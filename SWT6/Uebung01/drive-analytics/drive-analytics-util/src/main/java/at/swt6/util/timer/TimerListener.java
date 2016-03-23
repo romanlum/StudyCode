@@ -1,4 +1,4 @@
-package at.swt6.util;
+package at.swt6.util.timer;
 
 import java.util.EventListener;
 

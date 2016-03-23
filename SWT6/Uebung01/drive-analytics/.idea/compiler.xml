@@ -26,6 +26,8 @@
         <module name="drive-analytics-humiditysensor" />
         <module name="drive-analytics-main" />
         <module name="drive-analytics-sensor" />
+        <module name="drive-analytics-tirepressuresensor" />
+        <module name="drive-analytics-util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -34,6 +36,8 @@
       <module name="drive-analytics-humiditysensor" target="1.8" />
       <module name="drive-analytics-main" target="1.8" />
       <module name="drive-analytics-sensor" target="1.8" />
+      <module name="drive-analytics-tirepressuresensor" target="1.8" />
+      <module name="drive-analytics-util" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -23,7 +23,7 @@ public class AnalyticsWindow {
     public void show()  {
         if (stage == null) {
 
-            Parent root = null;
+            Parent root;
             try {
                 root = FXMLLoader.load(getClass().getResource("/Dashboard.fxml"));
 

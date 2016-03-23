@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/drive-analytics-humiditysensor/drive-analytics-humiditysensor.iml" filepath="$PROJECT_DIR$/drive-analytics-humiditysensor/drive-analytics-humiditysensor.iml" />
       <module fileurl="file://$PROJECT_DIR$/drive-analytics-main/drive-analytics-main.iml" filepath="$PROJECT_DIR$/drive-analytics-main/drive-analytics-main.iml" />
       <module fileurl="file://$PROJECT_DIR$/drive-analytics-sensor/drive-analytics-sensor.iml" filepath="$PROJECT_DIR$/drive-analytics-sensor/drive-analytics-sensor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drive-analytics-tireprssuresensor/drive-analytics-tirepressuresensor.iml" filepath="$PROJECT_DIR$/drive-analytics-tireprssuresensor/drive-analytics-tirepressuresensor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/drive-analytics-util/drive-analytics-util.iml" filepath="$PROJECT_DIR$/drive-analytics-util/drive-analytics-util.iml" />
     </modules>
   </component>
 </project>

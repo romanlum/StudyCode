@@ -5,7 +5,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 /***
- * Activator class for distancesensor bundle
+ * Activator class for distance sensor bundle
  */
 public class DistanceSensorActivator implements BundleActivator {
 

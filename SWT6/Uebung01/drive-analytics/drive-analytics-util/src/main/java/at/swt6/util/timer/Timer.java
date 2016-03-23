@@ -1,4 +1,4 @@
-package at.swt6.util;
+package at.swt6.util.timer;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -6,7 +6,6 @@ import java.util.Vector;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.logging.Logger;
 
 public class Timer {
 	
@@ -15,7 +14,8 @@ public class Timer {
 	private final AtomicInteger tickInterval = new AtomicInteger(1000);
 	private final AtomicInteger tickCount = new AtomicInteger(0);
 	private final AtomicBoolean stopTimer = new AtomicBoolean(false);
-	private final AtomicReference<Thread> tickerThread = 
+
+	private final AtomicReference<Thread> tickerThread =
 			new AtomicReference<>(null);
 	
 	private final Vector<TimerListener> listener= new Vector<>();
@@ -47,22 +47,19 @@ public class Timer {
 	}
 	
 	public void setInterval(int interval) {
-		java.util.logging.Logger.getLogger("test").info("set intervale " +interval);
 		int oldValue = tickInterval.get();
 		if(interval != oldValue) {
 			tickInterval.set(interval);
 			firePropertyChange("interval", oldValue, interval);
 		}
 	}
-	
 	public int getNoTicks() {
 		return noTicks;
 	}
 	
 	public void setNoTicks(int noTicks) {
 		int oldValue = this.noTicks;
-		if(oldValue != noTicks )
-		{
+		if(this.noTicks != noTicks) {
 			this.noTicks = noTicks;
 			firePropertyChange("noTicks", oldValue, noTicks);
 		}
@@ -96,7 +93,7 @@ public class Timer {
 					Thread.sleep(tickInterval.get());
 				} catch (InterruptedException e) {
 				}
-
+				
 				if(!stopTimer.get()) {
 					fireEvent(new TimerEvent(this,tickCount.incrementAndGet(),ticks));
 				}
