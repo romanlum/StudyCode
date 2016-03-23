@@ -1,6 +1,6 @@
 package at.swt6.sensor.distance;
 
-import at.swt6.sensor.ISensor;
+import at.swt6.sensor.Sensor;
 
 import java.nio.ByteBuffer;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Random;
 /***
  * Distance sensor implementation
  */
-public class DistanceSensor implements ISensor {
+public class DistanceSensor implements Sensor {
 
     private Random random;
 

@@ -1,6 +1,6 @@
 package at.swt6.sensor.distance;
 
-import at.swt6.sensor.ISensor;
+import at.swt6.sensor.Sensor;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -11,8 +11,8 @@ public class DistanceSensorActivator implements BundleActivator {
 
     @Override
     public void start(BundleContext context) throws Exception {
-        //register the sensor as ISensor
-        context.registerService(ISensor.class,new DistanceSensor(),null);
+        //register the sensor as Sensor
+        context.registerService(Sensor.class,new DistanceSensor(),null);
 
     }
 

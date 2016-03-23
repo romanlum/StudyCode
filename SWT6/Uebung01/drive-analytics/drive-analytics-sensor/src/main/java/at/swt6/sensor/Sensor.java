@@ -3,7 +3,7 @@ package at.swt6.sensor;
 /***
  * Sensor interface
  */
-public interface ISensor {
+public interface Sensor {
 
     /***
      * Data formant of the sensor value

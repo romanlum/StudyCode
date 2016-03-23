@@ -3,7 +3,7 @@ package at.swt6.driveanalytics.controller;
 import at.swt6.driveanalytics.Activator;
 import at.swt6.driveanalytics.ui.PercentSensorWidget;
 import at.swt6.driveanalytics.ui.ValueSensorWidget;
-import at.swt6.sensor.ISensor;
+import at.swt6.sensor.Sensor;
 import at.swt6.util.JavaFxUtils;
 import at.swt6.util.Timer;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ public class DashboardController implements Initializable {
     @FXML private VBox widgetContainer;
     @FXML private Slider intervalSlider;
 
-    private List<ISensor> sensorList = new ArrayList<>();
+    private List<Sensor> sensorList = new ArrayList<>();
     private Timer timer;
 
     /***
@@ -69,7 +69,7 @@ public class DashboardController implements Initializable {
      * Updates the widget values
      */
     private void updateWidgets() {
-        for (ISensor sensor:sensorList) {
+        for (Sensor sensor:sensorList) {
             Node widget = getWidgetById(sensor.getSensorId());
             ByteBuffer buffer = ByteBuffer.wrap(sensor.getData());
             switch (sensor.getDataFormat()){
@@ -98,7 +98,7 @@ public class DashboardController implements Initializable {
      * Sensor tracker remove implementation
      * @param sensor
      */
-    public void removeSensor(ISensor sensor) {
+    public void removeSensor(Sensor sensor) {
         Node node = getWidgetById(sensor.getSensorId());
         if(node != null){
             widgetContainer.getChildren().remove(node);
@@ -110,7 +110,7 @@ public class DashboardController implements Initializable {
      * Sensor tracker add implementation
      * @param sensor
      */
-    public void addSensor(ISensor sensor) {
+    public void addSensor(Sensor sensor) {
         sensorList.add(sensor);
         switch (sensor.getDataFormat()) {
             case PERCENT:

@@ -1,7 +1,7 @@
 package at.swt6.driveanalytics;
 
 import at.swt6.driveanalytics.controller.DashboardController;
-import at.swt6.sensor.ISensor;
+import at.swt6.sensor.Sensor;
 import at.swt6.util.JavaFxUtils;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -13,7 +13,7 @@ import org.osgi.util.tracker.ServiceTracker;
 public class Activator implements BundleActivator {
 
 	private AnalyticsWindow analyticsWindow;
-	private ServiceTracker<ISensor,ISensor> sensorTracker;
+	private ServiceTracker<Sensor,Sensor> sensorTracker;
 
     //static dashboard controller
 	public static DashboardController controllerInstance;
@@ -27,7 +27,7 @@ public class Activator implements BundleActivator {
 	public void start(BundleContext context) throws Exception {
 		JavaFxUtils.initJavaFx();
 		JavaFxUtils.runAndWait(()->startUI(context));
-		sensorTracker = new ServiceTracker<>(context, ISensor.class, new SensorTrackerCustomizer(context, controllerInstance));
+		sensorTracker = new ServiceTracker<>(context, Sensor.class, new SensorTrackerCustomizer(context, controllerInstance));
 		sensorTracker.open();
 
 	}

@@ -1,6 +1,6 @@
 package at.swt6.sensor.humidity;
 
-import at.swt6.sensor.ISensor;
+import at.swt6.sensor.Sensor;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -11,7 +11,7 @@ public class HumiditySensorActivator implements BundleActivator {
 
     @Override
     public void start(BundleContext context) throws Exception {
-        context.registerService(ISensor.class,new HumiditySensor(),null);
+        context.registerService(Sensor.class,new HumiditySensor(),null);
 
     }
 

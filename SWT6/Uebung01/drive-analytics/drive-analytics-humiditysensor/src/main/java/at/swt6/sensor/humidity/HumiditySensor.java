@@ -1,6 +1,6 @@
 package at.swt6.sensor.humidity;
 
-import at.swt6.sensor.ISensor;
+import at.swt6.sensor.Sensor;
 
 import java.nio.ByteBuffer;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Random;
 /***
  * Humidity sensor implementation
  */
-public class HumiditySensor implements ISensor {
+public class HumiditySensor implements Sensor {
 
     private Random random;
 
