@@ -20,7 +20,7 @@
 		<module>drive-analytics-sensor</module>
 		<module>drive-analytics-distancesensor</module>
 		<module>drive-analytics-humiditysensor</module>
-		<module>drive-analytics-tireprssuresensor</module>
+		<module>drive-analytics-tirepressuresensor</module>
 		<module>drive-analytics-util</module>
 	</modules>
 
