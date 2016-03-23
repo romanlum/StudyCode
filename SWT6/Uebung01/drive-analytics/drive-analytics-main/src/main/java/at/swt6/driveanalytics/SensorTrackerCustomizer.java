@@ -1,22 +1,25 @@
 package at.swt6.driveanalytics;
 
-import at.swt6.driveanalytics.controller.MainController;
+import at.swt6.driveanalytics.controller.DashboardController;
 import at.swt6.sensor.ISensor;
 import at.swt6.util.JavaFxUtils;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
+/***
+ * Tracker customizer used for automatically adding / removing the sensor
+ */
 public class SensorTrackerCustomizer implements ServiceTrackerCustomizer<ISensor, ISensor> {
 
-    private static enum Action {
+    private enum Action {
         ADDED, MODIFIED, REMOVED
     }
 
     private BundleContext context;
-    private MainController   controller;
+    private DashboardController controller;
 
-    public SensorTrackerCustomizer(BundleContext context, MainController controller) {
+    public SensorTrackerCustomizer(BundleContext context, DashboardController controller) {
         this.context = context;
         this.controller = controller;
     }
@@ -56,6 +59,12 @@ public class SensorTrackerCustomizer implements ServiceTrackerCustomizer<ISensor
         }
     }
 
+    /***
+     * processes the event in the ui thread
+     * @param action
+     * @param ref
+     * @param sf
+     */
     private void processEventInUIThread(final Action action,
                                         final ServiceReference<ISensor> ref, final ISensor sf) {
         try {

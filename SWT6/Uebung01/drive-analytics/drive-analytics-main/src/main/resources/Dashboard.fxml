@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.text.Text?>
 <VBox xmlns="http://javafx.com/javafx/2.2" xmlns:fx="http://javafx.com/fxml" stylesheets="@css/style.css"
-      fx:controller="at.swt6.driveanalytics.controller.MainController" >
+      fx:controller="at.swt6.driveanalytics.controller.DashboardController" >
 
     <Slider fx:id="intervalSlider" showTickMarks="true" showTickLabels="true" snapToTicks="true"
             majorTickUnit="1000"

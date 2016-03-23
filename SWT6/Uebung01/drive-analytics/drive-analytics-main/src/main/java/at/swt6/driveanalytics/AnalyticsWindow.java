@@ -1,9 +1,5 @@
 package at.swt6.driveanalytics;
 
-import at.swt6.driveanalytics.controller.MainController;
-import at.swt6.driveanalytics.ui.PercentSensorWidget;
-import at.swt6.sensor.ISensor;
-import com.sun.org.apache.bcel.internal.generic.FMUL;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +28,7 @@ public class AnalyticsWindow {
                 root = FXMLLoader.load(getClass().getResource("/Dashboard.fxml"));
 
             } catch (IOException e) {
-                e.printStackTrace(); //TODO:change
+                throw new RuntimeException(e);
             }
 
             stage = new Stage();
@@ -42,7 +38,7 @@ public class AnalyticsWindow {
             stage.setOnCloseRequest(evt -> {
                 onCloseHandlers.forEach(h -> h.handle(evt));
             });
-            stage.setTitle("Simple Paint Application (non-modular)");
+            stage.setTitle("drive analytics sensor app");
         }
         stage.show();
     }

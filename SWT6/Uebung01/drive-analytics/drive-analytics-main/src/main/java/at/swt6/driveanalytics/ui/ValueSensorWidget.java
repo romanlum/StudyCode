@@ -9,6 +9,9 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
+/***
+ * Widget sensor for value sensors
+ */
 public class ValueSensorWidget extends VBox {
     @FXML private Text valueText;
     @FXML private Text sensorNameText;

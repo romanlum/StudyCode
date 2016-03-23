@@ -23,15 +23,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="drive-analytics-sensor" />
-    <orderEntry type="module-library">
-      <library name="Maven: org.pdfsam.ui:progress-circle-indicator:1.0.0">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/progress-circle-indicator-1.0.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" name="Maven: org.apache.felix:org.apache.felix.framework:5.4.0" level="project" />
   </component>
 </module>

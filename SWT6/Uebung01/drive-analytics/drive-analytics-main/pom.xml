@@ -49,12 +49,5 @@
 			<version>1.0</version>
 			<type>bundle</type>
 		</dependency>
-		<dependency>
-			<groupId>org.pdfsam.ui</groupId>
-			<artifactId>progress-circle-indicator</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/progress-circle-indicator-1.0.0.jar</systemPath>
-		</dependency>
 	</dependencies>
 </project>

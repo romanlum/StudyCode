@@ -16,4 +16,5 @@
         </VBox.margin>
     </HBox>
     <ProgressIndicator  fx:id="progressIndicator" prefHeight="200"  progress="0.22" styleClass="widget-indicator" />
+
 </fx:root>

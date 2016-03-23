@@ -35,7 +35,6 @@ public class Timer {
 		if(isRunning()) {
 			throw new IllegalStateException("Cannot reset while timer is running");
 		}
-		
 		tickCount.set(0);
 	}
 	
@@ -67,8 +66,6 @@ public class Timer {
 			this.noTicks = noTicks;
 			firePropertyChange("noTicks", oldValue, noTicks);
 		}
-
-
 	}
 	
 	public void addTimerListener(TimerListener listener) {

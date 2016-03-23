@@ -8,6 +8,9 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
+/***
+ * Widget ui for percent sensors
+ */
 public class PercentSensorWidget extends VBox {
     @FXML private ProgressIndicator progressIndicator;
     @FXML private Text sensorNameText;

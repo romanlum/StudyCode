@@ -22,9 +22,14 @@ public class DistanceSensor implements ISensor {
         return "Distance Sensor";
     }
 
+    /***
+     * Returns the sensor data
+     * @return
+     */
     @Override
     public byte[] getData() {
-        long value = random.nextInt(4000);
+        //calculate random value
+        long value = random.nextInt(100000);
         byte[] bytes = ByteBuffer.allocate(Long.SIZE / Byte.SIZE).putLong(value).array();
         return bytes;
     }

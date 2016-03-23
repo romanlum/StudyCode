@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Random;
 
 /***
- * Distance sensor implementation
+ * Humidity sensor implementation
  */
 public class HumiditySensor implements ISensor {
 
