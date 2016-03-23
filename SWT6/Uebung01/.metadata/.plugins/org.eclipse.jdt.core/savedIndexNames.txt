@@ -1,0 +1,7 @@
+INDEX VERSION 1.127+D:\Studium\Code\SWT6\Uebung01\.metadata\.plugins\org.eclipse.jdt.core
+3671075378.index
+4183716289.index
+3147716085.index
+705213227.index
+1264280709.index
+2601530786.index

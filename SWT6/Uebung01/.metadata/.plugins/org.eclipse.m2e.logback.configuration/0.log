@@ -1,0 +1,71 @@
+2016-03-23 20:59:42,835 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: swt6:drive-analytics:1.0 @ D:\Studium\Code\SWT6\Uebung01\drive-analytics\pom.xml.
+2016-03-23 20:59:44,020 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using DEFAULT lifecycle mapping for MavenProject: swt6:drive-analytics-main:1.0 @ D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-main\pom.xml.
+2016-03-23 20:59:44,144 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using DEFAULT lifecycle mapping for MavenProject: swt6:drive-analytics-sensor:1.0 @ D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-sensor\pom.xml.
+2016-03-23 20:59:44,256 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using DEFAULT lifecycle mapping for MavenProject: swt6:drive-analytics-distancesensor:1.0 @ D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-distancesensor\pom.xml.
+2016-03-23 20:59:44,364 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using DEFAULT lifecycle mapping for MavenProject: swt6:drive-analytics-humiditysensor:1.0 @ D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-humiditysensor\pom.xml.
+2016-03-23 20:59:44,464 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using DEFAULT lifecycle mapping for MavenProject: swt6:drive-analytics-tirepressuresensor:1.0 @ D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-tirepressuresensor\pom.xml.
+2016-03-23 20:59:44,555 [Worker-8] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using DEFAULT lifecycle mapping for MavenProject: swt6:drive-analytics-util:1.0 @ D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-util\pom.xml.
+2016-03-23 20:59:45,292 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-sensor/src/main/java
+2016-03-23 20:59:45,292 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-sensor/src/test/java
+2016-03-23 20:59:46,352 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-util/src/main/java
+2016-03-23 20:59:46,352 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-util/src/test/java
+2016-03-23 20:59:46,450 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-distancesensor/src/main/java
+2016-03-23 20:59:46,450 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-distancesensor/src/test/java
+2016-03-23 20:59:46,545 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-tirepressuresensor/src/main/java
+2016-03-23 20:59:46,546 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-tirepressuresensor/src/test/java
+2016-03-23 20:59:46,637 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-main/src/main/java
+2016-03-23 20:59:46,637 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /drive-analytics-main/src/main/resources
+2016-03-23 20:59:46,645 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-main/src/test/java
+2016-03-23 20:59:46,762 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-humiditysensor/src/main/java
+2016-03-23 20:59:46,762 [Worker-8] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /drive-analytics-humiditysensor/src/test/java
+2016-03-23 20:59:46,833 [Worker-8] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 7 project(s) in 8 sec
+2016-03-23 20:59:48,474 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:48,475 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-sensor\src\main\resources
+2016-03-23 20:59:48,478 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:48,478 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-sensor\src\test\resources
+2016-03-23 20:59:48,673 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:48,673 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-humiditysensor\src\main\resources
+2016-03-23 20:59:48,674 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:48,674 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-humiditysensor\src\test\resources
+2016-03-23 20:59:48,773 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:48,774 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-distancesensor\src\main\resources
+2016-03-23 20:59:48,775 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:48,775 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-distancesensor\src\test\resources
+2016-03-23 20:59:48,953 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:48,954 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-util\src\main\resources
+2016-03-23 20:59:48,955 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:48,956 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-util\src\test\resources
+2016-03-23 20:59:49,080 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:49,080 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-tirepressuresensor\src\main\resources
+2016-03-23 20:59:49,081 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:49,081 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-tirepressuresensor\src\test\resources
+2016-03-23 20:59:49,389 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:49,396 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2016-03-23 20:59:49,427 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 20:59:49,427 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-main\src\test\resources
+2016-03-23 21:01:50,054 [Worker-3] INFO  o.e.m.i.launch.MavenLaunchDelegate - D:\Studium\Code\SWT6\Uebung01\drive-analytics
+2016-03-23 21:01:50,055 [Worker-3] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B install
+2016-03-23 21:01:57,317 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,317 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-sensor\src\main\resources
+2016-03-23 21:01:57,319 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,319 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-sensor\src\test\resources
+2016-03-23 21:01:57,381 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,382 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-humiditysensor\src\main\resources
+2016-03-23 21:01:57,384 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,385 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-humiditysensor\src\test\resources
+2016-03-23 21:01:57,452 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,453 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-distancesensor\src\main\resources
+2016-03-23 21:01:57,454 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,454 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-distancesensor\src\test\resources
+2016-03-23 21:01:57,535 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,535 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-util\src\main\resources
+2016-03-23 21:01:57,537 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,537 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-util\src\test\resources
+2016-03-23 21:01:57,612 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,612 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-tirepressuresensor\src\main\resources
+2016-03-23 21:01:57,614 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,614 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-tirepressuresensor\src\test\resources
+2016-03-23 21:01:57,683 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,688 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2016-03-23 21:01:57,691 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-03-23 21:01:57,691 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Studium\Code\SWT6\Uebung01\drive-analytics\drive-analytics-main\src\test\resources
