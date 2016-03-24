@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article} 
+\usepackage{graphicx} 
+\usepackage[ngerman]{babel} 
+\usepackage[ansinew]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage{tgpagella} 
+\usepackage{geometry} 
+\usepackage{color} 
+\usepackage{microtype} 
+\usepackage{minted}
+\usepackage{caption}
+\usepackage[headsepline,footsepline]{scrpage2}
+\usepackage{textcomp}
+\usepackage{pdfpages}
+\usepackage{mdframed}
+
+
+
+\makeatletter
+\renewcommand\minted@pygmentize[2][\jobname.pyg]{
+  \def\minted@cmd{pygmentize -l #2 -f latex -F tokenmerge
+    \minted@opt{gobble} \minted@opt{texcl} \minted@opt{mathescape}
+    \minted@opt{startinline} \minted@opt{funcnamehighlighting}
+    \minted@opt{linenos} -P "verboptions=\minted@opt{extra}"
+    -O encoding=UTF-8,outencoding=iso-8859-1 -o \jobname.out.pyg #1}
+  \immediate\write18{\minted@cmd}
+  % For debugging, uncomment:
+  %\immediate\typeout{\minted@cmd}
+  \ifthenelse{\equal{\minted@opt@bgcolor}{}}
+   {}
+   {\begin{minted@colorbg}{\minted@opt@bgcolor}}
+  \input{\jobname.out.pyg}
+  \ifthenelse{\equal{\minted@opt@bgcolor}{}}
+   {}
+   {\end{minted@colorbg}}
+  \DeleteFile{\jobname.out.pyg}}
+\makeatother
+
+
+\title{Dokumentation - 1 Übung}
+\author{Roman Lumetsberger}
+\date{\today}
+
+\newmintedfile[ccode]{cpp}{
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm
+}
+
+\newmintedfile[javacode]{java}{
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               tabsize=2,
+               framesep=2mm,
+}
+\newmintedfile[csscode]{css}{
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               tabsize=2,
+               framesep=2mm,
+}
+\captionsetup{
+  font=footnotesize,
+  justification=raggedright,
+  singlelinecheck=false
+}
+
+
+\newcommand{\srcDir}{../Beispiel/Wator}
+\newcommand{\testDir}{../Beispiel/Wator}
+
+\definecolor{lineColor}{RGB}{151,0,0}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\begin{document}
+\includepdf[pages=-]{angabe.pdf}
