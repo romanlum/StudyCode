@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{public} \PYG{k}{abstract} \PYG{k}{class} \PYG{n+nc}{Animal}
+\PYG{p}{\PYGZob{}}
+\PYG{p}{...}
+	\PYG{c+c1}{//iteration in which the animal was moved}
+	\PYG{k}{private} \PYG{k+kt}{long} \PYG{n}{movedIteration}\PYG{p}{;}
+
+	\PYG{c+c1}{// ctor: create a new animal on the specified position of the given world}
+	\PYG{k}{public} \PYG{n+nf}{Animal}\PYG{p}{(}\PYG{n}{OriginalWatorWorld} \PYG{n}{world}\PYG{p}{,} \PYG{n}{Point} \PYG{n}{position}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+\PYG{p}{...}
+			\PYG{n}{movedIteration} \PYG{p}{=} \PYG{n}{World}\PYG{p}{.}\PYG{n}{CurrentIteration}\PYG{p}{;}
+\PYG{p}{...}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{c+c1}{// move the animal to a given position}
+	\PYG{c+c1}{// does not check if the position can be reached by the animal}
+	\PYG{k}{protected} \PYG{k}{void} \PYG{n+nf}{Move}\PYG{p}{(}\PYG{n}{Point} \PYG{n}{destination}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{World}\PYG{p}{.}\PYG{n}{Grid}\PYG{p}{[}\PYG{n}{Position}\PYG{p}{.}\PYG{n}{X}\PYG{p}{,} \PYG{n}{Position}\PYG{p}{.}\PYG{n}{Y}\PYG{p}{]} \PYG{p}{=} \PYG{k}{null}\PYG{p}{;}
+		\PYG{n}{World}\PYG{p}{.}\PYG{n}{Grid}\PYG{p}{[}\PYG{n}{destination}\PYG{p}{.}\PYG{n}{X}\PYG{p}{,} \PYG{n}{destination}\PYG{p}{.}\PYG{n}{Y}\PYG{p}{]} \PYG{p}{=} \PYG{k}{this}\PYG{p}{;}
+		\PYG{n}{Position} \PYG{p}{=} \PYG{n}{destination}\PYG{p}{;}
+		\PYG{n}{movedIteration} \PYG{p}{=} \PYG{n}{World}\PYG{p}{.}\PYG{n}{CurrentIteration}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+
+	\PYG{c+c1}{// boolean flag that indicates wether an animal has moved in the current iteration}
+	\PYG{k}{public} \PYG{k+kt}{bool} \PYG{n}{Moved}
+	\PYG{p}{\PYGZob{}}
+			\PYG{k}{get} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{movedIteration} \PYG{p}{==} \PYG{n}{World}\PYG{p}{.}\PYG{n}{CurrentIteration}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

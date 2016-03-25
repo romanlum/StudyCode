@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{private} \PYG{k+kt}{int}\PYG{p}{[]} \PYG{n}{randomMatrix}\PYG{p}{;}
+
+
+\PYG{c+c1}{// create a 2D array containing all numbers in the range 0 .. width * height}
+\PYG{c+c1}{// the numbers are shuffled to create a random ordering}
+\PYG{k}{private} \PYG{k+kt}{int}\PYG{p}{[]} \PYG{n+nf}{GenerateRandomMatrix}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{width}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{height}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int}\PYG{p}{[]} \PYG{n}{matrix} \PYG{p}{=} \PYG{k}{new} \PYG{k+kt}{int}\PYG{p}{[}\PYG{n}{width} \PYG{p}{*} \PYG{n}{height}\PYG{p}{];}
+
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{matrix}\PYG{p}{.}\PYG{n}{Length}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+		\PYG{p}{\PYGZob{}}
+			 \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]=}\PYG{n}{i}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{c+c1}{// shuffle matrix}
+		\PYG{n}{RandomizeMatrix}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{);}
+		\PYG{k}{return} \PYG{n}{matrix}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// shuffle the values of the 2D array in a random fashion}
+\PYG{k}{private} \PYG{k}{void} \PYG{n+nf}{RandomizeMatrix}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{[]} \PYG{n}{matrix}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+		\PYG{c+c1}{//Knuth shuffle for arrays}
+		\PYG{c+c1}{//https://www.rosettacode.org/wiki/Knuth\PYGZus{}shuffle\PYGZsh{}C.23}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{matrix}\PYG{p}{.}\PYG{n}{Length}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+		\PYG{p}{\PYGZob{}}
+				\PYG{k+kt}{int} \PYG{n}{j} \PYG{p}{=} \PYG{n}{random}\PYG{p}{.}\PYG{n}{Next}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{matrix}\PYG{p}{.}\PYG{n}{Length}\PYG{p}{);} \PYG{c+c1}{// Don\PYGZsq{}t select from the entire array on subsequent loops}
+				\PYG{k+kt}{int} \PYG{n}{temp} \PYG{p}{=} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+				\PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{p}{=} \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+				\PYG{n}{matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{p}{=} \PYG{n}{temp}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{ExecuteStep}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+\PYG{p}{...}
+\PYG{c+c1}{// go over all cells of the random matrix}
+		\PYG{k+kt}{int} \PYG{n}{row}\PYG{p}{,} \PYG{n}{col}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{Width}\PYG{p}{*}\PYG{n}{Height}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+		\PYG{p}{\PYGZob{}}
+				\PYG{c+c1}{// determine row and col of the grid cell by manipulating the value}
+				\PYG{k+kt}{var} \PYG{k}{value} \PYG{p}{=} \PYG{n}{randomMatrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+				\PYG{n}{col} \PYG{p}{=} \PYG{k}{value} \PYG{p}{\PYGZpc{}} \PYG{n}{Width}\PYG{p}{;}
+				\PYG{n}{row} \PYG{p}{=} \PYG{k}{value} \PYG{p}{/} \PYG{n}{Width}\PYG{p}{;}
+
+				\PYG{c+c1}{// if there is an animal on this cell that has not been moved in this simulation step}
+				\PYG{c+c1}{// then we execute it}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{Grid}\PYG{p}{[}\PYG{n}{col}\PYG{p}{,} \PYG{n}{row}\PYG{p}{]} \PYG{p}{!=} \PYG{k}{null} \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{p}{!}\PYG{n}{Grid}\PYG{p}{[}\PYG{n}{col}\PYG{p}{,} \PYG{n}{row}\PYG{p}{].}\PYG{n}{Moved}\PYG{p}{)}
+						\PYG{n}{Grid}\PYG{p}{[}\PYG{n}{col}\PYG{p}{,} \PYG{n}{row}\PYG{p}{].}\PYG{n}{ExecuteStep}\PYG{p}{();}
+
+		\PYG{p}{\PYGZcb{}}
+\PYG{p}{...}
+\end{Verbatim}

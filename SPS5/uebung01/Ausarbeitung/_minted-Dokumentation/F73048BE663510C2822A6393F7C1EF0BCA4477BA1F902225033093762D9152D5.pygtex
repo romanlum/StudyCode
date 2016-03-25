@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{public} \PYG{k}{class} \PYG{n+nc}{OriginalWatorWorld} \PYG{p}{:} \PYG{n}{IWatorWorld}
+\PYG{p}{\PYGZob{}}
+	\PYG{p}{...}
+		\PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+		\PYG{c+c1}{/// Gets the current iteration of the world}
+		\PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+		\PYG{k}{public} \PYG{k+kt}{long} \PYG{n}{CurrentIteration} \PYG{p}{\PYGZob{}} \PYG{k}{get}\PYG{p}{;} \PYG{k}{private} \PYG{k}{set}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+
+	\PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{ExecuteStep}\PYG{p}{()}
+	\PYG{p}{\PYGZob{}}
+			\PYG{n}{CurrentIteration}\PYG{p}{++;}
+			\PYG{p}{...}
+
+	\PYG{p}{\PYGZcb{}}
+	\PYG{p}{...}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
