@@ -306,20 +306,22 @@ public class OriginalWatorWorld : IWatorWorld
 % \usepackage{booktabs}
 \begin{table}[!htbp]
 
-\caption{Ergebnis}
+
 \label{summary}
 \begin{tabular}{@{}lllll@{}}
 \cmidrule(l){2-5}
-                             & Original   & Version 1  & Version 2   & Version 3  \\ \midrule
+                             & Original   & Version 1  & Version 2   & Version 3  \\ \midrule 
 1 LAUF                       & 6275,0363  & 4960,0705  & 4047,6108   & 3742,9105  \\ \midrule
 2 LAUF                       & 6573,7986  & 4968,9271  & 4114,0845   & 3813,2592  \\ \midrule
 3 LAUF                       & 6059,9067  & 4884,7747  & 4033,2422   & 3747,6104  \\ \midrule
 4 LAUF                       & 5996,6139  & 4963,4762  & 4144,8737   & 3733,8888  \\ \midrule
 5 LAUF                       & 6001,7686  & 4962,5076  & 4079,2123   & 3776,6795  \\ \midrule
+														 &            &            &             &            \\
 DURCHSCHNITT                 & 6181,42482 & 4947,95122 & 4083,8047   & 3762,86968 \\ \midrule
 STANDARDABWEICHUNG           & 220,870269 & 31,7208145 & 41,3133005  & 28,9859302 \\ \midrule
+														 &            &            &             &            \\
 SPEEDUP ZU VORIGEN VERSION   &           & 1,24726873 & 1,21160329  & 1,0852900  \\ \midrule
-SPEEDUP ZUR ORIGINAL VERSION &           & 1,24726873 & 1,513643593 & 1,6427422  \\ \bottomrule
+SPEEDUP ZUR ORIGINAL VERSION &           & 1,24726873 & 1,513643593 & \textbf{1,6427422}  \\ \bottomrule
 \end{tabular}
 \end{table}
 \end{document}
