@@ -7,29 +7,41 @@
 
 \section{1. Wator – Eat or be eaten}
 \subsection{Analyse}
-Der Sourcecode ist grundsätzlich gut dokumentiert und auch lesbar. 
-Die Architektur der Anwendung loose gekoppelt und nachvollziehbar. Zur Implementierung gibt es zu erwähnen, dass in der selben Methode oft auf die gleichen Feldelemente zugegriffen wird. Hier wäre es vielleicht
+Der Sourcecode ist grundsätzlich gut dokumentiert und lesbar. 
+Die Architektur der Anwendung ist loose gekoppelt und nachvollziehbar. 
+
+Zur Implementierung gibt es zu erwähnen, dass in der selben Methode oft auf die gleichen Feldelemente zugegriffen wird. Hier wäre es vielleicht
 besser, wenn der Wert einmal zwischengespeichert werden würde, da sonst bei jedem Zugriff Laufzeitüberprüfungen durchgeführt werden. 
+
 Weiters fällt auf, dass sehr viele Objekte der Klasse \texttt{Point} angelegt werden.
-Zur Methode \texttt{GetNeighbors} gibt es zu erwähnen, dass hier für alle vier Richtungen eigentlich der selbe Code verwendet wird und dieser vielleicht besser in eine Methode ausgelagert werden könnte (bringt 
+
+Bei der Methode \texttt{GetNeighbors} gibt es zu erwähnen, dass hier für alle vier Richtungen eigentlich der selbe Code verwendet wird und dieser vielleicht besser in eine Methode ausgelagert werden könnte (bringt 
 warscheinlich keine Performancesteigerung aber der Code wäre besser lesbar).
 
-\subsection{Where and what for is most of the runtime consumed?}
- \includegraphics[width=400px]{images/profiling.png}
+\subsection{Performance}
+Zur Bestimmung der Performance wurden folgende Parameter verwendet:
+\begin{itemize}
+	\item 5 Durchläufe
+	\item Größe der Welt: 500x500
+	\item 100 Iterationen
+	\item Grafikausgabe deaktiviert
+	
+\end{itemize}
 
+\textbf{Performance der originalen Anwendung}\newline
+\includegraphics[width=300px]{images/OriginalVersion.png}
+
+
+\subsection{Wo wird die meiste Rechneleistung verbraucht?}
+ \includegraphics[width=400px]{images/profiling.png}
 
  Grundsätzlich wird die meiste CPU-Zeit in der Methode \texttt{ExecuteStep} und in weiterer Folge dann in \texttt{GetNeighbors} verbraucht.
  Diese Methode ist für das Suchen der Nachbarn eines Feldes zuständig und wird daher sehr oft aufgerufen.
- Die Analsyse der Methode zeigt, dass sehr viele \texttt{Point} Objekte angelegt und dann sogar nochmals kopiert werden. Dadurch wird sehr viel CPU-Zeit verbraucht.
+ Die Analsyse der Methode zeigt, dass sehr viele \texttt{Point} Objekte angelegt und dann sogar nochmals kopiert werden.
 
  Die Methode \texttt{RandomizeMatrix} ist eine weitere Methode die sehr viel CPU-Zeit benötigt. Diese ist für das Mischen der Durchlauf-Matrix zuständig.
 
-\subsection{Performance}
-Ohne Optimierungen liefert das Programm folgende Werte
-
-\includegraphics[width=300px]{images/OriginalVersion.png}
-
-\subsection{What can be done to improve performance?}
+\subsection{Wie kann die Performance verbessert werden?}
 \begin{itemize}
 	\item Umgang mit den Koordinaten in der Methode \texttt{GetNeighbors} optimieren, damit nicht mehr so viele Objekte angelegt werden müssen.
 		\subitem Verwenden eines statischen Arrays.
@@ -42,29 +54,22 @@ Ohne Optimierungen liefert das Programm folgende Werte
 \section{2. Wator – Optimization }
 
 \subsection{Version 1}
-Für diese Optimierung wurde versucht die Anzahl der benötigten \texttt{Point} Objekte zu verringern indem die Methode \texttt{GetNeighbors} folgendermaßen geändert wurde.
-Die lokale Variable \texttt{neighbors} wurde als private Datenkomponente angelgt und wird so für jeden Aufruf wiederverwendet und braucht nicht neu angelegt werden.
+Für diese Optimierung wurde versucht die Anzahl der benötigten \texttt{Point} Objekte zu verringern, indem die Methode \texttt{GetNeighbors} geändert wurde.
+Die lokale Variable \texttt{neighbors} wurde als private Datenkomponente angelgt und wird so für jeden Aufruf wiederverwendet. Damit braucht sie nicht jedesmal neu angelegt werden.
 
-Weiters wurde die Logik der zufälligen Auswahl einer Richtung direkt in die Methode \texttt{GetNeighbors} verlagert, damit braucht am Ende das Array nicht kopiert werden, sonder 
+Weiters wurde die Logik der zufälligen Auswahl einer Richtung direkt in die Methode \texttt{GetNeighbors} verlagert, damit braucht am Ende das Array nicht kopiert werden, sondern 
 es wird direkt der Punkt zurückgegeben.
 
-Zur besseren Lesbarkeit des Quellcodes wurde die Prüfung, ob ein Nachbarelement gültig ist in eine eigene Methode \texttt{CheckNeighbor} ausgelagert.
+Zur besseren Lesbarkeit des Quellcodes wurde die Prüfung ob ein Nachbarelement gültig ist, in eine eigene Methode \texttt{CheckNeighbor} ausgelagert.
 
-\subsection{Performance}
+\subsubsection{Performance}
 \includegraphics[width=300px]{images/Version1.png}\linebreak
-Speedup und Änderung zu vorherigen Version siehe Zusammenfassung.
+\begin{flushleft}
+\textbf{Speedup zur vorherigen Version:} 1,24726873\linebreak
+\textbf{Speedup zur original Version:} 1,24726873\linebreak
 
+\end{flushleft}
 \subsubsection{Codeänderungen}
-\begin{minted}[
-frame=lines,
-fontsize=\footnotesize,
-]{csharp}
-/// <summary>
-/// Neighbors static data array which is reused
-/// </summary>
-private readonly Point[] neighbors = new Point[4];
-\end{minted}
-
 \begin{minted}[
 frame=lines,
 fontsize=\footnotesize,
@@ -169,8 +174,11 @@ Aufruf von \texttt{random.Next}.
 
 \subsection{Performance}
 \includegraphics[width=300px]{images/Version2.png}\linebreak
-Speedup und Änderung zu vorherigen Version siehe Zusammenfassung.
+\begin{flushleft}
+\textbf{Speedup zur vorherigen Version:} 1,21160329\linebreak
+\textbf{Speedup zur original Version:} 1,513643593\linebreak
 
+\end{flushleft}
 \subsubsection{Codeänderungen}
 \begin{minted}[
 frame=lines,
@@ -237,7 +245,9 @@ Property \texttt{Moved} wird dann der Iterationszähler verglichen.
 
 \subsection{Performance}
 \includegraphics[width=300px]{images/Version3.png}\linebreak
-Speedup und Änderung zu vorherigen Version siehe Zusammenfassung.
+\textbf{Speedup zur vorherigen Version:} 1,0852900\linebreak
+\textbf{Speedup zur original Version:} 1,6427422
+
 
 \subsubsection{Codeänderungen}
 \begin{minted}[
@@ -311,17 +321,17 @@ public class OriginalWatorWorld : IWatorWorld
 \begin{tabular}{@{}lllll@{}}
 \cmidrule(l){2-5}
                              & Original   & Version 1  & Version 2   & Version 3  \\ \midrule 
-1 LAUF                       & 6275,0363  & 4960,0705  & 4047,6108   & 3742,9105  \\ \midrule
-2 LAUF                       & 6573,7986  & 4968,9271  & 4114,0845   & 3813,2592  \\ \midrule
-3 LAUF                       & 6059,9067  & 4884,7747  & 4033,2422   & 3747,6104  \\ \midrule
-4 LAUF                       & 5996,6139  & 4963,4762  & 4144,8737   & 3733,8888  \\ \midrule
-5 LAUF                       & 6001,7686  & 4962,5076  & 4079,2123   & 3776,6795  \\ \midrule
+1 Lauf                       & 6275,0363  & 4960,0705  & 4047,6108   & 3742,9105  \\ \midrule
+2 Lauf                       & 6573,7986  & 4968,9271  & 4114,0845   & 3813,2592  \\ \midrule
+3 Lauf                       & 6059,9067  & 4884,7747  & 4033,2422   & 3747,6104  \\ \midrule
+4 Lauf                       & 5996,6139  & 4963,4762  & 4144,8737   & 3733,8888  \\ \midrule
+5 Lauf                       & 6001,7686  & 4962,5076  & 4079,2123   & 3776,6795  \\ \midrule
 														 &            &            &             &            \\
-DURCHSCHNITT                 & 6181,42482 & 4947,95122 & 4083,8047   & 3762,86968 \\ \midrule
-STANDARDABWEICHUNG           & 220,870269 & 31,7208145 & 41,3133005  & 28,9859302 \\ \midrule
+Durchschnitt                 & 6181,42482 & 4947,95122 & 4083,8047   & 3762,86968 \\ \midrule
+Standardabweichung           & 220,870269 & 31,7208145 & 41,3133005  & 28,9859302 \\ \midrule
 														 &            &            &             &            \\
-SPEEDUP ZU VORIGEN VERSION   &           & 1,24726873 & 1,21160329  & 1,0852900  \\ \midrule
-SPEEDUP ZUR ORIGINAL VERSION &           & 1,24726873 & 1,513643593 & \textbf{1,6427422}  \\ \bottomrule
+Speedup zur vorherigen Version   &           & 1,24726873 & 1,21160329  & 1,0852900  \\ \midrule
+Speedup zur originalen Version &           & 1,24726873 & 1,513643593 & \textbf{1,6427422}  \\ \bottomrule
 \end{tabular}
 \end{table}
 \end{document}
