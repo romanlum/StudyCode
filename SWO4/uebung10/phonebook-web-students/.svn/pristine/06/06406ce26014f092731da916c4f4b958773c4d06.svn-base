@@ -1,0 +1,9 @@
+      else if (req.getParameter("delete") != null) {
+        String idStr = req.getParameter("id");
+        int id = 0;
+        if (idStr != null && idStr.length() > 0) id = Integer.parseInt(idStr);
+
+        personDao.delete(id);
+        out.println("<h3>Entry with ID = " + id + 
+                    " deleted from phone book</h3>");
+      }

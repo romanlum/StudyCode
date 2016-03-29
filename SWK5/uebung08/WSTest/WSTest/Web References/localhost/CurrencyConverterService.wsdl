@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="swk5.currencyservices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="CurrencyConverterService" targetNamespace="swk5.currencyservices" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8888/currencyconverter?xsd=1" namespace="swk5.currencyservices" />
+    </xsd:schema>
+  </types>
+  <message name="convert">
+    <part name="arg0" type="xsd:string" />
+    <part name="arg1" type="xsd:string" />
+    <part name="arg2" type="xsd:double" />
+  </message>
+  <message name="convertResponse">
+    <part name="return" type="xsd:double" />
+  </message>
+  <message name="InvalidCurrencyException">
+    <part name="fault" element="tns:InvalidCurrencyException" />
+  </message>
+  <message name="rateOfExchange">
+    <part name="arg0" type="xsd:string" />
+    <part name="arg1" type="xsd:string" />
+  </message>
+  <message name="rateOfExchangeResponse">
+    <part name="return" type="xsd:double" />
+  </message>
+  <portType name="CurrencyConverter">
+    <operation name="convert" parameterOrder="arg0 arg1 arg2">
+      <input wsam:Action="swk5.currencyservices/CurrencyConverter/convertRequest" message="tns:convert" />
+      <output wsam:Action="swk5.currencyservices/CurrencyConverter/convertResponse" message="tns:convertResponse" />
+      <fault wsam:Action="swk5.currencyservices/CurrencyConverter/convert/Fault/InvalidCurrencyException" name="InvalidCurrencyException" message="tns:InvalidCurrencyException" />
+    </operation>
+    <operation name="rateOfExchange" parameterOrder="arg0 arg1">
+      <input wsam:Action="swk5.currencyservices/CurrencyConverter/rateOfExchangeRequest" message="tns:rateOfExchange" />
+      <output wsam:Action="swk5.currencyservices/CurrencyConverter/rateOfExchangeResponse" message="tns:rateOfExchangeResponse" />
+      <fault wsam:Action="swk5.currencyservices/CurrencyConverter/rateOfExchange/Fault/InvalidCurrencyException" name="InvalidCurrencyException" message="tns:InvalidCurrencyException" />
+    </operation>
+  </portType>
+  <binding name="CurrencyConverterPortBinding" type="tns:CurrencyConverter">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="convert">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="swk5.currencyservices" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="swk5.currencyservices" />
+      </output>
+      <fault name="InvalidCurrencyException">
+        <soap:fault use="literal" name="InvalidCurrencyException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="rateOfExchange">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="swk5.currencyservices" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="swk5.currencyservices" />
+      </output>
+      <fault name="InvalidCurrencyException">
+        <soap:fault use="literal" name="InvalidCurrencyException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="CurrencyConverterService">
+    <port name="CurrencyConverterPort" binding="tns:CurrencyConverterPortBinding">
+      <soap:address location="http://localhost:8888/currencyconverter" />
+    </port>
+  </service>
+</definitions>

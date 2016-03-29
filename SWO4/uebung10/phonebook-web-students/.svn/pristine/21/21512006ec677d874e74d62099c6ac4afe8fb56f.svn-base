@@ -1,0 +1,12 @@
+      else if (req.getParameter("insert") != null) {
+
+        String firstName = req.getParameter("insertFirstName");
+        String lastName = req.getParameter("insertLastName");
+        String address = req.getParameter("insertAddress");
+        String phoneNumber = req.getParameter("insertPhoneNumber");
+        
+        Person pers = new Person(firstName, lastName, address, phoneNumber);
+        personDao.store(pers);
+        out.println("<h3>Entry <" + pers + 
+                    "> inserted into phone book</h3>");
+      }

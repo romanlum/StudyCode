@@ -1,0 +1,22 @@
+﻿@model PhoneTariff.Mvc.Models.ZoneModel
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            @Model.ZoneName
+        </h3>
+    </div>
+    <div class="panel-body row">
+        <div class="col-sm-6 form-group">
+            <label for="@nameof(Model.TextBoxName)">Duration in min:</label>
+            @Html.TextBox(Model.TextBoxName,
+                    Model.Duration,
+                    new { @class = "form-control" })
+        </div>
+        <div class="col-sm-6">
+            <label for="@nameof(Model.ComboBoxName)">Percent peak time:</label>
+            @Html.DropDownList(Model.ComboBoxName, PhoneTariff.Mvc.ViewHelpers.ViewHelpers.GetPercentList(10,Model.PeakPercent),
+                    new { @class = "form-control" })
+        </div>
+    </div>
+</div>

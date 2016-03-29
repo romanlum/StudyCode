@@ -2,21 +2,23 @@ package swe4.rmi;
 
 import java.rmi.Naming;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 import java.util.Queue;
+
 import swe4.util.Util;
 
 // Buffer offers the basic functionality of a java.util.concurrent.BlockingQueue.
 // get -> take, put -> put
-public class BufferService implements Buffer {
+public class BufferService extends UnicastRemoteObject implements Buffer {
 	private Queue<Character> queue; // element collection
 	private int max; // maximum size of queue
 						// Buffer will block when additional
 						// elements are inserted.
 
-	public BufferService(int max) {
+	public BufferService(int max) throws RemoteException {
 		this.queue = new LinkedList<>();
 		this.max = max;
 	} // Buffer
@@ -73,11 +75,9 @@ public class BufferService implements Buffer {
 		try {
 			LocateRegistry.createRegistry(getPort(args[0]));
 			BufferService service = new BufferService(10);
-			Remote serviceStub = UnicastRemoteObject.exportObject(service,
-					0); // 0 nimm registry port
+			//Remote serviceStub = UnicastRemoteObject.exportObject(service,0); // 0 nimm registry port
 			
-			Naming.rebind("rmi://" + args[0] + "/Buffer",
-					serviceStub);
+			Naming.rebind("rmi://" + args[0] + "/Buffer",service);
 
 			System.out.println("Service available on port " + "rmi://"
 					+ args[0] + "/Buffer");

@@ -1,0 +1,85 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Drawing;
+
+namespace Swe4.Collections.Test {
+	
+	internal class Person : IComparable<Person> {
+	    public Person(String name) {
+			this.Name = name;
+	    } // Person
+
+		public string Name { get; private set; }
+
+	    public override String ToString() {
+			return Name;
+		} // ToString
+
+		public int CompareTo(Person p) { // IComparble
+			return String.Compare(Name, p.Name, StringComparison.Ordinal);
+		} // CompareTo
+	} // Person
+
+
+	public class Program {
+		public static void Main(string[] args) {
+			Console.WriteLine("Test with integer values");
+			Console.WriteLine("========================");
+
+			BST<int> t1 = new BST<int>();
+			t1.Add(1);
+			t1.Add(5);
+			t1.Add(3);
+
+			Console.WriteLine("t1={0}", t1);
+			Console.WriteLine("t1.Contains({0})={1}", 3, t1.Contains(3));
+			Console.WriteLine("t1.Contains({0})={1}", 9, t1.Contains(9));
+
+			Console.WriteLine("\nt1 via enumerator and while loop:");
+			Console.WriteLine("---------------------------------");
+			IEnumerator<int> ie = t1.GetEnumerator();
+			while (ie.MoveNext())
+				Console.WriteLine(ie.Current);
+            Console.WriteLine("\nt1 via foreach loop:");
+			Console.WriteLine("---------------------");
+            t1.ToList().ForEach(Console.WriteLine);
+			
+			Console.WriteLine();
+			Console.WriteLine("Test with Persons");
+			Console.WriteLine("=================");
+
+			BST<Person> t2 = new BST<Person>();
+			t2.Add(new Person("Petzi"));
+			t2.Add(new Person("Susi"));
+			t2.Add(new Person("Strolchi"));
+
+			Console.WriteLine(t2);
+
+			Console.WriteLine("\nt2 via enumerator and while loop:");
+			Console.WriteLine("---------------------------------");
+			IEnumerator<Person> pe = t2.GetEnumerator();
+			while (pe.MoveNext())
+				Console.WriteLine(pe.Current.Name);
+
+			Console.WriteLine("\nt2 via enumerator and while loop (after reset):");
+			Console.WriteLine("-----------------------------------------------");
+			pe.Reset();
+			while (pe.MoveNext())
+				Console.WriteLine(pe.Current.Name);
+
+			Console.WriteLine("\nt2 via foreach loop:");
+			Console.WriteLine("--------------------");
+			foreach (Person p in t2)
+				Console.WriteLine(p.Name);
+
+			Console.WriteLine("\nt2 via foreach loop:");
+			Console.WriteLine("--------------------");
+			Person[] persArr = new Person[t2.Count];
+			t2.CopyTo(persArr, 0);
+			foreach (Person p in persArr)
+				Console.WriteLine(p);
+		} // Main
+	}
+
+}

@@ -1,0 +1,64 @@
+<project name="PhoneBookWeb" default="compile" basedir=".">
+
+	<!-- Specify your main class here. Omit the .class extension. -->
+	<property environment="env"/>
+	<property name="webapp.war" value="swe4.war" />
+	<property name="src.dir" value="src" />
+	<property name="dest.dir" value="bin"/>
+	<property name="web.dir" value="web" />
+	<property name="java.lib.dir" value="/usr/share/java"/>
+	<property name="tomcat.dir" value="/usr/share/tomcat7"/>
+	<property name="deploy.dir" value="${env.HOME}/tomcat/webapps" />
+
+	<fileset id="servlet-api.libs" dir="${tomcat.dir}/lib">
+		<include name="servlet-api.jar" />
+	</fileset>
+
+	<fileset id="jdbc-driver.libs" dir="${java.lib.dir}">
+		<include name="mysql.jar"/>
+	</fileset>
+
+	<fileset id="commons-dbcp.libs" dir="${tomcat.dir}/lib">
+		<include name="commons-dbcp.jar"/>
+	</fileset>
+
+	<path id="project.classpath">
+		<fileset refid="commons-dbcp.libs" />
+		<fileset refid="servlet-api.libs" />
+	</path>
+
+	<target name="all" depends="clean,compile" 
+					description="Clean build and dist directories, then compile" />
+
+	<target name="compile" description="Compile Java sources">
+		<mkdir dir="${dest.dir}" />
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${dest.dir}" classpathref="project.classpath">
+			<include name="**/*.java"/>
+		</javac>
+	</target>
+
+	<target name="deploy" depends="compile">
+		<war destfile="${dest.dir}/${webapp.war}" webxml="${web.dir}/web.xml">
+			<fileset dir="${web.dir}">
+				<include name="**/*.html" />
+			</fileset>
+			<classes dir="${dest.dir}">
+				<include name="**/*.class" />
+			</classes>
+			<lib refid="commons-dbcp.libs" />
+			<lib refid="jdbc-driver.libs" />
+		</war>
+		<copy file="${dest.dir}/${webapp.war}" todir="${deploy.dir}" />
+	</target>
+
+	<target name="undeploy">
+		<delete>
+			<fileset file="${deploy.dir}/${webapp.war}" />
+		</delete>
+	</target>
+
+	<target name="clean" description="Delete old build and dist directories">
+		<delete dir="${dest.dir}" />
+	</target>
+
+</project>

@@ -1,0 +1,204 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+
+namespace Swe4.Collections {
+
+	public class BST<T> : ICollection<T> where T : IComparable<T> {
+
+		// Tree node
+		//------------------------------------------------------------------------
+
+		private class Node<S> {
+			public Node<S> Left;
+			public Node<S> Right;
+			public S Value;
+
+			public Node(S value) {
+				this.Left  = null;
+				this.Right = null;
+				this.Value = value;
+			}
+		} // Node
+
+
+		// Iterator implementation
+		//------------------------------------------------------------------------
+
+		private class BSTEnumerator<S> : IEnumerator<S> {
+
+			private Node<S>  root      = null;
+			private Node<S>  current   = null;
+			private Stack<Node<S>> par = new Stack<Node<S>>(); // holds parent nodes of current node
+
+			public BSTEnumerator(Node<S> root) {
+				this.root = root;
+				Reset();
+			}
+
+			private void WalkDownLeft(Node<S> start) {
+				Node<S> next = start;
+				while (next != null) {
+					par.Push(next);
+					next = next.Left;
+				}
+			    
+			}
+
+
+			// IEnumerator<T> methods
+			//------------------------------------------------------------------------
+
+			public bool MoveNext() {
+				if (par.Count == 0) {
+					return false;
+				}
+				else {
+					current = par.Pop();
+					WalkDownLeft(current.Right);
+					return true;
+				} // if/else
+			}
+
+			// readonly poperty that returns the current key/value pair. 
+			public S Current {
+				get {
+					return current.Value;
+				}
+			}
+
+			public void Reset() {
+				par.Clear();
+				current = null;
+				WalkDownLeft(root);
+			}
+
+
+			// IEnumerator methods
+			//------------------------------------------------------------------------
+
+			object System.Collections.IEnumerator.Current {
+				get { return this.Current; }
+			}
+
+			// IDisposable methods
+			//------------------------------------------------------------------------
+			public void Dispose() {
+			}
+
+		} // BSTEnumerator
+
+
+		// internal represenation
+		//------------------------------------------------------------------------
+
+		private Node<T> root;
+		private int count;
+
+
+		// private methods
+		//------------------------------------------------------------------------
+
+		private void Add(ref Node<T> root, T item) {
+			if (root == null)
+				root = new Node<T>(item);
+			else if (item.CompareTo(root.Value) < 0)
+				Add(ref root.Left, item);
+			else
+				Add(ref root.Right, item);
+		} // Add
+
+		private void InOrder(StringBuilder sb, Node<T> root) {
+			if (root != null) {
+				InOrder(sb, root.Left);
+				if (sb.Length > 1)
+					sb.Append(",");
+				sb.Append(root.Value.ToString());
+				InOrder(sb, root.Right);
+			}
+		} // InOrder
+
+		private bool Contains(Node<T> root, T item) {
+			if (root == null)
+				return false;
+
+			int cmpResult = item.CompareTo(root.Value);
+			if (cmpResult < 0)
+				return Contains(root.Left, item);
+			else if (cmpResult > 0)
+				return Contains(root.Right, item);
+			else
+				return true;
+		} // Contains
+
+
+		// ICollection<T> methods
+		//------------------------------------------------------------------------
+
+		public void Add(T item) {
+			count++;
+			Add(ref root, item);
+		}
+
+		public void Clear() {
+			root = null;
+			count = 0;
+		}
+
+		public bool Contains(T item) {
+			return Contains(root, item);
+		}
+
+		public void CopyTo(T[] array, int arrayIndex) {
+			if (arrayIndex + Count > array.Length)
+				throw new IndexOutOfRangeException("array to small");
+			else
+				foreach (Object o in this)
+					array.SetValue(o, arrayIndex++);
+		}
+
+		public int Count {
+			get { return count; }
+		}
+
+		public bool IsReadOnly {
+			get { return false; }
+		}
+
+		public bool Remove(T item) {
+			throw new NotImplementedException();
+		}
+
+
+		// IEnumerable<T> methods
+		//------------------------------------------------------------------------
+	
+		public IEnumerator<T> GetEnumerator() {
+			return new BSTEnumerator<T>(root);
+		}
+
+
+		// IEnumerable methods
+		//------------------------------------------------------------------------
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+			return this.GetEnumerator();
+		}
+
+
+		// Overridden methods
+		//------------------------------------------------------------------------
+
+		public override String ToString() {
+			StringBuilder sb = new StringBuilder();
+			sb.Append("[");
+			InOrder(sb, root);
+			sb.Append("]");
+
+			return sb.ToString();
+		} // ToString
+
+	} // BST
+
+}

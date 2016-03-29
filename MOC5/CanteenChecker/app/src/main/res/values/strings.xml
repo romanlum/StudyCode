@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CanteenChecker</string>
+    <string name="edtFilter">Filter</string>
+    <string name="btnSearch">Search</string>
+    <string name="couldNotLoadCanteens">Error while loading canteen list.</string>
+    <string name="titleCanteenList">Canteen list</string>
+    <string name="mnuCall">Call</string>
+    <string name="mnuShowWebsite">www</string>
+    <string name="google_maps_key">AIzaSyAaq7HKb1AfbRDzjItWbJDVeuQ4SrukgpA</string>
+</resources>

@@ -1,0 +1,200 @@
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     0:01 /sbin/init
+    2 ?        S      0:00 [kthreadd]
+    3 ?        S      0:03 [ksoftirqd/0]
+    5 ?        S<     0:00 [kworker/0:0H]
+    7 ?        S      0:11 [rcu_sched]
+    8 ?        S      0:00 [rcu_bh]
+    9 ?        S      0:03 [migration/0]
+   10 ?        S      0:01 [watchdog/0]
+   11 ?        S      0:00 [watchdog/1]
+   12 ?        S      0:02 [migration/1]
+   13 ?        S      0:02 [ksoftirqd/1]
+   15 ?        S<     0:00 [kworker/1:0H]
+   16 ?        S<     0:00 [khelper]
+   17 ?        S      0:00 [kdevtmpfs]
+   18 ?        S<     0:00 [netns]
+   19 ?        S<     0:00 [writeback]
+   20 ?        S<     0:00 [kintegrityd]
+   21 ?        S<     0:00 [bioset]
+   22 ?        S<     0:00 [kworker/u17:0]
+   23 ?        S<     0:00 [kblockd]
+   24 ?        S<     0:00 [ata_sff]
+   25 ?        S      0:00 [khubd]
+   26 ?        S<     0:00 [md]
+   27 ?        S<     0:00 [devfreq_wq]
+   29 ?        S      0:00 [kworker/0:1]
+   31 ?        S      0:00 [khungtaskd]
+   32 ?        S      0:04 [kswapd0]
+   33 ?        SN     0:00 [ksmd]
+   34 ?        SN     0:00 [khugepaged]
+   35 ?        S      0:00 [fsnotify_mark]
+   36 ?        S      0:00 [ecryptfs-kthrea]
+   37 ?        S<     0:00 [crypto]
+   49 ?        S<     0:00 [kthrotld]
+   51 ?        S      0:00 [scsi_eh_0]
+   52 ?        S      0:00 [scsi_eh_1]
+   74 ?        S<     0:00 [deferwq]
+   75 ?        S<     0:00 [charger_manager]
+  120 ?        S<     0:00 [mpt_poll_0]
+  121 ?        S<     0:00 [mpt/0]
+  123 ?        S      0:00 [scsi_eh_2]
+  124 ?        S      0:00 [scsi_eh_3]
+  125 ?        S      0:00 [scsi_eh_4]
+  126 ?        S      0:00 [scsi_eh_5]
+  127 ?        S      0:00 [scsi_eh_6]
+  128 ?        S      0:00 [scsi_eh_7]
+  129 ?        S      0:00 [scsi_eh_8]
+  130 ?        S      0:00 [scsi_eh_9]
+  131 ?        S      0:00 [scsi_eh_10]
+  132 ?        S      0:00 [scsi_eh_11]
+  133 ?        S      0:00 [scsi_eh_12]
+  134 ?        S      0:00 [scsi_eh_13]
+  135 ?        S      0:00 [scsi_eh_14]
+  136 ?        S      0:00 [scsi_eh_15]
+  137 ?        S      0:00 [scsi_eh_16]
+  138 ?        S      0:00 [scsi_eh_17]
+  139 ?        S      0:00 [scsi_eh_18]
+  140 ?        S      0:00 [scsi_eh_19]
+  141 ?        S      0:00 [scsi_eh_20]
+  142 ?        S      0:00 [scsi_eh_21]
+  143 ?        S      0:00 [scsi_eh_22]
+  144 ?        S      0:00 [scsi_eh_23]
+  145 ?        S      0:00 [scsi_eh_24]
+  146 ?        S      0:00 [scsi_eh_25]
+  147 ?        S      0:00 [scsi_eh_26]
+  148 ?        S      0:00 [scsi_eh_27]
+  149 ?        S      0:00 [scsi_eh_28]
+  150 ?        S      0:00 [scsi_eh_29]
+  151 ?        S      0:00 [scsi_eh_30]
+  152 ?        S      0:00 [scsi_eh_31]
+  187 ?        S<     0:00 [kpsmoused]
+  188 ?        S      0:00 [scsi_eh_32]
+  202 ?        S      0:02 [jbd2/sda1-8]
+  203 ?        S<     0:00 [ext4-rsv-conver]
+  363 ?        S      0:00 upstart-udev-bridge --daemon
+  369 ?        Ss     0:00 /lib/systemd/systemd-udevd --daemon
+  420 ?        Ss     0:00 dbus-daemon --system --fork
+  474 ?        Ss     0:00 /lib/systemd/systemd-logind
+  479 ?        Ss     0:00 /usr/sbin/bluetoothd
+  518 ?        S<     0:00 [krfcommd]
+  520 ?        Ssl    0:00 rsyslogd
+  533 ?        S<     0:00 [ttm_swap]
+  538 ?        S<     0:00 [kworker/u17:1]
+  548 ?        S      0:00 avahi-daemon: running [ubuntu.local]
+  552 ?        Sl     0:00 /usr/lib/colord/colord
+  556 ?        S      0:00 avahi-daemon: chroot helper
+  593 ?        S      0:00 upstart-file-bridge --daemon
+  699 ?        Ssl    0:00 /usr/sbin/ModemManager
+  724 ?        Ssl    0:02 NetworkManager
+  734 ?        Sl     0:00 /usr/lib/policykit-1/polkitd --no-debug
+  796 ?        S      0:00 upstart-socket-bridge --daemon
+  933 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+  938 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+  944 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+  945 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+  949 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1000 ?        Ss     0:00 cron
+ 1009 ?        Ssl    0:00 whoopsie
+ 1010 ?        Ss     0:00 /usr/sbin/kerneloops
+ 1022 ?        Ss     0:02 acpid -c /etc/acpi/events -s /var/run/acpid.socket
+ 1029 ?        SLsl   0:00 lightdm
+ 1076 ?        Ss     0:05 /usr/sbin/irqbalance
+ 1144 tty7     Ss+   13:27 /usr/bin/X -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1147 ?        Sl     0:00 /usr/lib/accountsservice/accounts-daemon
+ 1153 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1180 ?        Ss     0:00 /usr/sbin/cups-browsed
+ 1232 ?        Ssl    0:24 /usr/sbin/mysqld
+ 1355 ?        Ssl    0:00 /usr/sbin/vmware-vmblock-fuse -o subtype=vmware-vmblock,default_permissions,allow_other /var/run/vmblock-fuse
+ 1383 ?        Sl     0:37 /usr/sbin/vmtoolsd
+ 1435 ?        S      0:00 [kauditd]
+ 1496 ?        Sl     0:00 lightdm --session-child 12 19
+ 1556 ?        Sl     0:00 /usr/lib/upower/upowerd
+ 1573 ?        SNl    0:00 /usr/lib/rtkit/rtkit-daemon
+ 1702 ?        S      0:00 /usr/sbin/dnsmasq --no-resolv --keep-in-foreground --no-hosts --bind-interfaces --pid-file=/run/sendsigs.omit.d/network-manager.dnsmasq.pid --listen-address=127.0.1.1 --conf-file=/var/run/NetworkManager/dnsmasq.conf --cache-size=0 --proxy-dnssec --enable-dbus=org.freedesktop.NetworkManager.dnsmasq --conf-dir=/etc/NetworkManager/dnsmasq.d
+ 2253 ?        Sl     0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+ 2255 ?        Ss     0:18 init --user
+ 2312 ?        S      0:00 dbus-launch --autolaunch=58dd8b89e4dd16886e3b365553ba960b --binary-syntax --close-stderr
+ 2314 ?        Ss     0:00 //bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+ 2327 ?        Ss     0:00 ssh-agent -s
+ 2331 ?        Ss     0:06 dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-oBemgfwzoZ
+ 2340 ?        Ss     0:00 upstart-event-bridge
+ 2347 ?        Ss     0:00 /usr/lib/i386-linux-gnu/hud/window-stack-bridge
+ 2355 ?        Sl     0:05 /usr/lib/i386-linux-gnu/bamf/bamfdaemon
+ 2357 ?        S      0:00 upstart-file-bridge --daemon --user
+ 2359 ?        S      0:01 upstart-dbus-bridge --daemon --session --user --bus-name session
+ 2361 ?        Sl     0:00 /usr/lib/at-spi2-core/at-spi-bus-launcher
+ 2363 ?        S      0:00 upstart-dbus-bridge --daemon --system --user --bus-name system
+ 2368 ?        Ssl    3:14 /usr/bin/ibus-daemon --daemonize --xim
+ 2372 ?        S      0:00 /bin/dbus-daemon --config-file=/etc/at-spi2/accessibility.conf --nofork --print-address 3
+ 2385 ?        Ssl    0:02 /usr/lib/unity-settings-daemon/unity-settings-daemon
+ 2390 ?        Ssl    1:10 /usr/lib/i386-linux-gnu/hud/hud-service
+ 2393 ?        Sl     0:00 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+ 2394 ?        Sl     0:00 /usr/lib/gvfs/gvfsd
+ 2397 ?        Ssl    0:00 gnome-session --session=ubuntu
+ 2399 ?        Ssl    0:30 /usr/lib/unity/unity-panel-service
+ 2415 ?        Sl     0:00 /usr/lib/gvfs/gvfsd-fuse /run/user/1002/gvfs -f -o big_writes
+ 2437 ?        Sl     0:00 /usr/lib/ibus/ibus-dconf
+ 2439 ?        Sl     0:22 /usr/lib/ibus/ibus-ui-gtk3
+ 2443 ?        Sl     0:00 /usr/lib/ibus/ibus-x11 --kill-daemon
+ 2513 ?        Ssl    0:00 /usr/lib/i386-linux-gnu/indicator-messages/indicator-messages-service
+ 2514 ?        Ssl    0:00 /usr/lib/i386-linux-gnu/indicator-bluetooth/indicator-bluetooth-service
+ 2519 ?        Ssl    0:00 /usr/lib/i386-linux-gnu/indicator-power/indicator-power-service
+ 2521 ?        Ssl    0:00 /usr/lib/i386-linux-gnu/indicator-datetime/indicator-datetime-service
+ 2525 ?        Ssl    0:00 /usr/lib/i386-linux-gnu/indicator-sound/indicator-sound-service
+ 2536 ?        Ssl    0:00 /usr/lib/i386-linux-gnu/indicator-printers/indicator-printers-service
+ 2539 ?        Sl     0:00 /usr/lib/i386-linux-gnu/indicator-keyboard-service --use-gtk
+ 2540 ?        Ssl    0:00 /usr/lib/i386-linux-gnu/indicator-session/indicator-session-service
+ 2559 ?        Ssl    0:00 /usr/lib/i386-linux-gnu/indicator-application/indicator-application-service
+ 2579 ?        S<l    0:00 /usr/bin/pulseaudio --start --log-target=syslog
+ 2589 ?        Sl     0:00 /usr/lib/evolution/evolution-source-registry
+ 2606 ?        Sl     0:31 /usr/lib/ibus/ibus-engine-simple
+ 2617 ?        Sl     0:01 /usr/lib/i386-linux-gnu/notify-osd
+ 2619 ?        Sl     7:18 compiz
+ 2630 ?        Sl     0:00 /usr/lib/unity-settings-daemon/unity-fallback-mount-helper
+ 2633 ?        Sl     0:00 /usr/lib/dconf/dconf-service
+ 2636 ?        Sl     0:01 nm-applet
+ 2637 ?        Sl     0:05 nautilus -n
+ 2640 ?        Sl     0:00 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+ 2649 ?        Sl     0:43 /usr/lib/vmware-tools/sbin32/vmtoolsd -n vmusr --blockFd 3
+ 2668 ?        Sl     0:00 /usr/lib/gvfs/gvfs-udisks2-volume-monitor
+ 2669 ?        Sl     0:00 /usr/lib/evolution/evolution-calendar-factory
+ 2676 ?        Sl     0:00 /usr/lib/udisks2/udisksd --no-debug
+ 2714 ?        S      0:00 /usr/lib/i386-linux-gnu/gconf/gconfd-2
+ 2726 ?        Sl     0:00 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+ 2745 ?        Sl     0:00 /usr/lib/gvfs/gvfs-afc-volume-monitor
+ 2750 ?        Sl     0:00 /usr/lib/gvfs/gvfs-mtp-volume-monitor
+ 2766 ?        Sl     0:00 /usr/lib/gvfs/gvfsd-trash --spawner :1.6 /org/gtk/gvfs/exec_spaw/0
+ 2836 ?        Sl     0:00 /usr/lib/gvfs/gvfsd-burn --spawner :1.6 /org/gtk/gvfs/exec_spaw/1
+ 2841 ?        Sl     0:00 telepathy-indicator
+ 2849 ?        Sl     0:00 /usr/lib/telepathy/mission-control-5
+ 2862 ?        Sl     0:01 zeitgeist-datahub
+ 2867 ?        Sl     0:00 /usr/bin/zeitgeist-daemon
+ 2873 ?        Sl     0:00 /usr/lib/i386-linux-gnu/zeitgeist-fts
+ 2886 ?        S      0:00 /bin/cat
+ 2908 ?        Sl     0:00 update-notifier
+ 2919 ?        Sl     0:00 /usr/lib/i386-linux-gnu/deja-dup/deja-dup-monitor
+ 3123 ?        Ss     0:00 /usr/sbin/cupsd -f
+ 3126 ?        S      0:00 /usr/lib/cups/notifier/dbus dbus:// 
+ 3322 ?        Sl    25:09 eclipse
+ 3437 ?        Sl     0:03 gnome-terminal
+ 3446 ?        S      0:00 gnome-pty-helper
+ 3447 pts/2    Ss     0:00 bash
+ 3584 ?        Sl     0:00 /usr/lib/gvfs/gvfsd-metadata
+ 3645 ?        Sl     0:00 /usr/lib/i386-linux-gnu/unity-scope-home/unity-scope-home
+ 3661 ?        Sl     0:00 /usr/lib/i386-linux-gnu/unity-lens-files/unity-files-daemon
+ 3662 ?        Sl     0:01 /usr/bin/unity-scope-loader applications/applications.scope applications/scopes.scope commands.scope
+ 4618 ?        Sl     2:46 /opt/Oracle_Java/jdk1.8.0_05/bin/java -Dfile.encoding=UTF-8 -classpath /mnt/hgfs/Studium/Code/SWO4/uebung06/scribble-fx/bin ScribbleFx
+ 4645 ?        Sl     2:45 /opt/Oracle_Java/jdk1.8.0_05/bin/java -Dfile.encoding=UTF-8 -classpath /mnt/hgfs/Studium/Code/SWO4/uebung06/scribble-fx/bin ScribbleFx
+ 4687 ?        Sl     2:46 /opt/Oracle_Java/jdk1.8.0_05/bin/java -Dfile.encoding=UTF-8 -classpath /mnt/hgfs/Studium/Code/SWO4/uebung06/scribble-fx/bin ScribbleFx
+ 5770 ?        S      0:02 [kworker/1:2]
+ 5772 ?        S      0:03 [kworker/0:2]
+ 7481 ?        Sl     0:00 /usr/lib/libunity-webapps/unity-webapps-service
+ 7580 ?        S      0:00 /sbin/dhclient -d -sf /usr/lib/NetworkManager/nm-dhcp-client.action -pf /run/sendsigs.omit.d/network-manager.dhclient-eth0.pid -lf /var/lib/NetworkManager/dhclient-756e6e69-8aa3-4de2-8309-1e067071a34b-eth0.lease -cf /var/lib/NetworkManager/dhclient-eth0.conf eth0
+ 9752 ?        S      0:00 [kworker/1:1]
+11631 ?        S      0:00 [kworker/u16:0]
+11774 ?        Sl    33:09 /opt/Oracle_Java/jdk1.8.0_05/bin/java -Dfile.encoding=UTF-8 -classpath /mnt/hgfs/Studium/Code/SWO4/uebungMoodle5/Beispiel/bin:/opt/eclipse-luna/plugins/org.junit_4.11.0.v201303080030/junit.jar:/opt/eclipse-luna/plugins/org.hamcrest.core_1.3.0.v201303031735.jar:/home/romanlum/.eclipse/org.eclipse.platform_4.4.0_1904628941_linux_gtk_x86/configuration/org.eclipse.osgi/168/0/.cp/:/home/romanlum/.eclipse/org.eclipse.platform_4.4.0_1904628941_linux_gtk_x86/configuration/org.eclipse.osgi/167/0/.cp/ org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 40318 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -test at.lumetsnet.swe4.collections.test.TwoThreeFourSetTest:splitRootNodeTest
+12563 ?        S      0:00 [kworker/u16:2]
+12823 ?        S      0:00 [kworker/u16:3]
+12926 ?        S      0:00 [kworker/u16:1]
+12957 pts/2    R+     0:00 ps ax

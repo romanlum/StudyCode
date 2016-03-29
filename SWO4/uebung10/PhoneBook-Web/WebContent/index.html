@@ -1,0 +1,60 @@
+<html>
+
+  <head>
+    <title>Phone Book</title>
+  </head>
+
+  <body>
+    <h1 style="text-align: center;">Phone Book</h1>
+
+    <form action="phonebook" method="get" accept-charset="UTF-8">
+ 
+      <p>Execute one of the four actions specified below:</p>
+
+      <hr/>
+
+      <div>
+        1. <b>List</b> all persons:
+        <input type="submit" name="list" value="List"/>
+      </div>
+
+      <hr/>
+
+      <div>2.
+        <b>Find</b> person where last name =
+        <input type="text" name="findLastName" size="10">
+        <input type="submit" name="find" value="Find">
+      </div>
+
+      <hr/>
+
+      <div>
+        3. <b>Delete</b> person where ID =
+        <input type="text" name="id" size="5">
+        <input type="submit" name="delete" value="Delete">
+      </div>
+
+      <hr/>
+
+      <div>
+         4. <b>Insert</b> person with
+
+         first name =   <input type="text" name="insertFirstName"   size="10">
+         last name =    <input type="text" name="insertLastName"   size="10">
+         address =      <input type="text" name="insertAddress"     size="15">
+         phone number= <input type="text" name="insertPhoneNumber" size="5">
+
+         <input type="submit" name="insert" value="Insert">
+      </div>
+
+      <hr/>
+
+      <div>
+        <input type="reset" name="reset" value="Reset all fields">
+      </div>
+
+      <hr/>
+
+    </form>
+  </body>
+</html>

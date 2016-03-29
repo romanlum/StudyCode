@@ -35,8 +35,9 @@ class DataManager {
      *
      * @return mixed
      */
-    private static function query($connection, $query, $parameters = array()) {
+    private static function query(PDO $connection, $query, $parameters = array()) {
         $statement = $connection->prepare($query);
+
         $i = 1;
         foreach ($parameters as $param) {
             if (is_int($param)) {

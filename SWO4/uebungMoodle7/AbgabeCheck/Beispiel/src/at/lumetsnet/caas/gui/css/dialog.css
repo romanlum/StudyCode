@@ -1,0 +1,55 @@
+/* Styles used in Dialogs */
+.dialog-top-container {
+	-fx-border-width: 0 0 1 0;
+	-fx-border-color: black;
+	-fx-spacing: 10;
+	-fx-padding: 10;
+} 
+
+.dialog-bottom-container {
+	-fx-border-width: 1 0 0 0;
+	-fx-border-color: black;
+	-fx-spacing: 10;
+	-fx-padding: 15;
+}
+
+.dialog-title {
+	-fx-font: bold 12pt "Arial";
+}
+
+.dialog-description {
+	-fx-font: 10pt "Arial";
+}
+
+.command-button {
+	-fx-padding: 10;
+	-fx-font: 10pt "Arial";
+}
+
+.form-container {
+	-fx-padding: 10;
+}
+
+.form-label {
+	-fx-padding: 5 0 5 0;
+	-fx-font: 10pt "Arial";
+}
+
+.form-textfield {
+	-fx-font: 10pt "Arial";
+}
+
+.form-combobox {
+	-fx-font: 10pt "Arial";
+}
+
+.form-datepicker {
+	-fx-font: 10pt "Arial";
+}
+
+.error-label {
+	-fx-font: 10pt "Arial";
+	-fx-text-fill: Red;
+	-fx-padding: 10;
+	-fx-content-display: center;
+}

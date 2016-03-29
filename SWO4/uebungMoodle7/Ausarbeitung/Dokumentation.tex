@@ -1,0 +1,185 @@
+\input{master.tex}
+
+\ihead{SWO3 SS 2015 - Übung 07}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{CaaS – Campina as a Service}
+\subsection{Lösungsidee}
+Bei dieser Aufgabe muss das Datenbankschema erstellt und dann pro Tabelle ein \textit{Dao} implementiert werden. \newline
+Weiters wird dann der aktuelle BusinessLayer per RMI verwendet. Die neue Implementierung kann die \textit{Dao`s} verwenden um die DB Operation durchzuführen.
+
+\subsubsection{Datenbank}
+Folgendes Schema wird für die Datenbank verwendet. \newline
+\includegraphics[width=200px]{schema.png}
+
+Das Datenbankschema liegt im Projektordner unter \textbf{dbscripts/create-tables-mysql.sql} \newline\\
+\textbf{Achtung:} Das Programm benötigt den MYSQL Treiber.
+\subsubsection{Dao`s}
+Für jede Tabelle des Schemas wird ein Dao Interface erstellt, wobei dies von einem generischen Basisinterface abgeleitet werden kann.  \newline
+Die JDBC Implementierung kann generisch über \textit{Reflection} umgesetzt werden. Auch hier kann wieder eine generische Basisklasse verwendet werden.
+
+\subsubsection{BusinessLayer - Dao Implementierung}
+Der \textbf{Business-Layer} verwendet die \textbf{Dao`s} um die benötigten Operationen auszuführen. \newline
+
+\subsubsection{RMI}
+Die RMI Implementierung wurde der Einfachheit halber direkt in das Projekt integriert, sollte normalerweise aber in ein eigenes Projekt ausgelagert werden.\newline
+Da in Übung 06 bereits ein Business-Layer verwendet wurde, kann dieser nun einfach per RMI Interface bereitgestellt werden.\newline
+\newline
+Der RMI Server Layer kann über die Klasse \textbf{at.lumetsnet.caas.rmi.RemoteServiceMain} gestartet werden.\newline
+
+\subsection{Sourcecode - SQL}
+\textbf{create-tables-mysql.sql}
+\sqlcode{../Beispiel/dbscripts/create-tables-mysql.sql}
+\pagebreak
+
+\subsection{Sourcecode - Java}
+\textbf{Main.java}
+\javacode{\srcDir/Main.java}                                                                                                                  
+\textbf{business/MenuService.java}
+\javacode{\srcDir/business/MenuService.java}                                                                                                  
+\textbf{business/OrderService.java}
+\javacode{\srcDir/business/OrderService.java}                                                                                                 
+\textbf{business/RmiService.java}
+\javacode{\srcDir/business/RmiService.java}                                                                                                   
+\textbf{business/UserService.java}
+\javacode{\srcDir/business/UserService.java}                                                                                                  
+\textbf{dal/DaoUtil.java}
+\javacode{\srcDir/dal/DaoUtil.java}                                                                                                           
+\textbf{dal/DataAccessException.java}
+\javacode{\srcDir/dal/DataAccessException.java}                                                                                               
+\textbf{dal/GenericDao.java}
+\javacode{\srcDir/dal/GenericDao.java}                                                                                                        
+\textbf{dal/GenericJdbcDao.java}
+\javacode{\srcDir/dal/GenericJdbcDao.java}                                                                                                    
+\textbf{dal/MenuCategoryDao.java}
+\javacode{\srcDir/dal/MenuCategoryDao.java}                                                                                                   
+\textbf{dal/MenuCategoryDaoJdbc.java}
+\javacode{\srcDir/dal/MenuCategoryDaoJdbc.java}                                                                                               
+\textbf{dal/MenuDao.java}
+\javacode{\srcDir/dal/MenuDao.java}                                                                                                           
+\textbf{dal/MenuDaoJdbc.java}
+\javacode{\srcDir/dal/MenuDaoJdbc.java}                                                                                                       
+\textbf{dal/OrderDao.java}
+\javacode{\srcDir/dal/OrderDao.java}                                                                                                          
+\textbf{dal/OrderDaoJdbc.java}
+\javacode{\srcDir/dal/OrderDaoJdbc.java}                                                                                                      
+\textbf{dal/UserDao.java}
+\javacode{\srcDir/dal/UserDao.java}                                                                                                           
+\textbf{dal/UserDaoJdbc.java}
+\javacode{\srcDir/dal/UserDaoJdbc.java}                                                                                                       
+\textbf{gui/ActionTableCell.java}
+\javacode{\srcDir/gui/ActionTableCell.java}                                                                                                   
+\textbf{gui/AmountTableCell.java}
+\javacode{\srcDir/gui/AmountTableCell.java}                                                                                                   
+\textbf{gui/DateTableCell.java}
+\javacode{\srcDir/gui/DateTableCell.java}                                                                                                     
+\textbf{gui/MainWindow.java}
+\javacode{\srcDir/gui/MainWindow.java}                                                                                                        
+\textbf{gui/ManageUserActionCell.java}
+\javacode{\srcDir/gui/ManageUserActionCell.java}                                                                                              
+\textbf{gui/Util.java}
+\javacode{\srcDir/gui/Util.java}                                                                                                              
+\textbf{gui/dialogs/Dialog.java}
+\javacode{\srcDir/gui/dialogs/Dialog.java}                                                                                                    
+\textbf{gui/dialogs/ErrorDialog.java}
+\javacode{\srcDir/gui/dialogs/ErrorDialog.java}                                                                                               
+\textbf{gui/dialogs/ManageEntityDialog.java}
+\javacode{\srcDir/gui/dialogs/ManageEntityDialog.java}                                                                                        
+\textbf{gui/dialogs/ManageMenuCategoryDialog.java}
+\javacode{\srcDir/gui/dialogs/ManageMenuCategoryDialog.java}                                                                                  
+\textbf{gui/dialogs/ManageMenuDialog.java}
+\javacode{\srcDir/gui/dialogs/ManageMenuDialog.java}                                                                                          
+\textbf{gui/dialogs/ManageUserDialog.java}
+\javacode{\srcDir/gui/dialogs/ManageUserDialog.java}                                                                                          
+\textbf{gui/pages/ManageMenusPage.java}
+\javacode{\srcDir/gui/pages/ManageMenusPage.java}                                                                                             
+\textbf{gui/pages/ManageUsersPage.java}
+\javacode{\srcDir/gui/pages/ManageUsersPage.java}                                                                                             
+\textbf{gui/pages/OrdersPage.java}
+\javacode{\srcDir/gui/pages/OrdersPage.java}                                                                                                  
+\textbf{gui/pages/Showable.java}
+\javacode{\srcDir/gui/pages/Showable.java}                                                                                                    
+\textbf{model/Entity.java}
+\javacode{\srcDir/model/Entity.java}                                                                                                          
+\textbf{model/Menu.java}
+\javacode{\srcDir/model/Menu.java}                                                                                                            
+\textbf{model/MenuCategory.java}
+\javacode{\srcDir/model/MenuCategory.java}                                                                                                    
+\textbf{model/Order.java}
+\javacode{\srcDir/model/Order.java}                                                                                                           
+\textbf{model/User.java}
+\javacode{\srcDir/model/User.java}                                                                                                            
+\textbf{rmi/RemoteServiceMain.java}
+\javacode{\srcDir/rmi/RemoteServiceMain.java}                                                                                                 
+\textbf{rmi/impl/MenuServiceImpl.java}
+\javacode{\srcDir/rmi/impl/MenuServiceImpl.java}                                                                                              
+\textbf{rmi/impl/OrderServiceImpl.java}
+\javacode{\srcDir/rmi/impl/OrderServiceImpl.java}                                                                                             
+\textbf{rmi/impl/ServiceImpl.java}
+\javacode{\srcDir/rmi/impl/ServiceImpl.java}                                                                                                  
+\textbf{rmi/impl/UserServiceImpl.java}
+\javacode{\srcDir/rmi/impl/UserServiceImpl.java}                                                                                              
+\textbf{rmi/interfaces/RemoteMenuService.java}
+\javacode{\srcDir/rmi/interfaces/RemoteMenuService.java}                                                                                      
+\textbf{rmi/interfaces/RemoteOrderService.java}
+\javacode{\srcDir/rmi/interfaces/RemoteOrderService.java}                                                                                     
+\textbf{rmi/interfaces/RemoteUserService.java}
+\javacode{\srcDir/rmi/interfaces/RemoteUserService.java}                                                                                      
+\textbf{viewmodel/ManageMenusPageViewModel.java}
+\javacode{\srcDir/viewmodel/ManageMenusPageViewModel.java}                                                                                    
+\textbf{viewmodel/ManageUsersPageViewModel.java}
+\javacode{\srcDir/viewmodel/ManageUsersPageViewModel.java}                                                                                    
+\textbf{viewmodel/MenuCategoryViewModel.java}
+\javacode{\srcDir/viewmodel/MenuCategoryViewModel.java}                                                                                       
+\textbf{viewmodel/MenuViewModel.java}
+\javacode{\srcDir/viewmodel/MenuViewModel.java}                                                                                               
+\textbf{viewmodel/OrdersPageViewModel.java}
+\javacode{\srcDir/viewmodel/OrdersPageViewModel.java}                                                                                         
+\textbf{viewmodel/OrderViewModel.java}
+\javacode{\srcDir/viewmodel/OrderViewModel.java}                                                                                              
+\textbf{viewmodel/UserViewModel.java}
+\javacode{\srcDir/viewmodel/UserViewModel.java}                                                                                               
+\textbf{viewmodel/Validatable.java}
+\javacode{\srcDir/viewmodel/Validatable.java}  
+\pagebreak
+
+\subsection{Test - Sourcecode - Java}
+\textbf{GenericDaoTest.java}
+\javacode{\testDir/GenericDaoTest.java}                                                                                                  
+\textbf{MenuCategoryDaoTest.java}
+\javacode{\testDir/MenuCategoryDaoTest.java}                                                                                             
+\textbf{MenuDaoTest.java}
+\javacode{\testDir/MenuDaoTest.java}                                                                                                     
+\textbf{OrderDaoTest.java}
+\javacode{\testDir/OrderDaoTest.java}                                                                                                    
+\textbf{UserDaoTest.java}
+\javacode{\testDir/UserDaoTest.java}    
+
+\subsection{Sourcecode - CSS}
+\textbf{main-window.css}
+\csscode{\srcDir/gui/css/main-window.css}
+\textbf{dialog.css}
+\csscode{\srcDir/gui/css/dialog.css}
+\textbf{derror-ialog.css}
+\csscode{\srcDir/gui/css/error-dialog.css}
+\textbf{manage-menu-category-dialog.css}
+\csscode{\srcDir/gui/css/manage-menu-category-dialog.css}
+\textbf{manage-menu-dialog.css}
+\csscode{\srcDir/gui/css/manage-menu-dialog.css}
+\textbf{manage-user-dialog.css}
+\csscode{\srcDir/gui/css/manage-user-dialog.css}
+\pagebreak
+
+
+\subsection{Screenshots}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/1.png}
+\end{mdframed}
+\begin{mdframed}
+\includegraphics[width=300px]{../Screenshots/2.png}
+\end{mdframed}
+
+
+\end{document}

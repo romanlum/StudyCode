@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://swk5.fh-hagenberg.at" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://swk5.fh-hagenberg.at" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://swk5.fh-hagenberg.at">
+      <s:element name="GetAllZones">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllZonesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllZonesResult" type="tns:ArrayOfZone" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Zone" nillable="true" type="tns:Zone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Zone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllTariffs">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllTariffsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllTariffsResult" type="tns:ArrayOfTariff" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTariff">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tariff" nillable="true" type="tns:Tariff" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Tariff">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BasicFee" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TotalCosts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tariffKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="consumption" type="tns:PhoneConsumption" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PhoneConsumption">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ZoneConsumptions" type="tns:ArrayOfZoneConsumption" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfZoneConsumption">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ZoneConsumption" type="tns:ZoneConsumption" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ZoneConsumption">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ZoneId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PeakDuration" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="OffPeakDuration" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TotalCostsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TotalCostsResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllZonesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllZones" />
+  </wsdl:message>
+  <wsdl:message name="GetAllZonesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllZonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTariffsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTariffs" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTariffsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTariffsResponse" />
+  </wsdl:message>
+  <wsdl:message name="TotalCostsSoapIn">
+    <wsdl:part name="parameters" element="tns:TotalCosts" />
+  </wsdl:message>
+  <wsdl:message name="TotalCostsSoapOut">
+    <wsdl:part name="parameters" element="tns:TotalCostsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TariffCalcualtorServiceSoap">
+    <wsdl:operation name="GetAllZones">
+      <wsdl:input message="tns:GetAllZonesSoapIn" />
+      <wsdl:output message="tns:GetAllZonesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTariffs">
+      <wsdl:input message="tns:GetAllTariffsSoapIn" />
+      <wsdl:output message="tns:GetAllTariffsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TotalCosts">
+      <wsdl:input message="tns:TotalCostsSoapIn" />
+      <wsdl:output message="tns:TotalCostsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TariffCalcualtorServiceSoap" type="tns:TariffCalcualtorServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllZones">
+      <soap:operation soapAction="http://swk5.fh-hagenberg.at/GetAllZones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTariffs">
+      <soap:operation soapAction="http://swk5.fh-hagenberg.at/GetAllTariffs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TotalCosts">
+      <soap:operation soapAction="http://swk5.fh-hagenberg.at/TotalCosts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TariffCalcualtorServiceSoap12" type="tns:TariffCalcualtorServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllZones">
+      <soap12:operation soapAction="http://swk5.fh-hagenberg.at/GetAllZones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTariffs">
+      <soap12:operation soapAction="http://swk5.fh-hagenberg.at/GetAllTariffs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TotalCosts">
+      <soap12:operation soapAction="http://swk5.fh-hagenberg.at/TotalCosts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TariffCalcualtorService">
+    <wsdl:port name="TariffCalcualtorServiceSoap" binding="tns:TariffCalcualtorServiceSoap">
+      <soap:address location="http://localhost:5000/TariffCalcualtorService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TariffCalcualtorServiceSoap12" binding="tns:TariffCalcualtorServiceSoap12">
+      <soap12:address location="http://localhost:5000/TariffCalcualtorService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

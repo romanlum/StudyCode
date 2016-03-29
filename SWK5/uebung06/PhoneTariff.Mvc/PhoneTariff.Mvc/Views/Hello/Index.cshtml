@@ -1,0 +1,16 @@
+﻿@model PhoneTariff.Mvc.Models.HelloModel
+@{
+    ViewBag.Title = "Index";
+   
+}
+
+<h2>@Model.Headline</h2>
+<h2>@Model.ServerDate</h2>
+<ul>
+    @for (int i = 0; i < 10; i++)
+    {
+        var dbl = i*2 << 2;
+        <li>Element @dbl</li>
+
+    }
+</ul>

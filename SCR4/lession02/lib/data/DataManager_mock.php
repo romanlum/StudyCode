@@ -61,7 +61,7 @@ class DataManager  extends BaseObject {
         global $__users;
 
         foreach($__users AS $user) {
-            if($user->getId() === $id ){
+            if($user->getId() === intval($id) ){
                 return $user;
             }
         }

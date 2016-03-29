@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ArrayOfMediaAnnotation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MediaAnnotation MediaName="SF2011-04 (23).jpg">
+    <Annotation>afsdfsdf</Annotation>
+    <CreationTime>2015-11-21T10:40:52.9645356+01:00</CreationTime>
+  </MediaAnnotation>
+</ArrayOfMediaAnnotation>

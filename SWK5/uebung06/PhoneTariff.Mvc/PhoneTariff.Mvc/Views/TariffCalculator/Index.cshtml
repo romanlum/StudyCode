@@ -1,0 +1,113 @@
+﻿@using System.Linq.Expressions
+@using PhoneTariff.Mvc.Models
+@model PhoneTariff.Mvc.Models.TariffCalculatorModel
+
+@{
+    ViewBag.Title = "Phone Tariff Calculator";
+    Layout = "~/Views/Shared/_TariffCalculatorLayout.cshtml";
+}
+
+@helper RenderZoneBox(string zoneName, string textBoxName, int duration, string comboBoxName, int peakPercent)
+{
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                @zoneName
+            </h3>
+        </div>
+        <div class="panel-body row">
+            <div class="col-sm-6 form-group">
+                <label for="@textBoxName">Duration in min:</label>
+                @Html.TextBox(textBoxName,
+                    duration,
+                    new { @class = "form-control" })
+            </div>
+            <div class="col-sm-6">
+                <label for="@comboBoxName">Percent peak time:</label>
+                @Html.DropDownList(comboBoxName, PhoneTariff.Mvc.ViewHelpers.ViewHelpers.GetPercentList(10, peakPercent),
+                    new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("_ZoneBox",new PhoneTariff.Mvc.Models.ZoneModel
+    {
+      ZoneName  = "Local Zone",
+      TextBoxName = nameof(Model.LocalDuration),
+      ComboBoxName = nameof(Model.LocalPeakPercent),
+      Duration = Model.LocalDuration,
+      PeakPercent = Model.LocalPeakPercent
+    })
+
+    @RenderZoneBox("National Zone",nameof(Model.NationalDuration),Model.NationalDuration,nameof(Model.NationalPeakPercent),Model.NationalPeakPercent)
+    @*<div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Local Zone
+            </h3>
+        </div>
+        <div class="panel-body row">
+            <div class="col-sm-6 form-group">
+                <label for="LocalDuration">Duration in min:</label>
+                @Html.TextBox(nameof(Model.LocalDuration),
+                    Model.LocalDuration, 
+                    new {@class="form-control"})
+            </div>
+            <div class="col-sm-6">
+                <label for="LocalPeakPercent">Percent peak time:</label>
+                @Html.DropDownList(nameof(Model.LocalPeakPercent),GetPercentList(10,50),
+                    new { @class = "form-control" })
+            </div>
+        </div>
+    </div>*@
+
+    @*<div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                National Zone
+            </h3>
+        </div>
+        <div class="panel-body row">
+            <div class="col-sm-6 form-group">
+                <label for="LocalDuration">Duration in min:</label>
+                @Html.TextBox(nameof(Model.NationalDuration),
+                    Model.LocalDuration,
+                    new { @class = "form-control" })
+            </div>
+            <div class="col-sm-6">
+                <label for="LocalPeakPercent">Percent peak time:</label>
+                @Html.DropDownList(nameof(Model.NationalPeakPercent), GetPercentList(10, 50),
+                    new { @class = "form-control" })
+            </div>
+        </div>
+    </div>*@
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-9">
+                    <h3 class="panel-title">Total Costs</h3>
+                </div>
+                <div class="col-xs-3">
+                    <label id="TotalCosts" class="label label-success label-large pull-right">
+                        @Html.FormatValue(Model.TotalCost, "{0:F2}")
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="SelectedTariff">Select Provider/Tariff</label>
+                @Html.DropDownList("SelectedTariff", Model.TariffList,
+                    new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                <input id="calcButton" type="submit" value="Calculate"
+                       class="form-control btn btn-success"/>
+            </div>
+        </div>
+    </div>
+}

@@ -1,5 +1,5 @@
-D:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\bin\Debug\Swk5.MediaAnnotator.BL.dll
-D:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\bin\Debug\Swk5.MediaAnnotator.BL.pdb
-D:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\obj\Debug\Swk5.MediaAnnotator.BL.csprojResolveAssemblyReference.cache
-D:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\obj\Debug\Swk5.MediaAnnotator.BL.dll
-D:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\obj\Debug\Swk5.MediaAnnotator.BL.pdb
+d:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\bin\Debug\Swk5.MediaAnnotator.BL.dll
+d:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\bin\Debug\Swk5.MediaAnnotator.BL.pdb
+d:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\obj\Debug\Swk5.MediaAnnotator.BL.csprojResolveAssemblyReference.cache
+d:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\obj\Debug\Swk5.MediaAnnotator.BL.dll
+d:\Studium\Code\SWK5\uebung05\Swk5.MediaAnnotator\Swk5.MediaAnnotator.BL\obj\Debug\Swk5.MediaAnnotator.BL.pdb

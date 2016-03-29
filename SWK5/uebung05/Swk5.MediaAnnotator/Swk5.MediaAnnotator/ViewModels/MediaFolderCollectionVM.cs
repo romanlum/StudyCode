@@ -20,7 +20,7 @@ namespace Swk5.MediaAnnotator.ViewModels
             LoadFolders();
         }
 
-        public ObservableCollection<MediaFolderVM> Folders { get; set; }
+        public IEnumerable<MediaFolderVM> Folders { get; set; }
 
         public MediaFolderVM CurrentFolder
         {
