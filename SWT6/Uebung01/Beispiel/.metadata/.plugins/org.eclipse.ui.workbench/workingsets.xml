@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1458763178793_0" label="drive-analytics" name="drive-analytics">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/drive-analytics-distancesensor" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/drive-analytics" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/drive-analytics-util" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/drive-analytics-main" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/drive-analytics-sensor" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/drive-analytics-humiditysensor" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/drive-analytics-tirepressuresensor" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1458763218617_1" label="Window Working Set" name="Aggregate for window 1458763218617"/>
+</workingSetManager>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 19, 8.5" name="osgi-bundles">
+  <componentModelMoniker Id="d7659b38-c160-4dff-8547-5ee9aac9f93a" />
+  <nestedChildShapes>
+    <componentShape Id="f601ef24-b08d-44a3-9e91-bf76fded0ea5" isExpanded="false" absoluteBounds="4, 1.7986111111111112, 2.1805555555555554, 0.901388888888889" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="b929e5ed-c22b-470b-8efa-719f1389c4a5" LastKnownName="drive-analytics-main" />
+      <relativeChildShapes>
+        <requiredInterfaceShape Id="2deb3e29-cd1a-4ff9-b8a0-e0d709bdc005" absoluteBounds="5.375, 1.3923611111111112, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="c877a5d7-cccb-41ff-ab4d-30681cf38122" LastKnownName="Port1" />
+          <relativeChildShapes />
+          <moveableDecoratorHostShapes>
+            <moveableDecoratorHostShape manuallyPlaced="true" absoluteBounds="4, 0.90625, 0.89266848564147949, 0.14800345897674561" shapeFieldName="Label" />
+          </moveableDecoratorHostShapes>
+        </requiredInterfaceShape>
+        <requiredInterfaceShape Id="5e426b37-fdcf-4fcf-8342-ae08b718e51b" absoluteBounds="5.59375, 2.7, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="8aad51de-beb1-4b30-953c-a227b804a414" LastKnownName="Port2" />
+          <relativeChildShapes />
+        </requiredInterfaceShape>
+      </relativeChildShapes>
+    </componentShape>
+    <componentShape Id="e08c93f5-9156-4d12-9fd3-4d87908d5db3" isExpanded="false" absoluteBounds="8.125, 3.125, 1.9861111111111107, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="d833b685-d9f3-4533-8426-f98971e93ad7" LastKnownName="drive-analytics-sensor" />
+      <relativeChildShapes>
+        <providedInterfaceShape Id="ae43e8d9-87ef-4e3b-a23f-fec9342abaf4" absoluteBounds="9.25, 3.825, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <providedInterfaceMoniker Id="f0c63c2c-5ec7-4094-bea8-ca5b0ffa91e1" LastKnownName="Port1" />
+          <relativeChildShapes />
+        </providedInterfaceShape>
+      </relativeChildShapes>
+    </componentShape>
+    <componentShape Id="b3fc5bd5-e9d5-44f1-9f67-f64e63e85b5d" isExpanded="false" absoluteBounds="16.625, 0.5, 1.916666666666667, 0.7" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="4fd243ce-2c77-4d14-b64f-17cbb55bd997" LastKnownName="drive-analytics-util" />
+      <relativeChildShapes>
+        <providedInterfaceShape Id="984b2c91-5f10-4b18-9871-cd47e322a53a" absoluteBounds="17.6875, 1.2, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <providedInterfaceMoniker Id="ebb0b27d-da64-48e4-a67d-3d5cfdd992b4" LastKnownName="Port1" />
+          <relativeChildShapes />
+        </providedInterfaceShape>
+      </relativeChildShapes>
+    </componentShape>
+    <componentShape Id="4cec58f8-1a75-462f-b97b-33da34dd66d2" isExpanded="false" absoluteBounds="4.125, 5.375, 2.3263888888888888, 1.0680555555555555" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="eb689a27-074c-498d-95d3-611c72b62896" LastKnownName="drive-analytics-distancesensor" />
+      <relativeChildShapes>
+        <providedInterfaceShape Id="f3f717a1-e93a-4abe-8fd5-745c94d6a5c6" absoluteBounds="6.4513888888888893, 5.875, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <providedInterfaceMoniker Id="5d65e83d-2898-4021-8384-230540326c91" LastKnownName="Port1" />
+          <relativeChildShapes />
+        </providedInterfaceShape>
+        <requiredInterfaceShape Id="8846a7e4-baad-44d6-992f-47f76cc42ae2" absoluteBounds="5.5, 4.96875, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="89fe68d1-57d9-486a-bdfd-c07e8b485a61" LastKnownName="Port2" />
+          <relativeChildShapes />
+        </requiredInterfaceShape>
+        <requiredInterfaceShape Id="4d9a3e2b-4c63-4c6c-8e43-2c6440809d5b" absoluteBounds="4.28125, 6.4430555555555555, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="366d1aca-acc5-473f-a4fd-9fb519036e62" LastKnownName="Port3" />
+          <relativeChildShapes />
+        </requiredInterfaceShape>
+      </relativeChildShapes>
+    </componentShape>
+    <componentShape Id="1faed10c-e760-46cf-a454-6a42b440dda5" isExpanded="false" absoluteBounds="10.625, 3.125, 2.4097222222222223, 1.2555555555555547" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="2e0e289a-ad39-4cfd-a99f-9888a972dc6b" LastKnownName="drive-analytics-humiditysensor" />
+      <relativeChildShapes>
+        <requiredInterfaceShape Id="27485a7b-1b31-47a4-9358-612b01156e4e" absoluteBounds="11.03125, 2.71875, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="4e5deee5-af85-4e8a-89e6-c38e8f44583d" LastKnownName="Port3" />
+          <relativeChildShapes />
+        </requiredInterfaceShape>
+      </relativeChildShapes>
+    </componentShape>
+    <componentShape Id="0765cfbb-054a-47d3-97e1-2533f10be3a7" isExpanded="false" absoluteBounds="12.75, 5.5, 2.6388888888888893, 1.0819444444444448" customColor="161, 199, 231" whiteBoxBoundsHeight="0.95" whiteBoxBoundsWidth="1.5" blackBoxBoundsHeight="0.7" blackBoxBoundsWidth="1.5" whiteBoxTopEdgeShapesCount="0" whiteBoxRightEdgeShapesCount="0" whiteBoxBottomEdgeShapesCount="0" whiteBoxLeftEdgeShapesCount="0" blackBoxTopEdgeShapesCount="0" blackBoxRightEdgeShapesCount="0" blackBoxBottomEdgeShapesCount="0" blackBoxLeftEdgeShapesCount="0" whiteBoxSettingsInitialized="true" blackBoxSettingsInitialized="true">
+      <componentMoniker Id="00a20ad0-3c4f-417b-8070-64267b07ff16" LastKnownName="drive-analytics-tirepressuresensor" />
+      <relativeChildShapes>
+        <providedInterfaceShape Id="a6fddd4f-b46b-4776-a078-f2671d617a42" absoluteBounds="12.34375, 5.9375, 0.40625, 0.15625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <providedInterfaceMoniker Id="3d107fd8-00cf-441c-80a1-35d9590927fb" LastKnownName="Port1" />
+          <relativeChildShapes />
+        </providedInterfaceShape>
+        <requiredInterfaceShape Id="cdc467b6-d641-41fc-ab23-b7c90faef594" absoluteBounds="13.125, 5.09375, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="10ebe221-930c-4405-a8ba-a9260c6c4080" LastKnownName="Port2" />
+          <relativeChildShapes />
+        </requiredInterfaceShape>
+        <requiredInterfaceShape Id="90b7dee5-7c5c-4923-8ef8-c72c8940c330" absoluteBounds="14.75, 5.09375, 0.15625, 0.40625" blackBoxLocation="0" whiteBoxLocation="0" whiteBoxEdge="" blackBoxEdge="" whiteBoxIsOnPort="false" blackBoxIsOnPort="false">
+          <requiredInterfaceMoniker Id="5fe208c1-12eb-462d-a7b3-9ea7634a5df0" LastKnownName="Port3" />
+          <relativeChildShapes />
+        </requiredInterfaceShape>
+      </relativeChildShapes>
+    </componentShape>
+    <dependencyConnector edgePoints="[(5.578125 : 4.96875); (5.578125 : 4.59375); (5.58854166666667 : 4.59375 : JumpStart); (5.75520833333333 : 4.59375 : JumpEnd); (9.328125 : 4.59375); (9.328125 : 4.23125)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="3604c4a8-dc89-4b9d-8111-e467b1f8208e" />
+      <relativeChildShapes />
+      <nodes>
+        <requiredInterfaceShapeMoniker Id="8846a7e4-baad-44d6-992f-47f76cc42ae2" />
+        <providedInterfaceShapeMoniker Id="ae43e8d9-87ef-4e3b-a23f-fec9342abaf4" />
+      </nodes>
+    </dependencyConnector>
+    <dependencyConnector edgePoints="[(13.203125 : 5.09375); (13.203125 : 4.71875); (17.765625 : 4.71875); (17.765625 : 1.60625)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="Black">
+      <dependencyMoniker Id="44d6bd0e-2701-41c9-bedc-9157a88b155a" />
+      <relativeChildShapes />
+      <nodes>
+        <requiredInterfaceShapeMoniker Id="cdc467b6-d641-41fc-ab23-b7c90faef594" />
+        <providedInterfaceShapeMoniker Id="984b2c91-5f10-4b18-9871-cd47e322a53a" />
+      </nodes>
+    </dependencyConnector>
+    <dependencyConnector edgePoints="[(14.828125 : 5.09375); (14.828125 : 4.65625); (10.4583333333333 : 4.65625 : JumpStart); (10.2916666666667 : 4.65625 : JumpEnd); (9.328125 : 4.65625); (9.328125 : 4.23125)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="b8921248-b40e-4011-8f30-618a81ce00f6" />
+      <relativeChildShapes />
+      <nodes>
+        <requiredInterfaceShapeMoniker Id="90b7dee5-7c5c-4923-8ef8-c72c8940c330" />
+        <providedInterfaceShapeMoniker Id="ae43e8d9-87ef-4e3b-a23f-fec9342abaf4" />
+      </nodes>
+    </dependencyConnector>
+    <dependencyConnector edgePoints="[(5.453125 : 1.39236111111111); (5.453125 : 1.01736111111111); (16.375 : 1.01736111111111); (16.375 : 1.98125); (17.765625 : 1.98125); (17.765625 : 1.60625)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="1d9b7c82-417b-4345-820b-97094cf63b38" />
+      <relativeChildShapes />
+      <nodes>
+        <requiredInterfaceShapeMoniker Id="2deb3e29-cd1a-4ff9-b8a0-e0d709bdc005" />
+        <providedInterfaceShapeMoniker Id="984b2c91-5f10-4b18-9871-cd47e322a53a" />
+      </nodes>
+    </dependencyConnector>
+    <dependencyConnector edgePoints="[(5.671875 : 3.10625); (5.671875 : 4.7); (9.328125 : 4.7); (9.328125 : 4.23125)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="cfc14bb3-cd42-41fb-9e2b-7910aba2d64f" />
+      <relativeChildShapes />
+      <nodes>
+        <requiredInterfaceShapeMoniker Id="5e426b37-fdcf-4fcf-8342-ae08b718e51b" />
+        <providedInterfaceShapeMoniker Id="ae43e8d9-87ef-4e3b-a23f-fec9342abaf4" />
+      </nodes>
+    </dependencyConnector>
+    <dependencyConnector edgePoints="[(11.109375 : 2.71875); (11.109375 : 2.34375); (10.375 : 2.34375); (10.375 : 4.85625); (9.328125 : 4.85625); (9.328125 : 4.23125)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="Black">
+      <dependencyMoniker Id="37de7a5d-531b-451e-993a-7aefa44fdbfe" />
+      <relativeChildShapes />
+      <nodes>
+        <requiredInterfaceShapeMoniker Id="27485a7b-1b31-47a4-9358-612b01156e4e" />
+        <providedInterfaceShapeMoniker Id="ae43e8d9-87ef-4e3b-a23f-fec9342abaf4" />
+      </nodes>
+    </dependencyConnector>
+  </nestedChildShapes>
+</componentDiagram>

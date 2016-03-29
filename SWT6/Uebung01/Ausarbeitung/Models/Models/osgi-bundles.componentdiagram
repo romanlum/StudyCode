@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<componentModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" dslVersion="1.0.0.0" Id="d7659b38-c160-4dff-8547-5ee9aac9f93a" name="osgi-bundles" linkedPackageId="8b18b8ac-ee5e-42fa-a133-6cf7c7b47726" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="303586ec-b8f2-49d9-a4f2-d26f5b5067f6">
+      <profileInstance Id="d249b1a5-e679-46cd-8f2a-d5bb7cbee0ff" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="ed0a6cc7-9a01-4b04-866b-ccde1c40c873">
+      <profileInstance Id="44fe1274-57d5-4e62-8e23-2052db19bc40" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <componentModelHasComponents>
+      <component Id="b929e5ed-c22b-470b-8efa-719f1389c4a5" name="drive-analytics-main" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="64c062bb-d755-4680-ac65-ce5849fc956e" />
+        <ownedAttributesInternal>
+          <requiredInterface Id="c877a5d7-cccb-41ff-ab4d-30681cf38122" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="1cc61cae-2955-4979-a86a-6a236900db2a" />
+            <suppliersInternal>
+              <dependency Id="1d9b7c82-417b-4345-820b-97094cf63b38">
+                <providedInterfaceMoniker Id="ebb0b27d-da64-48e4-a67d-3d5cfdd992b4" LastKnownName="Port1" />
+                <elementDefinition Id="ec4c1b8c-01f1-49d8-9d82-5f50200f964c" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="66f99bc3-954b-4c6a-aeb5-de76dcdea004" LastKnownName="at.swt6.util.timer" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="8aad51de-beb1-4b30-953c-a227b804a414" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="66b73639-059d-4d55-8746-a254993a4e9b" />
+            <suppliersInternal>
+              <dependency Id="cfc14bb3-cd42-41fb-9e2b-7910aba2d64f">
+                <providedInterfaceMoniker Id="f0c63c2c-5ec7-4094-bea8-ca5b0ffa91e1" LastKnownName="Port1" />
+                <elementDefinition Id="70b72066-3983-4949-af32-738857b0a464" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="0c57459f-3307-4faa-8c87-56e1c56a4604" LastKnownName="at.swt6.sensor" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="d833b685-d9f3-4533-8426-f98971e93ad7" name="drive-analytics-sensor" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="da907e24-df0e-41c5-b8d0-de9ba6764b6b" />
+        <ownedAttributesInternal>
+          <providedInterface Id="f0c63c2c-5ec7-4094-bea8-ca5b0ffa91e1" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="cb09c44c-dfb2-4661-b509-14fc049aa77a" />
+            <type_NamedElement>
+              <interfaceMoniker Id="8e883233-fb22-405b-b7d8-53365d13e788" LastKnownName="at.swt6.sensor" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="4fd243ce-2c77-4d14-b64f-17cbb55bd997" name="drive-analytics-util" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a46a3d1c-29fc-4c2a-be5a-eb6ad7039528" />
+        <ownedAttributesInternal>
+          <providedInterface Id="ebb0b27d-da64-48e4-a67d-3d5cfdd992b4" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="f79051e0-671a-439e-845a-4ca9dc525f95" />
+            <type_NamedElement>
+              <interfaceMoniker Id="95707649-5e8e-48c8-ae55-8ad289a0d29f" LastKnownName="at.swt6.util.timer" />
+            </type_NamedElement>
+          </providedInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="eb689a27-074c-498d-95d3-611c72b62896" name="drive-analytics-distancesensor" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="779029e7-d281-43c9-8fda-93c5c564c2c5" />
+        <ownedAttributesInternal>
+          <providedInterface Id="5d65e83d-2898-4021-8384-230540326c91" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="51fea15b-f912-425e-b603-231ce2741a13" />
+            <type_NamedElement>
+              <interfaceMoniker Id="a40b5832-1ee1-4111-a947-185073688968" LastKnownName="at.swt6.sensor.distance" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface Id="89fe68d1-57d9-486a-bdfd-c07e8b485a61" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="95341eb4-72c7-4c26-9f7f-52c8eca3062c" />
+            <suppliersInternal>
+              <dependency Id="3604c4a8-dc89-4b9d-8111-e467b1f8208e">
+                <providedInterfaceMoniker Id="f0c63c2c-5ec7-4094-bea8-ca5b0ffa91e1" LastKnownName="Port1" />
+                <elementDefinition Id="da361b34-eb97-4244-8b90-5a1dcf09019f" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="5439cd2d-5c24-4445-a37b-fe26b7431cbb" LastKnownName="at.swt6.sensor" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="366d1aca-acc5-473f-a4fd-9fb519036e62" name="Port3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="269bf5cd-4f94-468a-9e15-cbd6b49b30b0" />
+            <type_NamedElement>
+              <interfaceMoniker Id="c48cab0d-e6fd-4207-8096-4877a029e28c" LastKnownName="org.osgi.framework" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="2e0e289a-ad39-4cfd-a99f-9888a972dc6b" name="drive-analytics-humiditysensor" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="532f32ed-ba99-4b99-8267-05faa56cd0ea" />
+        <ownedAttributesInternal>
+          <requiredInterface Id="4e5deee5-af85-4e8a-89e6-c38e8f44583d" name="Port3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="3e1527af-6b8b-4fea-bb1c-2bfcf9f22eb4" />
+            <suppliersInternal>
+              <dependency Id="37de7a5d-531b-451e-993a-7aefa44fdbfe">
+                <providedInterfaceMoniker Id="f0c63c2c-5ec7-4094-bea8-ca5b0ffa91e1" LastKnownName="Port1" />
+                <elementDefinition Id="528c9471-0329-4795-afc6-15d61ef98a88" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="c6092c0f-29d2-49c1-91b5-d27007731b3e" LastKnownName="at.swt6.sensor" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <componentModelHasComponents>
+      <component Id="00a20ad0-3c4f-417b-8070-64267b07ff16" name="drive-analytics-tirepressuresensor" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="dcd05d15-4c82-45b8-8efd-fdc983957589" />
+        <ownedAttributesInternal>
+          <providedInterface Id="3d107fd8-00cf-441c-80a1-35d9590927fb" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="ca8ec421-23a6-4295-87e6-1bba15108688" />
+            <type_NamedElement>
+              <interfaceMoniker Id="282df284-18f6-4596-9c18-d540f76d0332" LastKnownName="at.swt6.sensor.tire" />
+            </type_NamedElement>
+          </providedInterface>
+          <requiredInterface Id="10ebe221-930c-4405-a8ba-a9260c6c4080" name="Port2" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="b7615770-52db-4514-818c-a771fd6e138a" />
+            <suppliersInternal>
+              <dependency Id="44d6bd0e-2701-41c9-bedc-9157a88b155a">
+                <providedInterfaceMoniker Id="ebb0b27d-da64-48e4-a67d-3d5cfdd992b4" LastKnownName="Port1" />
+                <elementDefinition Id="32f9bb5b-b4ec-45d8-960a-d9d46ea3f128" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="8c4c7291-606e-41d6-ac34-7da1efb82349" LastKnownName="at.swt6.util.timer" />
+            </type_NamedElement>
+          </requiredInterface>
+          <requiredInterface Id="5fe208c1-12eb-462d-a7b3-9ea7634a5df0" name="Port3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
+            <elementDefinition Id="9ea4ffc8-56f3-42ff-8939-be9e25135581" />
+            <suppliersInternal>
+              <dependency Id="b8921248-b40e-4011-8f30-618a81ce00f6">
+                <providedInterfaceMoniker Id="f0c63c2c-5ec7-4094-bea8-ca5b0ffa91e1" LastKnownName="Port1" />
+                <elementDefinition Id="a4d2dfc5-2728-4a4b-9add-eeffa508a8a5" />
+              </dependency>
+            </suppliersInternal>
+            <type_NamedElement>
+              <interfaceMoniker Id="48fed433-a2cf-48b0-9324-6b231e9094b9" LastKnownName="at.swt6.sensor" />
+            </type_NamedElement>
+          </requiredInterface>
+        </ownedAttributesInternal>
+      </component>
+    </componentModelHasComponents>
+    <modelContainsNamedElements>
+      <Interface Id="95707649-5e8e-48c8-ae55-8ad289a0d29f" name="at.swt6.util.timer" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2076cc39-7563-4f08-aef1-0e505c3ce6d0" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="8e883233-fb22-405b-b7d8-53365d13e788" name="at.swt6.sensor" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5af57a4f-2f18-41dc-a109-aac578c86b8b" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="a40b5832-1ee1-4111-a947-185073688968" name="at.swt6.sensor.distance" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="46babed4-4930-4c21-a87d-09906e786b77" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="5439cd2d-5c24-4445-a37b-fe26b7431cbb" name="at.swt6.sensor" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8287ca74-399a-4cc3-b5ca-124ce6ccf994" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="c48cab0d-e6fd-4207-8096-4877a029e28c" name="org.osgi.framework" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5e90a3fd-17c8-4d1d-a1ef-c8f5bc3112a7" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="282df284-18f6-4596-9c18-d540f76d0332" name="at.swt6.sensor.tire" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a9c25b85-8db0-4ec2-aec7-1aab672471b2" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="8c4c7291-606e-41d6-ac34-7da1efb82349" name="at.swt6.util.timer" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="260870f1-59c6-499e-b40a-4e1e8b8e8f4d" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="48fed433-a2cf-48b0-9324-6b231e9094b9" name="at.swt6.sensor" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="04221b13-8817-4bc0-b3f0-8332d2a28708" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="66f99bc3-954b-4c6a-aeb5-de76dcdea004" name="at.swt6.util.timer" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9cb17555-a68b-402a-9526-9c631540b17b" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="0c57459f-3307-4faa-8c87-56e1c56a4604" name="at.swt6.sensor" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8fe049ff-81e0-49b0-905e-9312624f3cc9" />
+      </Interface>
+    </modelContainsNamedElements>
+    <modelContainsNamedElements>
+      <Interface Id="c6092c0f-29d2-49c1-91b5-d27007731b3e" name="at.swt6.sensor" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="167de651-270e-4991-98d4-9b5e2d85ee1f" />
+      </Interface>
+    </modelContainsNamedElements>
+  </packagedElements>
+  <package Id="8b18b8ac-ee5e-42fa-a133-6cf7c7b47726" name="Models">
+    <elementDefinition Id="1b28d9de-71f0-4316-9a94-1a4d93ef35ca" />
+  </package>
+</componentModel>
