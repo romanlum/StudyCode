@@ -24,8 +24,7 @@ Zur Bestimmung der Performance wurden folgende Parameter verwendet:
 	\item 5 Durchläufe
 	\item Größe der Welt: 500x500
 	\item 100 Iterationen
-	\item Grafikausgabe deaktiviert
-	
+	\item Grafikausgabe deaktiviert	
 \end{itemize}
 
 \textbf{Performance der originalen Anwendung}\newline
@@ -51,7 +50,7 @@ Zur Bestimmung der Performance wurden folgende Parameter verwendet:
 		\subitem Eine Möglichkeit wäre hier die Iterationsnummer zu verwenden. 
 \end{itemize}
   
-\section{2. Wator – Optimization }
+\section{Wator – Optimierung }
 
 \subsection{Version 1}
 Für diese Optimierung wurde versucht die Anzahl der benötigten \texttt{Point} Objekte zu verringern, indem die Methode \texttt{GetNeighbors} geändert wurde.
@@ -245,8 +244,10 @@ Property \texttt{Moved} wird dann der Iterationszähler verglichen.
 
 \subsection{Performance}
 \includegraphics[width=300px]{images/Version3.png}\linebreak
+\begin{flushleft}
 \textbf{Speedup zur vorherigen Version:} 1,0852900\linebreak
-\textbf{Speedup zur original Version:} 1,6427422
+\textbf{Speedup zur original Version:} 1,6427422\linebreak
+\end{flushleft}
 
 
 \subsubsection{Codeänderungen}
@@ -290,7 +291,7 @@ public abstract class Animal
 
 \begin{minted}[
 frame=lines,
-tabsize=2
+tabsize=2,
 fontsize=\footnotesize,
 ]{csharp}
 public class OriginalWatorWorld : IWatorWorld
@@ -310,28 +311,37 @@ public class OriginalWatorWorld : IWatorWorld
 	...
 }
 \end{minted}
-
+\pagebreak
 \section{Zusammenfassung}
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table}[!htbp]
+\textbf{Parameter}
+\begin{itemize}
+	\item 5 Durchläufe
+	\item Größe der Welt: 500x500
+	\item 100 Iterationen
+	\item Grafikausgabe deaktiviert	
+\end{itemize}
 
 
-\label{summary}
-\begin{tabular}{@{}lllll@{}}
-\cmidrule(l){2-5}
-                             & Original   & Version 1  & Version 2   & Version 3  \\ \midrule 
-1 Lauf                       & 6275,0363  & 4960,0705  & 4047,6108   & 3742,9105  \\ \midrule
-2 Lauf                       & 6573,7986  & 4968,9271  & 4114,0845   & 3813,2592  \\ \midrule
-3 Lauf                       & 6059,9067  & 4884,7747  & 4033,2422   & 3747,6104  \\ \midrule
-4 Lauf                       & 5996,6139  & 4963,4762  & 4144,8737   & 3733,8888  \\ \midrule
-5 Lauf                       & 6001,7686  & 4962,5076  & 4079,2123   & 3776,6795  \\ \midrule
+\begin{tabular}{lrrrr}
+\toprule
+Lauf                             & Original   & Version 1  & Version 2   & Version 3  \\ 
+\midrule
+1 Lauf                       & 6275,0363  & 4960,0705  & 4047,6108   & 3742,9105  \\ 
+2 Lauf                       & 6573,7986  & 4968,9271  & 4114,0845   & 3813,2592  \\ 
+3 Lauf                       & 6059,9067  & 4884,7747  & 4033,2422   & 3747,6104  \\ 
+4 Lauf                       & 5996,6139  & 4963,4762  & 4144,8737   & 3733,8888  \\ 
+5 Lauf                       & 6001,7686  & 4962,5076  & 4079,2123   & 3776,6795  \\ 
+\bottomrule
 														 &            &            &             &            \\
-Durchschnitt                 & 6181,42482 & 4947,95122 & 4083,8047   & 3762,86968 \\ \midrule
-Standardabweichung           & 220,870269 & 31,7208145 & 41,3133005  & 28,9859302 \\ \midrule
+														
+Durchschnitt                 & 6181,4248 & 4947,9512 & 4083,8047   & 3762,8697 \\ 
+Standardabweichung           & 220,8703 & 31,7208 & 41,3133  & 28,9859 \\ 
+\bottomrule
 														 &            &            &             &            \\
-Speedup zur vorherigen Version   &           & 1,24726873 & 1,21160329  & 1,0852900  \\ \midrule
-Speedup zur originalen Version &           & 1,24726873 & 1,513643593 & \textbf{1,6427422}  \\ \bottomrule
+Speedup zur vorherigen Version   &           & 1,2473 & 1,2116  & 1,0853  \\ 
+Speedup zur originalen Version &           & 1,2473 & 1,5136 & \textbf{1,6427}  \\ 
+\bottomrule
+
 \end{tabular}
-\end{table}
+
 \end{document}
