@@ -9,8 +9,8 @@ namespace VSS.Wator.Original
         // the animal can check neighboring cells
         public OriginalWatorWorld World { get; private set; }
 
-        // position of the animal in the world
-        public int Position { get; private set; }
+        // position of the animal in the world (x/y position)
+        public Point Position { get; private set; }
 
         // the age of the animal (only relevant for fish)
         public int Age { get; protected set; }
@@ -35,7 +35,7 @@ namespace VSS.Wator.Original
        
 
         // ctor: create a new animal on the specified position of the given world
-        public Animal(OriginalWatorWorld world, int position)
+        public Animal(OriginalWatorWorld world, Point position)
         {
             World = world;
             Position = position;
@@ -43,15 +43,15 @@ namespace VSS.Wator.Original
             movedIteration = World.CurrentIteration;
             Energy = 0;
             // place the new animal in the world
-            World.Grid[position] = this;
+            World.Grid[position.X, position.Y] = this;
         }
 
         // move the animal to a given position
         // does not check if the position can be reached by the animal
-        protected void Move(int destination)
+        protected void Move(Point destination)
         {
-            World.Grid[Position] = null;
-            World.Grid[destination] = this;
+            World.Grid[Position.X, Position.Y] = null;
+            World.Grid[destination.X, destination.Y] = this;
             Position = destination;
             movedIteration = World.CurrentIteration;
         }

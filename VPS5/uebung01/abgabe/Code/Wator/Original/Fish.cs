@@ -12,7 +12,7 @@ namespace VSS.Wator.Original
         }
 
         // create and initialize a new fish on the specified position of the given world
-        public Fish(OriginalWatorWorld world, int position, int age)
+        public Fish(OriginalWatorWorld world, Point position, int age)
             : base(world, position)
         {
             Energy = world.InitialFishEnergy;
@@ -28,10 +28,10 @@ namespace VSS.Wator.Original
             // increase the age of the fish
             Age++;
             // find a random empty neighbouring cell
-            var free = World.SelectNeighbor(null, Position);
+            Point free = World.SelectNeighbor(null, Position);
 
             // if an empty cell has been found => move there
-            if (free != -1) Move(free);
+            if (free.X != -1) Move(free);
             // if the fish has reached a given age => spawn
             if (Age >= World.FishBreedTime) Spawn();
         }
@@ -40,8 +40,8 @@ namespace VSS.Wator.Original
         protected override void Spawn()
         {
             // find an empty neighbouring cell
-            var free = World.SelectNeighbor(null, Position);
-            if (free != -1)
+            Point free = World.SelectNeighbor(null, Position);
+            if (free.X != -1)
             {
                 // when an empty cell is available
                 // create a new fish on the cell

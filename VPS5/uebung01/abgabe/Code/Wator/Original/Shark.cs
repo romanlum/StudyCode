@@ -12,7 +12,7 @@ namespace VSS.Wator.Original
         }
 
         // create and initialize a shark on the specified position in the given world
-        public Shark(OriginalWatorWorld world, int position, int energy)
+        public Shark(OriginalWatorWorld world, Point position, int energy)
             : base(world, position)
         {
             Energy = energy;
@@ -30,34 +30,34 @@ namespace VSS.Wator.Original
             Age++;
             Energy--;
             // try to find neighbouring fish
-            var fish = World.SelectNeighbor(typeof (Fish), Position);
-            if (fish != -1)
+            Point fish = World.SelectNeighbor(typeof (Fish), Position);
+            if (fish.X != -1)
             {
                 // if a neighbouring fish has been found:
                 // eat the fish & move onto the cell of the fish
-                Energy += World.Grid[fish].Energy;
+                Energy += World.Grid[fish.X, fish.Y].Energy;
                 Move(fish);
             }
             else
             {
                 // no fish found on a neighbouring cell so move to a random empty neighbouring cell
-                var free = World.SelectNeighbor(null, Position);
+                Point free = World.SelectNeighbor(null, Position);
                 // only move if there is an empty cell
-                if (free != -1) Move(free);
+                if (free.X != -1) Move(free);
             }
 
             // if the shark is not hungry then it spawns
             if (Energy >= World.SharkBreedEnergy) Spawn();
             // if the energy of the shark is zero it dies => clear the cell
-            if (Energy <= 0) World.Grid[Position] = null;
+            if (Energy <= 0) World.Grid[Position.X, Position.Y] = null;
         }
 
         // spawning behaviour of sharks
         protected override void Spawn()
         {
             // find a neighbouring empty cell
-            var free = World.SelectNeighbor(null, Position);
-            if (free != -1)
+            Point free = World.SelectNeighbor(null, Position);
+            if (free.X != -1)
             {
                 // an empty cell is available
                 // create a new shark on the empty cell

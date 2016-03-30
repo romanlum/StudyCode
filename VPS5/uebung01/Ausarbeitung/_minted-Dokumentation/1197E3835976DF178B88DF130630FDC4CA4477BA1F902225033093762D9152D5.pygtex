@@ -1,0 +1,90 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// object\PYGZhy{}oriented implementation of the wator world simulation}
+\PYG{k}{public} \PYG{k}{class} \PYG{n+nc}{OriginalWatorWorld} \PYG{p}{:} \PYG{n}{IWatorWorld}
+\PYG{p}{\PYGZob{}}
+\PYG{p}{...}
+\PYG{c+c1}{// the cells of the world as array}
+\PYG{k}{public} \PYG{n}{Animal}\PYG{p}{[]} \PYG{n}{Grid} \PYG{p}{\PYGZob{}} \PYG{k}{get}\PYG{p}{;} \PYG{k}{private} \PYG{k}{set}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+\PYG{p}{...}
+
+\PYG{k}{public} \PYG{n+nf}{OriginalWatorWorld}\PYG{p}{(}\PYG{n}{Settings} \PYG{n}{settings}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{p}{...}
+	\PYG{n}{Grid} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Animal}\PYG{p}{[}\PYG{n}{Width}\PYG{p}{*} \PYG{n}{Height}\PYG{p}{];}
+\PYG{p}{...}
+\PYG{p}{\PYGZcb{}}
+\PYG{k}{private} \PYG{k}{readonly} \PYG{k+kt}{int}\PYG{p}{[]} \PYG{n}{neighbors} \PYG{p}{=} \PYG{k}{new} \PYG{k+kt}{int}\PYG{p}{[}\PYG{l+m}{4}\PYG{p}{];}
+
+\PYG{c+c1}{// find all neighbouring cells of the given position that contain an animal of the given type}
+\PYG{k}{public} \PYG{k+kt}{int} \PYG{n+nf}{SelectNeighbor}\PYG{p}{(}\PYG{n}{Type} \PYG{n}{type}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{position}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{neighborIndex} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{;}
+
+	\PYG{c+c1}{// look up}
+	\PYG{n}{index} \PYG{p}{=} \PYG{n}{position} \PYG{p}{\PYGZhy{}} \PYG{n}{Width}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{index} \PYG{p}{\PYGZlt{}} \PYG{l+m}{0}\PYG{p}{)}
+		\PYG{n}{index} \PYG{p}{+=} \PYG{n}{Width}\PYG{p}{*}\PYG{n}{Height}\PYG{p}{;}
+
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{CheckNeighbor}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{n}{index}\PYG{p}{))}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{neighbors}\PYG{p}{[}\PYG{n}{neighborIndex}\PYG{p}{]} \PYG{p}{=} \PYG{n}{index}\PYG{p}{;}
+		\PYG{n}{neighborIndex}\PYG{p}{++;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{c+c1}{// look right}
+	\PYG{n}{index} \PYG{p}{=} \PYG{n}{position} \PYG{p}{+} \PYG{l+m}{1}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{((}\PYG{n}{index} \PYG{p}{\PYGZpc{}} \PYG{n}{Width}\PYG{p}{)} \PYG{p}{==} \PYG{l+m}{0}\PYG{p}{)}
+		\PYG{n}{index} \PYG{p}{\PYGZhy{}=} \PYG{n}{Width}\PYG{p}{;}
+
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{CheckNeighbor}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{n}{index}\PYG{p}{))}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{neighbors}\PYG{p}{[}\PYG{n}{neighborIndex}\PYG{p}{]} \PYG{p}{=} \PYG{n}{index}\PYG{p}{;}
+		\PYG{n}{neighborIndex}\PYG{p}{++;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{c+c1}{// look down}
+	\PYG{n}{index} \PYG{p}{=} \PYG{n}{position} \PYG{p}{+} \PYG{n}{Width}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{index} \PYG{p}{\PYGZgt{}=} \PYG{n}{Width} \PYG{p}{*} \PYG{n}{Height}\PYG{p}{)}
+		\PYG{n}{index} \PYG{p}{\PYGZhy{}=} \PYG{n}{Width} \PYG{p}{*} \PYG{n}{Height}\PYG{p}{;}
+
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{CheckNeighbor}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{n}{index}\PYG{p}{))}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{neighbors}\PYG{p}{[}\PYG{n}{neighborIndex}\PYG{p}{]} \PYG{p}{=} \PYG{n}{index}\PYG{p}{;}
+		\PYG{n}{neighborIndex}\PYG{p}{++;}
+	\PYG{p}{\PYGZcb{}}
+
+
+	\PYG{c+c1}{// look left}
+	\PYG{n}{index} \PYG{p}{=} \PYG{n}{position} \PYG{p}{\PYGZhy{}} \PYG{l+m}{1}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{((}\PYG{n}{index} \PYG{p}{+} \PYG{l+m}{1}\PYG{p}{)} \PYG{p}{\PYGZpc{}} \PYG{n}{Width} \PYG{p}{==} \PYG{l+m}{0}\PYG{p}{)}
+		\PYG{n}{index} \PYG{p}{+=} \PYG{n}{Width}\PYG{p}{;}
+
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{CheckNeighbor}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{n}{index}\PYG{p}{))}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{neighbors}\PYG{p}{[}\PYG{n}{neighborIndex}\PYG{p}{]} \PYG{p}{=} \PYG{n}{index}\PYG{p}{;}
+		\PYG{n}{neighborIndex}\PYG{p}{++;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{neighborIndex} \PYG{p}{\PYGZgt{}} \PYG{l+m}{1}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{c+c1}{// if more than one cell has been found =\PYGZgt{} return a randomly selected cell}
+		\PYG{k}{return} \PYG{n}{neighbors}\PYG{p}{[}\PYG{n}{random}\PYG{p}{.}\PYG{n}{Next}\PYG{p}{(}\PYG{n}{neighborIndex}\PYG{p}{)];}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{else} \PYG{n+nf}{if} \PYG{p}{(}\PYG{n}{neighborIndex} \PYG{p}{==} \PYG{l+m}{1}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{c+c1}{// if only a single cell contains an animal of the given type we can save the call to random}
+		\PYG{k}{return} \PYG{n}{neighbors}\PYG{p}{[}\PYG{l+m}{0}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{else}
+	\PYG{p}{\PYGZob{}}
+		\PYG{c+c1}{// return a point with negative coordinates to indicate}
+		\PYG{c+c1}{// that no neighbouring cell has found}
+		\PYG{c+c1}{// return value must be checked by the caller}
+		\PYG{k}{return} \PYG{p}{\PYGZhy{}}\PYG{l+m}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{p}{...}
+
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

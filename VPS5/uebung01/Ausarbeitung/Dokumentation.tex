@@ -318,6 +318,116 @@ public class OriginalWatorWorld : IWatorWorld
 	...
 }
 \end{minted}
+
+\subsection{Version 4}
+Da die Version 3 keinen großen Speedup gebracht hat, wurde eine erneute Optimierung vorgenommen. Diesmal wurde das Feld \texttt{Grid} von einem zweidimensionalen Feld auf ein eindimensionales Feld geändert.
+Damit wurde die Notwendigkeit von \texttt{Point} Objekten entfernt und alle Positionsangaben wurden auf \texttt{int} geändert.
+
+\subsection{Performance}
+\includegraphics[width=300px]{images/Version4.png}\linebreak
+\begin{flushleft}
+\textbf{Speedup zur vorherigen Version:} 1,124231997174832\linebreak
+\textbf{Speedup zur originalen Version:} 1,846823329622612\linebreak
+\end{flushleft}
+
+
+\subsubsection{Codeänderungen}
+\textit{Es sind nur die wesentlichen Änderungen hier aufgeführt, da es sonst zu unübersichtlich werden würde. Die Änderungen von \texttt{Point} zu \texttt{int} können im Quellcode nachgeschlagen werden.}
+\begin{minted}[
+frame=lines,
+tabsize=2,
+fontsize=\footnotesize,
+]{csharp}
+// object-oriented implementation of the wator world simulation
+public class OriginalWatorWorld : IWatorWorld
+{
+...
+// the cells of the world as array
+public Animal[] Grid { get; private set; }
+...
+
+public OriginalWatorWorld(Settings settings)
+{
+...
+	Grid = new Animal[Width* Height];
+...
+}
+private readonly int[] neighbors = new int[4];
+
+// find all neighbouring cells of the given position that contain an animal of the given type
+public int SelectNeighbor(Type type, int position)
+{
+	int neighborIndex = 0;
+	int index;
+
+	// look up
+	index = position - Width;
+	if (index < 0)
+		index += Width*Height;
+
+	if (CheckNeighbor(type, index))
+	{
+		neighbors[neighborIndex] = index;
+		neighborIndex++;
+	}
+
+	// look right
+	index = position + 1;
+	if ((index % Width) == 0)
+		index -= Width;
+
+	if (CheckNeighbor(type, index))
+	{
+		neighbors[neighborIndex] = index;
+		neighborIndex++;
+	}
+
+	// look down
+	index = position + Width;
+	if (index >= Width * Height)
+		index -= Width * Height;
+
+	if (CheckNeighbor(type, index))
+	{
+		neighbors[neighborIndex] = index;
+		neighborIndex++;
+	}
+
+
+	// look left
+	index = position - 1;
+	if ((index + 1) % Width == 0)
+		index += Width;
+
+	if (CheckNeighbor(type, index))
+	{
+		neighbors[neighborIndex] = index;
+		neighborIndex++;
+	}
+
+	if (neighborIndex > 1)
+	{
+		// if more than one cell has been found => return a randomly selected cell
+		return neighbors[random.Next(neighborIndex)];
+	}
+	else if (neighborIndex == 1)
+	{
+		// if only a single cell contains an animal of the given type we can save the call to random
+		return neighbors[0];
+	}
+	else
+	{
+		// return a point with negative coordinates to indicate
+		// that no neighbouring cell has found
+		// return value must be checked by the caller
+		return -1;
+	}
+}
+...
+
+}
+\end{minted}
+
 \pagebreak
 \section{Zusammenfassung}
 \textbf{Parameter}
@@ -331,24 +441,24 @@ public class OriginalWatorWorld : IWatorWorld
 
 \begin{table}[!ht]
 \caption{Ergebnisse}
-\begin{tabular}{lrrrr}
+\begin{tabular}{lrrrrr}
 \toprule
-Lauf                             & Original   & Version 1  & Version 2   & Version 3  \\ 
+Lauf                             & Original   & Version 1  & Version 2   & Version 3 & Version 4 \\ 
 \midrule
-1 Lauf                       & 6275,0363  & 4960,0705  & 4047,6108   & 3742,9105  \\ 
-2 Lauf                       & 6573,7986  & 4968,9271  & 4114,0845   & 3813,2592  \\ 
-3 Lauf                       & 6059,9067  & 4884,7747  & 4033,2422   & 3747,6104  \\ 
-4 Lauf                       & 5996,6139  & 4963,4762  & 4144,8737   & 3733,8888  \\ 
-5 Lauf                       & 6001,7686  & 4962,5076  & 4079,2123   & 3776,6795  \\ 
+1 Lauf                       & 6275,0363  & 4960,0705  & 4047,6108   & 3742,9105  & 3300,4506 \\ 
+2 Lauf                       & 6573,7986  & 4968,9271  & 4114,0845   & 3813,2592  & 3347,0034 \\ 
+3 Lauf                       & 6059,9067  & 4884,7747  & 4033,2422   & 3747,6104  & 3457,9291 \\ 
+4 Lauf                       & 5996,6139  & 4963,4762  & 4144,8737   & 3733,8888  & 3379,1717 \\ 
+5 Lauf                       & 6001,7686  & 4962,5076  & 4079,2123   & 3776,6795  & 3385,7353 \\ 
 \bottomrule
-														 &            &            &             &            \\
+														 &            &            &             &            & \\
 														
-Durchschnitt                 & 6181,4248 & 4947,9512 & 4083,8047   & 3762,8697 \\ 
-Standardabweichung           & 220,8703 & 31,7208 & 41,3133  & 28,9859 \\ 
+Durchschnitt                 & 6181,4248 & 4947,9512 & 4083,8047   & 3762,8697 & 3347,0580 \\ 
+Standardabweichung           & 220,8703 & 31,7208 & 41,3133  & 28,9859  & 51,6660\\ 
 \bottomrule
-														 &            &            &             &            \\
-Speedup zur vorherigen Version   &           & 1,2473 & 1,2116  & 1,0853  \\ 
-Speedup zur originalen Version &           & 1,2473 & 1,5136 & \textbf{1,6427}  \\ 
+														 &            &            &             &           &  \\
+Speedup zur vorherigen Version   &           & 1,2473 & 1,2116  & 1,0853  & 1,1242 \\ 
+Speedup zur originalen Version &           & 1,2473 & 1,5136 & 1,6427  & \textbf{1,8468} \\ 
 \bottomrule
 
 \end{tabular}

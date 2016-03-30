@@ -24,8 +24,8 @@ namespace VSS.Wator.Original
         public int Width { get; private set; }
         // height (number of cells) of the world
         public int Height { get; private set; }
-        // the cells of the world as a flattened array
-        public Animal[] Grid { get; private set; }
+        // the cells of the world (2D-array of animal (fish or shark), empty cells have the value null)
+        public Animal[,] Grid { get; private set; }
 
         // simulation parameters
         public int InitialFishPopulation { get; private set; }
@@ -59,7 +59,7 @@ namespace VSS.Wator.Original
             rgbValues = new byte[Width*Height*4];
 
             random = new Random();
-            Grid = new Animal[Width*Height];
+            Grid = new Animal[Width, Height];
 
             // initialize the population by placing the required number of shark and fish
             // randomly on the grid
@@ -68,23 +68,24 @@ namespace VSS.Wator.Original
             // randomMatrix is smaller then the number of fish 
             // subsequently we can place a shark if the number in randomMatrix is smaller than
             // the number of fish and shark
-            for (int i = 0; i < Width*Height; i++)
+            for (int i = 0; i < Width; i++)
             {
-               
-                int value = random.Next(Width*Height);
-                if (value < InitialFishPopulation)
+                for (int j = 0; j < Height; j++)
                 {
-                    Grid[i] = new Fish(this, i, random.Next(0, FishBreedTime));
+                    int value = random.Next(Width*Height);
+                    if (value < InitialFishPopulation)
+                    {
+                        Grid[i, j] = new Fish(this, new Point(i, j), random.Next(0, FishBreedTime));
+                    }
+                    else if (value < InitialFishPopulation + InitialSharkPopulation)
+                    {
+                        Grid[i, j] = new Shark(this, new Point(i, j), random.Next(0, SharkBreedEnergy));
+                    }
+                    else
+                    {
+                        Grid[i, j] = null;
+                    }
                 }
-                else if (value < InitialFishPopulation + InitialSharkPopulation)
-                {
-                    Grid[i] = new Shark(this, i, random.Next(0, SharkBreedEnergy));
-                }
-                else
-                {
-                    Grid[i] = null;
-                }
-               
             }
 
             // populate the random matrix that determines the order of execution for the cells
@@ -101,14 +102,19 @@ namespace VSS.Wator.Original
             // that in each time step the order of execution of cells is different (and random)
             RandomizeMatrix(randomMatrix);
 
+            // go over all cells of the random matrix
+            int row, col;
             for (int i = 0; i < Width*Height; i++)
             {
-                var value = Grid[randomMatrix[i]];
-                
+                // determine row and col of the grid cell by manipulating the value
+                var value = randomMatrix[i];
+                col = value % Width;
+                row = value / Width;
+
                 // if there is an animal on this cell that has not been moved in this simulation step
                 // then we execute it
-                if (value != null && !value.Moved)
-                    value.ExecuteStep();
+                if (Grid[col, row] != null && !Grid[col, row].Moved)
+                    Grid[col, row].ExecuteStep();
                 
             }
 
@@ -119,17 +125,18 @@ namespace VSS.Wator.Original
         public Bitmap GenerateImage()
         {
             int counter = 0;
-            for (int i = 0; i < Width*Height;i++)
-            { 
-                Color col;
-                if (Grid[i] == null) col = Color.DarkBlue;
-                else col = Grid[i].Color;
+            for (int y = 0; y < Height; y++)
+                for (int x = 0; x < Width; x++)
+                {
+                    Color col;
+                    if (Grid[x, y] == null) col = Color.DarkBlue;
+                    else col = Grid[x, y].Color;
 
-                rgbValues[counter++] = col.B; //  // b
-                rgbValues[counter++] = col.G; // // g
-                rgbValues[counter++] = col.R; //  // R
-                rgbValues[counter++] = col.A; //  // a
-            }
+                    rgbValues[counter++] = col.B; //  // b
+                    rgbValues[counter++] = col.G; // // g
+                    rgbValues[counter++] = col.R; //  // R
+                    rgbValues[counter++] = col.A; //  // a
+                }
             // Lock the bitmap's bits.  
             Rectangle rect = new Rectangle(0, 0, Width, Height);
             var bitmap = new Bitmap(Width, Height);
@@ -155,56 +162,52 @@ namespace VSS.Wator.Original
         /// <summary>
         /// Neighbors static data array which is reused
         /// </summary>
-        private readonly int[] neighbors = new int[4];
+        private readonly Point[] neighbors = new Point[4];
 
         // find all neighbouring cells of the given position that contain an animal of the given type
-        public int SelectNeighbor(Type type, int position)
+        public Point SelectNeighbor(Type type, Point position)
         {
-            int neighborIndex = 0;
-            int index;
+            int neighborIndex;
+            int i, j;
 
+            // counter for the number of cells of the correct type
+            neighborIndex = 0;
             // look up
-            index = position - Width;
-            if (index < 0)
-                index += Width*Height;
-
-            if (CheckNeighbor(type, index))
+            i = position.X;
+            j = (position.Y + Height - 1) % Height;
+            if (CheckNeighbor(type, i,j ))
             {
-                neighbors[neighborIndex] = index;
+                neighbors[neighborIndex].X = i;
+                neighbors[neighborIndex].Y = j;
                 neighborIndex++;
             }
 
-            // look right
-            index = position + 1;
-            if ((index % Width) == 0)
-                index -= Width;
-
-            if (CheckNeighbor(type, index))
+            i = (position.X + 1) % Width;
+            j = position.Y;
+            if (CheckNeighbor(type,i, j))
             {
-                neighbors[neighborIndex] = index;
+                neighbors[neighborIndex].X = i;
+                neighbors[neighborIndex].Y = j;
                 neighborIndex++;
             }
 
             // look down
-            index = position + Width;
-            if (index >= Width * Height)
-                index -= Width * Height;
-
-            if (CheckNeighbor(type, index))
+            i = position.X;
+            j = (position.Y + 1) % Height;
+            if (CheckNeighbor(type, i, j))
             {
-                neighbors[neighborIndex] = index;
+                neighbors[neighborIndex].X = i;
+                neighbors[neighborIndex].Y = j;
                 neighborIndex++;
             }
 
-
             // look left
-            index = position - 1;
-            if ((index + 1) % Width == 0)
-                index += Width;
-
-            if (CheckNeighbor(type, index))
+            i = (position.X + Width - 1) % Width;
+            j = position.Y;
+            if (CheckNeighbor(type, i, j))
             {
-                neighbors[neighborIndex] = index;
+                neighbors[neighborIndex].X = i;
+                neighbors[neighborIndex].Y = j;
                 neighborIndex++;
             }
 
@@ -223,13 +226,13 @@ namespace VSS.Wator.Original
                 // return a point with negative coordinates to indicate
                 // that no neighbouring cell has found
                 // return value must be checked by the caller
-                return -1;
+                return new Point(-1, -1);
             }
         }
         
-        private bool CheckNeighbor(Type type, int index)
+        private bool CheckNeighbor(Type type, int xCoord, int yCoord)
         {
-            var value = Grid[index];
+            var value = Grid[xCoord, yCoord];
             if ((type == null) && (value  == null))
             {
                 return true;

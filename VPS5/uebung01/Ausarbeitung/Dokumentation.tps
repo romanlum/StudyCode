@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=Dokumentation.tex
 
 [Frame0_View0,0]
-TopLine=33
-Cursor=1345
+TopLine=322
+Cursor=10475
 
 [SessionInfo]
 FrameCount=1
