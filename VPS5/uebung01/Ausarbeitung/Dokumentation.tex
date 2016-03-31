@@ -65,6 +65,7 @@ Rechenleistung um die Objekte wieder aufzuräumen. Weiters muss für jeden Nachbar
 \begin{itemize}
 	\item Anzahl der benötigten Schleifendurchläufe.
 	\item Allokierung von kurzzeitig benötigten Speicher am Heap, da hier der Garbagecollector diese wieder löschen muss und dadurch Rechenleistung verbraucht.
+	\item Aufwendige Berechnungen
 	\item Zugriff auf Arrayelemente, da hier Laufzeitüberprüfungen durchgeführt werden.
 \end{itemize}
   
@@ -332,8 +333,7 @@ public class OriginalWatorWorld : IWatorWorld
 
 \subsection{Version 4}
 Da die Version 3 keinen großen Speedup gebracht hat, wurde eine erneute Optimierung vorgenommen und auch das Feld \texttt{Grid} von einem zweidimensionalen Feld auf ein eindimensionales Feld geändert.
-Damit wurde die Notwendigkeit von \texttt{Point} Objekten entfernt und alle Positionsangaben wurden auf \texttt{int} geändert. Dadurch gibt es bei der Bestimmung der Nachbarn keine Divisionen mehr.
-
+Damit wurde die Notwendigkeit von \texttt{Point} Objekten entfernt und alle Positionsangaben wurden auf \texttt{int} geändert. Dadurch wird die Bestimmung der vier Nachbarindizes vereinfacht.
 \subsection{Performance}
 \includegraphics[width=300px]{images/Version4.png}\linebreak
 \begin{flushleft}
