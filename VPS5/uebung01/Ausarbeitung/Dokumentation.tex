@@ -32,11 +32,19 @@ Zur Bestimmung der Performance wurden folgende Parameter verwendet:
 
 \pagebreak
 \subsection{Wo wird die meiste Rechenleistung verbraucht?}
+\begin{mdframed}
  \includegraphics[width=400px]{images/profiling.png}
-
+\end{mdframed}
  Grundsätzlich wird die meiste CPU-Zeit in der Methode \texttt{ExecuteStep} und in weiterer Folge dann in \texttt{GetNeighbors} verbraucht.
  Diese Methode ist für das Suchen der Nachbarn eines Feldes zuständig und wird daher sehr oft aufgerufen.
- Die Analyse der Methode zeigt, dass sehr viele \texttt{Point} Objekte angelegt und dann sogar nochmals kopiert werden.
+
+ Die Analyse der Methode zeigt, dass sehr viele kurzlebige \texttt{Point} Objekte angelegt und dann sogar nochmals kopiert werden. Damit benötigt der Garbage-Collector sehr viel
+Rechenleistung um die Objekte wieder aufzuräumen.
+\begin{mdframed}
+\begin{flushleft}
+ \includegraphics[width=200px]{images/garbage.png}
+\end{flushleft}
+\end{mdframed}
 
  Die Methode \texttt{RandomizeMatrix} ist eine weitere Methode, die sehr viel CPU-Zeit benötigt. Diese ist für das Mischen der Durchlauf-Matrix zuständig.
 
@@ -320,8 +328,8 @@ public class OriginalWatorWorld : IWatorWorld
 \end{minted}
 
 \subsection{Version 4}
-Da die Version 3 keinen großen Speedup gebracht hat, wurde eine erneute Optimierung vorgenommen. Diesmal wurde das Feld \texttt{Grid} von einem zweidimensionalen Feld auf ein eindimensionales Feld geändert.
-Damit wurde die Notwendigkeit von \texttt{Point} Objekten entfernt und alle Positionsangaben wurden auf \texttt{int} geändert.
+Da die Version 3 keinen großen Speedup gebracht hat, wurde eine erneute Optimierung vorgenommen und auch das Feld \texttt{Grid} von einem zweidimensionalen Feld auf ein eindimensionales Feld geändert.
+Damit wurde die Notwendigkeit von \texttt{Point} Objekten entfernt und alle Positionsangaben wurden auf \texttt{int} geändert. Dadurch gibt es bei der Bestimmung der Nachbarn keine Divisionen mehr.
 
 \subsection{Performance}
 \includegraphics[width=300px]{images/Version4.png}\linebreak
