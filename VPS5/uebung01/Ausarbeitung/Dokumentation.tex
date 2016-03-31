@@ -39,7 +39,7 @@ Zur Bestimmung der Performance wurden folgende Parameter verwendet:
  Diese Methode ist für das Suchen der Nachbarn eines Feldes zuständig und wird daher sehr oft aufgerufen.
 
  Die Analyse der Methode zeigt, dass sehr viele kurzlebige \texttt{Point} Objekte angelegt und dann sogar nochmals kopiert werden. Damit benötigt der Garbage-Collector sehr viel
-Rechenleistung um die Objekte wieder aufzuräumen. Weiters muss für jeden Nachbar der Zeilen- und Spaltenindex berechnet und eine Typprüfung durchgeführt werden.
+Rechenleistung, um die Objekte wieder aufzuräumen. Weiters muss für jeden Nachbarn der Zeilen- und Spaltenindex berechnet und eine Typprüfung durchgeführt werden.
 \begin{mdframed}
 \begin{flushleft}
  \includegraphics[width=200px]{images/garbage.png}
@@ -51,19 +51,19 @@ Rechenleistung um die Objekte wieder aufzuräumen. Weiters muss für jeden Nachbar
 \subsection{Wie kann die Performance verbessert werden?}
 \begin{itemize}
 	\item Umgang mit den Koordinaten in der Methode \texttt{GetNeighbors} optimieren, damit nicht mehr so viele Objekte angelegt werden müssen.
-		\subitem Verwenden eines statischen Arrays.
-		\subitem Kopieren des Arrays am Ende der Methode vermeiden.
+		\subitem Verwenden eines statischen Arrays
+		\subitem Kopieren des Arrays am Ende der Methode vermeiden
 	\item Umstellen der zweidimensionalen Felder auf eindimensionale Felder.
-	\item Ändern \texttt{Moved} Eigenschaft, um die zusätzliche Schleife über alle Elemente zu sparen.
-		\subitem Eine Möglichkeit wäre hier die Iterationsnummer zu verwenden. 
-	\item Vereinfachung der Zeilen/Spaltenberechnungen in der Methode \texttt{GetNeighbors}
-	\item Eventuell Optimierung des Zufallszahlengenerators, da auch hier einiges an Rechenleistung benötigt wird
+	\item Ändern der \texttt{Moved} Eigenschaft, um die zusätzliche Schleife über alle Elemente zu sparen.
+		\subitem Eine Möglichkeit wäre hier die Iterationsnummer zu verwenden.
+	\item Vereinfachung der Zeilen/Spaltenberechnungen in der Methode \texttt{GetNeighbors}.
+	\item Eventuell Optimierung des Zufallszahlengenerators, da auch hier einiges an Rechenleistung benötigt wird.
 	
 \end{itemize}
 
 \subsection{Performance kritische Aspekte}
 \begin{itemize}
-	\item Anzahl der benötigten Schleifendurchläufe.
+	\item Anzahl der benötigten Schleifendurchläufe
 	\item Allokierung von kurzzeitig benötigten Speicher am Heap, da hier der Garbagecollector diese wieder löschen muss und dadurch Rechenleistung verbraucht.
 	\item Aufwendige Berechnungen
 	\item Zugriff auf Arrayelemente, da hier Laufzeitüberprüfungen durchgeführt werden.
