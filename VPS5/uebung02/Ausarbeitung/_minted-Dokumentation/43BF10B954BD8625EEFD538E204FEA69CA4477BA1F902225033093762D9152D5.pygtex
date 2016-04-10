@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+\PYG{c+c1}{/// Neighbors static data array which is reused}
+\PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+\PYG{k}{private} \PYG{k}{readonly} \PYG{n}{Point}\PYG{p}{[]} \PYG{n}{neighbors} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Point}\PYG{p}{[}\PYG{l+m}{4}\PYG{p}{];}
+\end{Verbatim}

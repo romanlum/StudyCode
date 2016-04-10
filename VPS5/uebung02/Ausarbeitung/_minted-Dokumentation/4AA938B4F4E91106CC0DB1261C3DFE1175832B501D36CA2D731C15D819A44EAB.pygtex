@@ -1,0 +1,56 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Collections.Generic}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Threading}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{SynchronizationPrimitives}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{class} \PYG{n+nc}{LimitedConnectionsExample}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{private} \PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{ConcurrentDownloads} \PYG{p}{=} \PYG{l+m}{10}\PYG{p}{;}
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Semaphore used for allowing max download threads}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{k}{private} \PYG{n}{SemaphoreSlim} \PYG{n}{\PYGZus{}syncSemaphore}\PYG{p}{;}
+
+        \PYG{k}{private} \PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{Thread}\PYG{p}{\PYGZgt{}} \PYG{n}{\PYGZus{}threads}\PYG{p}{;}
+         
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Starts downloading files and returns}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}urls\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{DownloadFilesAsync}\PYG{p}{(}\PYG{n}{IEnumerable}\PYG{p}{\PYGZlt{}}\PYG{k+kt}{string}\PYG{p}{\PYGZgt{}} \PYG{n}{urls}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{\PYGZus{}syncSemaphore} \PYG{p}{=} \PYG{k}{new} \PYG{n}{SemaphoreSlim}\PYG{p}{(}\PYG{n}{ConcurrentDownloads}\PYG{p}{);}
+            \PYG{n}{\PYGZus{}threads} \PYG{p}{=} \PYG{k}{new} \PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{Thread}\PYG{p}{\PYGZgt{}();}
+            \PYG{k}{foreach} \PYG{p}{(}\PYG{k+kt}{var} \PYG{n}{url} \PYG{k}{in} \PYG{n}{urls}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{Thread} \PYG{n}{t} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Thread}\PYG{p}{(}\PYG{n}{DownloadFile}\PYG{p}{);}
+                \PYG{n}{\PYGZus{}threads}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{t}\PYG{p}{);}
+                \PYG{n}{t}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{(}\PYG{n}{url}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{DownloadFile}\PYG{p}{(}\PYG{k+kt}{object} \PYG{n}{url}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{\PYGZus{}syncSemaphore}\PYG{p}{.}\PYG{n}{Wait}\PYG{p}{();}
+            \PYG{n}{Console}\PYG{p}{.}\PYG{n}{WriteLine}\PYG{p}{(}\PYG{err}{\PYGZdl{}}\PYG{l+s}{\PYGZdq{}Downloading \PYGZob{}url\PYGZcb{}\PYGZdq{}}\PYG{p}{);}
+            \PYG{n}{Thread}\PYG{p}{.}\PYG{n}{Sleep}\PYG{p}{(}\PYG{l+m}{1000}\PYG{p}{);}
+            \PYG{n}{Console}\PYG{p}{.}\PYG{n}{WriteLine}\PYG{p}{(}\PYG{err}{\PYGZdl{}}\PYG{l+s}{\PYGZdq{}finished \PYGZob{}url\PYGZcb{}\PYGZdq{}}\PYG{p}{);}
+            \PYG{n}{\PYGZus{}syncSemaphore}\PYG{p}{.}\PYG{n}{Release}\PYG{p}{();}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Waits for all downloads to be finished}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{DownloadFiles}\PYG{p}{(}\PYG{n}{IEnumerable}\PYG{p}{\PYGZlt{}}\PYG{k+kt}{string}\PYG{p}{\PYGZgt{}} \PYG{n}{urls}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{DownloadFilesAsync}\PYG{p}{(}\PYG{n}{urls}\PYG{p}{);}
+            \PYG{k}{foreach} \PYG{p}{(}\PYG{k+kt}{var} \PYG{n}{thread} \PYG{k}{in} \PYG{n}{\PYGZus{}threads}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{thread}\PYG{p}{.}\PYG{n}{Join}\PYG{p}{();}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{n}{\PYGZus{}syncSemaphore}\PYG{p}{.}\PYG{n}{Dispose}\PYG{p}{();}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article} 
+\usepackage{graphicx} 
+\usepackage[ngerman]{babel} 
+\usepackage[ansinew]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage{tgpagella} 
+\usepackage{geometry} 
+\usepackage{color} 
+\usepackage{microtype} 
+\usepackage{pdftexcmds}
+\usepackage{minted}
+\usepackage{caption}
+\usepackage[headsepline,footsepline]{scrpage2}
+\usepackage{textcomp}
+\usepackage{pdfpages}
+\usepackage{mdframed}
+\usepackage{booktabs} 
+
+\title{Dokumentation - 1 Übung}
+\author{Roman Lumetsberger}
+\date{\today}
+
+\newmintedfile[ccode]{cpp}{
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm
+}
+
+\newmintedfile[javacode]{java}{
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               tabsize=2,
+               framesep=2mm,
+}
+\newmintedfile[csscode]{css}{
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               tabsize=2,
+               framesep=2mm,
+}
+\newmintedfile[cscode]{csharp}{
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               tabsize=2,
+               framesep=2mm,
+}
+\captionsetup{
+  font=footnotesize,
+  justification=raggedright,
+  singlelinecheck=false
+}
+
+
+\newcommand{\srcDir}{../Beispiel}
+\newcommand{\testDir}{../Beispiel}
+
+\definecolor{lineColor}{RGB}{151,0,0}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\begin{document}
+\includepdf[pages=-]{angabe.pdf}

@@ -1,0 +1,69 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Threading}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{RaceConditionExample}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{class} \PYG{n+nc}{RaceConditionExampleFixed}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{private} \PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{N} \PYG{p}{=} \PYG{l+m}{1000}\PYG{p}{;}
+        \PYG{k}{private} \PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{BUFFER\PYGZus{}SIZE} \PYG{p}{=} \PYG{l+m}{10}\PYG{p}{;}
+        \PYG{k}{private} \PYG{k+kt}{double}\PYG{p}{[]} \PYG{n}{buffer}\PYG{p}{;}
+
+        \PYG{k}{private} \PYG{n}{SemaphoreSlim} \PYG{n}{readerSemaphore}\PYG{p}{;}
+        \PYG{k}{private} \PYG{n}{SemaphoreSlim} \PYG{n}{writerSemaphore}\PYG{p}{;}
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{Run}\PYG{p}{()}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{buffer} \PYG{p}{=} \PYG{k}{new} \PYG{k+kt}{double}\PYG{p}{[}\PYG{n}{BUFFER\PYGZus{}SIZE}\PYG{p}{];}
+            \PYG{c+c1}{//Reader semaphore starts with blocking}
+            \PYG{n}{readerSemaphore} \PYG{p}{=} \PYG{k}{new} \PYG{n}{SemaphoreSlim}\PYG{p}{(}\PYG{l+m}{0}\PYG{p}{);}
+
+            \PYG{c+c1}{//Writer can produce BUFFER\PYGZus{}SIZE values then he has to wait for the reader }
+            \PYG{c+c1}{//to consume it}
+            \PYG{n}{writerSemaphore} \PYG{p}{=} \PYG{k}{new} \PYG{n}{SemaphoreSlim}\PYG{p}{(}\PYG{n}{BUFFER\PYGZus{}SIZE}\PYG{p}{);}
+
+            \PYG{c+c1}{// start threads}
+            \PYG{k+kt}{var} \PYG{n}{t1} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Thread}\PYG{p}{(}\PYG{n}{Reader}\PYG{p}{);} \PYG{k+kt}{var} \PYG{n}{t2} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Thread}\PYG{p}{(}\PYG{n}{Writer}\PYG{p}{);}
+            \PYG{n}{t1}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{();} \PYG{n}{t2}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{();}
+            \PYG{c+c1}{// wait}
+            \PYG{n}{t1}\PYG{p}{.}\PYG{n}{Join}\PYG{p}{();} \PYG{n}{t2}\PYG{p}{.}\PYG{n}{Join}\PYG{p}{();}
+        
+            \PYG{c+c1}{//check that buffer is loaded with the last produced values}
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{BUFFER\PYGZus{}SIZE}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{if} \PYG{p}{(!}\PYG{n}{buffer}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{Equals}\PYG{p}{(}\PYG{n}{N} \PYG{p}{\PYGZhy{}} \PYG{n}{BUFFER\PYGZus{}SIZE} \PYG{p}{+} \PYG{n}{i}\PYG{p}{))}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{n}{Console}\PYG{p}{.}\PYG{n}{WriteLine}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Race condition occured :(\PYGZdq{}}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+            
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{void} \PYG{n+nf}{Reader}\PYG{p}{()}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{var} \PYG{n}{readerIndex} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{c+c1}{//wait for a value from the producer}
+                \PYG{n}{readerSemaphore}\PYG{p}{.}\PYG{n}{Wait}\PYG{p}{();}
+                \PYG{n}{Console}\PYG{p}{.}\PYG{n}{WriteLine}\PYG{p}{(}\PYG{n}{buffer}\PYG{p}{[}\PYG{n}{readerIndex}\PYG{p}{]);}
+                \PYG{n}{readerIndex} \PYG{p}{=} \PYG{p}{(}\PYG{n}{readerIndex} \PYG{p}{+} \PYG{l+m}{1}\PYG{p}{)} \PYG{p}{\PYGZpc{}} \PYG{n}{BUFFER\PYGZus{}SIZE}\PYG{p}{;}
+                \PYG{c+c1}{//signal producer that we have consumed a value}
+                \PYG{n}{writerSemaphore}\PYG{p}{.}\PYG{n}{Release}\PYG{p}{();}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{k}{void} \PYG{n+nf}{Writer}\PYG{p}{()}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{var} \PYG{n}{writerIndex} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{c+c1}{//Wait until we can produce a new value}
+                \PYG{n}{writerSemaphore}\PYG{p}{.}\PYG{n}{Wait}\PYG{p}{();}
+                \PYG{n}{buffer}\PYG{p}{[}\PYG{n}{writerIndex}\PYG{p}{]} \PYG{p}{=} \PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{)}\PYG{n}{i}\PYG{p}{;}
+                \PYG{n}{writerIndex} \PYG{p}{=} \PYG{p}{(}\PYG{n}{writerIndex} \PYG{p}{+} \PYG{l+m}{1}\PYG{p}{)} \PYG{p}{\PYGZpc{}} \PYG{n}{BUFFER\PYGZus{}SIZE}\PYG{p}{;}
+                \PYG{c+c1}{//singal reader that we have produced a value}
+                \PYG{n}{readerSemaphore}\PYG{p}{.}\PYG{n}{Release}\PYG{p}{();}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

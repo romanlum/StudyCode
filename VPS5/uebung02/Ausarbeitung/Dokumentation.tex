@@ -1,0 +1,41 @@
+\input{master.tex}
+
+\ihead{VPS SS 2016 - Übung 02}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Race Conditions}
+\subsection*{1a. Was sind race conditions?}
+\textbf{Race conditions} können entstehen, wenn mehrere Threads paralell auf den selben Speicherbereich (Variable) zugreifen und verändern. Das Ergebnis ist abhängig von der zeitlichen Abfolge der Threads und somit nicht vorhersehbar.
+\begin{figure}[!htb]
+\includegraphics[width=300px]{images/1a.png}
+\caption{Race codition in CSharp - Original version}
+\label{fig:SimpleRaceConditionOriginal}
+\end{figure}
+
+Abbildung~\ref{fig:SimpleRaceConditionOriginal} zeigt die Ausgabe der implementierten race codition in CSharp. Dabei wird eine Variable \texttt{\_counter} erhöht und dann mit dem vorherigen Wert verglichen. Der neue Wert sollte genau um eins größer sein als der alte Wert. Ist dies nicht der Fall ist eine race condition aufgetreten. Die Variable wurde also von einem anderen Thread geändert.
+
+\subsection*{1b. Wie können race conditions vermieden werden?}
+Diese können mit Hilfe von Locks vermieden werden.
+\begin{figure}[!htb]
+\includegraphics[width=300px]{images/1b.png}
+\caption{Race condition in CSharp - Ohne race condition}
+\label{fig:SimpleRaceConditionFixed}
+\end{figure}
+
+Abbildung~\ref{fig:SimpleRaceConditionFixed} zeigt die Ausgabe der verbesserten Version. Diese verwendet Locks um die race condition zu vermeiden.
+
+\subsection*{1c. Race condition im Code}
+Die race condition im angegebenen Code ist die Tatsache, das das der Writer und Reader nicht korrekt miteinander synchronisiert sind und nur ein begrenzter Puffer zur Verfügung steht. Dadurch kann es sein, dass der Writer bereits mehr Werte erzeugt als der Puffer zulässt und somit die alten Werte überschreibt.
+Die Lösung ist die korrekte Synchronisation der beiden Threads.
+\cscode{\srcDir/RaceConditionExample/RaceConditionExample.cs}
+
+\section{Synchronization Primitives}
+\subsection*{2a. / 2b.}
+\cscode{\srcDir/SynchronizationPrimitives/LimitedConnectionsExample.cs}
+\subsection*{2c. Aktives Warten}
+ \cscode{\srcDir/SynchronizationPrimitives/PollingExample.cs}
+
+
+\end{document}
