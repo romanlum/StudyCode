@@ -1,37 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace VSS.ToiletSimulation
 {
     /// <summary>
-    /// Extension methods for IJob
-    /// </summary>
-    public static class JobExtensions
-    {
-        /// <summary>
-        /// Calculates the time left to schedule the job
-        /// </summary>
-        /// <param name="job"></param>
-        /// <param name="currentDate"></param>
-        /// <returns></returns>
-        public static TimeSpan TimeLeft(this IJob job,DateTime currentDate)
-        {
-            return job.DueDate.Subtract(currentDate).Subtract(job.ProcessingTime);
-        }
-    }
-    
-    /// <summary>
     /// ToiletQueue which has a better scheduling algorithm
     /// </summary>
     class ToiletQueue:FifoQueue
     {
+        public ToiletQueue()
+        {
+            //change queue to a sorted set to improve performance
+            queue = new SortedSet<IJob>(new LatestStartTimeComparer());
+        }
+
+        /// <summary>
+        /// Returns the next job to execute
+        /// uses the job with the lowest time to scheduler
+        /// already too late jobs are scheduled at latest
+        /// </summary>
+        /// <returns></returns>
         protected override IJob GetNextJob()
         {
             DateTime now = DateTime.Now;
             IJob result;
             lock (LockObject)
             {
-                result = queue.Where(x => x.TimeLeft(now).TotalMilliseconds > 0).OrderBy(x => x.TimeLeft(now)).FirstOrDefault() ??
+                //tries to find the next element where the latestStartTime > 0
+                //otherwise the first element of the queue is used, because its alreay too late ;)
+                result = queue.FirstOrDefault(x => x.LatestStartTime().Subtract(now).TotalMilliseconds>0) ??
                          queue.First();
             }
             
