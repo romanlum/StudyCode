@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceConditionExample", "Rac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynchronizationPrimitives", "SynchronizationPrimitives\SynchronizationPrimitives.csproj", "{25C90624-E9FB-4BF4-A7BC-E43E4F8706ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToiletSimulation", "ToiletSimulationForStudents\ToiletSimulation.csproj", "{DD0C1134-7EE3-4736-840E-83C75CDD9146}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{25C90624-E9FB-4BF4-A7BC-E43E4F8706ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25C90624-E9FB-4BF4-A7BC-E43E4F8706ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25C90624-E9FB-4BF4-A7BC-E43E4F8706ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0C1134-7EE3-4736-840E-83C75CDD9146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0C1134-7EE3-4736-840E-83C75CDD9146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0C1134-7EE3-4736-840E-83C75CDD9146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0C1134-7EE3-4736-840E-83C75CDD9146}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

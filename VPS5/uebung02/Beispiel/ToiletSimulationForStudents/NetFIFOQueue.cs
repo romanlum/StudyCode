@@ -21,7 +21,7 @@ namespace VSS.ToiletSimulation
 
         public bool TryDequeue(out IJob job)
         {
-            return queue.TryTake(out job);
+            return queue.TryTake(out job,-1);
         }
 
         public void CompleteAdding()

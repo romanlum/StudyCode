@@ -32,7 +32,7 @@ namespace VSS.ToiletSimulation {
         idSeed++;
         Queue.Enqueue(new Person(random, Name + " - Person " + idSeed.ToString("00")));
       }
-      
+      Queue.CompleteAdding();
     }
   }
 }

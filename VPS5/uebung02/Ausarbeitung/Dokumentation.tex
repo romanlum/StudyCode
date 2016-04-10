@@ -37,5 +37,10 @@ Die Lösung ist die korrekte Synchronisation der beiden Threads.
 \subsection*{2c. Aktives Warten}
  \cscode{\srcDir/SynchronizationPrimitives/PollingExample.cs}
 
+\section{Toilet Simulation}
+\subsection*{3a. Toilet Implementierung}
+Diese Aufgabe wurde bereits in der Übung gemacht. Der \texttt{Consumer} ist fertig, wenn alle Elemente der Warteschlange abgearbeitet sind. Dazu wurde das Interface \texttt{IQueue} um das Property \texttt{IsCompleted} erweitert.
+
+Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde ebenfalls das Interface \texttt{IQueue} um die Methode \texttt{TryDequeue} erweitert. Diese blockiert, falls aktuell kein Element vorhanden ist.
 
 \end{document}
