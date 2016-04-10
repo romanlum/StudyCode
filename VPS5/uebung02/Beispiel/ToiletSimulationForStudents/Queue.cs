@@ -10,7 +10,7 @@ namespace VSS.ToiletSimulation
     public abstract class Queue : IQueue
     {
 
-        protected ICollection<IJob> queue;
+        protected IList<IJob> queue;
         protected bool addingComplete;
 
         private int producersComplete;
