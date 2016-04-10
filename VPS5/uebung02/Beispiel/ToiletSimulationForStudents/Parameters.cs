@@ -1,5 +1,5 @@
 namespace VSS.ToiletSimulation {
-  public static class Parameters {
+  public static class   Parameters {
     // number of producers
     public static int Producers {
       get { return 2; }

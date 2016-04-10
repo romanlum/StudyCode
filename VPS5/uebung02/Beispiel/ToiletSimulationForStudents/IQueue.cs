@@ -1,10 +1,33 @@
+namespace VSS.ToiletSimulation
+{
+    public interface IQueue
+    {
+        /// <summary>
+        /// Current element count
+        /// </summary>
+        int Count { get; } // number of queued jobs
 
-namespace VSS.ToiletSimulation {
-  public interface IQueue {
-    int Count { get; }                     // number of queued jobs
-    void Enqueue(IJob job);                // enqueue a new job
-    bool TryDequeue(out IJob job); // fetch next job
-    void CompleteAdding();
-    bool IsCompleted { get; }
-  }
+        /// <summary>
+        /// enqueue a new job
+        /// </summary>
+        /// <param name="job"></param>
+        void Enqueue(IJob job);
+
+        /// <summary>
+        /// fetch next job
+        /// </summary>
+        /// <param name="job"></param>
+        /// <returns></returns>
+        bool TryDequeue(out IJob job);
+
+        /// <summary>
+        /// Marks the queue as completed
+        /// </summary>
+        void CompleteAdding();
+
+        /// <summary>
+        /// Gets the current completion status
+        /// </summary>
+        bool IsCompleted { get; }
+    }
 }

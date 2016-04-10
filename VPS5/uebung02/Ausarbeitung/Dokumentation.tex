@@ -43,4 +43,9 @@ Diese Aufgabe wurde bereits in der Übung gemacht. Der \texttt{Consumer} ist fert
 
 Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde ebenfalls das Interface \texttt{IQueue} um die Methode \texttt{TryDequeue} erweitert. Diese blockiert, falls aktuell kein Element vorhanden ist.
 
+\subsection*{3b. FifoQueue Implementierung}
+Die \texttt{FifoQueue} wurde mit Hilfe einer Semaphore implementiert. Dabe wird bei jedem \texttt{Enqueue} die Semaphore um eins erhöht und beim \texttt{TryDequeue} wird diese wieder veringert. Damit wird der gewünschte Effekt erreicht, das die Methode \texttt{TryDequeue} blockiert. Dabei kann es sein, dass die Queue bereits leer ist und trotzdem noch Threads in der Methode \texttt{TryDequeue} auf Elemente warten. Um das Warten zu beenden wurde ein \texttt{CancellationToken} verwendet, der beim \texttt{Wait} mitgegeben wird. Damit können diese Threads aufgeweckt und beendet werden. Um race conditions zu vermeiden wurde jeder Zugriff auf den Datenspeicher mit Locks geschützt.
+
+ 
+
 \end{document}
