@@ -27,7 +27,7 @@ Diese können mit Hilfe von Locks vermieden werden.
 \label{fig:SimpleRaceConditionFixed}
 \end{figure}
 
-Abbildung~\ref{fig:SimpleRaceConditionFixed} zeigt die Ausgabe der verbesserten Version. Diese verwendet Locks um die race condition zu vermeiden.\linebreak
+Abbildung~\ref{fig:SimpleRaceConditionFixed} zeigt die Ausgabe der verbesserten Version. Diese verwendet Locks um die race condition zu vermeiden.
 
 \subsubsection*{1a./1b. Sourccode (Beispiel/SimpleRaceCondition)}
 \emph{Soucecode mit Parameter \texttt{useLock = true} }
@@ -35,7 +35,7 @@ Abbildung~\ref{fig:SimpleRaceConditionFixed} zeigt die Ausgabe der verbesserten 
 
 \subsection*{1c. Race condition im Code}
 Die race condition im angegebenen Code ist die Tatsache, das das der Writer und Reader nicht korrekt miteinander synchronisiert sind und nur ein begrenzter Puffer zur Verfügung steht. Dadurch kann es sein, dass der Writer bereits mehr Werte erzeugt als der Puffer zulässt und somit die alten Werte überschreibt.
-Die Lösung ist die korrekte Synchronisation der beiden Threads.
+Die Lösung ist die korrekte Synchronisation der beiden Threads mit Hilfe von zwei Semaphoren. Die \texttt{writerSemaphore} wird auf die \texttt{BUFFER\_SIZE} initialisiert und kann somit diese Anzahl an Elementen schreiben bevor sie warten muss, bis der \texttt{Reader} die Werte ausgegeben hat.	
 \subsubsection*{1c. Sourccode (Beispiel/RaceConditionExample)}
 \cscode{\srcDir/RaceConditionExample/RaceConditionExample.cs}
 
@@ -43,10 +43,10 @@ Die Lösung ist die korrekte Synchronisation der beiden Threads.
 \subsection*{2a. / 2b.}
 
 \subsubsection*{2a.}
-Um nur 10 Dateien parallel herunterzuladen kann eine Semaphore verwendet werden, die die gleichzeitige Anzahl an Downloads auf maximal 10 reduziert.
+Um nur 10 Dateien parallel herunterzuladen kann eine Semaphore verwendet werden, die die gleichzeitige Anzahl an Downloads auf maximal 10 begrenzt.
 
 \subsubsection*{2b.}
-Um auf alle Threads zu warten müssen diese in einer Liste gespeichert um auf alle Threads durch den Aufruf der Methode \texttt{Join} zu warten.
+Um auf alle Threads zu warten müssen diese in einer Liste gespeichert und dann für jeden die Methode \texttt{Join} aufgerufen werden.
 
 \subsubsection*{2a./2b. Sourccode (Beispiel/SynchronizationPrimitives)}
 \cscode{\srcDir/SynchronizationPrimitives/LimitedConnectionsExample.cs}
@@ -60,15 +60,16 @@ Um das Polling zu verhindern können alle Tasks in einer Liste gespeichert und da
 \subsection*{3a. Toilet Implementierung}
 Diese Aufgabe wurde bereits in der Übung implementiert. Der \texttt{Consumer} ist fertig, wenn alle Elemente der Warteschlange abgearbeitet sind. Dazu wurde das Interface \texttt{IQueue} um das Property \texttt{IsCompleted} erweitert.
 
-Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde ebenfalls das Interface \texttt{IQueue} um die Methode \texttt{TryDequeue} erweitert. Diese blockiert, falls aktuell kein Element vorhanden ist aber noch nicht alle Elemente hinzugefügt wurden.
+Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde das Interface \texttt{IQueue} um die Methode \texttt{TryDequeue} erweitert. Diese blockiert, falls aktuell kein Element vorhanden ist aber noch nicht alle Elemente hinzugefügt wurden.
 
 \subsection*{3b. FifoQueue Implementierung}
-Die \texttt{FifoQueue} wurde mit Hilfe einer Semaphore implementiert. Dabe wird bei jedem \texttt{Enqueue} die Semaphore um eins erhöht und beim \texttt{TryDequeue} wird diese wieder veringert. Damit wird der gewünschte Effekt erreicht, das die Methode \texttt{TryDequeue} blockiert. Dabei kann es sein, dass die Queue bereits leer ist und trotzdem noch Threads in der Methode \texttt{TryDequeue} auf Elemente warten. Um das Warten zu beenden wurde ein \texttt{CancellationToken} verwendet, der beim \texttt{Wait} mitgegeben wird. Damit können diese Threads aufgeweckt und beendet werden. Um race conditions zu vermeiden wurde jeder Zugriff auf den Datenspeicher mit Locks geschützt.
+Die \texttt{FifoQueue} wurde mit Hilfe einer Semaphore implementiert. Dabe wird bei jedem \texttt{Enqueue} die Semaphore um eins erhöht und beim \texttt{TryDequeue} wird diese wieder veringert. Damit wird der gewünschte Effekt erreicht, das die Methode \texttt{TryDequeue} blockiert. Dabei kann es vorkommen, dass die Queue bereits leer ist und trotzdem noch Threads in der Methode \texttt{TryDequeue} auf Elemente warten. Um das Warten zu beenden wurde ein \texttt{CancellationToken} verwendet, der beim \texttt{Wait} mitgegeben wird. Damit können diese Threads aufgeweckt und beendet werden. Um race conditions zu vermeiden wurde jeder Zugriff auf den Datenspeicher mit Locks geschützt.
 
 \subsubsection*{3b. Sourcecode (Beispiel/ToiletSimulationForStudents)}
 \cscode{\srcDir/ToiletSimulationForStudents/Queue.cs}
 \cscode{\srcDir/ToiletSimulationForStudents/FIFOQueue.cs}
 
+\pagebreak
 \subsubsection*{Parameter}
 \begin{itemize}
 \item Producers: 2
@@ -95,7 +96,7 @@ Lauf & \begin{tabular}[c]{@{}l@{}}Nicht erfolgreiche\\ Jobs\end{tabular} & Verhä
 3    & 142                                                               & 0,356      & 00:02:13.6162 & 00:00:00.334 \\
 4    & 239                                                               & 0,598      & 00:05:04.3024 & 00:00:00.761 \\
 5    & 310                                                               & 0,775      & 00:07:09:1210 & 00:00:01.073 \\ \cline{1-5}
-Ø    & 196                                                               & 0,490      &  & 00:00:00.530 \\
+\textbf{Ø}    & \textbf{196}                                                               & \textbf{0,490}      &  & \textbf{00:00:00.530} \\
 Std. Abw.    & 83,750                                                               & 0,2092      &  & 00:00:00.361 \\ \cline{1-5}
 
 \end{tabular}
@@ -137,10 +138,13 @@ Lauf & \begin{tabular}[c]{@{}l@{}}Nicht erfolgreiche\\ Jobs\end{tabular} & Verhä
 3    & 41                                                                & 0,103      & 00:05:58.6884 & 00:00:00.103 \\
 4    & 40                                                               & 0,100       & 00:05:30.3139 & 00:00:00.826 \\
 5    & 37                                                               & 0,093      & 00:06:07:2078 & 00:00:00.918 \\ \cline{1-5}
-Ø    & 36,6     	                                                          & 0,091      &  & 00:00:00.573 \\
+\textbf{Ø}    & \textbf{36,6}     	                                                          & \textbf{0,091}      &  & \textbf{00:00:00.573} \\
 Std. Abw.    & 3,029                                                               & 0,00995      &  & 00:00:00.288 \\ \cline{1-5}
 
 \end{tabular}
 \end{table} 
 
+\subsubsection*{Vergleich}
+
+Die Durchschnittliche Anzahl an nicht rechtzeitig abgearbeiteten Jobs hat sich von 196 auf 36 reduziert und dadurch können mehr Kunden zufriedengestellt werden. Weiters hat sich das Verhältnis auf 0,49 auf 0,091 reduziert. Obwohl die Reihenfolge der Jobs anders ist, ist die durchschnittliche Wartezeit nahezu gleich geblieben. 
 \end{document}
