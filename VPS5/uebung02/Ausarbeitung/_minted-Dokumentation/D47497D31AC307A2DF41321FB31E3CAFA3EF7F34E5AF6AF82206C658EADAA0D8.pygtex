@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Collections.Generic}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Linq}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Runtime.Remoting.Metadata.W3cXsd2001}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{VSS.ToiletSimulation}
+\PYG{p}{\PYGZob{}}
+    \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+    \PYG{c+c1}{/// ToiletQueue which has a better scheduling algorithm}
+    \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+    \PYG{k}{class} \PYG{n+nc}{ToiletQueue}\PYG{p}{:}\PYG{n}{FifoQueue}
+    \PYG{p}{\PYGZob{}}
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Returns the next job to execute}
+        \PYG{c+c1}{/// uses the job with the lowest time to scheduler}
+        \PYG{c+c1}{/// already too late jobs are scheduled at latest}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}returns\PYGZgt{}\PYGZlt{}/returns\PYGZgt{}}
+        \PYG{k}{protected} \PYG{k}{override} \PYG{n}{IJob} \PYG{n+nf}{GetNextJob}\PYG{p}{()}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{DateTime} \PYG{n}{now} \PYG{p}{=} \PYG{n}{DateTime}\PYG{p}{.}\PYG{n}{Now}\PYG{p}{;}
+            \PYG{n}{IJob} \PYG{n}{result}\PYG{p}{;}
+            \PYG{k}{lock} \PYG{p}{(}\PYG{n}{LockObject}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{c+c1}{//tries to find the next element where the latestStartTime \PYGZgt{} 0}
+                \PYG{c+c1}{//otherwise the first element of the queue is used, }
+                \PYG{c+c1}{//because its alreay too late ;)}
+                \PYG{n}{result} \PYG{p}{=} \PYG{n}{queue}\PYG{p}{.}\PYG{n}{OrderBy}\PYG{p}{(}\PYG{n}{x} \PYG{p}{=\PYGZgt{}} \PYG{n}{x}\PYG{p}{.}\PYG{n}{LatestStartTime}\PYG{p}{)}
+                              \PYG{p}{.}\PYG{n}{FirstOrDefault}\PYG{p}{(}\PYG{n}{x} \PYG{p}{=\PYGZgt{}} \PYG{n}{x}\PYG{p}{.}\PYG{n}{LatestStartTime} \PYG{p}{\PYGZgt{}} \PYG{n}{now}\PYG{p}{)??}
+                         \PYG{n}{queue}\PYG{p}{.}\PYG{n}{First}\PYG{p}{();}
+            \PYG{p}{\PYGZcb{}}
+            
+            \PYG{k}{return} \PYG{n}{result}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

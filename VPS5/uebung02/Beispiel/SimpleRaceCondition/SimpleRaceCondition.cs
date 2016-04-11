@@ -30,7 +30,8 @@ namespace SimpleRaceCondition
         {
             _useLock = useLock;
             _counter = 0;
-            Console.WriteLine($"Using {ThreadCount} threads and {NumberOfIncrements} increments");
+            Console.WriteLine($"Using {ThreadCount} threads " +
+                              $"and {NumberOfIncrements} increments");
             Console.WriteLine("----------------------");
             var tasks = new Task[ThreadCount];
             for (int i = 0; i < ThreadCount; i++)
@@ -40,7 +41,9 @@ namespace SimpleRaceCondition
             }
             Task.WaitAll(tasks);
             Console.WriteLine("----------------------");
-            Console.WriteLine($"Program finished, counter = {_counter}, race conditions occured = {_counter!=(ThreadCount*NumberOfIncrements)}");
+            Console.WriteLine($"Program finished, counter = {_counter}, " +
+                              $"race conditions occured = " +
+                              $"{_counter!=(ThreadCount*NumberOfIncrements)}");
             
         }
 
@@ -70,7 +73,9 @@ namespace SimpleRaceCondition
                 }
                 
                 if ((oldCounter + 1) != newCounter)
-                    Console.WriteLine($"Racecondition occured [oldCounter = {oldCounter}, newCounter = {newCounter}]");
+                    Console.WriteLine($"Racecondition occured " +
+                                      $"[oldCounter = {oldCounter}," +
+                                      $" newCounter = {newCounter}]");
             }
         }
 

@@ -7,7 +7,8 @@
 
 \section{Race Conditions}
 \subsection*{1a. Was sind race conditions?}
-\textbf{Race conditions} können entstehen, wenn mehrere Threads paralell auf den selben Speicherbereich (Variable) zugreifen und verändern. Das Ergebnis ist abhängig von der zeitlichen Abfolge der Threads und somit nicht vorhersehbar.
+\textbf{Race conditions} treten bei Programmen auf, bei denen die Ergebnisse von der zeitlichen Abfolge der Threads abhängig und somit nicht vorhersehbar sind. Sie können entstehen, wenn mehrere Threads parallel auf den selben Speicherbereich (Variable) zugreifen und verändern.
+
 \begin{figure}[!htb]
 \includegraphics[width=300px]{images/1a.png}
 \caption{Race codition in CSharp - Original version}
@@ -15,6 +16,8 @@
 \end{figure}
 
 Abbildung~\ref{fig:SimpleRaceConditionOriginal} zeigt die Ausgabe der implementierten race codition in CSharp. Dabei wird eine Variable \texttt{\_counter} erhöht und dann mit dem vorherigen Wert verglichen. Der neue Wert sollte genau um eins größer sein als der alte Wert. Ist dies nicht der Fall ist eine race condition aufgetreten. Die Variable wurde also von einem anderen Thread geändert.
+
+\emph{Soucecode siehe 1b. mit Parameter \texttt{useLock = false} }
 
 \subsection*{1b. Wie können race conditions vermieden werden?}
 Diese können mit Hilfe von Locks vermieden werden.
@@ -24,28 +27,120 @@ Diese können mit Hilfe von Locks vermieden werden.
 \label{fig:SimpleRaceConditionFixed}
 \end{figure}
 
-Abbildung~\ref{fig:SimpleRaceConditionFixed} zeigt die Ausgabe der verbesserten Version. Diese verwendet Locks um die race condition zu vermeiden.
+Abbildung~\ref{fig:SimpleRaceConditionFixed} zeigt die Ausgabe der verbesserten Version. Diese verwendet Locks um die race condition zu vermeiden.\linebreak
+
+\subsubsection*{1a./1b. Sourccode (Beispiel/SimpleRaceCondition)}
+\emph{Soucecode mit Parameter \texttt{useLock = true} }
+\cscode{\srcDir/SimpleRaceCondition/SimpleRaceCondition.cs}
 
 \subsection*{1c. Race condition im Code}
 Die race condition im angegebenen Code ist die Tatsache, das das der Writer und Reader nicht korrekt miteinander synchronisiert sind und nur ein begrenzter Puffer zur Verfügung steht. Dadurch kann es sein, dass der Writer bereits mehr Werte erzeugt als der Puffer zulässt und somit die alten Werte überschreibt.
 Die Lösung ist die korrekte Synchronisation der beiden Threads.
+\subsubsection*{1c. Sourccode (Beispiel/RaceConditionExample)}
 \cscode{\srcDir/RaceConditionExample/RaceConditionExample.cs}
 
 \section{Synchronization Primitives}
 \subsection*{2a. / 2b.}
+
+\subsubsection*{2a.}
+Um nur 10 Dateien parallel herunterzuladen kann eine Semaphore verwendet werden, die die gleichzeitige Anzahl an Downloads auf maximal 10 reduziert.
+
+\subsubsection*{2b.}
+Um auf alle Threads zu warten müssen diese in einer Liste gespeichert um auf alle Threads durch den Aufruf der Methode \texttt{Join} zu warten.
+
+\subsubsection*{2a./2b. Sourccode (Beispiel/SynchronizationPrimitives)}
 \cscode{\srcDir/SynchronizationPrimitives/LimitedConnectionsExample.cs}
+
 \subsection*{2c. Aktives Warten}
- \cscode{\srcDir/SynchronizationPrimitives/PollingExample.cs}
+Um das Polling zu verhindern können alle Tasks in einer Liste gespeichert und dann mit der Methode \texttt{Task.WaitAll} auf alle gewartet werden.
+\subsubsection*{2.c Sourccode (Beispiel/SynchronizationPrimitives)}
+\cscode{\srcDir/SynchronizationPrimitives/PollingExample.cs}
 
 \section{Toilet Simulation}
 \subsection*{3a. Toilet Implementierung}
-Diese Aufgabe wurde bereits in der Übung gemacht. Der \texttt{Consumer} ist fertig, wenn alle Elemente der Warteschlange abgearbeitet sind. Dazu wurde das Interface \texttt{IQueue} um das Property \texttt{IsCompleted} erweitert.
+Diese Aufgabe wurde bereits in der Übung implementiert. Der \texttt{Consumer} ist fertig, wenn alle Elemente der Warteschlange abgearbeitet sind. Dazu wurde das Interface \texttt{IQueue} um das Property \texttt{IsCompleted} erweitert.
 
-Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde ebenfalls das Interface \texttt{IQueue} um die Methode \texttt{TryDequeue} erweitert. Diese blockiert, falls aktuell kein Element vorhanden ist.
+Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde ebenfalls das Interface \texttt{IQueue} um die Methode \texttt{TryDequeue} erweitert. Diese blockiert, falls aktuell kein Element vorhanden ist aber noch nicht alle Elemente hinzugefügt wurden.
 
 \subsection*{3b. FifoQueue Implementierung}
 Die \texttt{FifoQueue} wurde mit Hilfe einer Semaphore implementiert. Dabe wird bei jedem \texttt{Enqueue} die Semaphore um eins erhöht und beim \texttt{TryDequeue} wird diese wieder veringert. Damit wird der gewünschte Effekt erreicht, das die Methode \texttt{TryDequeue} blockiert. Dabei kann es sein, dass die Queue bereits leer ist und trotzdem noch Threads in der Methode \texttt{TryDequeue} auf Elemente warten. Um das Warten zu beenden wurde ein \texttt{CancellationToken} verwendet, der beim \texttt{Wait} mitgegeben wird. Damit können diese Threads aufgeweckt und beendet werden. Um race conditions zu vermeiden wurde jeder Zugriff auf den Datenspeicher mit Locks geschützt.
 
- 
+\subsubsection*{3b. Sourcecode (Beispiel/ToiletSimulationForStudents)}
+\cscode{\srcDir/ToiletSimulationForStudents/Queue.cs}
+\cscode{\srcDir/ToiletSimulationForStudents/FIFOQueue.cs}
+
+\subsubsection*{Parameter}
+\begin{itemize}
+\item Producers: 2
+\item Jobs per produce: 200
+\item Consumers: 2
+\item Mean Arrival Time: 100ms
+\item Mean Due Time: 500ms
+\item Std. Dev. Due Time: 150ms
+\item Mean Processing Time: 100ms
+\item Std. Dev. Processing Time: 25ms
+\end{itemize}
+
+\subsubsection*{Ergebnisse}
+\begin{table}[!htb]
+\centering
+\caption{Ergebnisse FifoQueue}
+\label{3berg}
+\begin{tabular}{llrll}
+\hline
+\multicolumn{5}{c}{Simulation} \\ \cline{1-5}                                                                                 
+Lauf & \begin{tabular}[c]{@{}l@{}}Nicht erfolgreiche\\ Jobs\end{tabular} & Verhältnis & Wartezeit     & Ø Wartezeit  \\ \cline{1-5}
+1    & 222                                                               & 0,555      & 00:03:07.4319 & 00:00:00.469 \\
+2    & 67                                                                & 0,168      & 00:01:18.8208 & 00:00:00.167 \\
+3    & 142                                                               & 0,356      & 00:02:13.6162 & 00:00:00.334 \\
+4    & 239                                                               & 0,598      & 00:05:04.3024 & 00:00:00.761 \\
+5    & 310                                                               & 0,775      & 00:07:09:1210 & 00:00:01.073 \\ \cline{1-5}
+Ø    & 196                                                               & 0,490      &  & 00:00:00.530 \\
+Std. Abw.    & 83,750                                                               & 0,2092      &  & 00:00:00.361 \\ \cline{1-5}
+
+\end{tabular}
+\end{table} 
+
+\subsection*{3c. ToiletQueue Implementierung}
+Um die Abarbeitung der Jobs zu verbessern kann der nächste Job anhand der Endzeit und Arbeitszeit ausgewählt werden. Dabei können die Jobs anhand der spätesten Startzeit ( = Endzeit - Arbeitszeit) sortiert und dann der erste Eintrag der Liste verwendet werden. Als zusätzliche Optimierung können dann noch jene Jobs, bei denen die späteste Startzeit bereits in der Vergangenheit liegt hinten angestellt werden (bei diesen Jobs ist es sowieso schon zu spät).
+
+Um die Implementierung zu vereinfachen wurden das Interface \texttt{IJob} um das Property \texttt{LatestStartTime} erweitert und in \texttt{Person} implementiert. Die \texttt{ToiletQueue} selbst stellt eine Ableitung der \texttt{FiFoQueue} und überschreiben der Methode \texttt{GetNextJob}. Diese Methode wählt dann den nächsten Job anhand des oben angeführten Algorithmus aus.
+
+\subsubsection*{3c. Sourcecode (Beispiel/ToiletSimulationForStudents)}
+\cscode{\srcDir/ToiletSimulationForStudents/ToiletQueue.cs}
+
+
+\subsubsection*{Parameter}
+\begin{itemize}
+\item Producers: 2
+\item Jobs per produce: 200
+\item Consumers: 2
+\item Mean Arrival Time: 100ms
+\item Mean Due Time: 500ms
+\item Std. Dev. Due Time: 150ms
+\item Mean Processing Time: 100ms
+\item Std. Dev. Processing Time: 25ms
+\end{itemize}
+
+\subsubsection*{Ergebnisse}
+
+\begin{table}[!htb]
+\centering
+\caption{Ergebnisse ToiletQueue}
+\label{3berg}
+\begin{tabular}{llrll}
+\hline
+\multicolumn{5}{c}{Simulation} \\ \cline{1-5}
+Lauf & \begin{tabular}[c]{@{}l@{}}Nicht erfolgreiche\\ Jobs\end{tabular} & Verhältnis & Wartezeit     & Ø Wartezeit  \\ \cline{1-5}
+1    & 35                                                               & 0,0875      & 00:05:11.0704 & 00:00:00.469 \\
+2    & 30                                                                & 0,075      & 00:03:40.0223 & 00:00:00.550 \\
+3    & 41                                                                & 0,103      & 00:05:58.6884 & 00:00:00.103 \\
+4    & 40                                                               & 0,100       & 00:05:30.3139 & 00:00:00.826 \\
+5    & 37                                                               & 0,093      & 00:06:07:2078 & 00:00:00.918 \\ \cline{1-5}
+Ø    & 36,6     	                                                          & 0,091      &  & 00:00:00.573 \\
+Std. Abw.    & 3,029                                                               & 0,00995      &  & 00:00:00.288 \\ \cline{1-5}
+
+\end{tabular}
+\end{table} 
 
 \end{document}

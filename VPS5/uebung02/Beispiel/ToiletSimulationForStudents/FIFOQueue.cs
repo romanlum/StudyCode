@@ -22,7 +22,9 @@ namespace VSS.ToiletSimulation
         {
             if (addingComplete)
             {
-                throw new InvalidOperationException("Cannot insert elements on already complete marked queue");
+                throw new InvalidOperationException("Cannot insert " +
+                                                    "elements on already " +
+                                                    "complete marked queue");
             }
 
             lock (LockObject)

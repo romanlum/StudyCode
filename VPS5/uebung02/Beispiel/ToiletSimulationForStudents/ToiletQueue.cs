@@ -23,8 +23,10 @@ namespace VSS.ToiletSimulation
             lock (LockObject)
             {
                 //tries to find the next element where the latestStartTime > 0
-                //otherwise the first element of the queue is used, because its alreay too late ;)
-                result = queue.OrderBy(x => x.LatestStartTime).FirstOrDefault(x => x.LatestStartTime > now)??
+                //otherwise the first element of the queue is used, 
+                //because its alreay too late ;)
+                result = queue.OrderBy(x => x.LatestStartTime)
+                              .FirstOrDefault(x => x.LatestStartTime > now)??
                          queue.First();
             }
             
