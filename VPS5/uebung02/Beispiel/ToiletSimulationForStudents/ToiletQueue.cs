@@ -22,7 +22,7 @@ namespace VSS.ToiletSimulation
             IJob result;
             lock (LockObject)
             {
-                //tries to find the next element where the latestStartTime > 0
+                //tries to find the next element where the latestStartTime > now
                 //otherwise the first element of the queue is used, 
                 //because its alreay too late ;)
                 result = queue.OrderBy(x => x.LatestStartTime)

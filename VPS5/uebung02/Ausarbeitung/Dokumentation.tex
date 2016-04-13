@@ -15,7 +15,7 @@
 \label{fig:SimpleRaceConditionOriginal}
 \end{figure}
 
-Abbildung~\ref{fig:SimpleRaceConditionOriginal} zeigt die Ausgabe der implementierten race codition in CSharp. Dabei wird eine Variable \texttt{\_counter} erhöht und dann mit dem vorherigen Wert verglichen. Der neue Wert sollte genau um eins größer sein als der alte Wert. Ist dies nicht der Fall ist eine race condition aufgetreten. Die Variable wurde also von einem anderen Thread geändert.
+Abbildung~\ref{fig:SimpleRaceConditionOriginal} zeigt die Ausgabe der implementierten race codition in CSharp. Dabei wird eine Variable \texttt{\_counter} in der Methode \texttt{ThreadMethod} erhöht und dann mit dem vorherigen Wert verglichen. Diese Methode wird dann paralell von mehreren Threads verwendet. Der neue Wert sollte genau um eins größer sein als der alte Wert. Ist dies nicht der Fall ist eine race condition aufgetreten. Die Variable wurde also von einem anderen Thread überschrieben.
 
 \emph{Soucecode siehe 1b. mit Parameter \texttt{useLock = false} }
 
@@ -43,7 +43,7 @@ Die Lösung ist die korrekte Synchronisation der beiden Threads mit Hilfe von zwe
 \subsection*{2a. / 2b.}
 
 \subsubsection*{2a.}
-Um nur 10 Dateien parallel herunterzuladen kann eine Semaphore verwendet werden, die die gleichzeitige Anzahl an Downloads auf maximal 10 begrenzt.
+Um nur 10 Dateien parallel herunterzuladen kann eine Semaphore verwendet werden, die die gleichzeitige Anzahl an Downloads auf maximal 10 begrenzt. Dazu wird die Variable \texttt{\_syncSemaphore} eingeführt und mit dem Wert 10 initialisiert. In der Methode \texttt{DownloadFile} wird dann \texttt{\_syncSemaphore.Wait()} verwendet um die Downloads zu begrenzen. Wenn ein Download fertig ist, wird die Semaphore wieder freigegeben \texttt{\_syncSemaphore.Release()}.
 
 \subsubsection*{2b.}
 Um auf alle Threads zu warten müssen diese in einer Liste gespeichert und dann für jeden die Methode \texttt{Join} aufgerufen werden.
@@ -96,8 +96,8 @@ Lauf & \begin{tabular}[c]{@{}l@{}}Nicht erfolgreiche\\ Jobs\end{tabular} & Verhä
 3    & 142                                                               & 0,356      & 00:02:13.6162 & 00:00:00.334 \\
 4    & 239                                                               & 0,598      & 00:05:04.3024 & 00:00:00.761 \\
 5    & 310                                                               & 0,775      & 00:07:09:1210 & 00:00:01.073 \\ \cline{1-5}
-\textbf{Ø}    & \textbf{196}                                                               & \textbf{0,490}      &  & \textbf{00:00:00.530} \\
-Std. Abw.    & 83,750                                                               & 0,2092      &  & 00:00:00.361 \\ \cline{1-5}
+\textbf{Ø}    & \textbf{196}                                                               & \textbf{0,490}      & 00:03:45.450 & \textbf{00:00:00.530} \\
+Std. Abw.    & 83,750                                                               & 0,2092      & 00:02:05.926 & 00:00:00.361 \\ \cline{1-5}
 
 \end{tabular}
 \end{table} 
@@ -138,8 +138,8 @@ Lauf & \begin{tabular}[c]{@{}l@{}}Nicht erfolgreiche\\ Jobs\end{tabular} & Verhä
 3    & 41                                                                & 0,103      & 00:05:58.6884 & 00:00:00.103 \\
 4    & 40                                                               & 0,100       & 00:05:30.3139 & 00:00:00.826 \\
 5    & 37                                                               & 0,093      & 00:06:07:2078 & 00:00:00.918 \\ \cline{1-5}
-\textbf{Ø}    & \textbf{36,6}     	                                                          & \textbf{0,091}      &  & \textbf{00:00:00.573} \\
-Std. Abw.    & 3,029                                                               & 0,00995      &  & 00:00:00.288 \\ \cline{1-5}
+\textbf{Ø}    & \textbf{36,6}     	                                                          & \textbf{0,091}      & 00:05:17.461 & \textbf{00:00:00.573} \\
+Std. Abw.    & 3,029                                                               & 0,00995      & 00:00:52.678 & 00:00:00.288 \\ \cline{1-5}
 
 \end{tabular}
 \end{table} 

@@ -23,7 +23,7 @@
             \PYG{n}{IJob} \PYG{n}{result}\PYG{p}{;}
             \PYG{k}{lock} \PYG{p}{(}\PYG{n}{LockObject}\PYG{p}{)}
             \PYG{p}{\PYGZob{}}
-                \PYG{c+c1}{//tries to find the next element where the latestStartTime \PYGZgt{} 0}
+                \PYG{c+c1}{//tries to find the next element where the latestStartTime \PYGZgt{} now}
                 \PYG{c+c1}{//otherwise the first element of the queue is used, }
                 \PYG{c+c1}{//because its alreay too late ;)}
                 \PYG{n}{result} \PYG{p}{=} \PYG{n}{queue}\PYG{p}{.}\PYG{n}{OrderBy}\PYG{p}{(}\PYG{n}{x} \PYG{p}{=\PYGZgt{}} \PYG{n}{x}\PYG{p}{.}\PYG{n}{LatestStartTime}\PYG{p}{)}
