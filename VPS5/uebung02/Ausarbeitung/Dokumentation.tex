@@ -29,14 +29,14 @@ Diese können mit Hilfe von Locks vermieden werden.
 
 Abbildung~\ref{fig:SimpleRaceConditionFixed} zeigt die Ausgabe der verbesserten Version. Diese verwendet Locks um die race condition zu vermeiden.
 
-\subsubsection*{1a./1b. Sourccode (Beispiel/SimpleRaceCondition)}
+\subsubsection*{1a./1b. Sourccode (Code/SimpleRaceCondition)}
 \emph{Soucecode mit Parameter \texttt{useLock = true} }
 \cscode{\srcDir/SimpleRaceCondition/SimpleRaceCondition.cs}
 
 \subsection*{1c. Race condition im Code}
 Die race condition im angegebenen Code ist die Tatsache, dass der Writer und Reader nicht korrekt miteinander synchronisiert sind und nur ein begrenzter Puffer zur Verfügung steht. Dadurch kann es sein, dass der Writer bereits mehr Werte erzeugt als der Puffer zulässt und somit die alten Werte überschreibt.
 Die Lösung ist die korrekte Synchronisation der beiden Threads mit Hilfe von zwei Semaphoren. Die \texttt{writerSemaphore} wird auf die \texttt{BUFFER\_SIZE} initialisiert und kann somit diese Anzahl an Elementen schreiben, bevor sie warten muss, bis der \texttt{Reader} die Werte ausgegeben hat.	
-\subsubsection*{1c. Sourccode (Beispiel/RaceConditionExample)}
+\subsubsection*{1c. Sourccode (Code/RaceConditionExample)}
 \cscode{\srcDir/RaceConditionExample/RaceConditionExample.cs}
 
 \section{Synchronization Primitives}
@@ -48,12 +48,12 @@ Um nur 10 Dateien parallel herunterzuladen, kann eine Semaphore verwendet werden
 \subsubsection*{2b.}
 Um auf alle Threads zu warten, müssen diese in einer Liste gespeichert und dann für jeden die Methode \texttt{Join} aufgerufen werden.
 
-\subsubsection*{2a./2b. Sourccode (Beispiel/SynchronizationPrimitives)}
+\subsubsection*{2a./2b. Sourccode (Code/SynchronizationPrimitives)}
 \cscode{\srcDir/SynchronizationPrimitives/LimitedConnectionsExample.cs}
 
 \subsection*{2c. Aktives Warten}
 Um das Polling zu verhindern, können alle Tasks in einer Liste gespeichert und dann mit der Methode \texttt{Task.WaitAll} auf alle gewartet werden.
-\subsubsection*{2.c Sourccode (Beispiel/SynchronizationPrimitives)}
+\subsubsection*{2.c Sourccode (Code/SynchronizationPrimitives)}
 \cscode{\srcDir/SynchronizationPrimitives/PollingExample.cs}
 
 \section{Toilet Simulation}
@@ -65,7 +65,7 @@ Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde da
 \subsection*{3b. FifoQueue Implementierung}
 Die \texttt{FifoQueue} wurde mit Hilfe einer Semaphore implementiert. Dabei wird bei jedem \texttt{Enqueue} die Semaphore um Eins erhöht und beim \texttt{TryDequeue} wird diese wieder veringert. Damit wird der gewünschte Effekt erreicht, das die Methode \texttt{TryDequeue} blockiert. Dabei kann es vorkommen, dass die Queue bereits leer ist und trotzdem noch Threads in der Methode \texttt{TryDequeue} auf Elemente warten. Um das Warten zu beenden, wurde ein \texttt{CancellationToken} verwendet, der beim \texttt{Wait} mitgegeben wird. Damit können diese Threads aufgeweckt und beendet werden. Um race conditions zu vermeiden, wurde jeder Zugriff auf den Datenspeicher mit Locks geschützt.
 
-\subsubsection*{3b. Sourcecode (Beispiel/ToiletSimulationForStudents)}
+\subsubsection*{3b. Sourcecode (Code/ToiletSimulationForStudents)}
 \cscode{\srcDir/ToiletSimulationForStudents/Queue.cs}
 \cscode{\srcDir/ToiletSimulationForStudents/FIFOQueue.cs}
 
@@ -107,7 +107,7 @@ Um die Abarbeitung der Jobs zu verbessern, kann der nächste Job anhand der Endze
 
 Um die Implementierung zu vereinfachen, wurden das Interface \texttt{IJob} um das Property \texttt{LatestStartTime} erweitert und in \texttt{Person} implementiert. Die \texttt{ToiletQueue} selbst stellt eine Ableitung der \texttt{FiFoQueue} und überschreibt die Methode \texttt{GetNextJob}. Diese Methode wählt dann den nächsten Job anhand des oben angeführten Algorithmus aus.
 
-\subsubsection*{3c. Sourcecode (Beispiel/ToiletSimulationForStudents)}
+\subsubsection*{3c. Sourcecode (Code/ToiletSimulationForStudents)}
 \cscode{\srcDir/ToiletSimulationForStudents/ToiletQueue.cs}
 
 

@@ -18,7 +18,7 @@ Document=Dokumentation.tex
 
 [Frame0_View0,0]
 TopLine=87
-Cursor=7708
+Cursor=5532
 
 [SessionInfo]
 FrameCount=1
