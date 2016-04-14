@@ -105,7 +105,7 @@ Std. Abw.    & 83,750                                                           
 \subsection*{3c. ToiletQueue Implementierung}
 Um die Abarbeitung der Jobs zu verbessern, kann der nächste Job anhand der Endzeit und Arbeitszeit ausgewählt werden. Dabei können die Jobs anhand der spätesten Startzeit ( = Endzeit - Arbeitszeit) sortiert und dann der erste Eintrag der Liste verwendet werden. Als zusätzliche Optimierung können dann noch jene Jobs, bei denen die späteste Startzeit bereits in der Vergangenheit liegt, hinten angestellt werden (bei diesen Jobs ist es sowieso schon zu spät).
 
-Um die Implementierung zu vereinfachen, wurden das Interface \texttt{IJob} um das Property \texttt{LatestStartTime} erweitert und in \texttt{Person} implementiert. Die \texttt{ToiletQueue} selbst stellt eine Ableitung der \texttt{FiFoQueue} und überschreibt der Methode \texttt{GetNextJob}. Diese Methode wählt dann den nächsten Job anhand des oben angeführten Algorithmus aus.
+Um die Implementierung zu vereinfachen, wurden das Interface \texttt{IJob} um das Property \texttt{LatestStartTime} erweitert und in \texttt{Person} implementiert. Die \texttt{ToiletQueue} selbst stellt eine Ableitung der \texttt{FiFoQueue} und überschreibt die Methode \texttt{GetNextJob}. Diese Methode wählt dann den nächsten Job anhand des oben angeführten Algorithmus aus.
 
 \subsubsection*{3c. Sourcecode (Beispiel/ToiletSimulationForStudents)}
 \cscode{\srcDir/ToiletSimulationForStudents/ToiletQueue.cs}
