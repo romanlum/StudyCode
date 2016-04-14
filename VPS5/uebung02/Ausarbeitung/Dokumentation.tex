@@ -11,7 +11,7 @@
 
 \begin{figure}[!htb]
 \includegraphics[width=300px]{images/1a.png}
-\caption{Race codition in CSharp - Original version}
+\caption{Race condition in CSharp - Original version}
 \label{fig:SimpleRaceConditionOriginal}
 \end{figure}
 
@@ -34,8 +34,8 @@ Abbildung~\ref{fig:SimpleRaceConditionFixed} zeigt die Ausgabe der verbesserten 
 \cscode{\srcDir/SimpleRaceCondition/SimpleRaceCondition.cs}
 
 \subsection*{1c. Race condition im Code}
-Die race condition im angegebenen Code ist die Tatsache, das das der Writer und Reader nicht korrekt miteinander synchronisiert sind und nur ein begrenzter Puffer zur Verfügung steht. Dadurch kann es sein, dass der Writer bereits mehr Werte erzeugt als der Puffer zulässt und somit die alten Werte überschreibt.
-Die Lösung ist die korrekte Synchronisation der beiden Threads mit Hilfe von zwei Semaphoren. Die \texttt{writerSemaphore} wird auf die \texttt{BUFFER\_SIZE} initialisiert und kann somit diese Anzahl an Elementen schreiben bevor sie warten muss, bis der \texttt{Reader} die Werte ausgegeben hat.	
+Die race condition im angegebenen Code ist die Tatsache, dass der Writer und Reader nicht korrekt miteinander synchronisiert sind und nur ein begrenzter Puffer zur Verfügung steht. Dadurch kann es sein, dass der Writer bereits mehr Werte erzeugt als der Puffer zulässt und somit die alten Werte überschreibt.
+Die Lösung ist die korrekte Synchronisation der beiden Threads mit Hilfe von zwei Semaphoren. Die \texttt{writerSemaphore} wird auf die \texttt{BUFFER\_SIZE} initialisiert und kann somit diese Anzahl an Elementen schreiben, bevor sie warten muss, bis der \texttt{Reader} die Werte ausgegeben hat.	
 \subsubsection*{1c. Sourccode (Beispiel/RaceConditionExample)}
 \cscode{\srcDir/RaceConditionExample/RaceConditionExample.cs}
 
@@ -43,16 +43,16 @@ Die Lösung ist die korrekte Synchronisation der beiden Threads mit Hilfe von zwe
 \subsection*{2a. / 2b.}
 
 \subsubsection*{2a.}
-Um nur 10 Dateien parallel herunterzuladen kann eine Semaphore verwendet werden, die die gleichzeitige Anzahl an Downloads auf maximal 10 begrenzt. Dazu wird die Variable \texttt{\_syncSemaphore} eingeführt und mit dem Wert 10 initialisiert. In der Methode \texttt{DownloadFile} wird dann \texttt{\_syncSemaphore.Wait()} verwendet um die Downloads zu begrenzen. Wenn ein Download fertig ist, wird die Semaphore wieder freigegeben \texttt{\_syncSemaphore.Release()}.
+Um nur 10 Dateien parallel herunterzuladen, kann eine Semaphore verwendet werden, die die gleichzeitige Anzahl an Downloads auf maximal 10 begrenzt. Dazu wird die Variable \texttt{\_syncSemaphore} eingeführt und mit dem Wert 10 initialisiert. In der Methode \texttt{DownloadFile} wird dann \texttt{\_syncSemaphore.Wait()} verwendet, um die Downloads zu begrenzen. Wenn ein Download fertig ist, wird die Semaphore wieder freigegeben \texttt{\_syncSemaphore.Release()}.
 
 \subsubsection*{2b.}
-Um auf alle Threads zu warten müssen diese in einer Liste gespeichert und dann für jeden die Methode \texttt{Join} aufgerufen werden.
+Um auf alle Threads zu warten, müssen diese in einer Liste gespeichert und dann für jeden die Methode \texttt{Join} aufgerufen werden.
 
 \subsubsection*{2a./2b. Sourccode (Beispiel/SynchronizationPrimitives)}
 \cscode{\srcDir/SynchronizationPrimitives/LimitedConnectionsExample.cs}
 
 \subsection*{2c. Aktives Warten}
-Um das Polling zu verhindern können alle Tasks in einer Liste gespeichert und dann mit der Methode \texttt{Task.WaitAll} auf alle gewartet werden.
+Um das Polling zu verhindern, können alle Tasks in einer Liste gespeichert und dann mit der Methode \texttt{Task.WaitAll} auf alle gewartet werden.
 \subsubsection*{2.c Sourccode (Beispiel/SynchronizationPrimitives)}
 \cscode{\srcDir/SynchronizationPrimitives/PollingExample.cs}
 
@@ -60,10 +60,10 @@ Um das Polling zu verhindern können alle Tasks in einer Liste gespeichert und da
 \subsection*{3a. Toilet Implementierung}
 Diese Aufgabe wurde bereits in der Übung implementiert. Der \texttt{Consumer} ist fertig, wenn alle Elemente der Warteschlange abgearbeitet sind. Dazu wurde das Interface \texttt{IQueue} um das Property \texttt{IsCompleted} erweitert.
 
-Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde das Interface \texttt{IQueue} um die Methode \texttt{TryDequeue} erweitert. Diese blockiert, falls aktuell kein Element vorhanden ist aber noch nicht alle Elemente hinzugefügt wurden.
+Die Synchronisation wurde ebenfalls über die Warteschlange gelöst. Hier wurde das Interface \texttt{IQueue} um die Methode \texttt{TryDequeue} erweitert. Diese blockiert, falls aktuell kein Element vorhanden ist, aber noch nicht alle Elemente hinzugefügt wurden.
 
 \subsection*{3b. FifoQueue Implementierung}
-Die \texttt{FifoQueue} wurde mit Hilfe einer Semaphore implementiert. Dabe wird bei jedem \texttt{Enqueue} die Semaphore um eins erhöht und beim \texttt{TryDequeue} wird diese wieder veringert. Damit wird der gewünschte Effekt erreicht, das die Methode \texttt{TryDequeue} blockiert. Dabei kann es vorkommen, dass die Queue bereits leer ist und trotzdem noch Threads in der Methode \texttt{TryDequeue} auf Elemente warten. Um das Warten zu beenden wurde ein \texttt{CancellationToken} verwendet, der beim \texttt{Wait} mitgegeben wird. Damit können diese Threads aufgeweckt und beendet werden. Um race conditions zu vermeiden wurde jeder Zugriff auf den Datenspeicher mit Locks geschützt.
+Die \texttt{FifoQueue} wurde mit Hilfe einer Semaphore implementiert. Dabei wird bei jedem \texttt{Enqueue} die Semaphore um Eins erhöht und beim \texttt{TryDequeue} wird diese wieder veringert. Damit wird der gewünschte Effekt erreicht, das die Methode \texttt{TryDequeue} blockiert. Dabei kann es vorkommen, dass die Queue bereits leer ist und trotzdem noch Threads in der Methode \texttt{TryDequeue} auf Elemente warten. Um das Warten zu beenden, wurde ein \texttt{CancellationToken} verwendet, der beim \texttt{Wait} mitgegeben wird. Damit können diese Threads aufgeweckt und beendet werden. Um race conditions zu vermeiden, wurde jeder Zugriff auf den Datenspeicher mit Locks geschützt.
 
 \subsubsection*{3b. Sourcecode (Beispiel/ToiletSimulationForStudents)}
 \cscode{\srcDir/ToiletSimulationForStudents/Queue.cs}
@@ -103,9 +103,9 @@ Std. Abw.    & 83,750                                                           
 \end{table} 
 
 \subsection*{3c. ToiletQueue Implementierung}
-Um die Abarbeitung der Jobs zu verbessern kann der nächste Job anhand der Endzeit und Arbeitszeit ausgewählt werden. Dabei können die Jobs anhand der spätesten Startzeit ( = Endzeit - Arbeitszeit) sortiert und dann der erste Eintrag der Liste verwendet werden. Als zusätzliche Optimierung können dann noch jene Jobs, bei denen die späteste Startzeit bereits in der Vergangenheit liegt hinten angestellt werden (bei diesen Jobs ist es sowieso schon zu spät).
+Um die Abarbeitung der Jobs zu verbessern, kann der nächste Job anhand der Endzeit und Arbeitszeit ausgewählt werden. Dabei können die Jobs anhand der spätesten Startzeit ( = Endzeit - Arbeitszeit) sortiert und dann der erste Eintrag der Liste verwendet werden. Als zusätzliche Optimierung können dann noch jene Jobs, bei denen die späteste Startzeit bereits in der Vergangenheit liegt, hinten angestellt werden (bei diesen Jobs ist es sowieso schon zu spät).
 
-Um die Implementierung zu vereinfachen wurden das Interface \texttt{IJob} um das Property \texttt{LatestStartTime} erweitert und in \texttt{Person} implementiert. Die \texttt{ToiletQueue} selbst stellt eine Ableitung der \texttt{FiFoQueue} und überschreiben der Methode \texttt{GetNextJob}. Diese Methode wählt dann den nächsten Job anhand des oben angeführten Algorithmus aus.
+Um die Implementierung zu vereinfachen, wurden das Interface \texttt{IJob} um das Property \texttt{LatestStartTime} erweitert und in \texttt{Person} implementiert. Die \texttt{ToiletQueue} selbst stellt eine Ableitung der \texttt{FiFoQueue} und überschreibt der Methode \texttt{GetNextJob}. Diese Methode wählt dann den nächsten Job anhand des oben angeführten Algorithmus aus.
 
 \subsubsection*{3c. Sourcecode (Beispiel/ToiletSimulationForStudents)}
 \cscode{\srcDir/ToiletSimulationForStudents/ToiletQueue.cs}
