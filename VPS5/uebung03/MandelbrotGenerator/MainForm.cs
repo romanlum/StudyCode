@@ -31,7 +31,7 @@ namespace MandelbrotGenerator
             currentArea.Width = pictureBox.Width;
             currentArea.Height = pictureBox.Height;
 
-            generator = new AsyncImageGenerator();
+            generator = new AsyncWorkerImageGenerator();
             generator.ImageGenerated += OnImageGenerated;
         }
 
