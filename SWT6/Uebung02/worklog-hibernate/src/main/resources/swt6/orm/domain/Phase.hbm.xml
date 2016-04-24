@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="swt6.orm.domain">
+    <class name="Phase">
+
+        <id name="id" type="long">
+            <generator class="native"/>
+        </id>
+
+        <property name="name"/>
+
+        <set name="logbookEntries" inverse="true" >
+            <key>
+                <column name="phase_id"></column>
+            </key>
+            <one-to-many class="LogbookEntry"/>
+        </set>
+    </class>
+</hibernate-mapping>
