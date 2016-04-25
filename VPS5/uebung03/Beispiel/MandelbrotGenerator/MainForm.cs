@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -10,7 +9,7 @@ namespace MandelbrotGenerator
     {
         private Area currentArea;
         private Point mouseDownPoint;
-        private IImageGenerator generator;
+        private readonly IImageGenerator generator;
 
         public MainForm()
         {
@@ -31,7 +30,7 @@ namespace MandelbrotGenerator
             currentArea.Width = pictureBox.Width;
             currentArea.Height = pictureBox.Height;
 
-            generator = new AsyncWorkerImageGenerator();
+            generator = new ParallelImageGenerator();
             generator.ImageGenerated += OnImageGenerated;
         }
 

@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System.Threading}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{MandelbrotGenerator}
+\PYG{p}{\PYGZob{}}
+    \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+    \PYG{c+c1}{/// Async version using threads}
+    \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+    \PYG{k}{public} \PYG{k}{class} \PYG{n+nc}{AsyncImageGenerator}\PYG{p}{:}\PYG{n}{SyncImageGenerator}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{private} \PYG{n}{Thread} \PYG{n}{workerThread}\PYG{p}{;}
+
+        \PYG{k}{public} \PYG{k}{override} \PYG{k}{void} \PYG{n+nf}{GenerateImage}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{c+c1}{//Check if calculation is running and cancel it}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{workerThread} \PYG{p}{!=} \PYG{k}{null} \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{n}{workerThread}\PYG{p}{.}\PYG{n}{IsAlive}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{cancel} \PYG{p}{=} \PYG{k}{true}\PYG{p}{;}
+                \PYG{n}{workerThread}\PYG{p}{.}\PYG{n}{Join}\PYG{p}{();}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{n}{cancel} \PYG{p}{=} \PYG{k}{false}\PYG{p}{;}
+            \PYG{n}{workerThread} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Thread}\PYG{p}{(}\PYG{n}{Run}\PYG{p}{);}
+            \PYG{n}{workerThread}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{(}\PYG{n}{area}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{private} \PYG{k}{void} \PYG{n+nf}{Run}\PYG{p}{(}\PYG{k+kt}{object} \PYG{n}{o}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Area} \PYG{n}{area} \PYG{p}{=} \PYG{n}{o} \PYG{k}{as} \PYG{n}{Area}\PYG{p}{;}
+            \PYG{c+c1}{//call base logic}
+            \PYG{k}{base}\PYG{p}{.}\PYG{n}{GenerateImage}\PYG{p}{(}\PYG{n}{area}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

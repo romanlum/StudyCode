@@ -64,6 +64,7 @@
     <Compile Include="AsyncWorkerImageGenerator.cs" />
     <Compile Include="ColorSchema.cs" />
     <Compile Include="EventArgs.cs" />
+    <Compile Include="ParallelImageGenerator.cs" />
     <Compile Include="SyncImageGenerator.cs" />
     <Compile Include="IImageGenerator.cs" />
     <Compile Include="MainForm.cs">
@@ -81,6 +82,11 @@
     <Compile Include="SettingsDialog.Designer.cs">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

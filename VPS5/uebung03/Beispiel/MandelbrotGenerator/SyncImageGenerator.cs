@@ -4,9 +4,17 @@ using System.Drawing;
 
 namespace MandelbrotGenerator
 {
+    /// <summary>
+    /// Image generate on sync implementation
+    /// </summary>
     public class SyncImageGenerator : IImageGenerator
     {
-        public Bitmap GenerateBitmap(Area area)
+        /// <summary>
+        /// Flag used for cancellation
+        /// </summary>
+        protected bool cancel;
+        
+        protected Bitmap GenerateBitmap(Area area)
         {
             int maxIterations;
             double zBorder;
@@ -28,8 +36,11 @@ namespace MandelbrotGenerator
 
                     int k = 0;
                     while ((zReal*zReal + zImg + zImg < zBorder)
-                        && (k < maxIterations))
+                           && (k < maxIterations))
                     {
+                        //check canecllation
+                        if (cancel) return null;
+
                         zNewReal = zReal*zReal - zImg*zImg + cReal;
                         zNewImg = 2*zReal*zImg + cImg;
 
@@ -43,10 +54,12 @@ namespace MandelbrotGenerator
                 }
             }
             return bitmap;
-
-
         }
 
+        /// <summary>
+        /// Generate the given area
+        /// </summary>
+        /// <param name="area"></param>
         public virtual void GenerateImage(Area area)
         {
             Stopwatch sw = new Stopwatch();
@@ -54,11 +67,25 @@ namespace MandelbrotGenerator
             Bitmap bm = GenerateBitmap(area);
             sw.Stop();
 
-            OnImageGenerated(area, bm, sw.Elapsed);
+            //bm is null on cancellation
+            if (bm != null)
+            {
+                OnImageGenerated(area, bm, sw.Elapsed);
+            }
+            
         }
 
+        /// <summary>
+        /// Event when the generation is finished
+        /// </summary>
         public event EventHandler<EventArgs<Tuple<Area, Bitmap, TimeSpan>>> ImageGenerated;
 
+        /// <summary>
+        /// Image generated event invoker
+        /// </summary>
+        /// <param name="area"></param>
+        /// <param name="bitmap"></param>
+        /// <param name="timespan"></param>
 
         protected virtual void OnImageGenerated(Area area, Bitmap bitmap, TimeSpan timespan)
         {

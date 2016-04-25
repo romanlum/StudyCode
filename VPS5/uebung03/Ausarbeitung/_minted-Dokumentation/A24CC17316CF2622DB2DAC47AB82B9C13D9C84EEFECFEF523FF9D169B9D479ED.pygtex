@@ -1,0 +1,99 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Diagnostics}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Drawing}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{MandelbrotGenerator}
+\PYG{p}{\PYGZob{}}
+    \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+    \PYG{c+c1}{/// Image generate on sync implementation}
+    \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+    \PYG{k}{public} \PYG{k}{class} \PYG{n+nc}{SyncImageGenerator} \PYG{p}{:} \PYG{n}{IImageGenerator}
+    \PYG{p}{\PYGZob{}}
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Flag used for cancellation}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{k}{protected} \PYG{k+kt}{bool} \PYG{n}{cancel}\PYG{p}{;}
+        
+        \PYG{k}{protected} \PYG{n}{Bitmap} \PYG{n+nf}{GenerateBitmap}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{int} \PYG{n}{maxIterations}\PYG{p}{;}
+            \PYG{k+kt}{double} \PYG{n}{zBorder}\PYG{p}{;}
+            \PYG{k+kt}{double} \PYG{n}{cReal}\PYG{p}{,} \PYG{n}{cImg}\PYG{p}{,} \PYG{n}{zReal}\PYG{p}{,} \PYG{n}{zImg}\PYG{p}{,} \PYG{n}{zNewReal}\PYG{p}{,} \PYG{n}{zNewImg}\PYG{p}{;}
+
+            \PYG{n}{maxIterations} \PYG{p}{=} \PYG{n}{Settings}\PYG{p}{.}\PYG{n}{DefaultSettings}\PYG{p}{.}\PYG{n}{MaxIterations}\PYG{p}{;}
+            \PYG{n}{zBorder} \PYG{p}{=} \PYG{n}{Settings}\PYG{p}{.}\PYG{n}{DefaultSettings}\PYG{p}{.}\PYG{n}{ZBorder}\PYG{p}{*}\PYG{n}{Settings}\PYG{p}{.}\PYG{n}{DefaultSettings}\PYG{p}{.}\PYG{n}{ZBorder}\PYG{p}{;}
+
+            \PYG{n}{Bitmap} \PYG{n}{bitmap} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Bitmap}\PYG{p}{(}\PYG{n}{area}\PYG{p}{.}\PYG{n}{Width}\PYG{p}{,} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Height}\PYG{p}{);}
+
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Width}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{j} \PYG{p}{\PYGZlt{}} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Height}\PYG{p}{;} \PYG{n}{j}\PYG{p}{++)}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{n}{cReal} \PYG{p}{=} \PYG{n}{area}\PYG{p}{.}\PYG{n}{MinReal} \PYG{p}{+} \PYG{n}{i}\PYG{p}{*}\PYG{n}{area}\PYG{p}{.}\PYG{n}{PixelWidth}\PYG{p}{;}
+                    \PYG{n}{cImg} \PYG{p}{=} \PYG{n}{area}\PYG{p}{.}\PYG{n}{MinImg} \PYG{p}{+} \PYG{n}{j}\PYG{p}{*}\PYG{n}{area}\PYG{p}{.}\PYG{n}{PixelHeight}\PYG{p}{;}
+                    \PYG{n}{zReal} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+                    \PYG{n}{zImg} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+
+                    \PYG{k+kt}{int} \PYG{n}{k} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+                    \PYG{k}{while} \PYG{p}{((}\PYG{n}{zReal}\PYG{p}{*}\PYG{n}{zReal} \PYG{p}{+} \PYG{n}{zImg} \PYG{p}{+} \PYG{n}{zImg} \PYG{p}{\PYGZlt{}} \PYG{n}{zBorder}\PYG{p}{)}
+                           \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{k} \PYG{p}{\PYGZlt{}} \PYG{n}{maxIterations}\PYG{p}{))}
+                    \PYG{p}{\PYGZob{}}
+                        \PYG{c+c1}{//check canecllation}
+                        \PYG{k}{if} \PYG{p}{(}\PYG{n}{cancel}\PYG{p}{)} \PYG{k}{return} \PYG{k}{null}\PYG{p}{;}
+
+                        \PYG{n}{zNewReal} \PYG{p}{=} \PYG{n}{zReal}\PYG{p}{*}\PYG{n}{zReal} \PYG{p}{\PYGZhy{}} \PYG{n}{zImg}\PYG{p}{*}\PYG{n}{zImg} \PYG{p}{+} \PYG{n}{cReal}\PYG{p}{;}
+                        \PYG{n}{zNewImg} \PYG{p}{=} \PYG{l+m}{2}\PYG{p}{*}\PYG{n}{zReal}\PYG{p}{*}\PYG{n}{zImg} \PYG{p}{+} \PYG{n}{cImg}\PYG{p}{;}
+
+                        \PYG{n}{zReal} \PYG{p}{=} \PYG{n}{zNewReal}\PYG{p}{;}
+                        \PYG{n}{zImg} \PYG{p}{=} \PYG{n}{zNewImg}\PYG{p}{;}
+
+                        \PYG{n}{k}\PYG{p}{++;}
+                    \PYG{p}{\PYGZcb{}}
+
+                    \PYG{n}{bitmap}\PYG{p}{.}\PYG{n}{SetPixel}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{,} \PYG{n}{ColorSchema}\PYG{p}{.}\PYG{n}{GetColor}\PYG{p}{(}\PYG{n}{k}\PYG{p}{));}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{k}{return} \PYG{n}{bitmap}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Generate the given area}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}area\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+        \PYG{k}{public} \PYG{k}{virtual} \PYG{k}{void} \PYG{n+nf}{GenerateImage}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Stopwatch} \PYG{n}{sw} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Stopwatch}\PYG{p}{();}
+            \PYG{n}{sw}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{();}
+            \PYG{n}{Bitmap} \PYG{n}{bm} \PYG{p}{=} \PYG{n}{GenerateBitmap}\PYG{p}{(}\PYG{n}{area}\PYG{p}{);}
+            \PYG{n}{sw}\PYG{p}{.}\PYG{n}{Stop}\PYG{p}{();}
+
+            \PYG{c+c1}{//bm is null on cancellation}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{bm} \PYG{p}{!=} \PYG{k}{null}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{OnImageGenerated}\PYG{p}{(}\PYG{n}{area}\PYG{p}{,} \PYG{n}{bm}\PYG{p}{,} \PYG{n}{sw}\PYG{p}{.}\PYG{n}{Elapsed}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+            
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Event when the generation is finished}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{k}{public} \PYG{k}{event} \PYG{n}{EventHandler}\PYG{p}{\PYGZlt{}}\PYG{n}{EventArgs}\PYG{p}{\PYGZlt{}}\PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}\PYGZgt{}\PYGZgt{}} \PYG{n}{ImageGenerated}\PYG{p}{;}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Image generated event invoker}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}area\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}bitmap\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}timespan\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+
+        \PYG{k}{protected} \PYG{k}{virtual} \PYG{k}{void} \PYG{n+nf}{OnImageGenerated}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{,} \PYG{n}{Bitmap} \PYG{n}{bitmap}\PYG{p}{,} \PYG{n}{TimeSpan} \PYG{n}{timespan}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{var} \PYG{n}{handler} \PYG{p}{=} \PYG{n}{ImageGenerated}\PYG{p}{;}
+            \PYG{n}{handler}\PYG{p}{?.}\PYG{n}{Invoke}\PYG{p}{(}\PYG{k}{this}\PYG{p}{,}
+                \PYG{k}{new} \PYG{n}{EventArgs}\PYG{p}{\PYGZlt{}}\PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}\PYGZgt{}(}\PYG{k}{new} \PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}(}\PYG{n}{area}\PYG{p}{,} \PYG{n}{bitmap}\PYG{p}{,} \PYG{n}{timespan}\PYG{p}{)));}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

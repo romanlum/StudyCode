@@ -1,0 +1,150 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Diagnostics}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Drawing}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Linq}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Threading}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{MandelbrotGenerator}
+\PYG{p}{\PYGZob{}}
+    \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+    \PYG{c+c1}{/// Paralell implementation}
+    \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+    \PYG{k}{class} \PYG{n+nc}{ParallelImageGenerator} \PYG{p}{:} \PYG{n}{IImageGenerator}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{private} \PYG{k}{readonly} \PYG{k+kt}{object} \PYG{n}{bitmapLock} \PYG{p}{=} \PYG{k}{new} \PYG{k+kt}{object}\PYG{p}{();}
+        \PYG{k}{private} \PYG{k}{readonly} \PYG{k+kt}{object} \PYG{n}{indexLock} \PYG{p}{=} \PYG{k}{new} \PYG{k+kt}{object}\PYG{p}{();}
+        \PYG{k}{private} \PYG{k+kt}{int} \PYG{n}{currentIndex}\PYG{p}{;}
+        \PYG{k}{private} \PYG{n}{Bitmap} \PYG{n}{result}\PYG{p}{;}
+        \PYG{k}{private} \PYG{n}{Thread}\PYG{p}{[]} \PYG{n}{threads}\PYG{p}{;}
+        \PYG{k}{private} \PYG{n}{Thread} \PYG{n}{managementThread}\PYG{p}{;}
+        \PYG{k}{private} \PYG{k+kt}{bool} \PYG{n}{cancel}\PYG{p}{;}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Generate the given area}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}area\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{GenerateImage}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{c+c1}{//check canecllation}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{managementThread} \PYG{p}{!=} \PYG{k}{null} \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{n}{managementThread}\PYG{p}{.}\PYG{n}{IsAlive}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{cancel} \PYG{p}{=} \PYG{k}{true}\PYG{p}{;}
+                \PYG{n}{managementThread}\PYG{p}{.}\PYG{n}{Join}\PYG{p}{();}
+            \PYG{p}{\PYGZcb{}}
+
+            \PYG{n}{managementThread} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Thread}\PYG{p}{(}\PYG{n}{ManagementThreadMethod}\PYG{p}{);}
+            \PYG{n}{managementThread}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{(}\PYG{n}{area}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{public} \PYG{k}{event} \PYG{n}{EventHandler}\PYG{p}{\PYGZlt{}}\PYG{n}{EventArgs}\PYG{p}{\PYGZlt{}}\PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}\PYGZgt{}\PYGZgt{}} \PYG{n}{ImageGenerated}\PYG{p}{;}
+
+        \PYG{k}{protected} \PYG{k}{virtual} \PYG{k}{void} \PYG{n+nf}{OnImageGenerated}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{,} \PYG{n}{Bitmap} \PYG{n}{bitmap}\PYG{p}{,} \PYG{n}{TimeSpan} \PYG{n}{time}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{ImageGenerated}\PYG{p}{?.}\PYG{n}{Invoke}\PYG{p}{(}\PYG{k}{this}\PYG{p}{,}
+                \PYG{k}{new} \PYG{n}{EventArgs}\PYG{p}{\PYGZlt{}}\PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}\PYGZgt{}(}\PYG{k}{new} \PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}(}\PYG{n}{area}\PYG{p}{,} \PYG{n}{bitmap}\PYG{p}{,} \PYG{n}{time}\PYG{p}{)));}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{ManagementThreadMethod}\PYG{p}{(}\PYG{k+kt}{object} \PYG{n}{input}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{cancel} \PYG{p}{=} \PYG{k}{false}\PYG{p}{;}
+            \PYG{n}{Area} \PYG{n}{area} \PYG{p}{=} \PYG{n}{input} \PYG{k}{as} \PYG{n}{Area}\PYG{p}{;}  
+            \PYG{n}{Stopwatch} \PYG{n}{sw} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Stopwatch}\PYG{p}{();}
+
+            \PYG{n}{sw}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{();}
+            \PYG{n}{currentIndex} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+            \PYG{n}{result} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Bitmap}\PYG{p}{(}\PYG{n}{area}\PYG{p}{.}\PYG{n}{Width}\PYG{p}{,} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Height}\PYG{p}{);}
+            \PYG{n}{threads} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Thread}\PYG{p}{[}\PYG{n}{Settings}\PYG{p}{.}\PYG{n}{DefaultSettings}\PYG{p}{.}\PYG{n}{Workers}\PYG{p}{];}
+            \PYG{c+c1}{//Create worker threads}
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{threads}\PYG{p}{.}\PYG{n}{Length}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{Thread} \PYG{n}{t} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Thread}\PYG{p}{(}\PYG{n}{WorkerThreadMethod}\PYG{p}{);}
+                \PYG{n}{threads}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{p}{=} \PYG{n}{t}\PYG{p}{;}
+                \PYG{n}{t}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{(}\PYG{n}{area}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{c+c1}{//Wait for finishing}
+            \PYG{k}{foreach} \PYG{p}{(}\PYG{k+kt}{var} \PYG{n}{thread} \PYG{k}{in} \PYG{n}{threads}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{thread}\PYG{p}{.}\PYG{n}{Join}\PYG{p}{();}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{n}{sw}\PYG{p}{.}\PYG{n}{Stop}\PYG{p}{();}
+            \PYG{c+c1}{//check cancellation}
+            \PYG{k}{if} \PYG{p}{(!}\PYG{n}{cancel}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{OnImageGenerated}\PYG{p}{(}\PYG{n}{area}\PYG{p}{,} \PYG{n}{result}\PYG{p}{,} \PYG{n}{sw}\PYG{p}{.}\PYG{n}{Elapsed}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+            
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{WorkerThreadMethod}\PYG{p}{(}\PYG{k+kt}{object} \PYG{n}{input}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Area} \PYG{n}{area} \PYG{p}{=} \PYG{n}{input} \PYG{k}{as} \PYG{n}{Area}\PYG{p}{;}
+            
+            \PYG{k}{while} \PYG{p}{(!}\PYG{n}{cancel}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k+kt}{int} \PYG{n}{index}\PYG{p}{;}
+                \PYG{k}{lock} \PYG{p}{(}\PYG{n}{indexLock}\PYG{p}{)}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{n}{index} \PYG{p}{=} \PYG{n}{currentIndex}\PYG{p}{;}
+                    \PYG{n}{currentIndex}\PYG{p}{++;}
+                \PYG{p}{\PYGZcb{}}
+                
+                \PYG{c+c1}{//for all threads which are already finished}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{index} \PYG{p}{\PYGZgt{}=} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Height}\PYG{p}{)}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{k}{return}\PYG{p}{;}
+                \PYG{p}{\PYGZcb{}}
+                \PYG{n}{GenerateBitmapLine}\PYG{p}{(}\PYG{n}{area}\PYG{p}{,} \PYG{n}{index}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Generates one line of the bitmap}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}area\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}line\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{GenerateBitmapLine}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{line}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{int} \PYG{n}{maxIterations}\PYG{p}{;}
+            \PYG{k+kt}{double} \PYG{n}{zBorder}\PYG{p}{;}
+            \PYG{k+kt}{double} \PYG{n}{cReal}\PYG{p}{,} \PYG{n}{cImg}\PYG{p}{,} \PYG{n}{zReal}\PYG{p}{,} \PYG{n}{zImg}\PYG{p}{,} \PYG{n}{zNewReal}\PYG{p}{,} \PYG{n}{zNewImg}\PYG{p}{;}
+
+            \PYG{n}{maxIterations} \PYG{p}{=} \PYG{n}{Settings}\PYG{p}{.}\PYG{n}{DefaultSettings}\PYG{p}{.}\PYG{n}{MaxIterations}\PYG{p}{;}
+            \PYG{n}{zBorder} \PYG{p}{=} \PYG{n}{Settings}\PYG{p}{.}\PYG{n}{DefaultSettings}\PYG{p}{.}\PYG{n}{ZBorder}\PYG{p}{*}\PYG{n}{Settings}\PYG{p}{.}\PYG{n}{DefaultSettings}\PYG{p}{.}\PYG{n}{ZBorder}\PYG{p}{;}
+
+
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Width}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k+kt}{int} \PYG{n}{j} \PYG{p}{=} \PYG{n}{line}\PYG{p}{;}
+                \PYG{n}{cReal} \PYG{p}{=} \PYG{n}{area}\PYG{p}{.}\PYG{n}{MinReal} \PYG{p}{+} \PYG{n}{i}\PYG{p}{*}\PYG{n}{area}\PYG{p}{.}\PYG{n}{PixelWidth}\PYG{p}{;}
+                \PYG{n}{cImg} \PYG{p}{=} \PYG{n}{area}\PYG{p}{.}\PYG{n}{MinImg} \PYG{p}{+} \PYG{n}{j}\PYG{p}{*}\PYG{n}{area}\PYG{p}{.}\PYG{n}{PixelHeight}\PYG{p}{;}
+                \PYG{n}{zReal} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+                \PYG{n}{zImg} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+
+                \PYG{k+kt}{int} \PYG{n}{k} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+                \PYG{k}{while} \PYG{p}{((}\PYG{n}{zReal}\PYG{p}{*}\PYG{n}{zReal} \PYG{p}{+} \PYG{n}{zImg} \PYG{p}{+} \PYG{n}{zImg} \PYG{p}{\PYGZlt{}} \PYG{n}{zBorder}\PYG{p}{)}
+                       \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{k} \PYG{p}{\PYGZlt{}} \PYG{n}{maxIterations}\PYG{p}{))}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{c+c1}{//check canecllation}
+                    \PYG{k}{if} \PYG{p}{(}\PYG{n}{cancel}\PYG{p}{)}
+                    \PYG{p}{\PYGZob{}}
+                        \PYG{k}{return}\PYG{p}{;}
+                    \PYG{p}{\PYGZcb{}}
+
+                    \PYG{n}{zNewReal} \PYG{p}{=} \PYG{n}{zReal}\PYG{p}{*}\PYG{n}{zReal} \PYG{p}{\PYGZhy{}} \PYG{n}{zImg}\PYG{p}{*}\PYG{n}{zImg} \PYG{p}{+} \PYG{n}{cReal}\PYG{p}{;}
+                    \PYG{n}{zNewImg} \PYG{p}{=} \PYG{l+m}{2}\PYG{p}{*}\PYG{n}{zReal}\PYG{p}{*}\PYG{n}{zImg} \PYG{p}{+} \PYG{n}{cImg}\PYG{p}{;}
+
+                    \PYG{n}{zReal} \PYG{p}{=} \PYG{n}{zNewReal}\PYG{p}{;}
+                    \PYG{n}{zImg} \PYG{p}{=} \PYG{n}{zNewImg}\PYG{p}{;}
+
+                    \PYG{n}{k}\PYG{p}{++;}
+                \PYG{p}{\PYGZcb{}}
+                \PYG{k}{lock} \PYG{p}{(}\PYG{n}{bitmapLock}\PYG{p}{)}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{n}{result}\PYG{p}{.}\PYG{n}{SetPixel}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{,} \PYG{n}{ColorSchema}\PYG{p}{.}\PYG{n}{GetColor}\PYG{p}{(}\PYG{n}{k}\PYG{p}{));}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,66 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.ComponentModel}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Diagnostics}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Drawing}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{MandelbrotGenerator}
+\PYG{p}{\PYGZob{}}
+    \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+    \PYG{c+c1}{/// Async background worker implementation}
+    \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+    \PYG{k}{public} \PYG{k}{class} \PYG{n+nc}{AsyncWorkerImageGenerator}\PYG{p}{:}\PYG{n}{SyncImageGenerator}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{private} \PYG{n}{BackgroundWorker} \PYG{n}{worker}\PYG{p}{;}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Generate the given area}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}area\PYGZdq{}\PYGZgt{}\PYGZlt{}/param\PYGZgt{}}
+        \PYG{k}{public} \PYG{k}{override} \PYG{k}{void} \PYG{n+nf}{GenerateImage}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{worker} \PYG{p}{!=} \PYG{k}{null} \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{n}{worker}\PYG{p}{.}\PYG{n}{IsBusy}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{cancel} \PYG{p}{=} \PYG{k}{true}\PYG{p}{;}
+            \PYG{p}{\PYGZcb{}}
+            
+            \PYG{n}{worker} \PYG{p}{=} \PYG{k}{new} \PYG{n}{BackgroundWorker}\PYG{p}{();}
+            \PYG{n}{worker}\PYG{p}{.}\PYG{n}{DoWork} \PYG{p}{+=} \PYG{n}{DoWork}\PYG{p}{;}
+            \PYG{n}{worker}\PYG{p}{.}\PYG{n}{RunWorkerCompleted} \PYG{p}{+=} \PYG{n}{OnWorkCompleted}\PYG{p}{;}
+            \PYG{n}{cancel} \PYG{p}{=} \PYG{k}{false}\PYG{p}{;}
+            \PYG{n}{worker}\PYG{p}{.}\PYG{n}{RunWorkerAsync}\PYG{p}{(}\PYG{n}{area}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{private} \PYG{k}{void} \PYG{n+nf}{OnWorkCompleted}\PYG{p}{(}\PYG{k+kt}{object} \PYG{n}{sender}\PYG{p}{,} \PYG{n}{RunWorkerCompletedEventArgs} \PYG{n}{e}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{p}{(}\PYG{n}{sender} \PYG{k}{as} \PYG{n}{BackgroundWorker}\PYG{p}{).}\PYG{n}{RunWorkerCompleted} \PYG{p}{\PYGZhy{}=} \PYG{n}{OnWorkCompleted}\PYG{p}{;}
+
+            \PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}} \PYG{n}{res} \PYG{p}{=} \PYG{n}{e}\PYG{p}{.}\PYG{n}{Result} \PYG{k}{as} \PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{};}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{res} \PYG{p}{==} \PYG{k}{null}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{throw} \PYG{k}{new} \PYG{n+nf}{InvalidOperationException}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Result is null\PYGZdq{}}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{c+c1}{//bitmap is null on cancellation}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{res}\PYG{p}{.}\PYG{n}{Item2} \PYG{p}{!=} \PYG{k}{null}\PYG{p}{)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{OnImageGenerated}\PYG{p}{(}\PYG{n}{res}\PYG{p}{.}\PYG{n}{Item1}\PYG{p}{,} \PYG{n}{res}\PYG{p}{.}\PYG{n}{Item2}\PYG{p}{,} \PYG{n}{res}\PYG{p}{.}\PYG{n}{Item3}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+            
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{private} \PYG{k}{void} \PYG{n+nf}{DoWork}\PYG{p}{(}\PYG{k+kt}{object} \PYG{n}{sender}\PYG{p}{,} \PYG{n}{DoWorkEventArgs} \PYG{n}{e}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Area} \PYG{n}{area} \PYG{p}{=} \PYG{n}{e}\PYG{p}{.}\PYG{n}{Argument} \PYG{k}{as} \PYG{n}{Area}\PYG{p}{;}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{area} \PYG{p}{==} \PYG{k}{null}\PYG{p}{)}
+                \PYG{k}{throw} \PYG{k}{new} \PYG{n+nf}{InvalidOperationException}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}First argument area cannot be null\PYGZdq{}}\PYG{p}{);}
+
+            \PYG{n}{Stopwatch} \PYG{n}{sw} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Stopwatch}\PYG{p}{();}
+            \PYG{n}{sw}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{();}
+            \PYG{n}{Bitmap} \PYG{n}{bm} \PYG{p}{=} \PYG{n}{GenerateBitmap}\PYG{p}{(}\PYG{n}{area}\PYG{p}{);}
+            \PYG{n}{sw}\PYG{p}{.}\PYG{n}{Stop}\PYG{p}{();}
+            \PYG{n}{e}\PYG{p}{.}\PYG{n}{Result} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}(}\PYG{n}{area}\PYG{p}{,}\PYG{n}{bm}\PYG{p}{,}\PYG{n}{sw}\PYG{p}{.}\PYG{n}{Elapsed}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+        
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
