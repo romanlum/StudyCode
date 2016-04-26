@@ -8,7 +8,7 @@ public class TemporaryEmployee extends Employee {
   private static final DateFormat fmt = DateFormat.getDateInstance();
   
   private String renter;
-  private double hourlyRate;
+  private Double hourlyRate;
   private Date   startDate;
   private Date   endDate;
    
@@ -31,11 +31,11 @@ public class TemporaryEmployee extends Employee {
     this.endDate = endDate;
   }
   
-  public double getHourlyRate() {
+  public Double getHourlyRate() {
     return hourlyRate;
   }
   
-  public void setHourlyRate(double hourlyRate) {
+  public void setHourlyRate(Double hourlyRate) {
     this.hourlyRate = hourlyRate;
   }
   
@@ -58,7 +58,7 @@ public class TemporaryEmployee extends Employee {
   public String toString() {
     StringBuffer sb = new StringBuffer(super.toString());
     sb.append(", hourlyRate=" + hourlyRate);
-    sb.append(", renter=" + hourlyRate);
+    sb.append(", renter=" + renter);
     sb.append(", startDate=" + fmt.format(startDate));
     sb.append(", endDate=" + fmt.format(endDate));
     

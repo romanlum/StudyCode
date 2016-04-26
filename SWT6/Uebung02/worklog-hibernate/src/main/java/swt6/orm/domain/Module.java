@@ -1,5 +1,6 @@
 package swt6.orm.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /***
@@ -9,7 +10,7 @@ public class Module {
     private Long id;
     private String name;
     private Project project;
-    private Set<LogbookEntry> logbookEntries;
+    private Set<LogbookEntry> logbookEntries = new HashSet<>();
 
     public Module(String name) {
         this.name = name;
@@ -71,6 +72,8 @@ public class Module {
         this.getLogbookEntries().add(entry);
         entry.setModule(this);
     }
+
+
 
 
 }

@@ -22,11 +22,14 @@
 
         <many-to-one name="phase"
                      class="Phase"
+                     lazy="false"
                      column="phase_id"
-                     not-null="true" />
+                     not-null="true"
+                     cascade="save-update"/>
 
         <many-to-one name="module"
                      class="Module"
+                     lazy="false"
                      column="module_id"
                      not-null="true"
                      cascade="save-update"/>

@@ -26,6 +26,7 @@ public class Address implements Serializable {
         return id;
     }
 
+    @SuppressWarnings("unused")
     private void setId(Long id) {
         this.id = id;
     }

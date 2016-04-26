@@ -264,7 +264,7 @@ public class HibernateWorkLogManager {
       session.delete(project);
     }
 
-    empl.detach();
+  //  empl.detach(); //TODO:
     session.delete(empl);
 
     tx.commit();
@@ -339,10 +339,10 @@ public class HibernateWorkLogManager {
 
 
 
-      System.out.println("----- saveEmployee -----");
+      System.out.println("----- createEmployee -----");
       saveEntity(empl1);
 
-      System.out.println("----- saveEmployee -----");
+      System.out.println("----- createEmployee -----");
       saveEntity(empl2);
 
       System.out.println("----- updateEmployee -----");

@@ -1,12 +1,13 @@
 package swt6.orm.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Phase {
 
     private Long id;
     private String name;
-    private Set<LogbookEntry> logbookEntries;
+    private Set<LogbookEntry> logbookEntries = new HashSet<>();
 
     public Phase(String name) {
         this.name = name;
@@ -60,4 +61,6 @@ public class Phase {
         this.getLogbookEntries().add(entry);
         entry.setPhase(this);
     }
+
+
 }

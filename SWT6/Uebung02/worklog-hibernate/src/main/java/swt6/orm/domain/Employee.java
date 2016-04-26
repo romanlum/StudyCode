@@ -99,14 +99,15 @@ public class Employee implements Serializable {
         this.leadingProjects = leadingProjects;
     }
 
-    public void addLeadingProject(Project project) {
+    public void addProject(Project project) {
         if (project == null) {
             throw new IllegalArgumentException("Project must not be null");
         }
 
-        leadingProjects.add(project);
-        project.attachLeader(this);
+        projects.add(project);
+        project.getMembers().add(this);
     }
+
 
     public void removeProject(Project project) {
         if (project == null) {
@@ -145,17 +146,30 @@ public class Employee implements Serializable {
         entry.setEmployee(null);
     }
 
-    public void addProject(Project project) {
+    public void addLeadingProject(Project project) {
         if (project == null) {
             throw new IllegalArgumentException("Project must not be null");
         }
 
-        projects.add(project);
-        project.getMembers().add(this);
+        if(project.getLeader() != null) {
+            project.getLeader().getLeadingProjects().remove(project);
+        }
+
+        this.getLeadingProjects().add(project);
+        project.setLeader(this);
     }
 
-    public void detach() {
+    public void removeLeadingProject(Project project) {
+        if (project == null) {
+            throw new IllegalArgumentException("Project must not be null");
+        }
 
+        if (project.getLeader() != this) {
+            throw new IllegalArgumentException("Can't remove leading project entry of another employee");
+        }
+
+        this.getLeadingProjects().remove(project);
+        project.setLeader(null);
     }
 
     public String toString() {

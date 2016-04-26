@@ -121,6 +121,13 @@ public class Project implements Serializable {
         this.leader.getLeadingProjects().add(this);
     }
 
+    public void detachLeader() {
+        if (this.leader != null && this.getLeader().getLeadingProjects().contains(this)) {
+            this.getLeader().getLeadingProjects().remove(this);
+        }
+        this.leader = null;
+    }
+
     public String toString() {
         return name;
     }

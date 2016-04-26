@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
+/***
+ * LogbookEntry entity
+ */
 public class LogbookEntry implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -101,6 +104,13 @@ public class LogbookEntry implements Serializable {
         this.module.getLogbookEntries().add(this);
     }
 
+    public void detachModule() {
+        if(this.module != null) {
+            this.getModule().getLogbookEntries().remove(this);
+        }
+        this.module = null;
+    }
+
     public Phase getPhase() {
         return phase;
     }
@@ -118,6 +128,13 @@ public class LogbookEntry implements Serializable {
         }
         phase.getLogbookEntries().add(this);
         this.phase = phase;
+    }
+
+    public void detachPhase() {
+        if(this.phase != null) {
+            this.getPhase().getLogbookEntries().remove(this);
+        }
+        this.phase = null;
     }
 
     @Override
