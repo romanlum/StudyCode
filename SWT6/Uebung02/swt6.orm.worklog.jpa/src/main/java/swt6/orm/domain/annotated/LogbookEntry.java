@@ -36,6 +36,18 @@ public class LogbookEntry implements Serializable {
 		  )
   private Employee employee;
 
+  @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
+          fetch=FetchType.EAGER,
+          optional=false //NOT NULL
+  )
+  private Module module;
+
+  @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
+          fetch=FetchType.EAGER,
+          optional=false //NOT NULL
+  )
+  private Phase phase;
+
   public LogbookEntry() {
   }
 
@@ -106,6 +118,58 @@ public class LogbookEntry implements Serializable {
 
   public void setEndTime(Date end) {
     endTime = end;
+  }
+
+  public Module getModule() {
+    return module;
+  }
+
+  public void setModule(Module module) {
+    this.module = module;
+  }
+
+  public Phase getPhase() {
+    return phase;
+  }
+
+  public void setPhase(Phase phase) {
+    this.phase = phase;
+  }
+
+  public void attachModule(Module module) {
+    if(module == null){
+      throw new IllegalArgumentException("Module entry must not be null");
+    }
+    if(this.module != null) {
+      this.getModule().getLogbookEntries().remove(this);
+    }
+    this.module = module;
+    this.module.getLogbookEntries().add(this);
+  }
+
+  public void detachModule() {
+    if(this.module != null) {
+      this.getModule().getLogbookEntries().remove(this);
+    }
+    this.module = null;
+  }
+
+  public void attachPhase(Phase phase) {
+    if(phase == null){
+      throw new IllegalArgumentException("Phase entry must not be null");
+    }
+    if(this.phase != null){
+      this.getPhase().getLogbookEntries().remove(this);
+    }
+    phase.getLogbookEntries().add(this);
+    this.phase = phase;
+  }
+
+  public void detachPhase() {
+    if(this.phase != null) {
+      this.getPhase().getLogbookEntries().remove(this);
+    }
+    this.phase = null;
   }
 
   @Override

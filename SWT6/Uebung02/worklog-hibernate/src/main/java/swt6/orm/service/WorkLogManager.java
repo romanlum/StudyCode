@@ -82,7 +82,7 @@ public interface WorkLogManager {
      * @param phase
      * @return
      */
-    List<LogbookEntry> getLogbookEntriesForPhase(Phase phase);
+    List<LogbookEntry> getLogbookEntriesForPhase(String phase);
 
 
     /***

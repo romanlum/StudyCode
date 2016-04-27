@@ -10,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-//@DiscriminatorValue("T")
+@DiscriminatorValue("T")
 public class TemporaryEmployee extends Employee {
   private static final long serialVersionUID = 1L;
   private static final DateFormat fmt = DateFormat.getDateInstance();

@@ -1,32 +1,35 @@
 package swt6.orm.domain.annotated;
 
-import java.util.Date;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.Date;
 
 @Entity
-//@DiscriminatorValue("P")
+@DiscriminatorValue("P")
 public class PermanentEmployee extends Employee {
   private static final long serialVersionUID = 1L;
-  private double salary;
+  private Double salary;
 
-  public PermanentEmployee() {
+  public PermanentEmployee() {  
   }
-
+  
   public PermanentEmployee(String firstName, String lastName, Date dateOfBirth) {
     super(firstName, lastName, dateOfBirth);
   }
-
-  public double getSalary() {
+  
+  public PermanentEmployee(String firstName, String lastName, double salery, Date dateOfBirth, Address address) {
+    super(firstName, lastName, dateOfBirth, address);
+    this.salary = salery;
+  }
+  
+  public Double getSalary() {
     return salary;
   }
 
-  public void setSalary(double salary) {
+  public void setSalary(Double salary) {
     this.salary = salary;
   }
-
-  @Override
+  
   public String toString() {
     return super.toString() + ", salary=" + salary;
   }

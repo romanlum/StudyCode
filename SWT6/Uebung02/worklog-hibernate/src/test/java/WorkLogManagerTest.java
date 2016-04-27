@@ -1,22 +1,21 @@
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
-import org.h2.util.DateTimeUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
 import swt6.orm.domain.*;
 import swt6.orm.hibernate.HibernateUtil;
-import swt6.orm.hibernate.HibernateWorkLogManagerImpl;
+import swt6.orm.hibernate.HibernateWorkLogManager;
 import swt6.orm.service.WorkLogManager;
 import swt6.util.DateUtil;
 
 import java.io.File;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WorkLogManagerTest {
@@ -38,7 +37,7 @@ public class WorkLogManagerTest {
 
     @Before
     public void setUp() throws Exception {
-        manager = new HibernateWorkLogManagerImpl();
+        manager = new HibernateWorkLogManager();
         HibernateUtil.getSessionFactory();
         IDataSet dataSet = readDataSet();
         cleanlyInsertDataset(dataSet);
@@ -117,7 +116,94 @@ public class WorkLogManagerTest {
         entry.attachPhase(new Phase("NEW PHASE"));
         manager.addLogbookEntry(manager.getEmployee(11),entry);
         Assert.assertEquals(7,manager.getEmployee(11).getLogbookEntries().size());
+    }
 
+    /***
+     * Creates a new project with some modules and checks that
+     * it is persisted correctly
+     */
+    @Test
+    public void createProjectTest() {
+        Employee empl = manager.getEmployee(1);
+        List<Module> modules = new ArrayList<>();
+        modules.add(new Module("MOD1"));
+        modules.add(new Module("MOD2"));
+        modules.add(new Module("MOD3"));
+
+        manager.createProject("New Project",empl,null,modules);
+        Project newProject =  manager.getProjectById(5);
+        Assert.assertNotNull(newProject);
+        Assert.assertEquals("New Project",newProject.getName());
+        //Check modules
+        Assert.assertArrayEquals(modules.stream().map(x -> x.getName()).sorted().toArray(),
+                newProject.getModules().stream().map(x -> x.getName()).sorted().toArray());
+    }
+
+
+    /***
+     * Assigns projects to an employee and checks
+     * it afterwards
+     */
+    @Test
+    public void assignProjectsToEmployeeTest() {
+
+        Employee empl = manager.getEmployee(20);
+        Assert.assertNotNull(empl);
+        Assert.assertEquals(0,empl.getProjects().size());
+
+        Project proj1= manager.getProjectById(2);
+        Project proj2= manager.getProjectById(3);
+
+        empl = manager.assignProjectsToEmployee(empl,proj1,proj2);
+
+        Assert.assertEquals(2,empl.getProjects().size());
+        Assert.assertArrayEquals(empl.getProjects().stream().map(x -> x.getName()).sorted().toArray(),
+                new String[]{proj2.getName(),proj1.getName()});
+
+    }
+
+    /***
+     * Creates a new project phase
+     * Does not assign it to a project
+     */
+    @Test
+    public void createPhaseTest() throws Exception {
+        Phase phase = manager.createPhase("new phase");
+        Assert.assertEquals(4,(long)phase.getId());
+
+        //Check through dbunit
+        IDataSet actual = databaseTester.getConnection().createDataSet(new String[]{"phase"});
+        ITable table = actual.getTable("phase");
+        Assert.assertEquals(4,table.getRowCount());
+        Assert.assertEquals("new phase",table.getValue(3,"name"));
+    }
+
+    /**
+     * Fetches all logbook entries for a given phase
+     * useful for reports
+     */
+    @Test
+    public void getLogbookEntriesForPhaseTest() {
+        List<LogbookEntry> entries= manager.getLogbookEntriesForPhase("Testen");
+        Assert.assertNotNull(entries);
+        Assert.assertEquals(37,entries.size());
+
+        //check one employee
+        Assert.assertTrue(entries.stream().anyMatch(x -> x.getEmployee().getId()==19));
+
+    }
+
+    /**
+     * Fetches a given project
+     */
+    @Test
+    public void getProjectTest() {
+        Project project =  manager.getProjectById(1);
+        Assert.assertNotNull(project);
+        Assert.assertEquals("Worklog Manager",project.getName());
+        Assert.assertEquals("Elizabeth",project.getLeader().getFirstName());
+        Assert.assertEquals(4,project.getMembers().size());
+        Assert.assertEquals(2,project.getModules().size());
     }
 
 }

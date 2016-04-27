@@ -34,12 +34,14 @@
         </set>
 
         <set name="projects"
-             fetch="join"
+             table="ProjectEmployee"
              inverse="true"
+             lazy="false"
              cascade="save-update">
-            <key column="employee_id"/>
+            <key column="employee_Id"/>
             <many-to-many
-                    class="Project"/>
+                    class="Project"
+                    column="project_id"/>
         </set>
 
         <set name="leadingProjects"
@@ -47,7 +49,7 @@
              inverse="true"
              cascade="save-update">
             <key column="leader_id"/>
-            <many-to-many
+            <one-to-many
                     class="Project"/>
         </set>
 
