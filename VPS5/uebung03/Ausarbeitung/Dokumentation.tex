@@ -5,33 +5,33 @@
 \cfoot{1310307026}
 \ofoot{Seite \pagemark}
 
-\section{Dish of the Day: "Almondbreads"}
+\section{Dish of the Day: ""Almondbreads""}
 \subsection*{1a. Generator}
 Der Generator wurde bereits in der Übung programmiert und baut auf vorhandenem Code auf.
 
 \cscode{\srcDir/MandelbrotGenerator/SyncImageGenerator.cs}
 
 \subsection*{1b. Asynchrone Implementierung}
-Um Asynchrone Implementierungen zu ermöglichen wurde das Interface \texttt{IImageGenerator} um das Event \texttt{ImageGenerated} erweitert. Weiters muss bei der Zuweisung des Ergebnisses an die GUI der Thread gewechselt werden.
+Um asynchrone Implementierungen zu ermöglichen, wurde das Interface \texttt{IImageGenerator} um das Event \texttt{ImageGenerated} erweitert. Weiters muss bei der Zuweisung des Ergebnisses an die GUI der Thread gewechselt werden.
 
-Die folgenden Implementierungen leiten vom originalen \texttt{SyncImageGenerator} ab und verlagen die Arbeit in den Hintergrund. Dabei wurde eine einfache Möglichkeit um Abbrechen der Berechnung implementiert. Hierzu wurde die Implementierung um ein simples Stop-Flag erweitert. (Code siehe 1.a)
+Die folgenden Implementierungen leiten vom originalen \texttt{SyncImageGenerator} ab und verlagern die Arbeit in den Hintergrund. Dabei wurde eine einfache Möglichkeit zum Abbrechen der Berechnung implementiert. Hierzu wurde die Implementierung um ein simples Stop-Flag erweitert. (Code siehe 1.a)
 
 \subsubsection*{Implementierung 1: \texttt{AsyncImageGenerator}}
-Bei dieser Implementierung wurden \texttt{Threads} verwendet um die Arbeit in den Hintergrund zu verlagern. Die Prüfung ob bereits eine Berechnung läuft, wird über die Abfrage des Thread Status \texttt{IsAlive} durchgeführt. Ist noch eine Berechnung aktiv, wird das Stop-Flag gesetzt und dann auf die Beendigung des Threads gewartet.
-\emph{Anmerkung: } Auf die Beendigung wird am GUI Thread gewartet, da der Hintergrundthread bei jedem Schleifendurchgang prüft bo das Stop-Flag gesetzt ist. Damit ist die Zeit sehr kurz und kann am GUI-Thread ausgeführt werden.
+Bei dieser Implementierung wurden \texttt{Threads} verwendet, um die Arbeit in den Hintergrund zu verlagern. Die Prüfung ob bereits eine Berechnung läuft, wird über die Abfrage des Thread-Status \texttt{IsAlive} durchgeführt. Ist noch eine Berechnung aktiv, wird das Stop-Flag gesetzt und dann auf die Beendigung des Threads gewartet.
+\emph{Anmerkung: } Auf die Beendigung wird am GUI-Thread gewartet, da der Hintergrundthread bei jedem Schleifendurchgang prüft, ob das Stop-Flag gesetzt ist. Diese Zeitspanne ist sehr kurz und verursacht somit kein Einfrieren der Oberfläche.
 
 \cscode{\srcDir/MandelbrotGenerator/AsyncImageGenerator.cs}
 
 \subsubsection*{Implementierung 2: \texttt{AsyncWorkerImageGenerator}}
-Die \texttt{AsyncWorkerImageGenerator} Implementierung verwendet einen .NET \texttt{BackgroundWorker} um die Arbeit in den Hintergrund zu verlagern. Die Ergebnisweiergabe wird über das Event \texttt{RunWorkerCompleted} und die Eigenschaft \texttt{Result} abgewickelt. Die Synchronisierung der Berechnungen wird über die Eigenschaft \texttt{IsBusy} der Klasse \texttt{BackgroundWorker} gelöst.
+Die \texttt{AsyncWorkerImageGenerator} Implementierung verwendet einen .NET \texttt{BackgroundWorker}, um die Arbeit in den Hintergrund zu verlagern. Die Ergebnisweiergabe wird über das Event \texttt{RunWorkerCompleted} und die Eigenschaft \texttt{Result} abgewickelt. Die Synchronisierung der Berechnungen wird über die Eigenschaft \texttt{IsBusy} der Klasse \texttt{BackgroundWorker} gelöst.
 
 \cscode{\srcDir/MandelbrotGenerator/AsyncWorkerImageGenerator.cs}
 
 \subsection*{1c. Parallele Version}
-Die Aufteilung der Arbeit auf die Worker kann Zeilenweise erfolgen. Dabei wird die benötigte Anzahl an Worker-Threads erzeugt, wobei jeder dieser Threads immer eine Zeile berechnet. Sobald alle Zeilen berechnet sind, werden die Threads beendet. Diese Aufteilung hat den Vorteil, dass die Threads ungefähr gleich ausgelastet sind, da zwei benachbarte Zeilen ungefähr den selben Rechnaufwand verursachen.
+Die Aufteilung der Arbeit auf die Worker kann zeilenweise erfolgen. Dabei wird die benötigte Anzahl an Worker-Threads erzeugt, wobei jeder dieser Threads immer eine Zeile berechnet. Sobald alle Zeilen berechnet sind, werden die Threads beendet. Diese Aufteilung hat den Vorteil, dass die Threads ungefähr gleich ausgelastet sind, da zwei benachbarte Zeilen ungefähr den selben Rechnaufwand verursachen.
 
-Zur Verwaltung der Berechnung wird ein zusätzlicher Management-Thread verwendet. Dieser übernimmt die Zeitmessung und das Ausösten des Events. 
-Der Zugriff auf das Bitmap wird mit Hilfe von Locks gelöst. 
+Zur Verwaltung der Berechnung wird ein zusätzlicher Management-Thread verwendet. Dieser übernimmt die Zeitmessung und das Aulösen des Events. 
+Der Zugriff auf das Bitmap wird mit Hilfe von Locks gesichert. 
 
 \cscode{\srcDir/MandelbrotGenerator/ParallelImageGenerator.cs}
 
@@ -50,24 +50,24 @@ Der Zugriff auf das Bitmap wird mit Hilfe von Locks gelöst.
 \hline
 \multicolumn{3}{c}{Simulation} \\ \cline{1-3}                                                                                 
 Lauf & Sync [ms] & Parallel [ms] \\ \cline{1-3}
-1 & 5584 & 1139 \\
-2 & 5581 & 1163 \\
-3 & 5585 & 1139 \\
-4 & 5580 & 1129 \\
-5 & 5591 & 1164 \\
-6 & 5601 & 1142 \\
-7 & 5574 & 1125 \\
-8 & 5602 & 1163 \\
-9 & 5580 & 1146 \\
-10 & 5606 & 1133 \\ \cline{1-3}
-\textbf{Ø}    & \textbf{5588} & \textbf{1144} \\
-Std. Abw.    & 10,461      & 13,733
+1 & 2832 & 603 \\
+2 & 2817 & 595 \\
+3 & 2829 & 617 \\
+4 & 2822 & 583 \\
+5 & 2819 & 592 \\
+6 & 2828 & 612 \\
+7 & 2834 & 600 \\
+8 & 2822 & 619 \\
+9 & 2823 & 606 \\
+10 & 2844 & 599 \\ \cline{1-3}
+\textbf{Ø}    & \textbf{2827} & \textbf{599} \\
+Std. Abw.    & 7,73      & 10,73
 
 \end{tabular}
 \end{table} 
 
 \begin{itemize}
-\item SpeedUp: 4,885
+\item SpeedUp: 4,69
 \end{itemize}
 
 
