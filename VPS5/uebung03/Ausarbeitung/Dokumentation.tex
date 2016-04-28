@@ -30,7 +30,7 @@ Die \texttt{AsyncWorkerImageGenerator} Implementierung verwendet einen .NET \tex
 \subsection*{1c. Parallele Version}
 Die Aufteilung der Arbeit auf die Worker kann zeilenweise erfolgen. Dabei wird die benötigte Anzahl an Worker-Threads erzeugt, wobei jeder dieser Threads immer eine Zeile berechnet. Sobald alle Zeilen berechnet sind, werden die Threads beendet. Diese Aufteilung hat den Vorteil, dass die Threads ungefähr gleich ausgelastet sind, da zwei benachbarte Zeilen ungefähr den selben Rechnaufwand verursachen.
 
-Zur Verwaltung der Berechnung wird ein zusätzlicher Management-Thread verwendet. Dieser übernimmt die Zeitmessung und das Aulösen des Events. 
+Zur Verwaltung der Berechnung wird ein zusätzlicher Management-Thread verwendet. Dieser übernimmt die Zeitmessung und das Auslösen des Events. 
 Der Zugriff auf das Bitmap wird mit Hilfe von Locks gesichert. 
 
 \cscode{\srcDir/MandelbrotGenerator/ParallelImageGenerator.cs}
