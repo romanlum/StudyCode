@@ -22,7 +22,9 @@ public abstract class AbstractWorkLogManagerTest {
     protected IDatabaseTester databaseTester;
 
     protected IDataSet readDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File(getClass().getResource("/testdata.xml").toURI()));
+        try(InputStream testDataStream = getClass().getResourceAsStream("/testdata.xml")){
+            return new FlatXmlDataSetBuilder().build(testDataStream);
+        }
     }
 
     protected void cleanlyInsertDataset(IDataSet dataSet) throws Exception {
