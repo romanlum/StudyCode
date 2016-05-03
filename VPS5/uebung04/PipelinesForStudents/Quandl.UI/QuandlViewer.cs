@@ -25,9 +25,9 @@ namespace Quandl.UI
         private async void displayButton_Click(object sender, EventArgs e)
         {
             //SequentialImplementation();
-            //ParallelImplementation();
+            ParallelImplementation();
 
-            ParallelAsyncAwaitImplementation();
+            //ParallelAsyncAwaitImplementation();
         }
 
         //private void SequentialImplementation()
