@@ -22,10 +22,12 @@ namespace Quandl.UI
             service = new QuandlService();
         }
 
-        private void displayButton_Click(object sender, EventArgs e)
+        private async void displayButton_Click(object sender, EventArgs e)
         {
             //SequentialImplementation();
-            ParallelImplementation();
+            //ParallelImplementation();
+
+            ParallelAsyncAwaitImplementation();
         }
 
         //private void SequentialImplementation()
@@ -44,8 +46,36 @@ namespace Quandl.UI
         //    SaveImage("chart");
         //}
 
+        private async void ParallelAsyncAwaitImplementation()
+        {
+            List<Series> seriesList = new List<Series>();
+            displayButton.Enabled = false;
+            
+            var tasks = names.Select(GetSeries).ToList();
+            await Task.WhenAll(tasks);
+            tasks.ForEach(x => seriesList.AddRange(x.Result));
+            DisplayData(seriesList);
+            SaveImage("chart");
+            displayButton.Enabled = true;
+        }
+
+        private async Task<List<Series>> GetSeries(string name)
+        {
+            List<Series> seriesList = new List<Series>();
+            StockData data = await RetrieveStockData(name);
+            Task<Series> seriesTask = GetSeries(data.GetValues(),
+                data.name);
+            Task<Series> trendTask = GetTrend(data.GetValues(),
+                data.name);
+
+            seriesList.Add(await seriesTask);
+            seriesList.Add(await trendTask);
+            return seriesList;
+        }
+
         private void ParallelImplementation()
         {
+            //TODO:LOCK
             List<Series> seriesList = new List<Series>();
             displayButton.Enabled = false;
             Task.Factory.StartNew(() =>
@@ -70,18 +100,16 @@ namespace Quandl.UI
                 SaveImage("chart");
                 displayButton.Enabled = true;
             }, TaskScheduler.FromCurrentSynchronizationContext());
-            
         }
-        
-        private  Task<StockData> RetrieveStockData(string name)
+
+        private Task<StockData> RetrieveStockData(string name)
         {
             TaskCompletionSource<StockData> completionSource = new TaskCompletionSource<StockData>();
             Debug.WriteLine("Start RetrieveStockData " + name);
             Task.Factory.StartNew(() =>
             {
-                
                 completionSource.SetResult(service.GetData(name));
-                Debug.WriteLine("End RetrieveStockData "+name);
+                Debug.WriteLine("End RetrieveStockData " + name);
             });
             return completionSource.Task;
         }
