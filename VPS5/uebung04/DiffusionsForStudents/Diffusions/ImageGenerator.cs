@@ -8,33 +8,27 @@ namespace Diffusions
 {
     public abstract class ImageGenerator : IImageGenerator
     {
-        protected bool stopRequested = false;
+        public bool StopRequested { get; protected set; }
 
-        public bool StopRequested
-        {
-            get { return stopRequested; }
-        }
-
-        protected bool finished = false;
-
-        public bool Finished
-        {
-            get { return finished; }
-        }
+        public bool Finished { get; protected set; }
 
         public async void GenerateImage(Area area)
         {
+            Finished = false;
+            StopRequested = false;
             await Task.Factory.StartNew(() =>
              {
                  int maxIt = Settings.DefaultSettings.MaxIterations;
-                 for (int i = 0; i < maxIt; i++)
+                 Stopwatch watch = new Stopwatch();
+                 watch.Start();
+                 for (int i = 0; i < maxIt && !StopRequested; i++)
                  {
-                     Stopwatch watch = new Stopwatch();
-                     watch.Start();
                      Bitmap bitmap = GenerateBitmap(area);
-                     watch.Stop();
                      OnImageGenerated(area, bitmap, watch.Elapsed);
                  }
+                 watch.Stop();
+                 Finished = true;
+                 OnImageGenerated(area, null, watch.Elapsed);
              });
         }
 
@@ -58,17 +52,14 @@ namespace Diffusions
 
         protected void OnImageGenerated(Area area, Bitmap bitmap, TimeSpan timespan)
         {
-            var handler = ImageGenerated;
-            if (handler != null)
-                handler(this,
-                    new EventArgs<Tuple<Area, Bitmap, TimeSpan>>(new Tuple<Area, Bitmap, TimeSpan>(area, bitmap,
-                        timespan)));
+            ImageGenerated?.Invoke(this,
+                new EventArgs<Tuple<Area, Bitmap, TimeSpan>>(new Tuple<Area, Bitmap, TimeSpan>(area, bitmap,
+                    timespan)));
         }
 
         public virtual void Stop()
         {
-            stopRequested = true;
-            //TODO
+            StopRequested = true;
         }
     }
 }
