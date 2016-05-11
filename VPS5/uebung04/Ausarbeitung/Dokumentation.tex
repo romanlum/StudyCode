@@ -9,7 +9,7 @@
 \subsection*{1a. Sequenzielle Version}
 Diese Aufgabe wurde bereits in der Übung programmiert und um das Stoppen und Reheating erweitert. Für die Implementierung selbst wurde eine Basisklasse \texttt{ImageGenerator} erstellt, die die Zeitmessung
 und das Auslösen des Events übernimmt. Weiters wurde das Abbrechen über ein Stop-Flag \texttt{StopRequested} implementiert. Das Reheating wird mit Hilfe einer \texttt{BlockingQueue} ermöglicht. Diese 
-Queue sammelt alle Reheating Aufrufe während einer Iteration und wendet sie dann vor Begin der nächsten Iteration auf die aktuelle Matrix an. 
+Queue sammelt alle Reheating-Aufrufe während einer Iteration und wendet sie dann vor Begin der nächsten Iteration auf die aktuelle Matrix an. 
 
 Der \texttt{SyncImageGenerator} implementiert dann nur noch die Logik zur Erzeugung der nächsten Matrix und Berechnung der Farben.
 
@@ -18,13 +18,13 @@ Der \texttt{SyncImageGenerator} implementiert dann nur noch die Logik zur Erzeug
 
 \subsection*{1b. Berechnung im Hintergrund}
 Um die Berechnung in den Hintergrund zu verlagern, wurden die Statements in der Methode \texttt{GenerateImage} in einen Task gekapselt und dann mit \texttt{await} auf die Beendigung gewartet. Dadurch wird
-der UI-Thread nicht blokiert und die GUI bleibt bedienbar. Auf Synchronisierungsprobleme und die Möglichkeit zum Abbrechen wurde bereits bei der Implementierung 1a Rücksicht genommen.
+der UI-Thread nicht blockiert und die GUI bleibt bedienbar. Auf Synchronisierungsprobleme und die Möglichkeit zum Abbrechen wurde bereits bei der Implementierung 1a Rücksicht genommen.
 
 \textbf{Sourcecode siehe 1.a}
 
 \subsection*{1c. Parallele Version}
 Da die Berechnungen der einzelnen Felder der neuen Matrix vollkommen unabhängig voneinander sind, ist es möglich die Schleifen paralell ablaufen zu lassen. Dabei müssen keine Synchronisierungen durchgeführt werden.
-Für die Implementierung eigent sich die TPL besonders gut, da hier eine Parallele Version der For-Schleife angeboten wird. Da der paralell ausgeführte Code nicht umfangreich ist, wird zusätzlich ein \texttt{Partitioner} eingesetzt, da sonst der Overhead zu groß und eventuell die paralelle Version langsamer als die sequenzielle Version sein würde.
+Für die Implementierung eignet sich die TPL besonders gut, da hier eine parallele Version der For-Schleife angeboten wird. Da der paralell ausgeführte Code nicht umfangreich ist, wird zusätzlich ein \texttt{Partitioner} eingesetzt, da sonst der Overhead zu groß und eventuell die paralelle Version langsamer als die sequenzielle Version sein würde.
 
 Die Klasse \texttt{ParallelImageGenerator} ist wieder von \texttt{ImageGenerator} abgeleitet und implementiert die Berechnung der neuen Matrix mit Hilfe der TPL. 
 
@@ -60,7 +60,7 @@ Std. Abw.    & 54,34      & 77,95
 \begin{itemize}
 \item SpeedUp: 1,06277
 \end{itemize}
-Beim Speedup von 1,06277 zeigt, das paralellisierung hier nicht viel bringt, da die Berechnung der neuen Matrix nicht wirklich aufwendig ist.
+Beim Speedup von 1,06277 zeigt, dass Paralellisierung hier nicht viel bringt, da die Berechnung der neuen Matrix nicht wirklich aufwendig ist.
 
 \pagebreak
 \subsubsection*{Screenshots}
@@ -73,11 +73,11 @@ Beim Speedup von 1,06277 zeigt, das paralellisierung hier nicht viel bringt, da 
 
 \section{Stock Data Visualization}
 \subsection*{2a. Asynchrone Version}
-Die Asynchrone Implementierung verwendet die TPL um die gewünschte, paralelle Abfolge zu erreichen. Dazu wurden die synchronen Methoden um asynchrone Versionen ergänzt. Diese liefern anstatt des
-Ergebnisses einen Task zurück, auf den dann gewartet und mit \texttt{ContinueWith} weitergearbeitet werden kann. Die asynchrone Implementierung \texttt{ParallelImplementation} zeigt diese Implementierung.
+Die asynchrone Implementierung verwendet die TPL, um die gewünschte, paralelle Abfolge zu erreichen. Dazu wurden die synchronen Methoden um asynchrone Versionen ergänzt. Diese liefern anstatt des
+Ergebnisses einen Task zurück, auf den dann gewartet und mit \texttt{ContinueWith} weitergearbeitet werden kann. Die asynchrone Implementierung wurde in der Methode \texttt{ParallelImplementation} umgesetzt.
 
-Zuerst wrid ein Management-Task gestartet, um die UI nicht zu blockieren. Dieser Task erstellt dann drei weitere Tasks, die paralell die Börsedaten abrufen. Für jeden dieser Tasks werden dann zwei
-weitere Task gestartet, die paralell die Kurve bzw. den Trend berechnet. Der Management-Task waretet dann auf alle Ergebnisse und zeigt diese dann in der UI an. Dazu wurde dem Task der \texttt{Scheduler}
+Zuerst wird ein Management-Task gestartet, um das GUI nicht zu blockieren. Dieser Task erstellt dann drei weitere Tasks, die paralell die Börsedaten abrufen. Für jeden dieser Tasks werden dann zwei
+weitere Task gestartet, die paralell die Kurve bzw. den Trend berechnen. Der Management-Task wartet dann auf alle Ergebnisse und zeigt diese dann im GUI an. Dazu wurde dem Task der \texttt{Scheduler}
 des UI-Threads mitgegeben, um die Continuation am UI-Thread auszuführen und somit die GUI-Controls updaten zu können.
 
 \pagebreak
@@ -139,12 +139,12 @@ private void ParallelImplementation()
 \end{minted}
 
 \subsection*{2b. Asynchrone Version mit async/await} 
-Die \texttt{async/await} Implementierung verwendet wieder die Async Versionen der Methoden, da diese einen \texttt{Task} zurückliefern, auf den mit Hilfe von \texttt{await} gewartet werden kann. 
+Die \texttt{async/await} Implementierung verwendet wieder die Async-Versionen der Methoden, da diese einen \texttt{Task} zurückliefern, auf den mit Hilfe von \texttt{await} gewartet werden kann. 
 Die Implementierung ist ähnlich der von 2a, doch anstatt von ContinueWith wird await verwendet. Dazu wird wieder für jede Aktie ein Task erstellt und in eine Liste gespeichert. Jeder dieser Tasks holt 
-sich dann die Börsedaten durch den Aufruf von \texttt{RetrieveStockDataAsync}. Mit Hilfe von await wird auf das Ergebniss gewartet. Dannach folgen die paralellen Aufurfe von \texttt{GetSeriesAsync} und \texttt{GetTrendAsync}.
+sich dann die Börsendaten durch den Aufruf von \texttt{RetrieveStockDataAsync}. Mit Hilfe von await wird auf das Ergebnis gewartet. Danach folgen die paralellen Aufrufe von \texttt{GetSeriesAsync} und \texttt{GetTrendAsync}.
 Diese werden dann durch den Aufruf von \texttt{await} wieder synchronisiert. 
 
-Der Aufruf \texttt{await Task.WhenAll} wartet schließlich auf den Abschluss aller Haupttasks und danach kann das Ergebniss in der GUI angezeigt werden.
+Der Aufruf \texttt{await Task.WhenAll} wartet schließlich auf den Abschluss aller Haupttasks und danach kann das Ergebnis in der GUI angezeigt werden.
 
 \pagebreak
 \textbf{Async/Await Implementierung}
