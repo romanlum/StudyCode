@@ -1,0 +1,129 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Collections.Concurrent}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Diagnostics}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Drawing}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Threading.Tasks}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{Diffusions}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{public} \PYG{k}{abstract} \PYG{k}{class} \PYG{n+nc}{ImageGenerator} \PYG{p}{:} \PYG{n}{IImageGenerator}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{protected} \PYG{n}{ConcurrentQueue}\PYG{p}{\PYGZlt{}}\PYG{n}{ReheatItem}\PYG{p}{\PYGZgt{}} \PYG{n}{reheatItems}\PYG{p}{;}
+
+        \PYG{k}{public} \PYG{k+kt}{bool} \PYG{n}{StopRequested} \PYG{p}{\PYGZob{}} \PYG{k}{get}\PYG{p}{;} \PYG{k}{protected} \PYG{k}{set}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{public} \PYG{k+kt}{bool} \PYG{n}{Finished} \PYG{p}{\PYGZob{}} \PYG{k}{get}\PYG{p}{;} \PYG{k}{protected} \PYG{k}{set}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{public} \PYG{n+nf}{ImageGenerator}\PYG{p}{()}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{reheatItems} \PYG{p}{=} \PYG{k}{new} \PYG{n}{ConcurrentQueue}\PYG{p}{\PYGZlt{}}\PYG{n}{ReheatItem}\PYG{p}{\PYGZgt{}();}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{public} \PYG{k}{async} \PYG{k}{void} \PYG{n+nf}{GenerateImage}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{Finished} \PYG{p}{=} \PYG{k}{false}\PYG{p}{;}
+            \PYG{n}{StopRequested} \PYG{p}{=} \PYG{k}{false}\PYG{p}{;}
+            \PYG{k}{await} \PYG{n}{Task}\PYG{p}{.}\PYG{n}{Factory}\PYG{p}{.}\PYG{n}{StartNew}\PYG{p}{(()} \PYG{p}{=\PYGZgt{}}
+             \PYG{p}{\PYGZob{}}
+                 \PYG{k+kt}{int} \PYG{n}{maxIt} \PYG{p}{=} \PYG{n}{Settings}\PYG{p}{.}\PYG{n}{DefaultSettings}\PYG{p}{.}\PYG{n}{MaxIterations}\PYG{p}{;}
+                 \PYG{n}{Stopwatch} \PYG{n}{watch} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Stopwatch}\PYG{p}{();}
+                 \PYG{n}{watch}\PYG{p}{.}\PYG{n}{Start}\PYG{p}{();}
+                 \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{maxIt} \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{p}{!}\PYG{n}{StopRequested}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+                 \PYG{p}{\PYGZob{}}
+                     \PYG{c+c1}{//check reheats}
+                     \PYG{k}{while} \PYG{p}{(!}\PYG{n}{reheatItems}\PYG{p}{.}\PYG{n}{IsEmpty}\PYG{p}{)}
+                     \PYG{p}{\PYGZob{}}
+                         \PYG{n}{ReheatItem} \PYG{n}{item}\PYG{p}{;}
+                         \PYG{k}{if} \PYG{p}{(}\PYG{n}{reheatItems}\PYG{p}{.}\PYG{n}{TryDequeue}\PYG{p}{(}\PYG{k}{out} \PYG{n}{item}\PYG{p}{))}
+                         \PYG{p}{\PYGZob{}}
+                             \PYG{n}{ReheatMatrix}\PYG{p}{(}\PYG{n}{area}\PYG{p}{.}\PYG{n}{Matrix}\PYG{p}{,} \PYG{n}{item}\PYG{p}{);}
+                         \PYG{p}{\PYGZcb{}}
+                     \PYG{p}{\PYGZcb{}}
+
+                     \PYG{n}{Bitmap} \PYG{n}{bitmap} \PYG{p}{=} \PYG{n}{GenerateBitmap}\PYG{p}{(}\PYG{n}{area}\PYG{p}{);}
+                     \PYG{n}{OnImageGenerated}\PYG{p}{(}\PYG{n}{area}\PYG{p}{,} \PYG{n}{bitmap}\PYG{p}{,} \PYG{n}{watch}\PYG{p}{.}\PYG{n}{Elapsed}\PYG{p}{);}
+                    
+                 \PYG{p}{\PYGZcb{}}
+                 \PYG{n}{watch}\PYG{p}{.}\PYG{n}{Stop}\PYG{p}{();}
+                 \PYG{n}{Finished} \PYG{p}{=} \PYG{k}{true}\PYG{p}{;}
+                 \PYG{n}{OnImageGenerated}\PYG{p}{(}\PYG{n}{area}\PYG{p}{,} \PYG{k}{null}\PYG{p}{,} \PYG{n}{watch}\PYG{p}{.}\PYG{n}{Elapsed}\PYG{p}{);}
+             \PYG{p}{\PYGZcb{});}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{protected} \PYG{k}{abstract} \PYG{n}{Bitmap} \PYG{n+nf}{GenerateBitmap}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{are}\PYG{p}{);}
+
+        \PYG{k}{public} \PYG{k}{virtual} \PYG{k}{void} \PYG{n+nf}{ColorBitmap}\PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{[,]} \PYG{n}{array}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{width}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{height}\PYG{p}{,} \PYG{n}{Bitmap} \PYG{n}{bm}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{int} \PYG{n}{maxColorIndex} \PYG{p}{=} \PYG{n}{ColorSchema}\PYG{p}{.}\PYG{n}{Colors}\PYG{p}{.}\PYG{n}{Count} \PYG{p}{\PYGZhy{}} \PYG{l+m}{1}\PYG{p}{;}
+
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{width}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{j} \PYG{p}{\PYGZlt{}} \PYG{n}{height}\PYG{p}{;} \PYG{n}{j}\PYG{p}{++)}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{k+kt}{int} \PYG{n}{colorIndex} \PYG{p}{=} \PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)} \PYG{n}{array}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]\PYGZpc{}}\PYG{n}{maxColorIndex}\PYG{p}{;}
+                    \PYG{n}{bm}\PYG{p}{.}\PYG{n}{SetPixel}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{,} \PYG{n}{ColorSchema}\PYG{p}{.}\PYG{n}{Colors}\PYG{p}{[}\PYG{n}{colorIndex}\PYG{p}{]);}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{public} \PYG{k}{event} \PYG{n}{EventHandler}\PYG{p}{\PYGZlt{}}\PYG{n}{EventArgs}\PYG{p}{\PYGZlt{}}\PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}\PYGZgt{}\PYGZgt{}} \PYG{n}{ImageGenerated}\PYG{p}{;}
+
+        \PYG{k}{protected} \PYG{k}{void} \PYG{n+nf}{OnImageGenerated}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{,} \PYG{n}{Bitmap} \PYG{n}{bitmap}\PYG{p}{,} \PYG{n}{TimeSpan} \PYG{n}{timespan}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{ImageGenerated}\PYG{p}{?.}\PYG{n}{Invoke}\PYG{p}{(}\PYG{k}{this}\PYG{p}{,}
+                \PYG{k}{new} \PYG{n}{EventArgs}\PYG{p}{\PYGZlt{}}\PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,} \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}\PYGZgt{}(}\PYG{k}{new} \PYG{n}{Tuple}\PYG{p}{\PYGZlt{}}\PYG{n}{Area}\PYG{p}{,} \PYG{n}{Bitmap}\PYG{p}{,}
+                    \PYG{n}{TimeSpan}\PYG{p}{\PYGZgt{}(}\PYG{n}{area}\PYG{p}{,} \PYG{n}{bitmap}\PYG{p}{,}\PYG{n}{timespan}\PYG{p}{)));}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{public} \PYG{k}{virtual} \PYG{k}{void} \PYG{n+nf}{Stop}\PYG{p}{()}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{StopRequested} \PYG{p}{=} \PYG{k}{true}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Adds a pending reheat to the image generator}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}x\PYGZdq{}\PYGZgt{}The x.\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}y\PYGZdq{}\PYGZgt{}The y.\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}width\PYGZdq{}\PYGZgt{}The width.\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}height\PYGZdq{}\PYGZgt{}The height.\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}size\PYGZdq{}\PYGZgt{}The size.\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}val\PYGZdq{}\PYGZgt{}The value.\PYGZlt{}/param\PYGZgt{}}
+        \PYG{k}{public} \PYG{k}{void} \PYG{n+nf}{Reheat}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{width}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{height}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{size}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{val}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{reheatItems}\PYG{p}{.}\PYG{n}{Enqueue}\PYG{p}{(}\PYG{k}{new} \PYG{n}{ReheatItem}
+            \PYG{p}{\PYGZob{}}
+                \PYG{n}{X} \PYG{p}{=} \PYG{n}{x}\PYG{p}{,}
+                \PYG{n}{Y} \PYG{p}{=} \PYG{n}{y}\PYG{p}{,}
+                \PYG{n}{Width} \PYG{p}{=} \PYG{n}{width}\PYG{p}{,}
+                \PYG{n}{Height} \PYG{p}{=} \PYG{n}{height}\PYG{p}{,}
+                \PYG{n}{Size} \PYG{p}{=} \PYG{n}{size}\PYG{p}{,}
+                \PYG{n}{Val} \PYG{p}{=} \PYG{n}{val}
+            \PYG{p}{\PYGZcb{});}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{c+c1}{/// \PYGZlt{}summary\PYGZgt{}}
+        \PYG{c+c1}{/// Reheats the matrix.}
+        \PYG{c+c1}{/// \PYGZlt{}/summary\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}matrix\PYGZdq{}\PYGZgt{}The matrix.\PYGZlt{}/param\PYGZgt{}}
+        \PYG{c+c1}{/// \PYGZlt{}param name=\PYGZdq{}item\PYGZdq{}\PYGZgt{}The item.\PYGZlt{}/param\PYGZgt{}}
+        \PYG{k}{private} \PYG{k}{void} \PYG{n+nf}{ReheatMatrix}\PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{[,]} \PYG{n}{matrix}\PYG{p}{,} \PYG{n}{ReheatItem} \PYG{n}{item}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{item}\PYG{p}{.}\PYG{n}{Size}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{j} \PYG{p}{\PYGZlt{}} \PYG{n}{item}\PYG{p}{.}\PYG{n}{Size}\PYG{p}{;} \PYG{n}{j}\PYG{p}{++)}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{n}{matrix}\PYG{p}{[(}\PYG{n}{item}\PYG{p}{.}\PYG{n}{X} \PYG{p}{+} \PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZpc{}} \PYG{n}{item}\PYG{p}{.}\PYG{n}{Width}\PYG{p}{,} \PYG{p}{(}\PYG{n}{item}\PYG{p}{.}\PYG{n}{Y} \PYG{p}{+} \PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZpc{}} \PYG{n}{item}\PYG{p}{.}\PYG{n}{Height}\PYG{p}{]} \PYG{p}{=} \PYG{n}{item}\PYG{p}{.}\PYG{n}{Val}\PYG{p}{;}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+
+
+
+
+    \PYG{p}{\PYGZcb{}}
+
+
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

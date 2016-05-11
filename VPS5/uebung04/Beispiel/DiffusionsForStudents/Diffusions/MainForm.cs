@@ -19,8 +19,8 @@ namespace Diffusions {
       graphics.FillRectangle(Brushes.Azure, 0, 0, pictureBox.Width, pictureBox.Height);
       graphics.Dispose();
 
-      //generator = new SyncImageGenerator();
-      generator = new ParallelImageGenerator();
+      generator = new SyncImageGenerator();
+      //generator = new ParallelImageGenerator();
       generator.ImageGenerated += generator_ImageGenerated;
     }
 
@@ -32,17 +32,11 @@ namespace Diffusions {
           currentArea.Matrix[i, j] = 0;
         }
       }
-      Reheat(currentArea.Matrix, 5, 5, pictureBox.Width, pictureBox.Height, 100, 150);
-      Reheat(currentArea.Matrix, 100, 100, pictureBox.Width, pictureBox.Height, 80, defaultHeat);
+      generator.Reheat(5, 5, pictureBox.Width, pictureBox.Height, 100, 150);
+      generator.Reheat(100, 100, pictureBox.Width, pictureBox.Height, 80, defaultHeat);
     }
 
-    private void Reheat(double[,] matrix, int x, int y, int width, int height, int size, double val) {
-      for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-          matrix[(x + i) % width, (y + j) % height] = val;
-        }
-      }
-    }
+   
 
     private void UpdateImage(Area area) {
       toolStripStatusLabel.Text = "Calculating ...";
@@ -97,8 +91,9 @@ namespace Diffusions {
       int x = e.X;
       int y = e.Y;
 
-      if (e.Button == MouseButtons.Left) {
-        Reheat(currentArea.Matrix, x, y, currentArea.Width, currentArea.Height, tipSize, defaultHeat);
+      
+      if (running && e.Button == MouseButtons.Left) {
+        generator.Reheat(x, y, currentArea.Width, currentArea.Height, tipSize, defaultHeat);
       }
     }
     #endregion

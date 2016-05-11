@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{private} \PYG{k}{void} \PYG{n+nf}{ParallelImplementation}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+		\PYG{n}{displayButton}\PYG{p}{.}\PYG{n}{Enabled} \PYG{p}{=} \PYG{k}{false}\PYG{p}{;}
+		\PYG{n}{Task}\PYG{p}{.}\PYG{n}{Factory}\PYG{p}{.}\PYG{n}{StartNew}\PYG{p}{(()} \PYG{p}{=\PYGZgt{}}
+		\PYG{p}{\PYGZob{}}
+				\PYG{k+kt}{var} \PYG{n}{seriesList} \PYG{p}{=} \PYG{k}{new} \PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}();}
+				\PYG{k+kt}{var} \PYG{n}{tasks} \PYG{p}{=} \PYG{k}{new} \PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{Task}\PYG{p}{\PYGZgt{}();}
+				\PYG{k}{foreach} \PYG{p}{(}\PYG{k+kt}{var} \PYG{n}{name} \PYG{k}{in} \PYG{n}{names}\PYG{p}{)}
+				\PYG{p}{\PYGZob{}}
+						\PYG{n}{tasks}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{RetrieveStockDataAsync}\PYG{p}{(}\PYG{n}{name}\PYG{p}{).}\PYG{n}{ContinueWith}\PYG{p}{(}\PYG{n}{x} \PYG{p}{=\PYGZgt{}}
+						\PYG{p}{\PYGZob{}}
+								\PYG{k+kt}{var} \PYG{n}{seriesTasks} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Task}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}[}\PYG{l+m}{2}\PYG{p}{];}
+								\PYG{n}{seriesTasks}\PYG{p}{[}\PYG{l+m}{0}\PYG{p}{]} \PYG{p}{=} \PYG{n}{GetSeriesAsync}\PYG{p}{(}\PYG{n}{x}\PYG{p}{.}\PYG{n}{Result}\PYG{p}{.}\PYG{n}{GetValues}\PYG{p}{(),} \PYG{n}{x}\PYG{p}{.}\PYG{n}{Result}\PYG{p}{.}\PYG{n}{name}\PYG{p}{);}
+								\PYG{n}{seriesTasks}\PYG{p}{[}\PYG{l+m}{1}\PYG{p}{]} \PYG{p}{=} \PYG{n}{GetTrendAsync}\PYG{p}{(}\PYG{n}{x}\PYG{p}{.}\PYG{n}{Result}\PYG{p}{.}\PYG{n}{GetValues}\PYG{p}{(),} \PYG{n}{x}\PYG{p}{.}\PYG{n}{Result}\PYG{p}{.}\PYG{n}{name}\PYG{p}{);}
+								\PYG{n}{Task}\PYG{p}{.}\PYG{n}{WaitAll}\PYG{p}{(}\PYG{n}{seriesTasks}\PYG{p}{);}
+								\PYG{n}{seriesList}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{seriesTasks}\PYG{p}{[}\PYG{l+m}{0}\PYG{p}{].}\PYG{n}{Result}\PYG{p}{);}
+								\PYG{n}{seriesList}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{seriesTasks}\PYG{p}{[}\PYG{l+m}{1}\PYG{p}{].}\PYG{n}{Result}\PYG{p}{);}
+						\PYG{p}{\PYGZcb{}));}
+				\PYG{p}{\PYGZcb{}}
+				\PYG{n}{Task}\PYG{p}{.}\PYG{n}{WaitAll}\PYG{p}{(}\PYG{n}{tasks}\PYG{p}{.}\PYG{n}{ToArray}\PYG{p}{());}
+				\PYG{k}{return} \PYG{n}{seriesList}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}).}\PYG{n}{ContinueWith}\PYG{p}{(}\PYG{n}{x} \PYG{p}{=\PYGZgt{}}
+		\PYG{p}{\PYGZob{}}
+				\PYG{n}{DisplayData}\PYG{p}{(}\PYG{n}{x}\PYG{p}{.}\PYG{n}{Result}\PYG{p}{);}
+				\PYG{n}{SaveImage}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}chart\PYGZdq{}}\PYG{p}{);}
+				\PYG{n}{displayButton}\PYG{p}{.}\PYG{n}{Enabled} \PYG{p}{=} \PYG{k}{true}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{},} \PYG{n}{TaskScheduler}\PYG{p}{.}\PYG{n}{FromCurrentSynchronizationContext}\PYG{p}{());}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

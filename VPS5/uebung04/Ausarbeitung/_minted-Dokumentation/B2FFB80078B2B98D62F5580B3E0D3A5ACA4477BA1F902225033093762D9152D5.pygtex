@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{private} \PYG{n}{Task}\PYG{p}{\PYGZlt{}}\PYG{n}{StockData}\PYG{p}{\PYGZgt{}} \PYG{n}{RetrieveStockDataAsync}\PYG{p}{(}\PYG{k+kt}{string} \PYG{n}{name}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{Task}\PYG{p}{.}\PYG{n}{Factory}\PYG{p}{.}\PYG{n}{StartNew}\PYG{p}{(()} \PYG{p}{=\PYGZgt{}} \PYG{n}{RetrieveStockData}\PYG{p}{(}\PYG{n}{name}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+\PYG{k}{private} \PYG{n}{Task}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}} \PYG{n}{GetSeriesAsync}\PYG{p}{(}\PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{StockValue}\PYG{p}{\PYGZgt{}} \PYG{n}{stockValues}\PYG{p}{,} \PYG{k+kt}{string} \PYG{n}{name}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{Task}\PYG{p}{.}\PYG{n}{Factory}\PYG{p}{.}\PYG{n}{StartNew}\PYG{p}{(()} \PYG{p}{=\PYGZgt{}} \PYG{n}{GetSeries}\PYG{p}{(}\PYG{n}{stockValues}\PYG{p}{,} \PYG{n}{name}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+\PYG{k}{private} \PYG{n}{Task}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}} \PYG{n}{GetTrendAsync}\PYG{p}{(}\PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{StockValue}\PYG{p}{\PYGZgt{}} \PYG{n}{stockValues}\PYG{p}{,} \PYG{k+kt}{string} \PYG{n}{name}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{Task}\PYG{p}{.}\PYG{n}{Factory}\PYG{p}{.}\PYG{n}{StartNew}\PYG{p}{(()} \PYG{p}{=\PYGZgt{}} \PYG{n}{GetTrend}\PYG{p}{(}\PYG{n}{stockValues}\PYG{p}{,} \PYG{n}{name}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

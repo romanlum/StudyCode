@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n+nn}{System.Drawing}\PYG{p}{;}
+\PYG{k}{using} \PYG{n+nn}{System.Resources}\PYG{p}{;}
+
+\PYG{k}{namespace} \PYG{n+nn}{Diffusions}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{class} \PYG{n+nc}{SyncImageGenerator}\PYG{p}{:}\PYG{n}{ImageGenerator}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{protected} \PYG{k}{override} \PYG{n}{Bitmap} \PYG{n+nf}{GenerateBitmap}\PYG{p}{(}\PYG{n}{Area} \PYG{n}{area}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k+kt}{var} \PYG{n}{matrix} \PYG{p}{=} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Matrix}\PYG{p}{;}
+            \PYG{k+kt}{int} \PYG{n}{height} \PYG{p}{=} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Height}\PYG{p}{;}
+            \PYG{k+kt}{int} \PYG{n}{width} \PYG{p}{=} \PYG{n}{area}\PYG{p}{.}\PYG{n}{Width}\PYG{p}{;}
+            \PYG{k+kt}{var} \PYG{n}{newMatrix} \PYG{p}{=} \PYG{k}{new} \PYG{k+kt}{double}\PYG{p}{[}\PYG{n}{width}\PYG{p}{,} \PYG{n}{height}\PYG{p}{];}
+
+            \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{i} \PYG{p}{\PYGZlt{}} \PYG{n}{width}\PYG{p}{;} \PYG{n}{i}\PYG{p}{++)}
+            \PYG{p}{\PYGZob{}}
+                \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;} \PYG{n}{j} \PYG{p}{\PYGZlt{}} \PYG{n}{height}\PYG{p}{;} \PYG{n}{j}\PYG{p}{++)}
+                \PYG{p}{\PYGZob{}}
+                    \PYG{k+kt}{int} \PYG{n}{jp}\PYG{p}{,} \PYG{n}{jm}\PYG{p}{,} \PYG{n}{ip}\PYG{p}{,} \PYG{n}{im}\PYG{p}{;}
+
+                    \PYG{n}{jp}\PYG{p}{=(}\PYG{n}{j} \PYG{p}{+} \PYG{n}{height} \PYG{p}{\PYGZhy{}} \PYG{l+m}{1}\PYG{p}{)\PYGZpc{}}\PYG{n}{height}\PYG{p}{;}
+                    \PYG{n}{jm} \PYG{p}{=} \PYG{p}{(}\PYG{n}{j} \PYG{p}{+} \PYG{l+m}{1}\PYG{p}{)\PYGZpc{}}\PYG{n}{height}\PYG{p}{;}
+                    \PYG{n}{ip}\PYG{p}{=} \PYG{p}{(}\PYG{n}{i} \PYG{p}{+} \PYG{l+m}{1}\PYG{p}{)\PYGZpc{}}\PYG{n}{width}\PYG{p}{;}
+                    \PYG{n}{im} \PYG{p}{=} \PYG{p}{(}\PYG{n}{i} \PYG{p}{+} \PYG{n}{width} \PYG{p}{\PYGZhy{}} \PYG{l+m}{1}\PYG{p}{)\PYGZpc{}}\PYG{n}{width}\PYG{p}{;}
+
+                    \PYG{n}{newMatrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{p}{=} \PYG{p}{(}\PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{jp}\PYG{p}{]} \PYG{p}{+}
+                                       \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{jm}\PYG{p}{]} \PYG{p}{+}
+                                       \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{ip}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{p}{+}
+                                       \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{im}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{p}{+}
+                                       \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{ip}\PYG{p}{,} \PYG{n}{jp}\PYG{p}{]} \PYG{p}{+}
+                                       \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{im}\PYG{p}{,} \PYG{n}{jm}\PYG{p}{]} \PYG{p}{+}
+                                       \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{ip}\PYG{p}{,} \PYG{n}{jm}\PYG{p}{]} \PYG{p}{+}
+                                       \PYG{n}{matrix}\PYG{p}{[}\PYG{n}{im}\PYG{p}{,} \PYG{n}{jp}\PYG{p}{])} \PYG{p}{/} \PYG{l+m}{8.0}\PYG{p}{;}
+
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{n}{area}\PYG{p}{.}\PYG{n}{Matrix} \PYG{p}{=} \PYG{n}{newMatrix}\PYG{p}{;}
+            \PYG{n}{Bitmap} \PYG{n}{bitmap} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Bitmap}\PYG{p}{(}\PYG{n}{width}\PYG{p}{,} \PYG{n}{height}\PYG{p}{);}
+            \PYG{n}{ColorBitmap}\PYG{p}{(}\PYG{n}{newMatrix}\PYG{p}{,} \PYG{n}{width}\PYG{p}{,} \PYG{n}{height}\PYG{p}{,} \PYG{n}{bitmap}\PYG{p}{);}
+            \PYG{k}{return} \PYG{n}{bitmap}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

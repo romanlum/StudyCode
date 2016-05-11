@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{private} \PYG{k}{async} \PYG{k}{void} \PYG{n+nf}{ParallelAsyncAwaitImplementation}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{var} \PYG{n}{seriesList} \PYG{p}{=} \PYG{k}{new} \PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}();}
+		\PYG{n}{displayButton}\PYG{p}{.}\PYG{n}{Enabled} \PYG{p}{=} \PYG{k}{false}\PYG{p}{;}
+
+		\PYG{k+kt}{var} \PYG{n}{tasks} \PYG{p}{=} \PYG{n}{names}\PYG{p}{.}\PYG{n}{Select}\PYG{p}{(}\PYG{n}{GetDataAsync}\PYG{p}{).}\PYG{n}{ToList}\PYG{p}{();}
+		\PYG{k}{await} \PYG{n}{Task}\PYG{p}{.}\PYG{n}{WhenAll}\PYG{p}{(}\PYG{n}{tasks}\PYG{p}{);}
+		\PYG{n}{tasks}\PYG{p}{.}\PYG{n}{ForEach}\PYG{p}{(}\PYG{n}{x} \PYG{p}{=\PYGZgt{}} \PYG{n}{seriesList}\PYG{p}{.}\PYG{n}{AddRange}\PYG{p}{(}\PYG{n}{x}\PYG{p}{.}\PYG{n}{Result}\PYG{p}{));}
+		\PYG{n}{DisplayData}\PYG{p}{(}\PYG{n}{seriesList}\PYG{p}{);}
+		\PYG{n}{SaveImage}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}chart\PYGZdq{}}\PYG{p}{);}
+		\PYG{n}{displayButton}\PYG{p}{.}\PYG{n}{Enabled} \PYG{p}{=} \PYG{k}{true}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{private} \PYG{k}{async} \PYG{n}{Task}\PYG{p}{\PYGZlt{}}\PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}\PYGZgt{}} \PYG{n}{GetDataAsync}\PYG{p}{(}\PYG{k+kt}{string} \PYG{n}{name}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{var} \PYG{n}{seriesList} \PYG{p}{=} \PYG{k}{new} \PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}();}
+		\PYG{n}{StockData} \PYG{n}{data} \PYG{p}{=} \PYG{k}{await} \PYG{n}{RetrieveStockDataAsync}\PYG{p}{(}\PYG{n}{name}\PYG{p}{);}
+		\PYG{n}{Task}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}} \PYG{n}{seriesTask} \PYG{p}{=} \PYG{n}{GetSeriesAsync}\PYG{p}{(}\PYG{n}{data}\PYG{p}{.}\PYG{n}{GetValues}\PYG{p}{(),}
+				\PYG{n}{data}\PYG{p}{.}\PYG{n}{name}\PYG{p}{);}
+		\PYG{n}{Task}\PYG{p}{\PYGZlt{}}\PYG{n}{Series}\PYG{p}{\PYGZgt{}} \PYG{n}{trendTask} \PYG{p}{=} \PYG{n}{GetTrendAsync}\PYG{p}{(}\PYG{n}{data}\PYG{p}{.}\PYG{n}{GetValues}\PYG{p}{(),}
+				\PYG{n}{data}\PYG{p}{.}\PYG{n}{name}\PYG{p}{);}
+
+		\PYG{n}{seriesList}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{k}{await} \PYG{n}{seriesTask}\PYG{p}{);}
+		\PYG{n}{seriesList}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{k}{await} \PYG{n}{trendTask}\PYG{p}{);}
+		\PYG{k}{return} \PYG{n}{seriesList}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

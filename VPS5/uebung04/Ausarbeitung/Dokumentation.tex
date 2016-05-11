@@ -1,0 +1,184 @@
+\input{master.tex}
+
+\ihead{VPS SS 2016 - Übung 04}
+\ifoot{Roman Lumetsberger}
+\cfoot{1310307026}
+\ofoot{Seite \pagemark}
+
+\section{Psychedelic Diffusions}
+\subsection*{1a. Sequenzielle Version}
+Diese Aufgabe wurde bereits in der Übung programmiert und um das Stoppen und Reheating erweitert. Für die Implementierung selbst wurde eine Basisklasse \texttt{ImageGenerator} erstellt, die die Zeitmessung
+und das Auslösen des Events übernimmt. Weiters wurde das Abbrechen über ein Stop-Flag \texttt{StopRequested} implementiert. Das Reheating wird mit Hilfe einer \texttt{BlockingQueue} ermöglicht. Diese 
+Queue sammelt alle Reheating Aufrufe während einer Iteration und wendet sie dann vor Begin der nächsten Iteration auf die aktuelle Matrix an. 
+
+Der \texttt{SyncImageGenerator} implementiert dann nur noch die Logik zur Erzeugung der nächsten Matrix und Berechnung der Farben.
+
+\cscode{\srcDir/DiffusionsForStudents/Diffusions/ImageGenerator.cs}
+\cscode{\srcDir/DiffusionsForStudents/Diffusions/SyncImageGenerator.cs}
+
+\subsection*{1b. Berechnung im Hintergrund}
+Um die Berechnung in den Hintergrund zu verlagern, wurden die Statements in der Methode \texttt{GenerateImage} in einen Task gekapselt und dann mit \texttt{await} auf die Beendigung gewartet. Dadurch wird
+der UI-Thread nicht blokiert und die GUI bleibt bedienbar. Auf Synchronisierungsprobleme und die Möglichkeit zum Abbrechen wurde bereits bei der Implementierung 1a Rücksicht genommen.
+
+\textbf{Sourcecode siehe 1.a}
+
+\subsection*{1c. Parallele Version}
+Da die Berechnungen der einzelnen Felder der neuen Matrix vollkommen unabhängig voneinander sind, ist es möglich die Schleifen paralell ablaufen zu lassen. Dabei müssen keine Synchronisierungen durchgeführt werden.
+Für die Implementierung eigent sich die TPL besonders gut, da hier eine Parallele Version der For-Schleife angeboten wird. Da der paralell ausgeführte Code nicht umfangreich ist, wird zusätzlich ein \texttt{Partitioner} eingesetzt, da sonst der Overhead zu groß und eventuell die paralelle Version langsamer als die sequenzielle Version sein würde.
+
+Die Klasse \texttt{ParallelImageGenerator} ist wieder von \texttt{ImageGenerator} abgeleitet und implementiert die Berechnung der neuen Matrix mit Hilfe der TPL. 
+
+\cscode{\srcDir/DiffusionsForStudents/Diffusions/ParallelImageGenerator.cs}
+
+\subsubsection*{Performance}
+\textbf{Parameter}
+\begin{itemize}
+\item DisplayInterval: 10
+\item MaxIterations: 200
+\item Size: 335x224
+\item kein Reheating
+\end{itemize}
+
+\begin{table}[!htb]
+\centering
+\caption{Ergebnisse}
+\begin{tabular}{ccc}
+\hline
+\multicolumn{3}{c}{Simulation} \\ \cline{1-3}                                                                                 
+Lauf & Sync [ms] & Parallel [ms] \\ \cline{1-3}
+1 & 8566 & 7870 \\
+2 & 8398 & 8060 \\
+3 & 8474 & 7970 \\
+4 & 8469 & 7900 \\
+5 & 8451 & 8056 \\
+\textbf{Ø}    & \textbf{8471} & \textbf{7971} \\
+Std. Abw.    & 54,34      & 77,95
+
+\end{tabular}
+\end{table} 
+
+\begin{itemize}
+\item SpeedUp: 1,06277
+\end{itemize}
+Beim Speedup von 1,06277 zeigt, das paralellisierung hier nicht viel bringt, da die Berechnung der neuen Matrix nicht wirklich aufwendig ist.
+
+\pagebreak
+\subsubsection*{Screenshots}
+\begin{figure}[!htb]
+\includegraphics[width=150px]{images/1c_1.png}
+\includegraphics[width=150px]{images/1c_2.png}
+\caption{Screenshots}
+\end{figure}
+
+
+\section{Stock Data Visualization}
+\subsection*{2a. Asynchrone Version}
+Die Asynchrone Implementierung verwendet die TPL um die gewünschte, paralelle Abfolge zu erreichen. Dazu wurden die synchronen Methoden um asynchrone Versionen ergänzt. Diese liefern anstatt des
+Ergebnisses einen Task zurück, auf den dann gewartet und mit \texttt{ContinueWith} weitergearbeitet werden kann. Die asynchrone Implementierung \texttt{ParallelImplementation} zeigt diese Implementierung.
+
+Zuerst wrid ein Management-Task gestartet, um die UI nicht zu blockieren. Dieser Task erstellt dann drei weitere Tasks, die paralell die Börsedaten abrufen. Für jeden dieser Tasks werden dann zwei
+weitere Task gestartet, die paralell die Kurve bzw. den Trend berechnet. Der Management-Task waretet dann auf alle Ergebnisse und zeigt diese dann in der UI an. Dazu wurde dem Task der \texttt{Scheduler}
+des UI-Threads mitgegeben, um die Continuation am UI-Thread auszuführen und somit die GUI-Controls updaten zu können.
+
+\pagebreak
+\textbf{Async Versionen der Methoden}
+\begin{minted}[
+frame=lines,
+fontsize=\footnotesize,
+tabsize=2
+]{csharp}
+private Task<StockData> RetrieveStockDataAsync(string name)
+{
+		return Task.Factory.StartNew(() => RetrieveStockData(name));
+}
+private Task<Series> GetSeriesAsync(List<StockValue> stockValues, string name)
+{
+		return Task.Factory.StartNew(() => GetSeries(stockValues, name));
+}
+private Task<Series> GetTrendAsync(List<StockValue> stockValues, string name)
+{
+		return Task.Factory.StartNew(() => GetTrend(stockValues, name));
+}
+\end{minted}
+
+\textbf{Paralelle Version}
+\begin{minted}[
+frame=lines,
+fontsize=\footnotesize,
+tabsize=2
+]{csharp}
+private void ParallelImplementation()
+{
+		displayButton.Enabled = false;
+		Task.Factory.StartNew(() =>
+		{
+				var seriesList = new List<Series>();
+				var tasks = new List<Task>();
+				foreach (var name in names)
+				{
+						tasks.Add(RetrieveStockDataAsync(name).ContinueWith(x =>
+						{
+								var seriesTasks = new Task<Series>[2];
+								seriesTasks[0] = GetSeriesAsync(x.Result.GetValues(), x.Result.name);
+								seriesTasks[1] = GetTrendAsync(x.Result.GetValues(), x.Result.name);
+								Task.WaitAll(seriesTasks);
+								seriesList.Add(seriesTasks[0].Result);
+								seriesList.Add(seriesTasks[1].Result);
+						}));
+				}
+				Task.WaitAll(tasks.ToArray());
+				return seriesList;
+		}).ContinueWith(x =>
+		{
+				DisplayData(x.Result);
+				SaveImage("chart");
+				displayButton.Enabled = true;
+		}, TaskScheduler.FromCurrentSynchronizationContext());
+}
+
+\end{minted}
+
+\subsection*{2b. Asynchrone Version mit async/await} 
+Die \texttt{async/await} Implementierung verwendet wieder die Async Versionen der Methoden, da diese einen \texttt{Task} zurückliefern, auf den mit Hilfe von \texttt{await} gewartet werden kann. 
+Die Implementierung ist ähnlich der von 2a, doch anstatt von ContinueWith wird await verwendet. Dazu wird wieder für jede Aktie ein Task erstellt und in eine Liste gespeichert. Jeder dieser Tasks holt 
+sich dann die Börsedaten durch den Aufruf von \texttt{RetrieveStockDataAsync}. Mit Hilfe von await wird auf das Ergebniss gewartet. Dannach folgen die paralellen Aufurfe von \texttt{GetSeriesAsync} und \texttt{GetTrendAsync}.
+Diese werden dann durch den Aufruf von \texttt{await} wieder synchronisiert. 
+
+Der Aufruf \texttt{await Task.WhenAll} wartet schließlich auf den Abschluss aller Haupttasks und danach kann das Ergebniss in der GUI angezeigt werden.
+
+\pagebreak
+\textbf{Async/Await Implementierung}
+\begin{minted}[
+frame=lines,
+fontsize=\footnotesize,
+tabsize=2
+]{csharp}
+private async void ParallelAsyncAwaitImplementation()
+{
+		var seriesList = new List<Series>();
+		displayButton.Enabled = false;
+
+		var tasks = names.Select(GetDataAsync).ToList();
+		await Task.WhenAll(tasks);
+		tasks.ForEach(x => seriesList.AddRange(x.Result));
+		DisplayData(seriesList);
+		SaveImage("chart");
+		displayButton.Enabled = true;
+}
+
+private async Task<List<Series>> GetDataAsync(string name)
+{
+		var seriesList = new List<Series>();
+		StockData data = await RetrieveStockDataAsync(name);
+		Task<Series> seriesTask = GetSeriesAsync(data.GetValues(),
+				data.name);
+		Task<Series> trendTask = GetTrendAsync(data.GetValues(),
+				data.name);
+
+		seriesList.Add(await seriesTask);
+		seriesList.Add(await trendTask);
+		return seriesList;
+}
+\end{minted}
+
+\end{document}
