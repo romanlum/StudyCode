@@ -3,8 +3,10 @@ package swt6.soccer.logic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import swt6.soccer.dao.GameRepository;
 import swt6.soccer.dao.TeamRepository;
 import swt6.soccer.dao.UserRepository;
+import swt6.soccer.domain.Game;
 import swt6.soccer.domain.Team;
 import swt6.soccer.domain.User;
 
@@ -22,6 +24,9 @@ public class SoccerServiceJPA implements SoccerService {
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private GameRepository gameRepository;
 
     @Override
     public User syncUser(User user) {
@@ -41,5 +46,10 @@ public class SoccerServiceJPA implements SoccerService {
     @Override
     public List<Team> findAllTeams() {
         return teamRepository.findAll();
+    }
+
+    @Override
+    public Game syncGame(Game game) {
+        return gameRepository.saveAndFlush(game);
     }
 }

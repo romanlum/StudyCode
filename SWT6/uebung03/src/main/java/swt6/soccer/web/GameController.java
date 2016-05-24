@@ -1,5 +1,6 @@
 package swt6.soccer.web;
 
+import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import swt6.soccer.domain.Game;
 import swt6.soccer.logic.SoccerService;
+
+import javax.validation.Valid;
+import java.util.Objects;
 
 /**
  * Controller for games
@@ -37,13 +40,21 @@ public class GameController {
         return "games/manage";
     }
 
-    @RequestMapping(value = "/games/new",
-            method = RequestMethod.POST)
-    public String processNew(@ModelAttribute("entry") Game entry, BindingResult result, Model model){
+    @RequestMapping(value = "/games/new", method = RequestMethod.POST)
+    public String processNew(@Valid @ModelAttribute("entry") Game entry, BindingResult result, Model model){
+        return processUpdate(entry,result,model);
+    }
 
-        logger.info("teamA: "+entry.getDate());
+    private String processUpdate(Game entry, @NonNull BindingResult result, @NonNull Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("teams",soccerService.findAllTeams());
+            return "games/manage";
+        }
 
-        return "games/manage";
+        soccerService.syncGame(entry);
+        logger.debug("added/updated entry {}", entry);
+        return "redirect:/games";
+
     }
 
 }

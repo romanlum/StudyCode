@@ -17,19 +17,22 @@
         <input type="hidden" th:field="*{id}" />
 
         <div class="row">
-            <div class="form-group col-sm-12">
+            <div class="form-group col-sm-12"
+                 th:classappend="${#fields.hasErrors('date')} ? 'has-error'">
                 <label for="date">Date:</label>
                 <div class="input-group date" data-provide="datepicker">
-
                     <input  id="date" th:field="*{date}" type="text" class="form-control"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                     </div>
                 </div>
+                <label class="control-label" th:errors="*{date}">[error]</label>
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-6">
+
+            <div class="form-group col-sm-6"
+                 th:classappend="${#fields.hasErrors('teamA')} ? 'has-error'">
                 <div class="form-group">
                     <label for="teamA">Team:</label>
                     <select th:field="*{teamA}" class="form-control" id="teamA">
@@ -38,10 +41,12 @@
                                 th:value="${team.id}"
                                 th:text="${team.name}">Team</option>
                     </select>
-
+                    <label class="control-label" th:errors="*{teamA}">[error]</label>
                 </div>
             </div>
-            <div class="form-group col-sm-6">
+
+            <div class="form-group col-sm-6"
+                 th:classappend="${#fields.hasErrors('teamB')} ? 'has-error'">
                 <div class="form-group">
                     <label for="teamB">Team:</label>
                     <select th:field="*{teamB}" class="form-control" id="teamB">
@@ -50,6 +55,7 @@
                                 th:value="${team.id}"
                                 th:text="${team.name}">Team</option>
                     </select>
+                    <label class="control-label" th:errors="*{teamB}">[error]</label>
                 </div>
             </div>
         </div>

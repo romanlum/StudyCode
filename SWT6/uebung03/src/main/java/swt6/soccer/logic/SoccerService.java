@@ -1,5 +1,6 @@
 package swt6.soccer.logic;
 
+import swt6.soccer.domain.Game;
 import swt6.soccer.domain.Team;
 import swt6.soccer.domain.User;
 
@@ -36,4 +37,10 @@ public interface SoccerService {
      * @return
      */
     List<Team> findAllTeams();
+
+    /**
+     * Creates or updates the given game
+     * @return updated game object
+     */
+    Game syncGame(Game game);
 }
