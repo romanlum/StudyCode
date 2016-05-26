@@ -43,4 +43,11 @@ public interface SoccerService {
      * @return updated game object
      */
     Game syncGame(Game game);
+
+    /***
+     * Finds the game with the given id
+     * @param id
+     * @return game or null
+     */
+    Game findGame(Long id);
 }

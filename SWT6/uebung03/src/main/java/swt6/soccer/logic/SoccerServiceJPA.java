@@ -43,6 +43,7 @@ public class SoccerServiceJPA implements SoccerService {
         return teamRepository.findOne(id);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Team> findAllTeams() {
         return teamRepository.findAll();
@@ -51,5 +52,11 @@ public class SoccerServiceJPA implements SoccerService {
     @Override
     public Game syncGame(Game game) {
         return gameRepository.saveAndFlush(game);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Game findGame(Long id) {
+        return gameRepository.findOne(id);
     }
 }

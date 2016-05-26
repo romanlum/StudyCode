@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import swt6.soccer.domain.Game;
@@ -42,10 +44,35 @@ public class GameController {
 
     @RequestMapping(value = "/games/new", method = RequestMethod.POST)
     public String processNew(@Valid @ModelAttribute("entry") Game entry, BindingResult result, Model model){
-        return processUpdate(entry,result,model);
+        return internalProcessUpdate(entry,result,model);
     }
 
-    private String processUpdate(Game entry, @NonNull BindingResult result, @NonNull Model model) {
+    @RequestMapping(value = "/games/{gameId}/update", method = RequestMethod.GET)
+    public String initUpdate(@PathVariable("gameId") Long gameId,Model model){
+
+        Game game = soccerService.findGame(gameId);
+        //validate game
+        if(game == null) {
+            return "redirect:/games";
+        }
+
+        model.addAttribute("entry",game);
+        model.addAttribute("teams",soccerService.findAllTeams());
+
+        return "games/manage";
+    }
+    @RequestMapping("/games/{gameId}/update")
+    public String processUpdate(@PathVariable("gameId") Long gameId,@Valid @ModelAttribute("entry") Game entry, BindingResult result, Model model){
+        return internalProcessUpdate(entry,result,model);
+    }
+
+    private String internalProcessUpdate(Game entry, @NonNull BindingResult result, @NonNull Model model) {
+
+        //validate team
+        if(Objects.equals(entry.getTeamA().getId(), entry.getTeamB().getId())) {
+            result.addError(new FieldError("entry", "teamB","please choose another team."));
+        }
+
         if (result.hasErrors()) {
             model.addAttribute("teams",soccerService.findAllTeams());
             return "games/manage";
@@ -54,7 +81,6 @@ public class GameController {
         soccerService.syncGame(entry);
         logger.debug("added/updated entry {}", entry);
         return "redirect:/games";
-
     }
 
 }
