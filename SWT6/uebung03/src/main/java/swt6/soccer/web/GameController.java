@@ -1,6 +1,5 @@
 package swt6.soccer.web;
 
-import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +85,7 @@ public class GameController {
         return "games/manage";
     }
     @RequestMapping("/games/{gameId}/update_result")
-    public String processUpdate(@PathVariable("gameId") Long gameId, @ModelAttribute("entry") Game entry, BindingResult result, Model model){
+    public String processUpdate(@PathVariable("gameId") Long gameId, @ModelAttribute("entry") Game entry, Model model){
         if (gameId == null) {
             model.addAttribute("teams",soccerService.findAllTeams());
             return "games/manage";

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import swt6.soccer.domain.Game;
-import swt6.soccer.domain.Team;
 import swt6.soccer.logic.SoccerService;
 
 @Component

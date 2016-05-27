@@ -1,9 +1,6 @@
 package swt6.soccer.logic.exceptions;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import swt6.soccer.domain.Game;
 import swt6.soccer.domain.User;
 
@@ -11,6 +8,7 @@ import swt6.soccer.domain.User;
  * Exception when a tip for a given user and game
  * already exists
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
