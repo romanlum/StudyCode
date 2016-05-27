@@ -25,6 +25,7 @@
 				<ul class="nav navbar-nav">
 					<li><a th:href="@{/games/finished}" th:text="#{nav.games_finished}">games</a></li>
 					<li><a th:href="@{/games/open}" th:text="#{nav.games_open}">open games</a></li>
+					<li><a th:href="@{/tips/new}" th:text="#{nav.new_tip}">new tip</a></li>
 				</ul>
 			</div>
 		</div>
@@ -37,11 +38,11 @@
 
     <div th:fragment="scripts">
         <script type="text/javascript" th:src="@{/js/jquery.min.js}"
-                href="../static/js/jquery.min.js" />
+                href="../static/js/jquery.min.js" ></script>
         <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"
-                href="../static/js/bootstrap.min.js" />
+                href="../static/js/bootstrap.min.js" ></script>
         <script type="text/javascript" th:src="@{/js/bootstrap-datepicker.min.js}"
-                href="../static/js/bootstrap-datepicker.min.js" />
+                href="../static/js/bootstrap-datepicker.min.js" ></script>
     </div>
 
 </body>

@@ -5,11 +5,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import swt6.soccer.dao.GameRepository;
 import swt6.soccer.dao.TeamRepository;
+import swt6.soccer.dao.TipRepository;
 import swt6.soccer.dao.UserRepository;
 import swt6.soccer.domain.Game;
 import swt6.soccer.domain.Team;
+import swt6.soccer.domain.Tip;
 import swt6.soccer.domain.User;
 import swt6.soccer.logic.exceptions.GameNotFoundException;
+import swt6.soccer.logic.exceptions.TipAlreadyExistsException;
 
 import java.util.List;
 
@@ -28,6 +31,9 @@ public class SoccerServiceJPA implements SoccerService {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private TipRepository tipRepository;
 
     @Override
     public User syncUser(User user) {
@@ -85,5 +91,21 @@ public class SoccerServiceJPA implements SoccerService {
         game.setFinished(true);
         return gameRepository.saveAndFlush(game);
 
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public Tip addTip(Tip tip) throws TipAlreadyExistsException {
+
+        Tip tipForUser = tipRepository.findByGameIdAndUserId(tip.getGame().getId(),tip.getUser().getId());
+        if(tipForUser != null) {
+            throw new TipAlreadyExistsException(tip.getGame(),tip.getUser());
+        }
+        return tipRepository.saveAndFlush(tip);
     }
 }
