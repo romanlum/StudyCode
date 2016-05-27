@@ -106,6 +106,9 @@ public class SoccerServiceJPA implements SoccerService {
         if(tipForUser != null) {
             throw new TipAlreadyExistsException(tip.getGame(),tip.getUser());
         }
+
+        tip.getUser().getTips().add(tip);
+
         return tipRepository.saveAndFlush(tip);
     }
 }

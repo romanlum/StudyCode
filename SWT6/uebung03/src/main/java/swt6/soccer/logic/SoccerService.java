@@ -84,6 +84,8 @@ public interface SoccerService {
      */
     List<User> findAllUsers();
 
+
+
     /***
      * Creates or updates the tip
      * @param tip tip which is updated
@@ -92,4 +94,6 @@ public interface SoccerService {
      *                                   already exists
      */
     Tip addTip(Tip tip) throws TipAlreadyExistsException;
+
+
 }

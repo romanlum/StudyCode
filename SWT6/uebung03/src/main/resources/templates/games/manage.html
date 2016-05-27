@@ -22,7 +22,7 @@
                 <label for="date">Date:</label>
                 <div class="input-group date" data-provide="datepicker">
                     <input id="date" th:field="*{date}" type="text" class="form-control"
-                           th:readonly="${entry.id == null ? 'false' : 'true'}"/>
+                           th:disabled="${entry.id == null ? 'false' : 'true'}"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label for="teamA">Team:</label>
                     <select th:field="*{teamA}" class="form-control" id="teamA"
-                            th:readonly="${entry.id == null ? 'false' : 'true'}">
+                            th:disabled="${entry.id == null ? 'false' : 'true'}">
                         <!--/*@thymesVar id="team" type="swt6.soccer.domain.Team"*/-->
                         <option th:each="team : ${teams}"
                                 th:value="${team.id}"
@@ -49,10 +49,11 @@
 
             <div class="form-group col-sm-6"
                  th:classappend="${#fields.hasErrors('teamB')} ? 'has-error'"
-                 th:readonly="${entry.id == null ? 'false' : 'true'}">
+                 th:disabled="${entry.id == null ? 'false' : 'true'}">
                 <div class="form-group">
                     <label for="teamB">Team:</label>
-                    <select th:field="*{teamB}" class="form-control" id="teamB">
+                    <select th:field="*{teamB}" class="form-control" id="teamB"
+                            th:disabled="${entry.id == null ? 'false' : 'true'}">
                         <!--/*@thymesVar id="team" type="swt6.soccer.domain.Team"*/-->
                         <option th:each="team : ${teams}"
                                 th:value="${team.id}"

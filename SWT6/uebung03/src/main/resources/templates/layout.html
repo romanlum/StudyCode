@@ -23,8 +23,10 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
+					<li><a th:href="@{/tips/score}" th:text="#{nav.score}">score</a></li>
 					<li><a th:href="@{/games/finished}" th:text="#{nav.games_finished}">games</a></li>
 					<li><a th:href="@{/games/open}" th:text="#{nav.games_open}">open games</a></li>
+					<li><a th:href="@{/games/new}" th:text="#{nav.new_game}">new game</a></li>
 					<li><a th:href="@{/tips/new}" th:text="#{nav.new_tip}">new tip</a></li>
 				</ul>
 			</div>

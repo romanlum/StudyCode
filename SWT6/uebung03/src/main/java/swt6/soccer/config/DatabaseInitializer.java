@@ -30,12 +30,14 @@ public class DatabaseInitializer implements CommandLineRunner {
     }
 
     private void addTeams() {
-        soccerService.syncTeam(new Team("Österreich"));
+        soccerService.syncTeam(new Team("Austria"));
         soccerService.syncTeam(new Team("Montenegro"));
-        soccerService.syncTeam(new Team("Schweden"));
-        soccerService.syncTeam(new Team("Russland"));
-        soccerService.syncTeam(new Team("Lichtenstein"));
-        soccerService.syncTeam(new Team("Moldavien"));
+        soccerService.syncTeam(new Team("Sweden"));
+        soccerService.syncTeam(new Team("Russia"));
+        soccerService.syncTeam(new Team("Germany"));
+        soccerService.syncTeam(new Team("France"));
+        soccerService.syncTeam(new Team("Switzerland"));
+
     }
 
 

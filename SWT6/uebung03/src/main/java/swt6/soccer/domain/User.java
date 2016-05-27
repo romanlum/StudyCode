@@ -1,16 +1,21 @@
 package swt6.soccer.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * User entity
  */
 @Entity
 @Data
+@EqualsAndHashCode(exclude = "tips")
+@ToString(exclude = "tips")
 public class User {
 
     @Id
@@ -19,6 +24,14 @@ public class User {
 
     private String email;
     private String name;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Tip> tips = new HashSet<>();
+
+    @Transient
+    public long getPoints() {
+        return tips.stream().filter(x -> x.isCorrect()).count();
+    }
 
     public User(String name,String email){
         this.name=name;

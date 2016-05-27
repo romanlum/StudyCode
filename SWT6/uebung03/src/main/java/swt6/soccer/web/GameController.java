@@ -86,19 +86,20 @@ public class GameController {
         return "games/manage";
     }
     @RequestMapping("/games/{gameId}/update_result")
-    public String processUpdate(@PathVariable("gameId") Long gameId,@Valid @ModelAttribute("entry") Game entry, BindingResult result, Model model){
-        if (result.hasErrors()) {
+    public String processUpdate(@PathVariable("gameId") Long gameId, @ModelAttribute("entry") Game entry, BindingResult result, Model model){
+        if (gameId == null) {
             model.addAttribute("teams",soccerService.findAllTeams());
             return "games/manage";
         }
 
         try {
+            //only goals are available in the entry because disabeld fields are not submitted
             soccerService.addGameResults(gameId,entry.getGoalsA(),entry.getGoalsB());
         } catch (GameNotFoundException e) {
             logger.warn("Could not update game with id {}, because it was not found",e.getGameId());
         }
 
-        return "redirect:/games/finished";
+        return "redirect:/games/open";
     }
 
 }

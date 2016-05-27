@@ -26,9 +26,14 @@ public class Tip {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-
     private int tipGoalsA;
     private int tipGoalsB;
+
+    @Transient
+    public boolean isCorrect() {
+        return game != null && game.getGoalsA() == tipGoalsA &&
+                game.getGoalsB() == tipGoalsB;
+    }
 
 
 

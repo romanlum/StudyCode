@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import swt6.soccer.domain.Tip;
+import swt6.soccer.domain.User;
 import swt6.soccer.logic.SoccerService;
 import swt6.soccer.logic.exceptions.TipAlreadyExistsException;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -59,6 +62,16 @@ public class TipController {
 
         logger.debug("added tip {}", entry);
         return "redirect:/tips/score";
+    }
+
+    @RequestMapping(value = "/tips/score", method = RequestMethod.GET)
+    public String listScore(Model model) {
+        List<User> users = soccerService.findAllUsers();
+        users.sort((x,y) -> Long.valueOf(x.getPoints()).compareTo(y.getPoints()));
+        Collections.reverse(users);
+        model.addAttribute("users",users);
+
+        return "tips/score";
     }
 
 }
