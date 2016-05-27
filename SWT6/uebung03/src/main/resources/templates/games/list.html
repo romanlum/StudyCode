@@ -9,10 +9,38 @@
 <div class="container">
 
     <div class="page-title">
-        <h2 th:text="#{games.title}">Games List</h2>
+        <!--/*@thymesVar id="finished" type="java.lang.Boolean"*/-->
+        <h2 th:if="${finished}" th:text="#{games.finished.title}">Games List</h2>
+        <h2 th:if="${!finished}" th:text="#{games.open.title}">Games List</h2>
     </div>
 
     <a th:href="@{/games/new}" th:text="#{games.new}">games</a>
+
+    <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+            <th>Team</th>
+            <th>Team</th>
+            <th>Goals</th>
+            <th>Goals</th>
+            <th>Date</th>
+            <th th:if="${!finished}" >Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="game : ${games}" >
+            <!--/*@thymesVar id="game" type="swt6.soccer.domain.Game"*/-->
+            <td th:text="${game.teamA.name}">Team A</td>
+            <td th:text="${game.teamB.name}">Team B</td>
+            <td th:text="${game.goalsA}">0</td>
+            <td th:text="${game.goalsB}">0</td>
+            <td th:text="${game.date}">2000-01-01</td>
+            <td th:if="${!finished}">
+                <a th:href="@{|/games/${game.id}/update_result|}" th:text="#{games.open.update_result}">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 
 </div>

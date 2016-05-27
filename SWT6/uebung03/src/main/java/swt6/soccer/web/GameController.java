@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import swt6.soccer.domain.Game;
 import swt6.soccer.logic.SoccerService;
+import swt6.soccer.logic.exceptions.GameNotFoundException;
 
 import javax.validation.Valid;
 import java.util.Objects;
@@ -29,8 +30,17 @@ public class GameController {
 
     private final Logger logger = LoggerFactory.getLogger(GameController.class);
 
-    @RequestMapping(value = "/games")
-    public String listGames(Model model) {
+    @RequestMapping(value = "/games/finished")
+    public String listFinishedGames(Model model) {
+        model.addAttribute("games",soccerService.getFinishedGamesList());
+        model.addAttribute("finished",true);
+        return "games/list";
+    }
+
+    @RequestMapping(value = "/games/open")
+    public String listOpenGames(Model model) {
+        model.addAttribute("games",soccerService.getOpenGamesList());
+        model.addAttribute("finished",false);
         return "games/list";
     }
 
@@ -44,30 +54,6 @@ public class GameController {
 
     @RequestMapping(value = "/games/new", method = RequestMethod.POST)
     public String processNew(@Valid @ModelAttribute("entry") Game entry, BindingResult result, Model model){
-        return internalProcessUpdate(entry,result,model);
-    }
-
-    @RequestMapping(value = "/games/{gameId}/update", method = RequestMethod.GET)
-    public String initUpdate(@PathVariable("gameId") Long gameId,Model model){
-
-        Game game = soccerService.findGame(gameId);
-        //validate game
-        if(game == null) {
-            return "redirect:/games";
-        }
-
-        model.addAttribute("entry",game);
-        model.addAttribute("teams",soccerService.findAllTeams());
-
-        return "games/manage";
-    }
-    @RequestMapping("/games/{gameId}/update")
-    public String processUpdate(@PathVariable("gameId") Long gameId,@Valid @ModelAttribute("entry") Game entry, BindingResult result, Model model){
-        return internalProcessUpdate(entry,result,model);
-    }
-
-    private String internalProcessUpdate(Game entry, @NonNull BindingResult result, @NonNull Model model) {
-
         //validate team
         if(Objects.equals(entry.getTeamA().getId(), entry.getTeamB().getId())) {
             result.addError(new FieldError("entry", "teamB","please choose another team."));
@@ -79,8 +65,40 @@ public class GameController {
         }
 
         soccerService.syncGame(entry);
-        logger.debug("added/updated entry {}", entry);
-        return "redirect:/games";
+        logger.debug("added entry {}", entry);
+        return "redirect:/games/open";
+    }
+
+
+
+    @RequestMapping(value = "/games/{gameId}/update_result", method = RequestMethod.GET)
+    public String initUpdate(@PathVariable("gameId") Long gameId,Model model){
+
+        Game game = soccerService.findGame(gameId);
+        //validate game
+        if(game == null) {
+            return "redirect:/games/open";
+        }
+
+        model.addAttribute("entry",game);
+        model.addAttribute("teams",soccerService.findAllTeams());
+
+        return "games/manage";
+    }
+    @RequestMapping("/games/{gameId}/update_result")
+    public String processUpdate(@PathVariable("gameId") Long gameId,@Valid @ModelAttribute("entry") Game entry, BindingResult result, Model model){
+        if (result.hasErrors()) {
+            model.addAttribute("teams",soccerService.findAllTeams());
+            return "games/manage";
+        }
+
+        try {
+            soccerService.addGameResults(gameId,entry.getGoalsA(),entry.getGoalsB());
+        } catch (GameNotFoundException e) {
+            logger.warn("Could not update game with id {}, because it was not found",e.getGameId());
+        }
+
+        return "redirect:/games/finished";
     }
 
 }

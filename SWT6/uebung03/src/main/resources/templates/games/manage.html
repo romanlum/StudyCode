@@ -21,8 +21,8 @@
                  th:classappend="${#fields.hasErrors('date')} ? 'has-error'">
                 <label for="date">Date:</label>
                 <div class="input-group date" data-provide="datepicker">
-                    <input  id="date" th:field="*{date}" type="text" class="form-control"
-                            th:readonly="${entry.id == null ? 'false' : 'true'}"/>
+                    <input id="date" th:field="*{date}" type="text" class="form-control"
+                           th:readonly="${entry.id == null ? 'false' : 'true'}"/>
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
                     </div>

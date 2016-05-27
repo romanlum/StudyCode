@@ -33,4 +33,6 @@ public class Game {
     @NotNull
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     private LocalDate date;
+
+    private boolean finished;
 }

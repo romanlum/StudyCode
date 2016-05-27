@@ -9,6 +9,7 @@ import swt6.soccer.dao.UserRepository;
 import swt6.soccer.domain.Game;
 import swt6.soccer.domain.Team;
 import swt6.soccer.domain.User;
+import swt6.soccer.logic.exceptions.GameNotFoundException;
 
 import java.util.List;
 
@@ -58,5 +59,31 @@ public class SoccerServiceJPA implements SoccerService {
     @Override
     public Game findGame(Long id) {
         return gameRepository.findOne(id);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Game> getFinishedGamesList() {
+        return gameRepository.findByFinishedOrderByDateDesc(true);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Game> getOpenGamesList() {
+        return gameRepository.findByFinishedOrderByDateDesc(false);
+    }
+
+    @Override
+    public Game addGameResults(Long gameId, int goalsTeamA, int goalsTeamB) throws GameNotFoundException {
+        Game game = gameRepository.findOne(gameId);
+        if(game == null) {
+            throw new GameNotFoundException(gameId);
+        }
+
+        game.setGoalsA(goalsTeamA);
+        game.setGoalsB(goalsTeamB);
+        game.setFinished(true);
+        return gameRepository.saveAndFlush(game);
+
     }
 }

@@ -3,6 +3,7 @@ package swt6.soccer.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import swt6.soccer.domain.Game;
 import swt6.soccer.domain.Team;
 import swt6.soccer.domain.User;
 import swt6.soccer.logic.SoccerService;
