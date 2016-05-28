@@ -17,8 +17,8 @@
         <input type="hidden" th:field="*{id}" />
         <!-- used for validation -->
         <input th:if="${entry.id != null}" type="hidden" th:field="*{date}" />
-        <input th:if="${entry.id != null}" type="hidden" th:field="*{teamA.id}" />
-        <input th:if="${entry.id != null}" type="hidden" th:field="*{teamB.id}" />
+        <input th:if="${entry.id != null}" type="hidden" th:value="*{teamA.id}" name="teamA" />
+        <input th:if="${entry.id != null}" type="hidden" th:value="*{teamB.id}" name="teamB" />
 
 
         <div class="row">
