@@ -51,14 +51,11 @@ public class TipController {
             }
         }
 
-
         if (result.hasErrors()) {
             model.addAttribute("games",soccerService.getOpenGamesList());
             model.addAttribute("users",soccerService.findAllUsers());
             return "tips/manage";
         }
-
-
 
         logger.debug("added tip {}", entry);
         return "redirect:/tips/score";

@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -27,7 +28,10 @@ public class Game {
     @JoinColumn(name = "TEAM_B_ID")
     private Team teamB;
 
+    @Min(0)
     private int goalsA;
+
+    @Min(0)
     private int goalsB;
 
     @NotNull

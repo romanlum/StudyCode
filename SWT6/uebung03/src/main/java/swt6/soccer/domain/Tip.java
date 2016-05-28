@@ -3,6 +3,7 @@ package swt6.soccer.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -26,7 +27,10 @@ public class Tip {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    @Min(0)
     private int tipGoalsA;
+
+    @Min(0)
     private int tipGoalsB;
 
     @Transient

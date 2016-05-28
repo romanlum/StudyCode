@@ -15,6 +15,11 @@
     <!--/*@thymesVar id="entry" type="swt6.soccer.domain.Game"*/-->
     <form th:object="${entry}" method="post" >
         <input type="hidden" th:field="*{id}" />
+        <!-- used for validation -->
+        <input th:if="${entry.id != null}" type="hidden" th:field="*{date}" />
+        <input th:if="${entry.id != null}" type="hidden" th:field="*{teamA.id}" />
+        <input th:if="${entry.id != null}" type="hidden" th:field="*{teamB.id}" />
+
 
         <div class="row">
             <div class="form-group col-sm-12"
