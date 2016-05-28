@@ -35,7 +35,8 @@ public class Tip {
 
     @Transient
     public boolean isCorrect() {
-        return game != null && game.getGoalsA() == tipGoalsA &&
+        return game != null && game.isFinished() &&
+                game.getGoalsA() == tipGoalsA &&
                 game.getGoalsB() == tipGoalsB;
     }
 
