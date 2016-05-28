@@ -35,8 +35,8 @@
                         <tr>
                             <th th:text="#{games.list.teamA}">Team</th>
                             <th th:text="#{games.list.teamB}">Team</th>
-                            <th th:text="#{games.list.goalsA}">Goals</th>
-                            <th th:text="#{games.list.goalsB}">Goals</th>
+                            <th th:if="${finished}" th:text="#{games.list.goalsA}">Goals</th>
+                            <th th:if="${finished}" th:text="#{games.list.goalsB}">Goals</th>
                             <th th:text="#{games.list.date}">Date</th>
                             <th th:text="#{games.list.action}" th:if="${!finished}">Action</th>
                         </tr>
@@ -46,8 +46,8 @@
                             <!--/*@thymesVar id="game" type="swt6.soccer.domain.Game"*/-->
                             <td class="vert-align" th:text="${game.teamA.name}">Team A</td>
                             <td class="vert-align" th:text="${game.teamB.name}">Team B</td>
-                            <td class="vert-align" th:text="${game.goalsA}">0</td>
-                            <td class="vert-align" th:text="${game.goalsB}">0</td>
+                            <td th:if="${finished}" class="vert-align" th:text="${game.goalsA}">0</td>
+                            <td th:if="${finished}" class="vert-align" th:text="${game.goalsB}">0</td>
                             <td class="vert-align" th:text="${game.date}">2000-01-01</td>
                             <td class="vert-align" th:if="${!finished}">
                                 <a class="btn btn-success btn-sm" role="button" th:href="@{|/games/${game.id}/update_result|}">
