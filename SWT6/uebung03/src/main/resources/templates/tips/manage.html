@@ -15,12 +15,14 @@
     <!--/*@thymesVar id="entry" type="swt6.soccer.domain.Tip"*/-->
     <form th:object="${entry}" method="post">
         <div class="row">
+            <!-- global errors -->
             <div class="alert alert-danger" th:if="${#fields.hasGlobalErrors()}">
                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
             </div>
+
             <div class="form-group col-sm-6"
                  th:classappend="${#fields.hasErrors('game')} ? 'has-error'">
-                <label  for="game">Game:</label>
+                <label  for="game" th:text="#{tips.manage.game}">Game:</label>
                 <select id="game" th:field="*{game}"
                         class="form-control">
                     <!--/*@thymesVar id="gameEntry" type="swt6.soccer.domain.Game"*/-->
@@ -34,7 +36,7 @@
 
             <div class="form-group col-sm-6"
                  th:classappend="${#fields.hasErrors('user')} ? 'has-error'">
-                <label class="control-label" for="user">User:</label>
+                <label class="control-label" for="user" th:text="#{tips.manage.user}">User:</label>
                 <select id="user" th:field="*{user}"
                         class="form-control">
                     <!--/*@thymesVar id="users" type="List<swt6.soccer.domain.User>"*/-->
@@ -50,7 +52,8 @@
         <div class="row">
             <div class="col-md-6 form-group"
                  th:classappend="${#fields.hasErrors('tipGoalsA')} ? 'has-error'">
-                <label class="control-label" for="goalsA">Goals of team A:</label>
+                <label class="control-label" for="goalsA"
+                       th:text="#{tips.manage.goalsA}">Goals of team A:</label>
                 <input id="goalsA" type="text" th:field="*{tipGoalsA}"
                        class="form-control" />
                 <label class="control-label" th:errors="*{tipGoalsA}">[error]</label>
@@ -59,7 +62,8 @@
             <div class="col-md-6 form-group"
                  th:classappend="${#fields.hasErrors('tipGoalsB')} ? 'has-error'">
 
-                <label class="control-label" for="goalsB">Goals of team B:</label>
+                <label class="control-label" for="goalsB"
+                       th:text="#{tips.manage.goalsB}">Goals of team B:</label>
                 <input id="goalsB" type="text" th:field="*{tipGoalsB}"
                        class="form-control" />
                 <label class="control-label" th:errors="*{tipGoalsB}">[error]</label>

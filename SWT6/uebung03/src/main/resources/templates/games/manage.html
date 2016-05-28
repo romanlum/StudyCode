@@ -24,7 +24,7 @@
         <div class="row">
             <div class="form-group col-sm-12"
                  th:classappend="${#fields.hasErrors('date')} ? 'has-error'">
-                <label for="date">Date:</label>
+                <label for="date" th:text="#{games.manage.date}">Date:</label>
                 <div class="input-group date" data-provide="datepicker">
                     <input id="date" th:field="*{date}" type="text" class="form-control"
                            th:disabled="${entry.id == null ? 'false' : 'true'}"/>
@@ -40,7 +40,7 @@
             <div class="form-group col-sm-6"
                  th:classappend="${#fields.hasErrors('teamA')} ? 'has-error'">
                 <div class="form-group">
-                    <label for="teamA">Team:</label>
+                    <label for="teamA" th:text="#{games.manage.teamA}">Team:</label>
                     <select th:field="*{teamA}" class="form-control" id="teamA"
                             th:disabled="${entry.id == null ? 'false' : 'true'}">
                         <!--/*@thymesVar id="team" type="swt6.soccer.domain.Team"*/-->
@@ -56,7 +56,7 @@
                  th:classappend="${#fields.hasErrors('teamB')} ? 'has-error'"
                  th:disabled="${entry.id == null ? 'false' : 'true'}">
                 <div class="form-group">
-                    <label for="teamB">Team:</label>
+                    <label for="teamB" th:text="#{games.manage.teamB}">Team:</label>
                     <select th:field="*{teamB}" class="form-control" id="teamB"
                             th:disabled="${entry.id == null ? 'false' : 'true'}">
                         <!--/*@thymesVar id="team" type="swt6.soccer.domain.Team"*/-->
@@ -73,7 +73,7 @@
             <div class="form-group col-sm-6"
                  th:classappend="${#fields.hasErrors('goalsA')} ? 'has-error'">
                 <div class="form-group">
-                    <label for="goalsA">Goals:</label>
+                    <label for="goalsA" th:text="#{games.manage.goalsA}">Goals:</label>
                     <input  id="goalsA" th:field="*{goalsA}" type="text" class="form-control"/>
                     <label class="control-label" th:errors="*{goalsA}">[error]</label>
                 </div>
@@ -82,7 +82,7 @@
             <div class="form-group col-sm-6"
                  th:classappend="${#fields.hasErrors('goalsB')} ? 'has-error'">
                 <div class="form-group">
-                    <label for="goalsB">Goals:</label>
+                    <label for="goalsB" th:text="#{games.manage.goalsB}">Goals:</label>
                     <input  id="goalsB" th:field="*{goalsB}" type="text" class="form-control"/>
                     <label class="control-label" th:errors="*{goalsB}">[error]</label>
                 </div>

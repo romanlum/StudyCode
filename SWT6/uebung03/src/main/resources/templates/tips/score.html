@@ -25,13 +25,13 @@
     <div class="row" style="margin-top: 10px;">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading">User score</div>
+                <div class="panel-heading" th:text="#{tips.score.heading}">User score</div>
                 <div class="panel-body">
                     <table class="table table-striped table-condensed">
                         <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Points</th>
+                            <th th:text="#{tips.score.user}">User</th>
+                            <th th:text="#{tips.score.points}">Points</th>
                         </tr>
                         </thead>
                         <tbody>

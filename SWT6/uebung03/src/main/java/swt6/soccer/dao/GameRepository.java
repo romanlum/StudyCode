@@ -11,7 +11,7 @@ import java.util.List;
 public interface GameRepository extends JpaRepository<Game,Long> {
 
     /**
-     * Fetches all games orderd by date desc
+     * Fetches all games ordered by date desc
      * @return list of games
      */
     List<Game> findByFinishedOrderByDateDesc(boolean finished);
